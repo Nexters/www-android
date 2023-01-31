@@ -1,7 +1,7 @@
 ---
 name: Feature Request
 about: Feature Issue
-title: "[Feature] 제목"
+title: "[FEATURE] 제목"
 labels: ''
 assignees: ''
 
