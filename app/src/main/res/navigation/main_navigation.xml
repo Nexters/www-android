@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/fragment_home">
+    <fragment
+        android:id="@+id/fragment_home"
+        android:name="com.promiseeight.www.ui.home.HomeFragment">
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_add_meeting"
+            app:destination="@id/fragment_add_meeting" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_meeting_share"
+            app:destination="@id/fragment_meeting_share" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_add_meeting"
+        android:name="com.promiseeight.www.ui.meeting.AddMeetingFragment">
+        <action
+            android:id="@+id/action_fragment_add_meeting_to_fragment_meeting_share"
+            app:destination="@id/fragment_meeting_share"
+            app:popUpTo="@id/fragment_home"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_meeting_share"
+        android:name="com.promiseeight.www.ui.meeting.MeetingShareFragment"/>
+</navigation>
