@@ -23,6 +23,9 @@
     <!-- info place -->
     <string name="info_place_title">원하는 장소를 입력해주세요.</string>
 
+    <!-- meeting share -->
+    <string name="meeting_share_title">약속 방이 생성됐어요!\n친구들을 초대해보세요.</string>
+
     <!-- common -->
     <string name="button_next">다음</string>
 </resources>
