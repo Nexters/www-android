@@ -14,6 +14,9 @@
     <!-- info capacity -->
     <string name="info_capacity_title">최소 인원을 설정해주세요.</string>
 
+    <!-- info period -->
+    <string name="info_period_title">약속날짜의 범위를 정해주세요.</string>
+
     <!-- common -->
     <string name="button_next">다음</string>
 </resources>
