@@ -17,6 +17,9 @@
     <!-- info period -->
     <string name="info_period_title">약속날짜의 범위를 정해주세요.</string>
 
+    <!-- info date -->
+    <string name="info_date_title">가능한 날짜와 시간대를\n선택해주세요.</string>
+
     <!-- common -->
     <string name="button_next">다음</string>
 </resources>
