@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">www</string>
+
+    <!-- Home -->
+    <string name="home_add">새로운 약속을 생성할래요</string>
+    <string name="home_join">초대받은 코드로 입장할래요</string>
+
 </resources>
