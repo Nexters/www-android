@@ -15,4 +15,13 @@ class MeetingInfoUserNameFragment : BaseFragment<FragmentMeetingInfoUserNameBind
     ): FragmentMeetingInfoUserNameBinding {
         return FragmentMeetingInfoUserNameBinding.inflate(inflater,container,false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.btnNext.setOnClickListener {
+            findNavController().navigate(
+                MeetingInfoUserNameFragmentDirections.actionFragmentMeetingInfoUserNameToFragmentMeetingInfoName()
+            )
+        }
+    }
 }
