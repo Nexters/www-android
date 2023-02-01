@@ -11,6 +11,9 @@
     <!-- info user name -->
     <string name="info_user_name_title">해당 방에서 사용하실\n이름을 알려주세요.</string>
 
+    <!-- info capacity -->
+    <string name="info_capacity_title">최소 인원을 설정해주세요.</string>
+
     <!-- common -->
     <string name="button_next">다음</string>
 </resources>
