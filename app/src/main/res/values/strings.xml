@@ -8,6 +8,9 @@
     <!-- info name -->
     <string name="info_name_title">약속 방의\n이름을 알려주세요.</string>
 
+    <!-- info user name -->
+    <string name="info_user_name_title">해당 방에서 사용하실\n이름을 알려주세요.</string>
+
     <!-- common -->
     <string name="button_next">다음</string>
 </resources>
