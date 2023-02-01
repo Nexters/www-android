@@ -4,5 +4,10 @@
     <!-- Home -->
     <string name="home_add">새로운 약속을 생성할래요</string>
     <string name="home_join">초대받은 코드로 입장할래요</string>
+    
+    <!-- info name -->
+    <string name="info_name_title">약속 방의\n이름을 알려주세요.</string>
 
+    <!-- common -->
+    <string name="button_next">다음</string>
 </resources>
