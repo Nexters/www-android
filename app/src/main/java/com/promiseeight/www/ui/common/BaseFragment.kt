@@ -32,7 +32,7 @@ abstract class BaseFragment<B: ViewDataBinding> : Fragment() {
     abstract fun getFragmentBinding(inflater: LayoutInflater, container: ViewGroup?): B
 
     override fun onDestroyView() {
-        super.onDestroyView()
         _binding = null
+        super.onDestroyView()
     }
 }
