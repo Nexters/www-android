@@ -13,10 +13,50 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="37dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/vector_big_left"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="넥스터즈 뒷풀이"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5/6"
+                android:textSize="12dp"
+                android:textColor="#949494"
+                android:fontFamily="@font/spoqa_han_sans_regular"/>
+
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/status_bar_meeting_process5"
@@ -78,6 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="15dp"
+                android:layout_gravity="center_vertical"
                 android:layout_marginStart="72dp"
                 android:orientation="horizontal">
 
@@ -85,6 +126,7 @@
                     android:id="@+id/vector_left_meeting_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:src="@drawable/vector_left"/>
 
                 <View
@@ -93,9 +135,10 @@
                     android:layout_weight="1" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="wrap_content"
+                    android:layout_width="215dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
                     tools:listitem="@layout/item_date_process5"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:orientation="horizontal"/>
@@ -103,9 +146,9 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/vector_right"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginEnd="18dp"
-                    android:layout_marginStart="20dp"/>
+                    android:src="@drawable/vector_right" />
 
             </LinearLayout>
 
