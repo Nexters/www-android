@@ -126,6 +126,7 @@
                     android:id="@+id/vector_left_meeting_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/vector_left"/>
 
@@ -137,7 +138,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="215dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="18dp"
                     android:layout_marginEnd="20dp"
                     tools:listitem="@layout/item_date_process5"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -252,7 +253,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="11 - 16시"
+                        android:text="12 - 17시"
                         android:textSize="12dp"
                         android:fontFamily="@font/spoqa_han_sans_bold"
                         android:textColor="@color/black"/>
@@ -397,7 +398,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="21 - 24시"
+                        android:text="21시 이후"
                         android:textSize="12dp"
                         android:fontFamily="@font/spoqa_han_sans_bold"
                         android:textColor="@color/black"/>
@@ -422,7 +423,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ellipse_meeting_time_check"
-                        android:layout_marginStart="19dp"/>
+                        android:layout_marginStart="20dp"/>
 
 
                     <ImageView
@@ -430,7 +431,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ellipse_meeting_time_check"
-                        android:layout_marginStart="19dp"/>
+                        android:layout_marginStart="20dp"/>
 
 
                     <ImageView
@@ -438,7 +439,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ellipse_meeting_time_check"
-                        android:layout_marginStart="19dp"/>
+                        android:layout_marginStart="20dp"/>
 
                 </LinearLayout>
 
