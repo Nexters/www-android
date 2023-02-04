@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Calendar"/>
+
+    <style name="Calendar.HeaderDateText">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#263238</item>
+    </style>
+
+    <style name="Calendar.CalendarViewStyle">
+        <item name="dayHeight">44dp</item>
+    </style>
+
+    <style name="Calendar.ItemViewStyle">
+        <item name="dayTextSize">14dp</item>
+    </style>
+</resources>
