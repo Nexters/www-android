@@ -5,15 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.promiseeight.www.databinding.FragmentMeetingInfoDateBinding
 import com.promiseeight.www.databinding.FragmentMeetingInfoPeriodBinding
 import com.promiseeight.www.ui.common.BaseFragment
 
-class MeetingInfoDateFragment : BaseFragment<FragmentMeetingInfoPeriodBinding>() {
+class MeetingInfoDateFragment : BaseFragment<FragmentMeetingInfoDateBinding>() {
     override fun getFragmentBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): FragmentMeetingInfoPeriodBinding {
-        return FragmentMeetingInfoPeriodBinding.inflate(inflater,container,false)
+    ): FragmentMeetingInfoDateBinding {
+        return FragmentMeetingInfoDateBinding.inflate(inflater,container,false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
