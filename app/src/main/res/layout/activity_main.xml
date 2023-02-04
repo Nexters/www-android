@@ -73,7 +73,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2023.01.30"
+                android:text="2023.02.03"
                 android:textSize="12dp"
                 android:fontFamily="@font/spoqa_han_sans_regular"
                 android:textColor="#696969"/>
@@ -89,7 +89,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2023.01.31"
+                android:text="2023.02.04"
                 android:textSize="12dp"
                 android:textColor="#696969"
                 android:fontFamily="@font/spoqa_han_sans_regular"/>
