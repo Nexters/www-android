@@ -14,6 +14,10 @@ import org.joda.time.DateTime
 import org.joda.time.DateTimeConstants.DAYS_PER_WEEK
 import kotlin.math.max
 
+const val PREV_MONTH = -1
+const val DEFAULT_DATE = 0
+const val NEXT_MONTH = 40
+
 class CalendarView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -22,10 +26,14 @@ class CalendarView @JvmOverloads constructor(
 ) : ViewGroup(ContextThemeWrapper(context, defStyleRes), attrs, defStyleAttr) {
 
     private var _height: Float = 0f
+    private var _startDate : Int? = null
+    private var _finishDate : Int? = null
 
     init {
         context.withStyledAttributes(attrs, R.styleable.CalendarView, defStyleAttr, defStyleRes) {
             _height = getDimension(R.styleable.CalendarView_dayHeight, 0f)
+            _startDate = getInt(R.styleable.CalendarView_startDate,DEFAULT_DATE)
+            _finishDate = getInt(R.styleable.CalendarView_finishDate,DEFAULT_DATE)
         }
 
         initDaysOfWeek()
@@ -70,6 +78,13 @@ class CalendarView @JvmOverloads constructor(
                 firstDayOfMonth = firstDayOfMonth,
                 isPrevMonth = it.monthOfYear != firstDayOfMonth.monthOfYear
             ))
+        }
+    }
+
+    fun setStartDate(position : Int) {
+        (getChildAt(position) as DayItemView).run {
+            isStart = !isStart
+            invalidate()
         }
     }
 

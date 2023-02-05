@@ -6,5 +6,8 @@
 
         <attr name="dayHeight" format="dimension"/>
         <attr name="dayTextSize" format="dimension"/>
+
+        <attr name="startDate" format="integer"/>
+        <attr name="finishDate" format="integer"/>
     </declare-styleable>
 </resources>
