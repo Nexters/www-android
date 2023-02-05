@@ -2,6 +2,7 @@ package com.promiseeight.www.ui.view.calendar
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.text.TextPaint
@@ -28,11 +29,13 @@ class DayItemView @JvmOverloads constructor(
     private val bounds = Rect()
 
     private var paint: Paint = Paint()
+    private var dayTextSize : Float = 0f
+    var isStart  = false
 
     init {
         /* Attributes */
         context.withStyledAttributes(attrs, R.styleable.CalendarView, defStyleAttr, defStyleRes) {
-            val dayTextSize = getDimensionPixelSize(R.styleable.CalendarView_dayTextSize, 0).toFloat()
+            dayTextSize = getDimensionPixelSize(R.styleable.CalendarView_dayTextSize, 0).toFloat()
 
             /* 흰색 배경에 유색 글씨 */
             paint = TextPaint().apply {
@@ -52,11 +55,19 @@ class DayItemView @JvmOverloads constructor(
 
         val date = date.dayOfMonth.toString()
         paint.getTextBounds(date, 0, date.length, bounds)
+        if(isStart) canvas.drawCircle(
+            (width / 2).toFloat(),(height / 2).toFloat(),dayTextSize, Paint().apply {
+                color = Color.GRAY
+            }
+        )
         canvas.drawText(
             if(isPrevMonth) "" else date,
             (width / 2 - bounds.width() / 2).toFloat() - 2,
             (height / 2 + bounds.height() / 2).toFloat(),
             paint
         )
+
     }
+
+
 }
