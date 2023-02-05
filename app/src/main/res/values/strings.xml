@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">www</string>
+
+    <!-- Home -->
+    <string name="home_add">새로운 약속을 생성할래요</string>
+    <string name="home_join">초대받은 코드로 입장할래요</string>
+    
+    <!-- info name -->
+    <string name="info_name_title">약속 방의\n이름을 알려주세요.</string>
+
+    <!-- info user name -->
+    <string name="info_user_name_title">해당 방에서 사용하실\n이름을 알려주세요.</string>
+
+    <!-- info capacity -->
+    <string name="info_capacity_title">최소 인원을 설정해주세요.</string>
+
+    <!-- info period -->
+    <string name="info_period_title">약속날짜의 범위를 정해주세요.</string>
+
+    <!-- info date -->
+    <string name="info_date_title">가능한 날짜와 시간대를\n선택해주세요.</string>
+
+    <!-- info place -->
+    <string name="info_place_title">원하는 장소를 입력해주세요.</string>
+
+    <!-- meeting share -->
+    <string name="meeting_share_title">약속 방이 생성됐어요!\n친구들을 초대해보세요.</string>
+
+    <!-- common -->
+    <string name="button_next">다음</string>
 </resources>

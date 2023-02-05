@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/add_meeting_navigation"
+    app:startDestination="@id/fragment_meeting_info_user_name">
+
+    <fragment
+        android:id="@+id/fragment_meeting_info_user_name"
+        android:name="com.promiseeight.www.ui.meeting.info.MeetingInfoUserNameFragment">
+        <action
+            android:id="@+id/action_fragment_meeting_info_user_name_to_fragment_meeting_info_name"
+            app:destination="@id/fragment_meeting_info_name" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_meeting_info_name"
+        android:name="com.promiseeight.www.ui.meeting.info.MeetingInfoNameFragment">
+        <action
+            android:id="@+id/action_fragment_meeting_info_name_to_fragment_meeting_info_capacity"
+            app:destination="@id/fragment_meeting_info_capacity" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_meeting_info_capacity"
+        android:name="com.promiseeight.www.ui.meeting.info.MeetingInfoCapacityFragment">
+        <action
+            android:id="@+id/action_fragment_meeting_info_capacity_to_fragment_meeting_info_period"
+            app:destination="@id/fragment_meeting_info_period" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_meeting_info_period"
+        android:name="com.promiseeight.www.ui.meeting.info.MeetingInfoPeriodFragment">
+        <action
+            android:id="@+id/action_fragment_meeting_info_period_to_fragment_meeting_info_date"
+            app:destination="@id/fragment_meeting_info_date" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_meeting_info_date"
+        android:name="com.promiseeight.www.ui.meeting.info.MeetingInfoDateFragment">
+        <action
+            android:id="@+id/action_fragment_meeting_info_date_to_fragment_meeting_info_place"
+            app:destination="@id/fragment_meeting_info_place" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_meeting_info_place"
+        android:name="com.promiseeight.www.ui.meeting.info.MeetingInfoPlaceFragment"/>
+</navigation>
