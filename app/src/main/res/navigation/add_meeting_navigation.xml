@@ -2,23 +2,27 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/add_meeting_navigation"
-    app:startDestination="@id/fragment_meeting_info_user_name">
-
-    <fragment
-        android:id="@+id/fragment_meeting_info_user_name"
-        android:name="com.promiseeight.www.ui.meeting.info.MeetingInfoUserNameFragment">
-        <action
-            android:id="@+id/action_fragment_meeting_info_user_name_to_fragment_meeting_info_name"
-            app:destination="@id/fragment_meeting_info_name" />
-    </fragment>
+    app:startDestination="@id/fragment_meeting_info_name">
 
     <fragment
         android:id="@+id/fragment_meeting_info_name"
         android:name="com.promiseeight.www.ui.meeting.info.MeetingInfoNameFragment">
+
         <action
-            android:id="@+id/action_fragment_meeting_info_name_to_fragment_meeting_info_capacity"
+            android:id="@+id/action_fragment_meeting_info_name_to_fragment_meeting_info_user_name"
+            app:destination="@id/fragment_meeting_info_user_name" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_meeting_info_user_name"
+        android:name="com.promiseeight.www.ui.meeting.info.MeetingInfoUserNameFragment">
+
+        <action
+            android:id="@+id/action_fragment_meeting_info_user_name_to_fragment_meeting_info_capacity"
             app:destination="@id/fragment_meeting_info_capacity" />
     </fragment>
+
+
 
     <fragment
         android:id="@+id/fragment_meeting_info_capacity"

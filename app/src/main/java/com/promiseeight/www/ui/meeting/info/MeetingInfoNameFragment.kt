@@ -20,7 +20,7 @@ class MeetingInfoNameFragment : BaseFragment<FragmentMeetingInfoNameBinding>() {
         super.onViewCreated(view, savedInstanceState)
         binding.btnNext.setOnClickListener {
             findNavController().navigate(
-                MeetingInfoNameFragmentDirections.actionFragmentMeetingInfoNameToFragmentMeetingInfoCapacity()
+                MeetingInfoNameFragmentDirections.actionFragmentMeetingInfoNameToFragmentMeetingInfoUserName()
             )
         }
     }
