@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- Typography -->
+    <style name="Text.Heading1" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/font_size_72</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_light</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.Heading2" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/font_size_36</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.Heading3" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/font_size_24</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.Title1" parent="android:TextAppearance">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/font_size_22</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.Title2" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/font_size_22</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.Title3" parent="android:TextAppearance">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/font_size_20</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.Title4" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/font_size_20</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.Title5" parent="android:TextAppearance">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/font_size_18</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.Title6" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/font_size_18</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.Title7" parent="android:TextAppearance">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/font_size_16</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.Title8" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/font_size_16</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.Title9" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/font_size_16</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_regular</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.Body1" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/font_size_15</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.Body2" parent="android:TextAppearance">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.Body3" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.Body4" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_regular</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.Body5" parent="android:TextAppearance">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/font_size_12</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.Body6" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/font_size_12</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.Body7" parent="android:TextAppearance">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/font_size_11</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+</resources>
