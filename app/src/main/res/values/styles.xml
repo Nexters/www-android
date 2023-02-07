@@ -136,4 +136,16 @@
         <item name="android:includeFontPadding">false</item>
     </style>
 
+    <!-- Button -->
+    <style name="Button.Basic" parent="android:Widget.Button">
+        <item name="android:background">@drawable/selector_button</item>
+        <item name="android:minHeight">@dimen/size_0</item>
+        <item name="android:minWidth">@dimen/size_0</item>
+        <item name="android:height">@dimen/size_52</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/font_size_15</item>
+        <item name="android:textColor">@color/www_white</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
+    </style>
+
 </resources>
