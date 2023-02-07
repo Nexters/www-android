@@ -24,5 +24,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 HomeFragmentDirections.actionFragmentHomeToFragmentAddMeeting()
             )
         }
+        binding.btnJoin.setOnClickListener {
+            findNavController().navigate(
+                HomeFragmentDirections.actionFragmentHomeToFragmentJoinMeeting()
+            )
+        }
     }
 }
