@@ -1,23 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            style="@style/Text.Heading3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/size_20"
+            android:layout_marginTop="@dimen/size_40"
+            android:text="@string/info_user_name_title"
+            android:textColor="@color/www_black"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/info_user_name_title"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <!-- background 수정 필요 -->
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_info_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_52"
+            android:layout_marginHorizontal="@dimen/size_20"
+            android:layout_marginTop="@dimen/size_32"
+            android:hint="@string/info_user_name_hint"
+            app:layout_constraintBottom_toTopOf="@+id/btn_next"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
-            android:layout_width="wrap_content"
+            style="@style/Button.Basic"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/size_20"
+            android:layout_marginBottom="@dimen/size_38"
+            android:text="@string/button_next"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="@string/button_next"/>
-
+            app:layout_constraintTop_toBottomOf="@id/et_info_user_name" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

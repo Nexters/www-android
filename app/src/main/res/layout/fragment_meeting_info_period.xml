@@ -5,19 +5,49 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            style="@style/Text.Heading3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/size_20"
+            android:layout_marginTop="@dimen/size_40"
+            android:text="@string/info_period_title"
+            android:textColor="@color/www_black"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/info_period_title"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_subtitle"
+            style="@style/Text.Body4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_6"
+            android:text="@string/info_period_subtitle"
+            android:textColor="@color/gray_450"
+            app:layout_constraintStart_toStartOf="@id/tv_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintBottom_toTopOf="@id/cv_period"
+            app:layout_constraintVertical_chainStyle="spread_inside"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/cv_period"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="달력 들어갈 자리"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
+            app:layout_constraintBottom_toTopOf="@id/btn_next"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
-            android:layout_width="wrap_content"
+            style="@style/Button.Basic"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/size_20"
+            android:layout_marginBottom="@dimen/size_38"
+            android:text="@string/button_next"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="@string/button_next"/>
+            app:layout_constraintTop_toBottomOf="@id/cv_period" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

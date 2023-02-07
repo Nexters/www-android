@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_20"
             android:layout_marginTop="@dimen/size_40"
-            android:text="@string/info_name_title"
+            android:text="@string/info_code_title"
             android:textColor="@color/www_black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -22,12 +22,12 @@
 
         <!-- background 수정 필요 -->
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_info_name"
+            android:id="@+id/et_info_code"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_52"
             android:layout_marginHorizontal="@dimen/size_20"
             android:layout_marginTop="@dimen/size_32"
-            android:hint="@string/info_name_hint"
+            android:hint="@string/info_code_hint"
             app:layout_constraintBottom_toTopOf="@+id/btn_next"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
             app:layout_constraintVertical_chainStyle="spread_inside" />
@@ -41,7 +41,7 @@
             android:layout_marginBottom="@dimen/size_38"
             android:text="@string/button_next"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_info_name" />
+            app:layout_constraintTop_toBottomOf="@id/et_info_code" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
