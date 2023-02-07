@@ -7,6 +7,29 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="gray">#CCCCCC</color>
-    <color name="www_green">#41E29E</color>
+
+    <!-- primary color -->
+    <color name="www_green">#FF41E29E</color>
+
+    <!-- grayscale -->
+    <color name="www_black">#FF000000</color>
+    <color name="gray_800">#FF111111</color>
+    <color name="gray_750">#FF1A1A1A</color>
+    <color name="gray_700">#FF1A1A1A</color>
+    <color name="gray_650">#FF2A2A2A</color>
+    <color name="gray_600">#FF333333</color>
+    <color name="gray_550">#FF383838</color>
+    <color name="gray_500">#FF4D4D4D</color>
+    <color name="gray_450">#FF666666</color>
+    <color name="gray_400">#FF808080</color>
+    <color name="gray_350">#FF999999</color>
+    <color name="gray_300">#FFB3B3B3</color>
+    <color name="gray_250">#FFCCCCCC</color>
+    <color name="gray_200">#FFE6E6E6</color>
+    <color name="gray_150">#FFEFEFEF</color>
+    <color name="gray_100">#FFF5F5F5</color>
+    <color name="gray_50">#FFFCFCFC</color>
+    <color name="www_white">#FFFFFFFF</color>
+
+    <color name="www_red">#FFFF0000</color>
 </resources>
