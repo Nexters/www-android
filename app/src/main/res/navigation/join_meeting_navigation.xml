@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/join_meeting_navigation"
+    app:startDestination="@id/fragment_join_meeting_info_code">
+
+    <fragment
+        android:id="@+id/fragment_join_meeting_info_code"
+        android:name="com.promiseeight.www.ui.meeting.info.MeetingInfoCodeFragment">
+
+
+        <action
+            android:id="@+id/action_fragment_join_meeting_info_code_to_fragment_join_meeting_info_user_name"
+            app:destination="@id/fragment_join_meeting_info_user_name" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_join_meeting_info_user_name"
+        android:name="com.promiseeight.www.ui.meeting.info.MeetingInfoUserNameFragment">
+
+
+        <action
+            android:id="@+id/action_fragment_join_meeting_info_user_name_to_fragment_join_meeting_info_date"
+            app:destination="@id/fragment_join_meeting_info_date" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/fragment_join_meeting_info_date"
+        android:name="com.promiseeight.www.ui.meeting.info.MeetingInfoDateFragment">
+
+        <action
+            android:id="@+id/action_fragment_join_meeting_info_date_to_fragment_join_meeting_info_place"
+            app:destination="@id/fragment_join_meeting_info_place" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_join_meeting_info_place"
+        android:name="com.promiseeight.www.ui.meeting.info.MeetingInfoPlaceFragment"/>
+
+</navigation>
