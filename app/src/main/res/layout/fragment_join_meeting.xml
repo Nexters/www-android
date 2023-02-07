@@ -45,14 +45,14 @@
             android:layout_marginTop="@dimen/size_18"/>
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fcv_add_meeting"
-            android:name="com.promiseeight.www.ui.common.AddNavHostFragment"
+            android:id="@+id/fcv_join_meeting"
+            android:name="com.promiseeight.www.ui.common.JoinNavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pb_add"
-            app:navGraph="@navigation/add_meeting_navigation" />
+            app:navGraph="@navigation/join_meeting_navigation" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

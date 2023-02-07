@@ -1,23 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            style="@style/Text.Heading3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/size_20"
+            android:layout_marginTop="@dimen/size_40"
+            android:text="@string/info_capacity_title"
+            android:textColor="@color/www_black"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/info_capacity_title"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_subtitle"
+            style="@style/Text.Body4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_6"
+            android:text="@string/info_capacity_subtitle"
+            android:textColor="@color/gray_450"
+            app:layout_constraintBottom_toTopOf="@id/tv_info_capacity"
+            app:layout_constraintStart_toStartOf="@id/tv_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_info_capacity"
+            style="@style/Text.Heading1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/size_88"
+            android:textColor="@color/www_black"
+            app:layout_constraintBottom_toTopOf="@id/btn_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
+            tools:text="1" />
+
+        <!-- background 수정 필요 -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_38"
+            app:layout_constraintBottom_toBottomOf="@id/tv_info_capacity"
+            app:layout_constraintStart_toEndOf="@id/tv_info_capacity"
+            app:layout_constraintTop_toTopOf="@id/tv_info_capacity" />
+
+        <!-- background 수정 필요 -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_38"
+            app:layout_constraintBottom_toBottomOf="@id/tv_info_capacity"
+            app:layout_constraintEnd_toStartOf="@id/tv_info_capacity"
+            app:layout_constraintTop_toTopOf="@id/tv_info_capacity" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
-            android:layout_width="wrap_content"
+            style="@style/Button.Basic"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/size_20"
+            android:layout_marginBottom="@dimen/size_38"
+            android:text="@string/button_next"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="@string/button_next"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_info_capacity" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
