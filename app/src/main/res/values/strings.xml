@@ -4,28 +4,49 @@
     <!-- Home -->
     <string name="home_add">새로운 약속을 생성할래요</string>
     <string name="home_join">초대받은 코드로 입장할래요</string>
+
+    <!-- add / join -->
+    <string name="add_join_pages">%d/%d</string>
     
     <!-- info name -->
-    <string name="info_name_title">약속 방의\n이름을 알려주세요.</string>
+    <string name="info_name_title">약속방의\n이름을 알려주세요.</string>
+    <string name="info_name_hint">약속방 이름 입력</string>
 
     <!-- info user name -->
-    <string name="info_user_name_title">해당 방에서 사용하실\n이름을 알려주세요.</string>
+    <string name="info_user_name_title">약속방에서 사용하실\n닉네임을 알려주세요.</string>
+    <string name="info_user_name_hint">닉네임 입력</string>
 
     <!-- info capacity -->
-    <string name="info_capacity_title">최소 인원을 설정해주세요.</string>
+    <string name="info_capacity_title">최소 인원을 설정해 주세요.</string>
+    <string name="info_capacity_subtitle">최소 인원 입장 완료 시, 투표가 시작됩니다.</string>
 
     <!-- info period -->
-    <string name="info_period_title">약속날짜의 범위를 정해주세요.</string>
+    <string name="info_period_title">약속 날짜의 범위를 정해주세요.</string>
+    <string name="info_period_subtitle">약속 날짜 범위 내에서 가능한 날짜를 투표하게 됩니다. </string>
 
     <!-- info date -->
-    <string name="info_date_title">가능한 날짜와 시간대를\n선택해주세요.</string>
+    <string name="info_date_title">가능한 시간대를 선택해주세요.</string>
+    <string name="info_date_empty">선택한 시간대가 없습니다.</string>
 
     <!-- info place -->
-    <string name="info_place_title">원하는 장소를 입력해주세요.</string>
+    <string name="info_place_title">원하는 장소를 입력해 주세요.</string>
+    <string name="info_place_subtitle">*필수 항목이 아니에요.</string>
+    <string name="info_place_list">등록된 장소 후보</string>
+
+    <!-- info code -->
+    <string name="info_code_title">친구에게 받은\n참여 코드를 입력해주세요.</string>
+    <string name="info_code_hint">참여 코드 입력</string>
+    <string name="info_code_warning">존재하지 않는 참여 코드에요.</string>
 
     <!-- meeting share -->
-    <string name="meeting_share_title">약속 방이 생성됐어요!\n친구들을 초대해보세요.</string>
+    <string name="meeting_share_title">함께할 친구들을 초대해 보세요.</string>
+    <string name="meeting_share_subtitle">약속방 만들기가 완료되었어요!</string>
+    <string name="meeting_share_link">링크 복사하기</string>
+    <string name="meeting_share_next">약속방으로 가기</string>
+
 
     <!-- common -->
     <string name="button_next">다음</string>
+    <string name="button_skip">스킵할래요</string>
+    <string name="empty_text"> </string>
 </resources>

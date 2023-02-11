@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            style="@style/Text.Heading3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_20"
+            android:layout_marginTop="@dimen/size_40"
+            android:text="@string/info_code_title"
+            android:textColor="@color/www_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <!-- background 수정 필요 -->
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_info_code"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_52"
+            android:layout_marginHorizontal="@dimen/size_20"
+            android:layout_marginTop="@dimen/size_32"
+            android:hint="@string/info_code_hint"
+            app:layout_constraintBottom_toTopOf="@+id/btn_next"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_next"
+            style="@style/Button.Basic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/size_20"
+            android:layout_marginBottom="@dimen/size_38"
+            android:text="@string/button_next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_info_code" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

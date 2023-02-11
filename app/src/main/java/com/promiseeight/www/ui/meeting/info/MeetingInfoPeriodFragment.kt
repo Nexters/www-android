@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentMeetingInfoDateBinding
 import com.promiseeight.www.databinding.FragmentMeetingInfoPeriodBinding
 import com.promiseeight.www.ui.common.BaseFragment
@@ -21,7 +22,7 @@ class MeetingInfoPeriodFragment : BaseFragment<FragmentMeetingInfoPeriodBinding>
         super.onViewCreated(view, savedInstanceState)
         binding.btnNext.setOnClickListener {
             findNavController().navigate(
-                MeetingInfoPeriodFragmentDirections.actionFragmentMeetingInfoPeriodToFragmentMeetingInfoDate()
+                R.id.action_fragment_add_meeting_info_period_to_fragment_add_meeting_info_date
             )
         }
     }

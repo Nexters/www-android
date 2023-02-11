@@ -12,6 +12,10 @@
         <action
             android:id="@+id/action_fragment_home_to_fragment_meeting_share"
             app:destination="@id/fragment_meeting_share" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_join_meeting"
+            app:destination="@id/fragment_join_meeting" />
+
     </fragment>
 
     <fragment
@@ -26,4 +30,7 @@
     <fragment
         android:id="@+id/fragment_meeting_share"
         android:name="com.promiseeight.www.ui.meeting.MeetingShareFragment"/>
+    <fragment
+        android:id="@+id/fragment_join_meeting"
+        android:name="com.promiseeight.www.ui.meeting.JoinMeetingFragment" />
 </navigation>

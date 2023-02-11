@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentMeetingInfoNameBinding
 import com.promiseeight.www.ui.common.BaseFragment
 
@@ -20,7 +21,7 @@ class MeetingInfoNameFragment : BaseFragment<FragmentMeetingInfoNameBinding>() {
         super.onViewCreated(view, savedInstanceState)
         binding.btnNext.setOnClickListener {
             findNavController().navigate(
-                MeetingInfoNameFragmentDirections.actionFragmentMeetingInfoNameToFragmentMeetingInfoCapacity()
+                R.id.action_fragment_add_meeting_info_name_to_fragment_add_meeting_info_user_name
             )
         }
     }
