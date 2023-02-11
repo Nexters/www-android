@@ -76,6 +76,7 @@
             app:layout_constraintEnd_toStartOf="@id/tv_info_capacity"
             app:layout_constraintTop_toTopOf="@id/tv_info_capacity" />
 
+        <!-- background 수정 필요 -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
             style="@style/Button.Basic"

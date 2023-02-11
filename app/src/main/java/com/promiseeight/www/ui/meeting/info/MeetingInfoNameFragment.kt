@@ -10,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentMeetingInfoNameBinding
 import com.promiseeight.www.ui.common.InfoFragment
 import com.promiseeight.www.ui.meeting.InfoViewModel

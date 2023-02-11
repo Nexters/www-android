@@ -315,12 +315,9 @@
                             android:layout_marginStart="20dp"
                             android:background="@drawable/ellipse_meeting_time_check" />
 
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    style="@style/Text.Body6"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="20dp"
@@ -446,4 +443,7 @@
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 </layout>
