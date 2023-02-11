@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.promiseeight.www.ui.meeting.InfoViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -25,18 +33,76 @@
             android:text="@string/info_place_subtitle"
             android:textColor="@color/gray_450"
             app:layout_constraintStart_toStartOf="@id/tv_title"
-            app:layout_constraintTop_toBottomOf="@id/tv_title"
-            app:layout_constraintBottom_toTopOf="@id/v_place"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_info_place"
+            style="@style/Text.Body4"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_52"
+            android:layout_marginHorizontal="@dimen/size_20"
+            android:layout_marginTop="@dimen/size_36"
+            android:background="@drawable/rectangle_white_border_gray200_radius_30"
+            android:hint="@string/info_place_hint"
+            android:inputType="text"
+            android:maxLines="1"
+            android:maxLength="10"
+            android:paddingStart="@dimen/size_20"
+            android:paddingEnd="@dimen/size_38"
+            android:text="@={viewModel.meetingPlace}"
+            android:layout_marginBottom="@dimen/size_10"
+            app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
+            app:layout_constraintBottom_toTopOf="@id/tv_place_list"
             app:layout_constraintVertical_chainStyle="spread_inside"/>
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_add"
+            android:layout_width="@dimen/size_16_padding_8"
+            android:layout_height="@dimen/size_16_padding_8"
+            android:layout_marginEnd="@dimen/size_12"
+            android:padding="8dp"
+            android:src="@drawable/selector_button_add"
+            app:layout_constraintBottom_toBottomOf="@id/et_info_place"
+            app:layout_constraintEnd_toEndOf="@id/et_info_place"
+            app:layout_constraintTop_toTopOf="@id/et_info_place" />
+
+        
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/v_place"
+            android:id="@+id/tv_place_list"
+            style="@style/Text.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/rv_place"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/size_20"
+            android:text="@string/info_place_list"
+            android:layout_marginBottom="@dimen/size_10"
+            app:layout_constraintTop_toBottomOf="@id/et_info_place"
+            android:textColor="@color/www_black"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_place_list_count"
+            style="@style/Text.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/tv_place_list"
+            app:layout_constraintBottom_toBottomOf="@id/tv_place_list"
+            app:layout_constraintStart_toEndOf="@id/tv_place_list"
+            android:layout_marginStart="@dimen/size_4"
+            android:textColor="@color/www_green"
+            android:text="@{@string/number(viewModel.meetingPlaceCandidates.size())}"
+            tools:text="1"/>
+
+        <!-- height 고쳐야 됨 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_place"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:text="장소 입력 자리"
-            android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
-            app:layout_constraintBottom_toTopOf="@id/btn_next"/>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/size_28"
+            android:paddingHorizontal="@dimen/size_20"
+            android:clipToPadding="false"
+            app:layout_constraintBottom_toTopOf="@id/btn_next" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
@@ -46,8 +112,7 @@
             android:layout_marginHorizontal="@dimen/size_20"
             android:layout_marginBottom="@dimen/size_38"
             android:text="@string/button_skip"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/v_place" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

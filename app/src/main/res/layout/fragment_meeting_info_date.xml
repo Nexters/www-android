@@ -3,6 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.promiseeight.www.ui.meeting.InfoViewModel" />
+
+        <import type="android.view.View"/>
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -37,9 +46,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/rv_selected_date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_subtitle">
+            app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
+            app:layout_constraintVertical_chainStyle="spread_inside">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -398,6 +409,32 @@
 
         </LinearLayout>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_selected_date"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_56"
+            android:layout_marginHorizontal="@dimen/size_20"
+            android:layout_marginBottom="@dimen/size_18"
+            android:background="@drawable/rectangle_white_border_gray100_radius_10"
+            android:clipToPadding="true"
+            android:paddingVertical="@dimen/size_11"
+            android:paddingHorizontal="@dimen/size_14"
+            app:layout_constraintBottom_toTopOf="@id/btn_next" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_selected_date"
+            style="@style/Text.Body4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/size_20"
+            android:text="@string/info_date_empty"
+            android:textColor="@color/gray_550"
+            android:visibility="@{viewModel.meetingDateCandidates.empty ? View.VISIBLE : View.INVISIBLE }"
+            app:layout_constraintBottom_toBottomOf="@id/rv_selected_date"
+            app:layout_constraintStart_toStartOf="@id/rv_selected_date"
+            app:layout_constraintTop_toTopOf="@id/rv_selected_date" />
+
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
             style="@style/Button.Basic"
@@ -406,8 +443,7 @@
             android:layout_marginHorizontal="@dimen/size_20"
             android:layout_marginBottom="@dimen/size_38"
             android:text="@string/button_next"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ll_date" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

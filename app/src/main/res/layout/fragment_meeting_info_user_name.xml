@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.promiseeight.www.ui.meeting.InfoViewModel" />
+
+        <import type="android.view.View"/>
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -17,18 +24,36 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-        <!-- background 수정 필요 -->
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_info_user_name"
+            style="@style/Text.Body4"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_52"
             android:layout_marginHorizontal="@dimen/size_20"
             android:layout_marginTop="@dimen/size_32"
+            android:background="@drawable/rectangle_white_border_gray200_radius_30"
             android:hint="@string/info_user_name_hint"
+            android:maxLength="8"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="@dimen/size_20"
+            android:paddingEnd="@dimen/size_38"
+            android:text="@={viewModel.meetingUserName}"
             app:layout_constraintBottom_toTopOf="@+id/btn_next"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
             app:layout_constraintVertical_chainStyle="spread_inside" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_close"
+            android:layout_width="@dimen/size_16_padding_8"
+            android:layout_height="@dimen/size_16_padding_8"
+            android:layout_marginEnd="@dimen/size_12"
+            android:padding="8dp"
+            android:src="@drawable/ic_close_gray"
+            android:visibility="@{viewModel.meetingUserName.blank ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/et_info_user_name"
+            app:layout_constraintEnd_toEndOf="@id/et_info_user_name"
+            app:layout_constraintTop_toTopOf="@id/et_info_user_name" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
@@ -38,6 +63,7 @@
             android:layout_marginHorizontal="@dimen/size_20"
             android:layout_marginBottom="@dimen/size_38"
             android:text="@string/button_next"
+            android:enabled="@{!viewModel.meetingUserName.blank}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_info_user_name" />
     </androidx.constraintlayout.widget.ConstraintLayout>

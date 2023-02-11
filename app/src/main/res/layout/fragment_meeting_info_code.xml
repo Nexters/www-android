@@ -3,6 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.promiseeight.www.ui.meeting.InfoViewModel" />
+
+        <import type="com.promiseeight.www.ui.model.enums.CodeStatus"/>
+        <import type="android.view.View"/>
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -23,14 +32,62 @@
         <!-- background 수정 필요 -->
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_info_code"
+            style="@style/Text.Body4"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_52"
             android:layout_marginHorizontal="@dimen/size_20"
             android:layout_marginTop="@dimen/size_32"
+            android:background="@{viewModel.meetingCodeStatus == CodeStatus.INVALID ? @drawable/rectangle_white_border_red_radius_30: @drawable/rectangle_white_border_gray200_radius_30}"
             android:hint="@string/info_code_hint"
+            android:inputType="text"
+            android:maxLength="@{viewModel.codeMaxSize}"
+            android:maxLines="1"
+            android:paddingStart="@dimen/size_20"
+            android:paddingEnd="@dimen/size_38"
+            android:text="@={viewModel.meetingCode}"
             app:layout_constraintBottom_toTopOf="@+id/btn_next"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
             app:layout_constraintVertical_chainStyle="spread_inside" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_close"
+            android:layout_width="@dimen/size_16"
+            android:layout_height="@dimen/size_16"
+            android:layout_marginEnd="@dimen/size_20"
+            android:src="@drawable/ic_close_gray"
+            android:visibility="@{viewModel.meetingCode.blank ? View.INVISIBLE : View.VISIBLE }"
+            app:layout_constraintBottom_toBottomOf="@id/et_info_code"
+            app:layout_constraintEnd_toEndOf="@id/et_info_code"
+            app:layout_constraintTop_toTopOf="@id/et_info_code" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_warning"
+            android:layout_width="@dimen/size_10"
+            android:layout_height="@dimen/size_10"
+            android:src="@drawable/ic_info"
+            app:layout_constraintTop_toBottomOf="@id/et_info_code"
+            app:layout_constraintStart_toStartOf="@id/et_info_code"
+            android:layout_marginTop="@dimen/size_10"
+            android:layout_marginStart="@dimen/size_1"
+            android:visibility="@{viewModel.meetingCodeStatus == CodeStatus.INVALID ? View.VISIBLE : View.INVISIBLE}"/>
+
+
+        
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_warning"
+            style="@style/Text.Body8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.meetingCodeStatus == CodeStatus.INVALID ? View.VISIBLE : View.INVISIBLE}"
+            android:text="@string/info_code_warning"
+            android:textColor="@color/www_red"
+            app:layout_constraintTop_toTopOf="@id/iv_warning"
+            app:layout_constraintBottom_toBottomOf="@id/iv_warning"
+            app:layout_constraintStart_toEndOf="@id/iv_warning"
+            android:layout_marginStart="@dimen/size_5"/>
+
+
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
@@ -39,6 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/size_20"
             android:layout_marginBottom="@dimen/size_38"
+            android:enabled="@{viewModel.meetingCodeStatus == CodeStatus.ACTIVE}"
             android:text="@string/button_next"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_info_code" />
