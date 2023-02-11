@@ -31,6 +31,7 @@
     <!-- info place -->
     <string name="info_place_title">원하는 장소를 입력해 주세요.</string>
     <string name="info_place_subtitle">*필수 항목이 아니에요.</string>
+    <string name="info_place_hint">장소 입력</string>
     <string name="info_place_list">등록된 장소 후보</string>
 
     <!-- info code -->
@@ -49,4 +50,5 @@
     <string name="button_next">다음</string>
     <string name="button_skip">스킵할래요</string>
     <string name="empty_text"> </string>
+    <string name="number">%d</string>
 </resources>

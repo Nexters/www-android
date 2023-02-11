@@ -33,4 +33,8 @@
     <fragment
         android:id="@+id/fragment_join_meeting"
         android:name="com.promiseeight.www.ui.meeting.JoinMeetingFragment" />
+
+    <include app:graph="@navigation/add_meeting_navigation"/>
+    <include app:graph="@navigation/join_meeting_navigation"/>
+
 </navigation>

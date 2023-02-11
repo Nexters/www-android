@@ -136,6 +136,13 @@
         <item name="android:includeFontPadding">false</item>
     </style>
 
+    <style name="Text.Body8" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/font_size_11</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_regular</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
     <!-- Button -->
     <style name="Button.Basic" parent="android:Widget.Button">
         <item name="android:background">@drawable/selector_button</item>

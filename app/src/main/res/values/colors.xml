@@ -10,6 +10,7 @@
 
     <!-- primary color -->
     <color name="www_green">#FF41E29E</color>
+    <color name="www_green_transparent_8">#1441E29E</color>
 
     <!-- grayscale -->
     <color name="www_black">#FF000000</color>

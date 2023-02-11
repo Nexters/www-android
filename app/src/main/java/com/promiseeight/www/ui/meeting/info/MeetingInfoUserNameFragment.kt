@@ -1,19 +1,19 @@
 package com.promiseeight.www.ui.meeting.info
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentMeetingInfoUserNameBinding
-import com.promiseeight.www.ui.common.AddNavHostFragment
-import com.promiseeight.www.ui.common.BaseFragment
-import com.promiseeight.www.ui.common.JoinNavHostFragment
-import com.promiseeight.www.ui.meeting.AddMeetingFragment
+import com.promiseeight.www.ui.common.InfoFragment
+import com.promiseeight.www.ui.meeting.InfoViewModel
 
-class MeetingInfoUserNameFragment : BaseFragment<FragmentMeetingInfoUserNameBinding>() {
+class MeetingInfoUserNameFragment : InfoFragment<FragmentMeetingInfoUserNameBinding>() {
+
+    private val viewModel: InfoViewModel by viewModels({ getHostFragment() })
+
     override fun getFragmentBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -23,21 +23,34 @@ class MeetingInfoUserNameFragment : BaseFragment<FragmentMeetingInfoUserNameBind
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnNext.setOnClickListener {
-            when (parentFragment) {
-                is JoinNavHostFragment -> {
-                    findNavController().navigate(
-                        R.id.action_fragment_join_meeting_info_user_name_to_fragment_join_meeting_info_date
-                    )
-                }
-                is AddNavHostFragment -> {
-                    findNavController().navigate(
-                        R.id.action_fragment_add_meeting_info_user_name_to_fragment_add_meeting_info_capacity
-                    )
-                }
+        binding.viewModel = viewModel
 
+        viewModel.setPage(2)
+    }
+
+    override fun initView() {
+        super.initView()
+        binding.run {
+            btnNext.setOnClickListener {
+                setParentFragmentBranch(
+                    onJoin = {
+                        findNavController().navigate(
+                            ACTION_JOIN_USER_NAME_TO_DATE
+                        )
+                    },
+                    onAdd = {
+                        findNavController().navigate(
+                            ACTION_ADD_USER_NAME_TO_CAPACITY
+                        )
+                    }
+                )
             }
 
+            ivClose.setOnClickListener {
+                viewModel?.setMeetingUserNameEmpty()
+            }
         }
     }
+
+
 }
