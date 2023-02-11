@@ -82,6 +82,10 @@ class InfoViewModel : ViewModel() {
         meetingUserName.value = ""
     }
 
+    fun setMeetingCodeEmpty() {
+        meetingCode.value = ""
+    }
+
     fun setMeetingCapacity(capacity: Int) {
         _meetingCapacity.value = capacity
     }

@@ -41,6 +41,10 @@ class MeetingInfoCodeFragment : InfoFragment<FragmentMeetingInfoCodeBinding>() {
                 if(viewModel?.checkCodeValid() == true)
                     findNavController().navigate(ACTION_JOIN_CODE_TO_USER_NAME)
             }
+
+            ivClose.setOnClickListener {
+                viewModel?.setMeetingCodeEmpty()
+            }
         }
     }
 
