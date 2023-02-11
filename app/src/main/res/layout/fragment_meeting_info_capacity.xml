@@ -2,6 +2,12 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.promiseeight.www.ui.meeting.InfoViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -39,32 +45,38 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/size_88"
             android:textColor="@color/www_black"
+            android:text="@{@string/number(viewModel.meetingCapacity)}"
             app:layout_constraintBottom_toTopOf="@id/btn_next"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
             tools:text="1" />
 
-        <!-- background 수정 필요 -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_plus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_plus"
+            android:layout_width="@dimen/size_24_padding_8"
+            android:layout_height="@dimen/size_24_padding_8"
             android:layout_marginStart="@dimen/size_38"
+            android:enabled="@{(viewModel.meetingCapacity &lt; 20)}"
+            android:padding="@dimen/size_8"
+            android:src="@drawable/selector_button_add"
             app:layout_constraintBottom_toBottomOf="@id/tv_info_capacity"
             app:layout_constraintStart_toEndOf="@id/tv_info_capacity"
             app:layout_constraintTop_toTopOf="@id/tv_info_capacity" />
 
-        <!-- background 수정 필요 -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_minus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_minus"
+            android:layout_width="@dimen/size_24_padding_8"
+            android:layout_height="@dimen/size_24_padding_8"
             android:layout_marginEnd="@dimen/size_38"
+            android:enabled="@{(viewModel.meetingCapacity > 1)}"
+            android:padding="@dimen/size_8"
+            android:src="@drawable/selector_button_delete"
             app:layout_constraintBottom_toBottomOf="@id/tv_info_capacity"
             app:layout_constraintEnd_toStartOf="@id/tv_info_capacity"
             app:layout_constraintTop_toTopOf="@id/tv_info_capacity" />
 
+        <!-- background 수정 필요 -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
             style="@style/Button.Basic"
@@ -72,6 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/size_20"
             android:layout_marginBottom="@dimen/size_38"
+            android:enabled="@{viewModel.meetingCapacity > 1}"
             android:text="@string/button_next"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_info_capacity" />

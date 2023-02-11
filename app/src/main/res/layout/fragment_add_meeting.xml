@@ -2,6 +2,13 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.promiseeight.www.ui.meeting.InfoViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -18,31 +25,40 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            style="@style/Text.Title8"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/size_64"
             android:gravity="center"
-            app:layout_constraintEnd_toStartOf="@id/tv_page"
-            app:layout_constraintStart_toEndOf="@id/iv_back"
-            app:layout_constraintTop_toTopOf="@id/iv_back"
-            app:layout_constraintBottom_toBottomOf="@id/iv_back"/>
+            android:maxLines="1"
+            android:text="@{!viewModel.meetingName.blank &amp;&amp; (viewModel.page > 1) ? viewModel.meetingName : @string/empty_text}"
+            android:textColor="@color/www_black"
+            app:layout_constraintBottom_toBottomOf="@id/iv_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_back" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_page"
+            style="@style/Text.Body3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="@dimen/size_20"
-            app:layout_constraintTop_toTopOf="@id/iv_back"
+            android:text="@{@string/add_join_pages(viewModel.page,viewModel.totalPage)}"
+            android:textColor="@color/www_black"
             app:layout_constraintBottom_toBottomOf="@id/iv_back"
-            tools:text="1/6" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_back" />
 
         <!-- Custom 필요 -->
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/pb_add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_18"
+            app:indicatorColor="@color/www_green"
             app:layout_constraintTop_toBottomOf="@id/iv_back"
-            android:layout_marginTop="@dimen/size_18"/>
+            app:trackColor="@color/gray_150" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fcv_add_meeting"
