@@ -6,27 +6,33 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="20dp">
+        >
         <LinearLayout
             android:id="@+id/layout_metting_whole"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="37dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/title5"/>-->
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:background="@drawable/title5"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_marginStart="28dp"
+                    android:layout_gravity="center_vertical"
                     android:src="@drawable/vector_big_left"/>
 
                 <View
@@ -39,7 +45,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="넥스터즈 뒷풀이"
-                    android:gravity="center"/>
+                    android:textSize="14dp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/spoqa_han_sans_regular"/>
 
                 <View
                     android:layout_width="0dp"
@@ -51,106 +60,124 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5/6"
-                    android:textSize="12dp"
-                    android:textColor="#949494"
+                    android:textSize="14dp"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
                     android:fontFamily="@font/spoqa_han_sans_regular"/>
 
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/status_bar_meeting_process5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/status_bar5"
-                android:layout_marginBottom="25dp"/>
+<!--            <ImageView-->
+<!--                android:id="@+id/status_bar_meeting_process5"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:src="@drawable/status_bar5"-->
+<!--                android:layout_marginBottom="25dp"/>-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2023.02.03"
-                    android:textSize="12dp"
-                    android:fontFamily="@font/spoqa_han_sans_regular"
-                    android:textColor="#696969"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" ~ "
-                    android:textSize="12dp"
-                    android:textColor="#696969"
-                    android:fontFamily="@font/spoqa_han_sans_regular"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2023.02.04"
-                    android:textSize="12dp"
-                    android:textColor="#696969"
-                    android:fontFamily="@font/spoqa_han_sans_regular"/>
-
-            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="가능한 날짜와 시간대를\n선택해주세요."
+                android:text="가능한 시간대를 선택해주세요."
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="40dp"
                 android:fontFamily="@font/spoqa_han_sans_bold"
                 android:textColor="@color/black"
-                android:textSize="22dp" />
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:id="@+id/layout_meeting_info_date_term"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_meeting_info_date_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2월 21일 "
+                    android:textSize="14sp"
+                    android:fontFamily="@font/spoqa_han_sans_regular"
+                    android:textColor="#666666"/>
+
+                <TextView
+                    android:id="@+id/tv_meeting_info_day_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(화)"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/spoqa_han_sans_regular"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" - "
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:fontFamily="@font/spoqa_han_sans_regular"/>
+
+                <TextView
+                    android:id="@+id/tv_meeting_info_date_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3월 3일 "
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:fontFamily="@font/spoqa_han_sans_regular"/>
+
+                <TextView
+                    android:id="@+id/tv_meeting_info_day_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(금)"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:fontFamily="@font/spoqa_han_sans_regular"/>
+
+            </LinearLayout>
+
+            <!-- 체크박스 기준으로 좌우 정렬 -->
+
+            <LinearLayout
+                android:id="@+id/layout_meeting_info_date_rvDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:layout_marginEnd="25dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="74dp"
+                android:orientation="horizontal">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    tools:listitem="@layout/item_date_process5"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="13dp"
+                android:background="#EFEFEF"/>
+
 
 
             <LinearLayout
+                android:id="@+id/layout_meeting_info_middle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginHorizontal="20dp"
                 android:elevation="20dp"
-                android:background="@drawable/background_meeting_time_check"
+                android:layout_gravity="center_horizontal"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="72dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/vector_left_meeting_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/vector_left"/>
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:layout_width="215dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="18dp"
-                        android:layout_marginEnd="20dp"
-                        tools:listitem="@layout/item_date_process5"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        android:orientation="horizontal"/>
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="18dp"
-                        android:src="@drawable/vector_right" />
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/layout_meeting_morning"
@@ -158,9 +185,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="13dp"
-                    android:layout_marginStart="20dp">
+                    android:layout_marginTop="13dp" >
+
 
                     <LinearLayout
                         android:id="@+id/layout_meeting_morning_tv"
@@ -179,7 +205,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="06 - 12시"
+                            android:text="06 - 10시"
                             android:textSize="12dp"
                             android:fontFamily="@font/spoqa_han_sans_bold"
                             android:textColor="@color/black"/>
@@ -188,40 +214,39 @@
 
                     <LinearLayout
                         android:id="@+id/layout_ellipse_meeting_morning"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="26dp"
+                        android:layout_marginStart="24dp"
                         android:orientation="horizontal">
 
                         <ImageView
                             android:id="@+id/ellipse_meeting_time_morning1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/ellipse_meeting_time_check" />
+                            android:background="@drawable/rectangle_meeting_info_date_normal" />
 
                         <ImageView
                             android:id="@+id/ellipse_meeting_time_morning2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/ellipse_meeting_time_check"
-                            android:layout_marginStart="19dp"/>
+                            android:background="@drawable/rectangle_meeting_info_date_normal"
+                            android:layout_marginStart="10dp"/>
 
 
                         <ImageView
                             android:id="@+id/ellipse_meeting_time_morning3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/ellipse_meeting_time_check"
-                            android:layout_marginStart="19dp"/>
+                            android:background="@drawable/rectangle_meeting_info_date_normal"
+                            android:layout_marginStart="10dp"/>
 
 
                         <ImageView
                             android:id="@+id/ellipse_meeting_time_morning4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/ellipse_meeting_time_check"
-                            android:layout_marginStart="19dp"/>
+                            android:background="@drawable/rectangle_meeting_info_date_normal"
+                            android:layout_marginStart="10dp"/>
 
                     </LinearLayout>
 
@@ -232,9 +257,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="13dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginStart="20dp">
+                    android:layout_marginTop="13dp" >
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -252,7 +275,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="12 - 17시"
+                            android:text="11 - 16시"
                             android:textSize="12dp"
                             android:fontFamily="@font/spoqa_han_sans_bold"
                             android:textColor="@color/black"/>
@@ -261,40 +284,40 @@
 
                     <LinearLayout
                         android:id="@+id/layout_ellipse_meeting_afternoon"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="26dp"
+                        android:layout_marginStart="24dp"
                         android:orientation="horizontal">
 
                         <ImageView
                             android:id="@+id/ellipse_meeting_time_afternoon1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/ellipse_meeting_time_check" />
+                            android:background="@drawable/rectangle_meeting_info_date_normal" />
 
                         <ImageView
                             android:id="@+id/ellipse_meeting_time_afternoon2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/ellipse_meeting_time_check"
-                            android:layout_marginStart="20dp"/>
+                            android:background="@drawable/rectangle_meeting_info_date_normal"
+                            android:layout_marginStart="10dp"/>
 
 
                         <ImageView
                             android:id="@+id/ellipse_meeting_time_afternoon3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/ellipse_meeting_time_check"
-                            android:layout_marginStart="20dp"/>
+                            android:background="@drawable/rectangle_meeting_info_date_normal"
+                            android:layout_marginStart="10dp"/>
 
 
                         <ImageView
                             android:id="@+id/ellipse_meeting_time_afternoon4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/ellipse_meeting_time_check"
-                            android:layout_marginStart="20dp"/>
+                            android:background="@drawable/rectangle_meeting_info_date_normal"
+                            android:layout_marginStart="10dp"/>
 
                     </LinearLayout>
 
@@ -305,9 +328,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="13dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginStart="20dp">
+                    android:layout_marginTop="13dp" >
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -333,40 +354,40 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="26dp"
+                        android:layout_marginStart="24dp"
                         android:orientation="horizontal">
 
                         <ImageView
                             android:id="@+id/ellipse_meeting_time_evening_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/ellipse_meeting_time_check" />
+                            android:background="@drawable/rectangle_meeting_info_date_normal" />
 
                         <ImageView
                             android:id="@+id/ellipse_meeting_time_evening_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/ellipse_meeting_time_check"
-                            android:layout_marginStart="20dp"/>
+                            android:background="@drawable/rectangle_meeting_info_date_normal"
+                            android:layout_marginStart="10dp"/>
 
 
                         <ImageView
                             android:id="@+id/ellipse_meeting_time_evening_3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/ellipse_meeting_time_check"
-                            android:layout_marginStart="20dp"/>
+                            android:background="@drawable/rectangle_meeting_info_date_normal"
+                            android:layout_marginStart="10dp"/>
 
 
                         <ImageView
                             android:id="@+id/ellipse_meeting_time_evening_4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/ellipse_meeting_time_check"
-                            android:layout_marginStart="20dp"/>
+                            android:background="@drawable/rectangle_meeting_info_date_normal"
+                            android:layout_marginStart="10dp"/>
 
                     </LinearLayout>
 
@@ -375,11 +396,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="13dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginStart="20dp">
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -389,97 +408,93 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="밤"
-                            android:textSize="12dp"
                             android:fontFamily="@font/spoqa_han_sans_bold"
-                            android:textColor="@color/black"/>
+                            android:text="밤"
+                            android:textColor="@color/black"
+                            android:textSize="12dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="21시 이후"
-                            android:textSize="12dp"
                             android:fontFamily="@font/spoqa_han_sans_bold"
-                            android:textColor="@color/black"/>
+                            android:text="21 - 24시"
+                            android:textColor="@color/black"
+                            android:textSize="12dp" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="26dp"
+                        android:layout_marginStart="24dp"
                         android:orientation="horizontal">
 
                         <ImageView
                             android:id="@+id/ellipse_meeting_time_night_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/ellipse_meeting_time_check" />
+                            android:background="@drawable/rectangle_meeting_info_date_normal" />
 
                         <ImageView
                             android:id="@+id/ellipse_meeting_time_night_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/ellipse_meeting_time_check"
-                            android:layout_marginStart="20dp"/>
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/rectangle_meeting_info_date_normal" />
 
 
                         <ImageView
                             android:id="@+id/ellipse_meeting_time_night_3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/ellipse_meeting_time_check"
-                            android:layout_marginStart="20dp"/>
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/rectangle_meeting_info_date_normal" />
 
 
                         <ImageView
                             android:id="@+id/ellipse_meeting_time_night_4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/ellipse_meeting_time_check"
-                            android:layout_marginStart="20dp"/>
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/rectangle_meeting_info_date_normal" />
 
                     </LinearLayout>
 
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/status_bar_meeting_info_date1"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"/>
+
+                <LinearLayout
+                    android:id="@+id/layout_meeting_info_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp"
+                    android:background="@drawable/layout_meeting_info_date_none"
+                    android:layout_marginBottom="18dp"
+                    android:orientation="horizontal">
 
                 </LinearLayout>
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="58dp"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginTop="26dp"
-                    android:layout_marginEnd="18dp"
-                    android:background="@drawable/btn_background_meeting_time_check"
-                    android:fontFamily="@font/spoqa_han_sans_bold"
-                    android:text="날짜를 선택해주세요!"
-                    android:textColor="#9b9b9b"
-                    android:layout_marginBottom="25dp"
-                    android:textSize="14dp" />
+                    android:layout_height="52dp"
+                    android:text="다음"
+                    android:textSize="16sp"
+                    android:background="@drawable/btn_meeting_info_date_next_none"
+                    android:textColor="#ffffff"
+                    android:fontFamily="@font/spoqa_han_sans_bold" />
 
             </LinearLayout>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:text="다음"
-                android:textSize="16dp"
-                android:textColor="#545454"
-                android:background="@drawable/btn_background_time_check_next"
-                android:fontFamily="@font/spoqa_han_sans_bold"
-                android:layout_marginTop="80dp"/>
 
         </LinearLayout>
 
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="@string/button_next"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
