@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="candidate"
+            type="com.promiseeight.www.ui.model.CandidateUiModel" />
+
+        <import type="android.view.View"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/size_9"
+        android:paddingHorizontal="@dimen/size_12"
+        android:background="@drawable/rectangle_green8_border_green_radius_8">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_item_place"
+            style="@style/Text.Body4"
+            android:textColor="@color/gray_700"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_item_close"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            android:text="@{candidate.title}"
+            tools:text="25 (토) 낮"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_item_close"
+            android:layout_width="@dimen/size_16"
+            android:layout_height="@dimen/size_16"
+            app:layout_constraintTop_toTopOf="@id/tv_item_place"
+            app:layout_constraintBottom_toBottomOf="@id/tv_item_place"
+            app:layout_constraintStart_toEndOf="@id/tv_item_place"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/size_6"
+            android:visibility="@{candidate.possibleDelete ? View.VISIBLE : View.GONE }"
+            android:background="@drawable/ic_close_green"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
