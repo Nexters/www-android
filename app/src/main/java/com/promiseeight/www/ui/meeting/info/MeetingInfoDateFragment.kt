@@ -73,6 +73,11 @@ class MeetingInfoDateFragment : InfoFragment<FragmentMeetingInfoDateBinding>() {
         }
     }
 
+    companion object {
+        const val SPAN_COUNT = 4
+    }
+
+
     private fun initObserver() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {

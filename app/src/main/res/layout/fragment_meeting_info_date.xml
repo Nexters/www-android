@@ -3,6 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.promiseeight.www.ui.meeting.InfoViewModel" />
+
+        <import type="android.view.View"/>
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -44,6 +53,19 @@
             app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
             app:layout_constraintBottom_toBottomOf="@id/ll_date"
             app:layout_constraintStart_toStartOf="parent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_Selected_Date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:orientation="horizontal"
+            android:layout_marginStart="89dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
+            android:layout_marginTop="44dp" />
 
 
         <!-- 디자인 변경에 따라 수정 필요 -->
