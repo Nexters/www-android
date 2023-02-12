@@ -68,6 +68,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+    implementation "com.squareup.okhttp3:logging-interceptor:4.10.0"
 
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
@@ -81,4 +82,7 @@ dependencies {
 
     //DataStore
     implementation "androidx.datastore:datastore-preferences:1.0.0"
+
+    //Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 }
