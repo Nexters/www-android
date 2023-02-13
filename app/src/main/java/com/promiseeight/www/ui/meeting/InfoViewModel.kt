@@ -109,7 +109,7 @@ class InfoViewModel : ViewModel() {
     fun addMeetingPlaceCandidate() {
         _meetingPlaceCandidates.value = meetingPlaceCandidates.value.plus(
             CandidateUiModel(
-                meetingPlace.value
+                meetingPlace.value.trim() // 공백 제거한 문자 추가
             )
         )
         meetingPlace.value = "" // 장소명 초기화
