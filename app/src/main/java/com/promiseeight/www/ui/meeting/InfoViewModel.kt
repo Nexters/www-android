@@ -24,7 +24,7 @@ class InfoViewModel : ViewModel() {
     val meetingCode = MutableStateFlow("")
 
     private var _meetingCodeStatus = MutableStateFlow(CodeStatus.READY)
-    val meetingCodeStatus : StateFlow<CodeStatus> get() = _meetingCodeStatus
+    val meetingCodeStatus: StateFlow<CodeStatus> get() = _meetingCodeStatus
 //        = _meetingCodeStatus.asStateFlow().combine(meetingCode){ status , code ->
 //            if(code.length < codeMaxSize) CodeStatus.READY
 //            else if(status == CodeStatus.INVALID) CodeStatus.INVALID
@@ -104,6 +104,12 @@ class InfoViewModel : ViewModel() {
 
     fun removeMeetingDateCandidate() {
 
+    }
+
+    fun checkMeetingPlaceDuplicate(): Boolean {
+        return meetingPlaces.value.none {
+            it.title == meetingPlace.value.trim() // 공백 제거한 문자 중복 검사
+        }
     }
 
     fun addMeetingPlaceCandidate() {
