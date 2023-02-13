@@ -6,6 +6,8 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
     id 'com.google.gms.google-services'
 }
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 android {
     namespace 'com.promiseeight.www'
@@ -19,6 +21,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "baseUrl", properties['BASE_URL']
     }
 
     buildTypes {
