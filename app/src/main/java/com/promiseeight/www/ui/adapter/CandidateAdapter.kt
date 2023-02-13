@@ -8,15 +8,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.promiseeight.www.databinding.ItemCandidateBinding
 import com.promiseeight.www.ui.model.CandidateUiModel
 
-class CandidateAdapter() :
+class CandidateAdapter(
+    private val onClick: ((CandidateUiModel) -> Unit) = { }
+) :
     ListAdapter<CandidateUiModel, CandidateAdapter.CandidateViewHolder>(CandidateDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CandidateViewHolder {
         return CandidateViewHolder(
-            ItemCandidateBinding.inflate(
+            binding = ItemCandidateBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
-            )
-        )
+            ),
+        ) { position ->
+            onClick(currentList[position])
+        }
     }
 
     override fun onBindViewHolder(holder: CandidateViewHolder, position: Int) {
@@ -24,11 +28,18 @@ class CandidateAdapter() :
     }
 
     class CandidateViewHolder(
-        val binding: ItemCandidateBinding
+        val binding: ItemCandidateBinding,
+        val onItemClicked: (Int) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.ivItemClose.setOnClickListener {
+                onItemClicked(adapterPosition)
+            }
+        }
+
         fun bind(candidate: CandidateUiModel) {
             binding.candidate = candidate
-
         }
     }
 

@@ -52,7 +52,7 @@ class InfoViewModel : ViewModel() {
         meetingPlaceCandidates,
         meetingRegisteredPlaces
     ) { candidates, registeredPlaces ->
-        if (candidates.isEmpty() && registeredPlaces.isEmpty()) listOf(CandidateUiModel("예시) 강남역"))
+        if (candidates.isEmpty() && registeredPlaces.isEmpty()) listOf(CandidateUiModel("예시) 강남역",false))
         else candidates + registeredPlaces
     }.stateIn(
         scope = viewModelScope,

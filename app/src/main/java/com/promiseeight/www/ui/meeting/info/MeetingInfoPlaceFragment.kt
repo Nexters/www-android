@@ -30,7 +30,9 @@ class MeetingInfoPlaceFragment : InfoFragment<FragmentMeetingInfoPlaceBinding>()
     private val viewModel : InfoViewModel by viewModels ({ getHostFragment() })
 
     private val candidateAdapter: CandidateAdapter by lazy {
-        CandidateAdapter()
+        CandidateAdapter { candidate ->
+            viewModel.removeMeetingPlaceCandidate(candidate.title)
+        }
     }
 
     override fun getFragmentBinding(
