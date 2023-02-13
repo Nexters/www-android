@@ -112,6 +112,7 @@ class InfoViewModel : ViewModel() {
                 meetingPlace.value
             )
         )
+        meetingPlace.value = "" // 장소명 초기화
     }
 
     fun removeMeetingPlaceCandidate(title : String) {
