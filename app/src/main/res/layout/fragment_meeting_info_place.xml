@@ -112,7 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/size_20"
             android:layout_marginBottom="@dimen/size_38"
-            android:text="@string/button_skip"
+            android:text="@{viewModel.meetingPlaceCandidates.empty ? @string/button_skip : @string/button_next }"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
