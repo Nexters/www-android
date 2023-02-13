@@ -2,7 +2,16 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/fragment_home">
+    app:startDestination="@id/fragment_splash">
+    <fragment
+        android:id="@+id/fragment_splash"
+        android:name="com.promiseeight.www.ui.splash.SplashFragment" >
+        <action
+            android:id="@+id/action_fragment_splash_to_fragment_home"
+            app:destination="@id/fragment_home"
+            app:popUpTo="@id/fragment_splash"
+            app:popUpToInclusive="true"/>
+    </fragment>
     <fragment
         android:id="@+id/fragment_home"
         android:name="com.promiseeight.www.ui.home.HomeFragment">
@@ -36,5 +45,6 @@
 
     <include app:graph="@navigation/add_meeting_navigation"/>
     <include app:graph="@navigation/join_meeting_navigation"/>
+
 
 </navigation>
