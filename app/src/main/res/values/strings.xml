@@ -45,7 +45,16 @@
     <string name="meeting_share_subtitle">약속방 만들기가 완료되었어요!</string>
     <string name="meeting_share_link">링크 복사하기</string>
     <string name="meeting_share_next">약속방으로 가기</string>
-
+    
+    <!-- meeting detail -->
+    <string name="meeting_detail_subtitle">%d/%d 입장 중</string>
+    <string name="meeting_detail_when">언제</string>
+    <string name="meeting_detail_where">어디서</string>
+    <string name="meeting_detail_start_voting">투표 시작하기</string>
+    <string name="meeting_detail_go_to_vote">투표 하러가기</string>
+    <string name="meeting_detail_vote">투표하기</string>
+    <string name="meeting_detail_vote_count">%d명 참여</string>
+    <string name="meeting_detail_voting_count">%d명 참여 중</string>
 
     <!-- common -->
     <string name="button_next">다음</string>
