@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/www_meeting_detail_bg">
+        
+        <View
+            android:id="@+id/v_top"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_188"
+            android:background="@drawable/rectangle_white_radius_bottom_30"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_28"
+            android:layout_marginTop="@dimen/size_18"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/tv_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_24"
+            android:src="@drawable/ic_group"
+            app:layout_constraintBottom_toBottomOf="@id/iv_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_back" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/iv_back"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/size_20"
+            android:layout_marginTop="@dimen/size_34"
+            android:text="@{@string/meeting_detail_subtitle(7,7)}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/size_20"
+            android:layout_marginTop="@dimen/size_8"
+            tools:text="크리스마스 파티"/>
+
+        <!-- 수정 필요 -->
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/v_top"
+            app:layout_constraintBottom_toBottomOf="@id/v_bottom">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_when"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:text="@string/meeting_detail_when"
+                    android:layout_marginTop="@dimen/size_24"
+                    android:layout_marginStart="@dimen/size_20"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_when_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:src="@drawable/ic_next"
+                    android:layout_marginTop="@dimen/size_30"
+                    android:layout_marginEnd="@dimen/size_30"/>
+                
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_when"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/size_20"
+                    android:paddingTop="@dimen/size_15"
+                    android:paddingBottom="@dimen/size_61"
+                    app:layout_constraintTop_toBottomOf="@id/tv_when"
+                    android:paddingHorizontal="@dimen/size_20"
+                    android:layout_marginTop="@dimen/size_24"
+                    android:background="@drawable/rectangle_white_radius_20"/>
+                
+                <View
+                    android:layout_width="@dimen/size_0"
+                    android:layout_height="1dp"
+                    app:layout_constraintBottom_toBottomOf="@id/rv_when"
+                    app:layout_constraintStart_toStartOf="@id/rv_when"
+                    app:layout_constraintEnd_toEndOf="@id/rv_when"
+                    android:layout_marginBottom="@dimen/size_40"
+                    android:background="@color/www_meeting_divider"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_where"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/rv_when"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:text="@string/meeting_detail_where"
+                    android:layout_marginTop="@dimen/size_24"
+                    android:layout_marginStart="@dimen/size_20"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_where_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/rv_when"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:src="@drawable/ic_next"
+                    android:layout_marginTop="@dimen/size_30"
+                    android:layout_marginEnd="@dimen/size_30"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_where"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/size_20"
+                    android:paddingTop="@dimen/size_15"
+                    android:paddingBottom="@dimen/size_61"
+                    app:layout_constraintTop_toBottomOf="@id/tv_where"
+                    android:paddingHorizontal="@dimen/size_20"
+                    android:layout_marginTop="@dimen/size_24"
+                    android:background="@drawable/rectangle_white_radius_20"/>
+
+                <View
+                    android:layout_width="@dimen/size_0"
+                    android:layout_height="1dp"
+                    app:layout_constraintBottom_toBottomOf="@id/rv_where"
+                    app:layout_constraintStart_toStartOf="@id/rv_where"
+                    app:layout_constraintEnd_toEndOf="@id/rv_where"
+                    android:layout_marginBottom="@dimen/size_40"
+                    android:background="@color/www_meeting_divider"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+        <View
+            android:id="@+id/v_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_106"
+            android:background="@color/www_white"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_vote"
+            style="@style/Button.Basic"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_20"
+            android:layout_marginTop="@dimen/size_12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/v_share"
+
+            android:text="@string/button_next"
+            app:layout_constraintTop_toTopOf="@id/v_bottom" />
+
+        <View
+            android:id="@+id/v_share"
+            android:layout_width="@dimen/size_54"
+            android:layout_height="@dimen/size_54"
+            android:background="@drawable/circle_gray100"
+            android:layout_marginEnd="@dimen/size_20"
+            android:layout_marginStart="@dimen/size_9"
+            app:layout_constraintStart_toEndOf="@id/btn_vote"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_vote"
+            app:layout_constraintBottom_toBottomOf="@id/btn_vote"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/size_28"
+            android:layout_height="@dimen/size_28"
+            app:layout_constraintTop_toTopOf="@id/v_share"
+            app:layout_constraintStart_toStartOf="@id/v_share"
+            app:layout_constraintBottom_toBottomOf="@id/v_share"
+            app:layout_constraintEnd_toEndOf="@id/v_share"
+            android:src="@drawable/ic_link_bold"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
