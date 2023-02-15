@@ -23,6 +23,7 @@
     <!-- info period -->
     <string name="info_period_title">약속 날짜의 범위를 정해주세요.</string>
     <string name="info_period_subtitle">약속 날짜 범위 내에서 가능한 날짜를 투표하게 됩니다. </string>
+    <string name="info_period_subtitle_selected">%d월 %d일 (%s)</string>
 
     <!-- info date -->
     <string name="info_date_title">가능한 시간대를 선택해주세요.</string>
@@ -54,7 +55,7 @@
     <string name="meeting_share_subtitle_second">가 완료되었어요!</string>
     <string name="meeting_share_link">링크 복사하기</string>
     <string name="meeting_share_next">약속방으로 가기</string>
-    
+
     <!-- meeting detail -->
     <string name="meeting_detail_subtitle">%d/%d 입장 중</string>
     <string name="meeting_detail_when">언제</string>
@@ -71,6 +72,14 @@
     <string name="button_skip">스킵할래요</string>
     <string name="empty_text"> </string>
     <string name="number">%d</string>
+    <string name="sunday_short">일</string>
+    <string name="monday_short">월</string>
+    <string name="tuesday_short">화</string>
+    <string name="wednesday_short">수</string>
+    <string name="thursday_short">목</string>
+    <string name="friday_short">금</string>
+    <string name="saturday_short">토</string>
+    <string name="minus"> - </string>
     <string name="copy_link_success">링크가 복사되었습니다.</string>
     <string name="copy_link_fail">링크 복사에 실패하였습니다.</string>
 
