@@ -33,6 +33,7 @@
     <string name="info_place_subtitle">*필수 항목이 아니에요.</string>
     <string name="info_place_hint">장소 입력</string>
     <string name="info_place_list">등록된 장소 후보</string>
+    <string name="info_place_duplicate">동일한 장소 후보가 존재해요.</string>
 
     <!-- info code -->
     <string name="info_code_title">친구에게 받은\n참여 코드를 입력해주세요.</string>

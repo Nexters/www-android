@@ -24,7 +24,7 @@ class InfoViewModel : ViewModel() {
     val meetingCode = MutableStateFlow("")
 
     private var _meetingCodeStatus = MutableStateFlow(CodeStatus.READY)
-    val meetingCodeStatus : StateFlow<CodeStatus> get() = _meetingCodeStatus
+    val meetingCodeStatus: StateFlow<CodeStatus> get() = _meetingCodeStatus
 //        = _meetingCodeStatus.asStateFlow().combine(meetingCode){ status , code ->
 //            if(code.length < codeMaxSize) CodeStatus.READY
 //            else if(status == CodeStatus.INVALID) CodeStatus.INVALID
@@ -52,7 +52,7 @@ class InfoViewModel : ViewModel() {
         meetingPlaceCandidates,
         meetingRegisteredPlaces
     ) { candidates, registeredPlaces ->
-        if (candidates.isEmpty() && registeredPlaces.isEmpty()) listOf(CandidateUiModel("예시) 강남역"))
+        if (candidates.isEmpty() && registeredPlaces.isEmpty()) listOf(CandidateUiModel("예시) 강남역",false))
         else candidates + registeredPlaces
     }.stateIn(
         scope = viewModelScope,
@@ -106,12 +106,19 @@ class InfoViewModel : ViewModel() {
 
     }
 
+    fun checkMeetingPlaceDuplicate(): Boolean {
+        return meetingPlaces.value.none {
+            it.title == meetingPlace.value.trim() // 공백 제거한 문자 중복 검사
+        }
+    }
+
     fun addMeetingPlaceCandidate() {
         _meetingPlaceCandidates.value = meetingPlaceCandidates.value.plus(
             CandidateUiModel(
-                meetingPlace.value
+                meetingPlace.value.trim() // 공백 제거한 문자 추가
             )
         )
+        meetingPlace.value = "" // 장소명 초기화
     }
 
     fun removeMeetingPlaceCandidate(title : String) {

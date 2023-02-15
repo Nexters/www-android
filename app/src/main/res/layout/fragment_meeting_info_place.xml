@@ -61,6 +61,7 @@
             android:layout_width="@dimen/size_16_padding_8"
             android:layout_height="@dimen/size_16_padding_8"
             android:layout_marginEnd="@dimen/size_12"
+            android:enabled="@{!viewModel.meetingPlace.blank}"
             android:padding="8dp"
             android:src="@drawable/selector_button_add"
             app:layout_constraintBottom_toBottomOf="@id/et_info_place"
@@ -111,7 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/size_20"
             android:layout_marginBottom="@dimen/size_38"
-            android:text="@string/button_skip"
+            android:text="@{viewModel.meetingPlaceCandidates.empty ? @string/button_skip : @string/button_next }"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
