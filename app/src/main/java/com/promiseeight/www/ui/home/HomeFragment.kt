@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.promiseeight.www.databinding.FragmentHomeBinding
 import com.promiseeight.www.ui.common.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun getFragmentBinding(

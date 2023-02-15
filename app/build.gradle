@@ -6,6 +6,8 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
     id 'com.google.gms.google-services'
 }
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 android {
     namespace 'com.promiseeight.www'
@@ -19,6 +21,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "baseUrl", properties['BASE_URL']
     }
 
     buildTypes {
@@ -68,6 +72,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+    implementation "com.squareup.okhttp3:logging-interceptor:4.10.0"
 
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
@@ -78,4 +83,10 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:31.2.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-messaging-ktx'
+
+    //DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+
+    //Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 }
