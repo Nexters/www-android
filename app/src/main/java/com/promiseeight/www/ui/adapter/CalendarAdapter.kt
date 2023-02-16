@@ -1,5 +1,6 @@
 package com.promiseeight.www.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -13,6 +14,10 @@ class CalendarAdapter(
     private val onClick: (CalendarUiModel) -> Unit
 ) :
     ListAdapter<CalendarUiModel, RecyclerView.ViewHolder>(CalendarDiffCallback()) {
+
+    override fun getItemId(position: Int): Long {
+        return getItem(position).id
+    }
 
     override fun getItemViewType(position: Int): Int {
         return if (getItem(position).isMonth) MONTH_VIEW_TYPE else DAY_VIEW_TYPE
@@ -70,7 +75,7 @@ class CalendarAdapter(
             oldItem: CalendarUiModel,
             newItem: CalendarUiModel
         ): Boolean {
-            return oldItem.dateTime == newItem.dateTime && oldItem.isCurrentMonth == newItem.isCurrentMonth
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(

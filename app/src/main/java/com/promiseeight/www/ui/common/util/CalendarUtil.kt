@@ -7,20 +7,24 @@ import com.promiseeight.www.ui.model.enums.DateUiState
 import org.joda.time.DateTime
 import org.joda.time.DateTimeConstants
 
+
 object CalendarUtil {
     val calendarList = getNowCalendarList()
+    var index = 0L
 
     fun getNowCalendarList() : List<CalendarUiModel> {
         val now = DateTime.now()
         val calendarList = mutableListOf<CalendarUiModel>()
         for(i in 0 .. 11){
             calendarList.add(CalendarUiModel(
+                index++,
                 "${now.plusMonths(i).year}.${now.plusMonths(i).monthOfYear}",
                 true,
                 now.plusMonths(i)
             ))
             getMonthList(now.plusMonths(i)).map { dateTime ->
                 calendarList.add(CalendarUiModel(
+                    index++,
                     dateTime.dayOfMonth.toString(),
                     false,
                     dateTime,
