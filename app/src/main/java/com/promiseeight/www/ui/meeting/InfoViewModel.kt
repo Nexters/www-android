@@ -2,6 +2,9 @@ package com.promiseeight.www.ui.meeting
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.promiseeight.www.ui.common.util.CalendarUtil
+import com.promiseeight.www.ui.meeting.info.MeetingInfoPeriodState
+import com.promiseeight.www.ui.model.CalendarUiModel
 import com.promiseeight.www.domain.model.*
 import com.promiseeight.www.domain.usecase.meeting.CreateMeetingUseCase
 import com.promiseeight.www.domain.usecase.meeting.GetMeetingByCodeUseCase
@@ -11,8 +14,10 @@ import com.promiseeight.www.domain.usecase.meeting.JoinMeetingUseCase
 import com.promiseeight.www.ui.model.CandidateUiModel
 import com.promiseeight.www.ui.model.TimeUiModel
 import com.promiseeight.www.ui.model.enums.CodeStatus
+import com.promiseeight.www.ui.model.enums.DateUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
+import org.joda.time.DateTime
 import kotlinx.coroutines.launch
 import org.joda.time.DateTime
 import timber.log.Timber
@@ -45,6 +50,16 @@ class InfoViewModel @Inject constructor(
 
     private var _meetingCodeStatus = MutableStateFlow(CodeStatus.READY)
     val meetingCodeStatus: StateFlow<CodeStatus> get() = _meetingCodeStatus
+//        = _meetingCodeStatus.asStateFlow().combine(meetingCode){ status , code ->
+//            if(code.length < codeMaxSize) CodeStatus.READY
+//            else if(status == CodeStatus.INVALID) CodeStatus.INVALID
+//            else if(code.length == codeMaxSize) CodeStatus.ACTIVE
+//            else CodeStatus.READY
+//    }.stateIn(
+//        scope = viewModelScope,
+//        started = SharingStarted.WhileSubscribed(500),
+//        initialValue = CodeStatus.READY
+//    )
 
     private var _meetingCapacity = MutableStateFlow(1)
     val meetingCapacity: StateFlow<Int> get() = _meetingCapacity
@@ -116,6 +131,18 @@ class InfoViewModel @Inject constructor(
 
     private val _meetingInvitation = MutableStateFlow<MeetingInvitation?>(null)
     val meetingInvitation : StateFlow<MeetingInvitation?> get() = _meetingInvitation
+    private var _meetingInitialPeriod = MutableStateFlow(CalendarUtil.calendarList)
+    val meetingInitialPeriod: StateFlow<List<CalendarUiModel>> get() = _meetingInitialPeriod
+
+
+    private var _meetingPeriodStart = MutableStateFlow<CalendarUiModel?>(null)
+    val meetingPeriodStart: StateFlow<CalendarUiModel?> get() = _meetingPeriodStart
+
+    private var _meetingPeriodEnd = MutableStateFlow<CalendarUiModel?>(null)
+    val meetingPeriodEnd: StateFlow<CalendarUiModel?> get() = _meetingPeriodEnd
+
+    private var _meetingPeriodState = MutableStateFlow(MeetingInfoPeriodState())
+    val meetingPeriodState: StateFlow<MeetingInfoPeriodState> get() = _meetingPeriodState
 
     private val _meetingJoinState = MutableStateFlow(false)
     val meetingJoinState : StateFlow<Boolean> get() = _meetingJoinState
@@ -200,6 +227,71 @@ class InfoViewModel @Inject constructor(
 
     fun setCodeStatus(codeStatus: CodeStatus) {
         _meetingCodeStatus.value = codeStatus
+    }
+
+    fun updatePeriod() {
+        _meetingInitialPeriod.value = meetingInitialPeriod.value.map {
+            if (it.isCurrentMonth == true) {
+                if (meetingPeriodState.value.meetingPeriodStart != null && meetingPeriodState.value.meetingPeriodEnd != null) {
+                    if (meetingPeriodState.value.meetingPeriodStart?.dateTime == it.dateTime)
+                        it.copy(dateState = DateUiState.SELECTED_START)
+                    else if (meetingPeriodState.value.meetingPeriodEnd?.dateTime == it.dateTime)
+                        it.copy(dateState = DateUiState.SELECTED_END)
+                    //월요일일 때, 토요일일 떄, 1일일때, 28,30,31일때  조건 추가
+                    else if (it.dateTime.millis in meetingPeriodState.value.meetingPeriodStart!!.dateTime.millis..meetingPeriodState.value.meetingPeriodEnd!!.dateTime.millis)
+                        it.copy(dateState = DateUiState.PASS)
+                    else it.copy(dateState = DateUiState.INITIAL)
+                } else if (meetingPeriodState.value.meetingPeriodStart != null && meetingPeriodState.value.meetingPeriodEnd == null) {
+                    if (meetingPeriodState.value.meetingPeriodStart?.dateTime == it.dateTime) {
+                        it.copy(dateState = DateUiState.SELECTED)
+                    } else {
+                        it.copy(dateState = DateUiState.INITIAL)
+                    }
+                } else {
+                    it.copy(dateState = DateUiState.INITIAL)
+                }
+            } else it.copy(dateState = DateUiState.INITIAL)
+        }
+    }
+
+    fun setMeetingPeriodStart(calendarUiModel: CalendarUiModel?) {
+        _meetingPeriodState.value = meetingPeriodState.value.copy(
+            meetingPeriodStart = calendarUiModel
+        )
+    }
+
+    fun setMeetingPeriodEnd(calendarUiModel: CalendarUiModel?) {
+        _meetingPeriodState.value = meetingPeriodState.value.copy(
+            meetingPeriodEnd = calendarUiModel
+        )
+    }
+
+    fun setMeetingPeriodState(
+        stateCalendarUiModel: CalendarUiModel? = null,
+        endCalendarUiModel: CalendarUiModel? = null
+    ) {
+        _meetingPeriodState.value = meetingPeriodState.value.copy(
+            meetingPeriodEnd = null,
+            meetingPeriodStart = null
+        )
+    }
+
+    fun selectDate(calendarUiModel: CalendarUiModel) {
+        if (meetingPeriodState.value.meetingPeriodStart == null) {
+            setMeetingPeriodStart(calendarUiModel)
+        } else if (meetingPeriodState.value.meetingPeriodStart?.dateTime == calendarUiModel.dateTime) {
+            setMeetingPeriodState()
+        } else if (meetingPeriodState.value.meetingPeriodEnd?.dateTime == null) {
+            setMeetingPeriodEnd(calendarUiModel)
+        } else if (meetingPeriodState.value.meetingPeriodEnd?.dateTime == calendarUiModel.dateTime) {
+            setMeetingPeriodState()
+        } else if (calendarUiModel.dateTime != meetingPeriodState.value.meetingPeriodEnd?.dateTime &&
+            calendarUiModel.dateTime == meetingPeriodState.value.meetingPeriodStart?.dateTime
+        ) {
+            setMeetingPeriodState(calendarUiModel, null)
+        } else {
+            setMeetingPeriodState()
+        }
     }
 
     fun createMeeting() {
