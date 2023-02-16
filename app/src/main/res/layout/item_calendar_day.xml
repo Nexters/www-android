@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="calendar"
+            type="com.promiseeight.www.ui.model.CalendarUiModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_4">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_day_rectangle_left"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            app:layout_constraintTop_toTopOf="@id/iv_day_circle"
+            app:layout_constraintBottom_toBottomOf="@id/iv_day_circle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_day_rectangle_right"
+            app:dateLeftRect="@{calendar.dateState}"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_day_rectangle_right"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            app:layout_constraintTop_toTopOf="@id/iv_day_circle"
+            app:layout_constraintBottom_toBottomOf="@id/iv_day_circle"
+            app:layout_constraintStart_toEndOf="@id/iv_day_rectangle_left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:dateRightRect="@{calendar.dateState}"/>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_day_circle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0"
+            android:layout_margin="@dimen/size_1"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toTopOf="@id/tv_day"
+            app:layout_constraintBottom_toBottomOf="@id/tv_day"
+            app:layout_constraintStart_toStartOf="@id/tv_day"
+            app:layout_constraintEnd_toEndOf="@id/tv_day"
+            app:dateCircle="@{calendar.dateState}"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{calendar.isCurrentMonth ? calendar.title : @string/empty_text }"
+            android:layout_marginHorizontal="@dimen/size_11"
+            android:layout_marginVertical="@dimen/size_10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
