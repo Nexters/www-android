@@ -11,10 +11,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.promiseeight.www.databinding.FragmentAddMeetingBinding
 import com.promiseeight.www.ui.common.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class AddMeetingFragment : BaseFragment<FragmentAddMeetingBinding>() {
 
     private val viewModel: InfoViewModel by viewModels()

@@ -16,9 +16,11 @@ import com.promiseeight.www.databinding.FragmentMeetingInfoDateBinding
 import com.promiseeight.www.ui.adapter.CandidateAdapter
 import com.promiseeight.www.ui.common.InfoFragment
 import com.promiseeight.www.ui.meeting.InfoViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MeetingInfoDateFragment : InfoFragment<FragmentMeetingInfoDateBinding>() {
 
     private val viewModel: InfoViewModel by viewModels({ getHostFragment() })

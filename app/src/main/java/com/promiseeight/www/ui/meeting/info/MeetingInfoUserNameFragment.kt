@@ -11,7 +11,9 @@ import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentMeetingInfoUserNameBinding
 import com.promiseeight.www.ui.common.InfoFragment
 import com.promiseeight.www.ui.meeting.InfoViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MeetingInfoUserNameFragment : InfoFragment<FragmentMeetingInfoUserNameBinding>() {
 
     private val viewModel: InfoViewModel by viewModels({ getHostFragment() })
