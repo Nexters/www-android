@@ -10,8 +10,11 @@
 
     <!-- primary color -->
     <color name="www_green">#FF41E29E</color>
+    <color name="www_green_transparent_50">#8041E29E</color>
     <color name="www_green_transparent_8">#1441E29E</color>
 
+    <color name="www_green_sub">#FF68E3CD</color>
+    <color name="www_green_sub_transparent_50">#8068E3CD</color>
     <!-- grayscale -->
     <color name="www_black">#FF000000</color>
     <color name="gray_800">#FF111111</color>
@@ -35,7 +38,6 @@
     <color name="www_red">#FFFF0000</color>
 
     <!-- 새로 추가된 색깔 -->
-    <color name="www_meeting_detail_bg">#FFFAFAFA</color>
     <color name="www_meeting_divider">#FFEFF0F2</color>
 
 

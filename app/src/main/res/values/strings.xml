@@ -55,10 +55,12 @@
     <string name="meeting_detail_vote">투표하기</string>
     <string name="meeting_detail_vote_count">%d명 참여</string>
     <string name="meeting_detail_voting_count">%d명 참여 중</string>
+    <string name="meeting_detail_rank_count">%d명</string>
 
     <!-- common -->
     <string name="button_next">다음</string>
     <string name="button_skip">스킵할래요</string>
     <string name="empty_text"> </string>
     <string name="number">%d</string>
+
 </resources>

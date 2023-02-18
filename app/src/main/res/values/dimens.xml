@@ -3,19 +3,24 @@
     <!-- size -->
     <dimen name="size_0">0dp</dimen>
     <dimen name="size_1">1dp</dimen>
+    <dimen name="size_3">3dp</dimen>
     <dimen name="size_4">4dp</dimen>
     <dimen name="size_5">5dp</dimen>
     <dimen name="size_6">6dp</dimen>
+    <dimen name="size_7">7dp</dimen>
     <dimen name="size_8">8dp</dimen>
     <dimen name="size_9">9dp</dimen>
     <dimen name="size_10">10dp</dimen>
     <dimen name="size_11">11dp</dimen>
     <dimen name="size_12">12dp</dimen>
+    <dimen name="size_13">13dp</dimen>
     <dimen name="size_14">14dp</dimen>
     <dimen name="size_15">15dp</dimen>
     <dimen name="size_16">16dp</dimen>
     <dimen name="size_18">18dp</dimen>
+    <dimen name="size_19">19dp</dimen>
     <dimen name="size_20">20dp</dimen>
+    <dimen name="size_22">22dp</dimen>
     <dimen name="size_24">24dp</dimen>
     <dimen name="size_28">28dp</dimen>
     <dimen name="size_30">30dp</dimen>
@@ -24,6 +29,8 @@
     <dimen name="size_36">36dp</dimen>
     <dimen name="size_38">38dp</dimen>
     <dimen name="size_40">40dp</dimen>
+    <dimen name="size_44">44dp</dimen>
+    <dimen name="size_48">48dp</dimen>
     <dimen name="size_52">52dp</dimen>
     <dimen name="size_54">54dp</dimen>
     <dimen name="size_56">56dp</dimen>
