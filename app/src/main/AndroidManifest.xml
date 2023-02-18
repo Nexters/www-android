@@ -28,6 +28,7 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+            <nav-graph android:value="@navigation/main_navigation"/>
         </activity>
         <service
             android:name=".service.WwwFirebaseMessagingService"
