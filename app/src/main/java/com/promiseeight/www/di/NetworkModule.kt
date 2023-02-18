@@ -4,6 +4,7 @@ import com.promiseeight.www.BuildConfig
 import com.promiseeight.www.data.source.local.AuthLocalDataSource
 import com.promiseeight.www.data.source.remote.api.TokenInterceptor
 import com.promiseeight.www.data.source.remote.api.AuthService
+import com.promiseeight.www.data.source.remote.api.MeetingService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,6 +46,15 @@ object NetworkModule {
         return retrofit.create(AuthService::class.java)
     }
 
+
+    @Provides
+    @Singleton
+    fun provideMeetingService(
+        @MeetingRetrofit retrofit: Retrofit
+    ): MeetingService {
+        return retrofit.create(MeetingService::class.java)
+    }
+
     @AuthRetrofit
     @Provides
     @Singleton
@@ -68,7 +78,7 @@ object NetworkModule {
     ): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl("https://alpha-api.whenwheres.com/")
+            .baseUrl(BuildConfig.baseUrl)
             .addConverterFactory(converter)
             .build()
     }

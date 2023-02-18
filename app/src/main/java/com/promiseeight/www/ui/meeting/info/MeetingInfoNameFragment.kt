@@ -14,10 +14,12 @@ import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentMeetingInfoNameBinding
 import com.promiseeight.www.ui.common.InfoFragment
 import com.promiseeight.www.ui.meeting.InfoViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MeetingInfoNameFragment : InfoFragment<FragmentMeetingInfoNameBinding>() {
 
     private val viewModel : InfoViewModel by viewModels ({ getHostFragment() })

@@ -22,9 +22,11 @@ import com.promiseeight.www.ui.common.InfoFragment
 import com.promiseeight.www.ui.common.JoinNavHostFragment
 import com.promiseeight.www.ui.meeting.*
 import com.promiseeight.www.ui.model.CandidateUiModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MeetingInfoPlaceFragment : InfoFragment<FragmentMeetingInfoPlaceBinding>() {
 
     private val viewModel : InfoViewModel by viewModels ({ getHostFragment() })
@@ -62,10 +64,7 @@ class MeetingInfoPlaceFragment : InfoFragment<FragmentMeetingInfoPlaceBinding>()
 
                 },
                 onAdd = {
-                    Navigation.findNavController(requireActivity(), R.id.fcv_main) // 인터페이스 만들어보기
-                        .navigate(
-                            AddMeetingFragmentDirections.actionFragmentAddMeetingToFragmentMeetingShare()
-                        )
+                    viewModel.createMeeting()
                 }
             )
         }
@@ -92,6 +91,14 @@ class MeetingInfoPlaceFragment : InfoFragment<FragmentMeetingInfoPlaceBinding>()
                 launch {
                     viewModel.meetingPlaces.collectLatest { candidates ->
                         candidateAdapter.submitList(candidates)
+                    }
+                }
+                launch {
+                    viewModel.meetingInvitation.collectLatest {
+                        if(it != null)  Navigation.findNavController(requireActivity(), R.id.fcv_main) // 인터페이스 만들어보기
+                            .navigate(AddMeetingFragmentDirections.actionFragmentAddMeetingToFragmentMeetingShare(
+                                 it.code,it.shortLink
+                            ))
                     }
                 }
             }

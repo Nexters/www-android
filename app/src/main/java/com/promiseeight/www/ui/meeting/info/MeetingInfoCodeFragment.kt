@@ -13,9 +13,11 @@ import com.promiseeight.www.databinding.FragmentMeetingInfoCodeBinding
 import com.promiseeight.www.ui.common.InfoFragment
 import com.promiseeight.www.ui.meeting.InfoViewModel
 import com.promiseeight.www.ui.model.enums.CodeStatus
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MeetingInfoCodeFragment : InfoFragment<FragmentMeetingInfoCodeBinding>() {
 
     private val viewModel : InfoViewModel by viewModels ({ getHostFragment() })

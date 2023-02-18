@@ -12,7 +12,9 @@ import com.promiseeight.www.databinding.FragmentMeetingInfoPeriodBinding
 import com.promiseeight.www.ui.common.BaseFragment
 import com.promiseeight.www.ui.common.InfoFragment
 import com.promiseeight.www.ui.meeting.InfoViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MeetingInfoPeriodFragment : InfoFragment<FragmentMeetingInfoPeriodBinding>() {
 
     private val viewModel : InfoViewModel by viewModels ({ getHostFragment() })

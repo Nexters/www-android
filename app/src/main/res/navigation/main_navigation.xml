@@ -38,7 +38,14 @@
 
     <fragment
         android:id="@+id/fragment_meeting_share"
-        android:name="com.promiseeight.www.ui.meeting.MeetingShareFragment"/>
+        android:name="com.promiseeight.www.ui.meeting.MeetingShareFragment">
+
+        <argument android:name="arg_invitation_code"
+            app:argType="string"/>
+        <argument android:name="arg_invitation_link"
+            app:argType="string"/>
+
+    </fragment>
     <fragment
         android:id="@+id/fragment_join_meeting"
         android:name="com.promiseeight.www.ui.meeting.JoinMeetingFragment" />

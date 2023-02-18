@@ -2,11 +2,23 @@ package com.promiseeight.www.ui.meeting
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.promiseeight.www.domain.model.MeetingCondition
+import com.promiseeight.www.domain.model.MeetingInvitation
+import com.promiseeight.www.domain.model.PromiseInfo
+import com.promiseeight.www.domain.model.PromiseTime
+import com.promiseeight.www.domain.usecase.meeting.CreateMeetingUseCase
 import com.promiseeight.www.ui.model.CandidateUiModel
 import com.promiseeight.www.ui.model.enums.CodeStatus
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
+import timber.log.Timber
+import javax.inject.Inject
 
-class InfoViewModel : ViewModel() {
+@HiltViewModel
+class InfoViewModel @Inject constructor(
+    private val createMeetingUseCase: CreateMeetingUseCase
+) : ViewModel() {
     var totalPage = 1
 
     val codeMaxSize = 6
@@ -59,6 +71,10 @@ class InfoViewModel : ViewModel() {
         started = SharingStarted.WhileSubscribed(500),
         initialValue = emptyList()
     )
+
+    val meetingState = MutableStateFlow(false)
+    private val _meetingInvitation = MutableStateFlow<MeetingInvitation?>(null)
+    val meetingInvitation : StateFlow<MeetingInvitation?> get() = _meetingInvitation
 
 
     init { //dummy 데이터 넣는 init임
@@ -140,5 +156,32 @@ class InfoViewModel : ViewModel() {
 
     fun setCodeStatus(codeStatus: CodeStatus) {
         _meetingCodeStatus.value = codeStatus
+    }
+
+    fun createMeeting() {
+        viewModelScope.launch {
+            createMeetingUseCase(
+                MeetingCondition(
+                    meetingName = meetingName.value,
+                    userName = meetingUserName.value,
+                    startDate = "2023-02-22",
+                    endDate = "2023-03-04",
+                    minimumAlertMembers = meetingCapacity.value.toLong(),
+                    promiseInfoList = listOf(
+                        PromiseInfo(date = "2023-02-23",promiseTime = PromiseTime.DINNER),
+                        PromiseInfo(date = "2023-02-24",promiseTime = PromiseTime.MORNING),
+                        PromiseInfo(date = "2023-02-25",promiseTime = PromiseTime.LUNCH)
+
+                    ),
+                    promisePlaceList = meetingPlaceCandidates.value.map {
+                        it.title
+                    }
+                )
+            ).catch {
+                Timber.d("WWW error : createMeeting")
+            }.collectLatest {
+                _meetingInvitation.value = it.getOrThrow()
+            }
+        }
     }
 }

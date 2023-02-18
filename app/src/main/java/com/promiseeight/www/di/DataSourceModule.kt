@@ -4,6 +4,8 @@ import com.promiseeight.www.data.source.local.AuthLocalDataSource
 import com.promiseeight.www.data.source.local.AuthLocalDataSourceImpl
 import com.promiseeight.www.data.source.remote.AuthRemoteDataSource
 import com.promiseeight.www.data.source.remote.AuthRemoteDataSourceImpl
+import com.promiseeight.www.data.source.remote.MeetingRemoteDataSource
+import com.promiseeight.www.data.source.remote.MeetingRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -23,4 +25,9 @@ abstract class DataSourceModule {
     abstract fun bindAuthRemoteDataSource(
         authRemoteDataSource : AuthRemoteDataSourceImpl
     ) : AuthRemoteDataSource
+
+    @Binds
+    abstract fun bindMeetingRemoteDataSource(
+        meetingRemoteDataSource : MeetingRemoteDataSourceImpl
+    ) : MeetingRemoteDataSource
 }

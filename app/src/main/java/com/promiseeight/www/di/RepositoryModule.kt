@@ -1,11 +1,13 @@
 package com.promiseeight.www.di
 
 import com.promiseeight.www.data.repository.AuthRepositoryImpl
+import com.promiseeight.www.data.repository.MeetingRepositoryImpl
 import com.promiseeight.www.data.source.local.AuthLocalDataSource
 import com.promiseeight.www.data.source.local.AuthLocalDataSourceImpl
 import com.promiseeight.www.data.source.remote.AuthRemoteDataSource
 import com.promiseeight.www.data.source.remote.AuthRemoteDataSourceImpl
 import com.promiseeight.www.domain.repository.AuthRepository
+import com.promiseeight.www.domain.repository.MeetingRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -21,4 +23,8 @@ abstract class RepositoryModule {
         authRepository : AuthRepositoryImpl
     ) : AuthRepository
 
+    @Binds
+    abstract fun bindMeetingRepository(
+        meetingRepository: MeetingRepositoryImpl
+    ) : MeetingRepository
 }
