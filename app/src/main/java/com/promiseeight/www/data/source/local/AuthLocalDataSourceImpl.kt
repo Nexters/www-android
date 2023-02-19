@@ -7,6 +7,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.promiseeight.www.BuildConfig
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -22,6 +23,7 @@ class AuthLocalDataSourceImpl @Inject constructor(
 ) : AuthLocalDataSource {
     private val KEY_FCM_TOKEN = stringPreferencesKey("fcm_token")
     private val KEY_ACCESS_TOKEN = stringPreferencesKey("access_token")
+    private val VERSION_NAME = stringPreferencesKey("version_name")
 
     override fun getPreferenceFcmToken(): Flow<Result<String>> =
         preferenceDataStore.data.map { preferences ->
@@ -59,5 +61,9 @@ class AuthLocalDataSourceImpl @Inject constructor(
         preferenceDataStore.edit { settings ->
             settings[KEY_ACCESS_TOKEN] = accessToken
         }
+    }
+
+    override fun getVersionInfo() : String {
+        return BuildConfig.VERSION_NAME;
     }
 }

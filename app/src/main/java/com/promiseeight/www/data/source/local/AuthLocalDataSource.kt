@@ -17,4 +17,6 @@ interface AuthLocalDataSource {
     fun getAccessToken() : Flow<Result<String>>
 
     suspend fun setAccessToken(accessToken : String)
+
+    fun getVersionInfo() : String // VERSION_NAME 리턴
 }

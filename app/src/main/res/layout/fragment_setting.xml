@@ -5,6 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
+        <!-- 상단바 -->
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_back"
             android:layout_width="wrap_content"
@@ -30,6 +31,7 @@
             android:layout_marginHorizontal="@dimen/size_64"
             app:layout_constraintTop_toTopOf="@id/iv_back"/>
 
+        <!-- System list -->
 
         <TextView
             android:id="@+id/tv1_setting_list"
@@ -41,19 +43,75 @@
             style="@style/Text.Title9"
             app:layout_constraintTop_toBottomOf="@id/tv_setting_title"/>
 
+        <!-- app_version -->
+
+        <TextView
+            android:id="@+id/tv2_setting_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="35dp"
+            android:text="앱 버전"
+            style="@style/Text.Title9"
+            app:layout_constraintTop_toBottomOf="@id/tv1_setting_list"/>
+
+        <TextView
+            android:id="@+id/tv_setting_app_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:text="1.0.0"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:textColor="@color/gray_350"
+            android:textSize="14sp"
+            app:layout_constraintTop_toTopOf="@id/tv2_setting_list"
+            app:layout_constraintEnd_toEndOf="@id/tv2_setting_list"/>
 
 
+        <!-- devleoper information -->
 
+        <TextView
+            android:id="@+id/tv3_setting_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="35dp"
+            android:text="개발자 정보"
+            style="@style/Text.Title9"
+            app:layout_constraintTop_toBottomOf="@id/tv2_setting_list"/>
 
+        <TextView
+            android:id="@+id/tv_setting_dev_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="www.gmail.com"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:textColor="@color/gray_350"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv3_setting_list"/>
 
+        <TextView
+            android:id="@+id/tv4_setting_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="35dp"
+            android:text="피드백 남기기"
+            style="@style/Text.Title9"
+            app:layout_constraintTop_toBottomOf="@id/tv3_setting_list"/>
 
-
-
-
-
+        <TextView
+            android:id="@+id/tv5_setting_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="35dp"
+            android:text="개인정보 처리방침"
+            style="@style/Text.Title9"
+            app:layout_constraintTop_toBottomOf="@id/tv4_setting_list"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 </layout>
