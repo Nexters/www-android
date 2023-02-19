@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -41,5 +42,9 @@ abstract class BaseFragment<B: ViewDataBinding> : Fragment() {
         while(recyclerView.itemDecorationCount > 0){
             recyclerView.removeItemDecorationAt(0)
         }
+    }
+
+    fun showToast(message : String){
+        Toast.makeText(requireContext(),message, Toast.LENGTH_SHORT).show()
     }
 }
