@@ -1,9 +1,11 @@
 package com.promiseeight.www.data.repository
 
 import com.promiseeight.www.data.model.request.toMeetingCreateRequest
+import com.promiseeight.www.data.model.response.toMeetingDetail
 import com.promiseeight.www.data.model.response.toMeetingInvitation
 import com.promiseeight.www.data.source.remote.MeetingRemoteDataSource
 import com.promiseeight.www.domain.model.MeetingCondition
+import com.promiseeight.www.domain.model.MeetingDetail
 import com.promiseeight.www.domain.model.MeetingInvitation
 import com.promiseeight.www.domain.repository.MeetingRepository
 import kotlinx.coroutines.flow.Flow
@@ -18,6 +20,16 @@ class MeetingRepositoryImpl @Inject constructor(
             getOrThrow()
         }.onSuccess {
             emit(Result.success(it.toMeetingInvitation()))
+        }.onFailure {
+            emit(Result.failure(it))
+        }
+    }
+
+    override fun getMeetingDetailByCode(code: String): Flow<Result<MeetingDetail>> = flow {
+        meetingRemoteDataSource.getMeetingDetailByCode(code).runCatching {
+            getOrThrow()
+        }.onSuccess {
+            emit(Result.success(it.toMeetingDetail()))
         }.onFailure {
             emit(Result.failure(it))
         }
