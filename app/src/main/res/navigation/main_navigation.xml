@@ -19,11 +19,11 @@
             android:id="@+id/action_fragment_home_to_fragment_add_meeting"
             app:destination="@id/fragment_add_meeting" />
         <action
-            android:id="@+id/action_fragment_home_to_fragment_meeting_share"
-            app:destination="@id/fragment_meeting_share" />
-        <action
             android:id="@+id/action_fragment_home_to_fragment_join_meeting"
             app:destination="@id/fragment_join_meeting" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_meeting_detail"
+            app:destination="@id/fragment_meeting_detail" />
 
     </fragment>
 
@@ -34,6 +34,9 @@
             android:id="@+id/action_fragment_add_meeting_to_fragment_meeting_share"
             app:destination="@id/fragment_meeting_share"
             app:popUpTo="@id/fragment_home"/>
+        <action
+            android:id="@+id/action_fragment_add_meeting_to_fragment_meeting_detail"
+            app:destination="@id/fragment_meeting_detail" />
     </fragment>
 
     <fragment
@@ -48,10 +51,29 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_join_meeting"
-        android:name="com.promiseeight.www.ui.meeting.JoinMeetingFragment" />
+        android:name="com.promiseeight.www.ui.meeting.JoinMeetingFragment" >
+        <action
+            android:id="@+id/action_fragment_join_meeting_to_fragment_meeting_detail"
+            app:destination="@id/fragment_meeting_detail" />
+    </fragment>
 
     <include app:graph="@navigation/add_meeting_navigation"/>
     <include app:graph="@navigation/join_meeting_navigation"/>
+
+    <fragment
+        android:id="@+id/fragment_meeting_detail"
+        android:name="com.promiseeight.www.ui.meeting.detail.MeetingDetailFragment" >
+        <action
+            android:id="@+id/action_fragment_meeting_detail_to_fragment_meeting_detail_rank"
+            app:destination="@id/fragment_meeting_detail_rank" />
+        <deepLink
+            android:id="@+id/deeplink_meeting_detail"
+            app:uri="https://www/meeting/detail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_meeting_detail_rank"
+        android:name="com.promiseeight.www.ui.meeting.detail.MeetingDetailRankFragment" />
 
 
 </navigation>

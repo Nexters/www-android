@@ -1,5 +1,6 @@
 package com.promiseeight.www.ui.home
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,6 +31,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             findNavController().navigate(
                 HomeFragmentDirections.actionFragmentHomeToFragmentJoinMeeting()
             )
+        }
+        binding.btnTest.setOnClickListener {
+//            findNavController().navigate(
+//                HomeFragmentDirections.actionFragmentHomeToFragmentMeetingDetail()
+//            )
+            findNavController().navigate(Uri.parse("https://www/meeting/detail"))
         }
     }
 }
