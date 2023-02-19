@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.promiseeight.www.databinding.FragmentMeetingInfoDateBinding
 import com.promiseeight.www.ui.adapter.CandidateAdapter
+import com.promiseeight.www.ui.adapter.ItemDecoration.InfoItemDecoration
 import com.promiseeight.www.ui.common.InfoFragment
 import com.promiseeight.www.ui.meeting.InfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,7 +27,7 @@ class MeetingInfoDateFragment : InfoFragment<FragmentMeetingInfoDateBinding>() {
     private val viewModel: InfoViewModel by viewModels({ getHostFragment() })
 
     private val candidateAdapter: CandidateAdapter by lazy {
-        CandidateAdapter()
+        CandidateAdapter(binding.rvSelectedDate)
     }
 
     override fun getFragmentBinding(
@@ -72,6 +73,8 @@ class MeetingInfoDateFragment : InfoFragment<FragmentMeetingInfoDateBinding>() {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = candidateAdapter
+            removeItemDecorations(recyclerView) // 추가된 ItemDecoration이 있으면 삭제한다.
+            addItemDecoration(InfoItemDecoration(requireContext())) // ItemDocoration을 추가한다.
         }
     }
 
@@ -80,7 +83,7 @@ class MeetingInfoDateFragment : InfoFragment<FragmentMeetingInfoDateBinding>() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.meetingDateCandidates.collectLatest { candidates ->
-                        candidateAdapter.submitList(candidates)
+                        candidateAdapter.submitList(candidates.reversed())
                     }
                 }
             }
