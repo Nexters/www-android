@@ -81,7 +81,8 @@
     <!-- 이거 추가하는거 맞는지 확인해주세요 -->
     <fragment
         android:id="@+id/fragment_setting"
-        android:name="com.promiseeight.www.ui.meeting.SettingFragment"/>
+        android:name="com.promiseeight.www.ui.meeting.SettingFragment">
+    </fragment>
 
 
 </navigation>

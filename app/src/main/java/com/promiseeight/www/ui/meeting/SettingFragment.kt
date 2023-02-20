@@ -1,6 +1,7 @@
 package com.promiseeight.www.ui.meeting
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,5 +29,9 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
     private fun getVersionInfo() : String {
         val appVersion = BuildConfig.VERSION_NAME;
         return appVersion;
+    }
+
+    private fun switchToggleBtn() {
+
     }
 }

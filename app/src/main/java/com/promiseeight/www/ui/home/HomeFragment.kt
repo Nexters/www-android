@@ -38,5 +38,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 //            )
             findNavController().navigate(Uri.parse("https://www/meeting/detail"))
         }
+
+        binding.ivSetting.setOnClickListener {
+            findNavController().navigate(
+                HomeFragmentDirections.actionFragmentHomeToFragmentSetting()
+            )
+        }
+
     }
 }

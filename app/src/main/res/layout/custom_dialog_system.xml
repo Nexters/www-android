@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="19dp"
-        android:text="@string/system_dialog_alarm1"
+        android:text="&apos;WWW&apos;에서 알림을 \n 보내고자 합니다."
         android:fontFamily="@font/spoqa_han_sans_neo_bold"
         android:textColor="@color/black"
         android:gravity="center"
