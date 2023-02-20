@@ -24,38 +24,62 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_6"
             android:text="@string/meeting_share_subtitle"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintEnd_toStartOf="@id/tv_subtitle_second"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
+        
+        <View
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_10"
+
+            app:layout_constraintBottom_toBottomOf="@id/tv_subtitle"
+            app:layout_constraintStart_toStartOf="@id/tv_subtitle"
+            app:layout_constraintEnd_toEndOf="@id/tv_subtitle"
+            android:background="@color/www_green_transparent_20"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_subtitle_second"
+            style="@style/Text.Title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/meeting_share_subtitle_second"
+            app:layout_constraintTop_toTopOf="@id/tv_subtitle"
+            app:layout_constraintBottom_toBottomOf="@id/tv_subtitle"
+            app:layout_constraintStart_toEndOf="@id/tv_subtitle"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_celebration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="@dimen/yaksogi_front_width"
+            android:layout_height="@dimen/yaksogi_front_height"
             android:layout_marginTop="@dimen/size_40"
-            android:src="@drawable/img_celebration"/>
+            android:scaleType="center"
+            android:src="@drawable/img_yaksogi_front"
+            app:layout_constraintBottom_toTopOf="@id/btn_share"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
 
         <androidx.appcompat.widget.AppCompatButton
-            style="@style/Text.Body3"
             android:id="@+id/btn_share"
+            style="@style/Text.Body3"
             android:layout_width="145dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/www_black"
             android:background="@drawable/rectangle_white_border_gray200_radius_30"
-            app:layout_constraintTop_toBottomOf="@id/iv_celebration"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="@dimen/size_40"
-            android:text="@string/meeting_share_link"
+            android:drawableStart="@drawable/ic_link"
             android:elevation="@dimen/size_0"
             android:outlineProvider="none"
-            app:layout_constraintVertical_chainStyle="spread_inside"
             android:paddingHorizontal="@dimen/size_20"
+            android:text="@string/meeting_share_link"
+            android:textColor="@color/www_black"
+            android:layout_marginBottom="@dimen/size_48"
             app:layout_constraintBottom_toTopOf="@id/btn_next"
-            android:drawableStart="@drawable/ic_link"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_celebration"
+            />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"

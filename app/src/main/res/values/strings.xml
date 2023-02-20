@@ -7,7 +7,7 @@
 
     <!-- add / join -->
     <string name="add_join_pages">%d/%d</string>
-
+    
     <!-- info name -->
     <string name="info_name_title">약속방의\n이름을 알려주세요.</string>
     <string name="info_name_hint">약속방 이름 입력</string>
@@ -42,10 +42,11 @@
 
     <!-- meeting share -->
     <string name="meeting_share_title">함께할 친구들을 초대해 보세요.</string>
-    <string name="meeting_share_subtitle">약속방 만들기가 완료되었어요!</string>
+    <string name="meeting_share_subtitle">약속방 만들기</string>
+    <string name="meeting_share_subtitle_second">가 완료되었어요!</string>
     <string name="meeting_share_link">링크 복사하기</string>
     <string name="meeting_share_next">약속방으로 가기</string>
-
+    
     <!-- meeting detail -->
     <string name="meeting_detail_subtitle">%d/%d 입장 중</string>
     <string name="meeting_detail_when">언제</string>
@@ -62,9 +63,6 @@
     <string name="button_skip">스킵할래요</string>
     <string name="empty_text"> </string>
     <string name="number">%d</string>
-
-    <!-- system -->
-    <string name="system_dialog_alarm1"> &apos;WWW&apos;에서 알림을 \n 보내고자 합니다. </string>
-    <string name="system_dialog_alarm2">경고, 사운드 및 아이콘 배지가 알림에 \n 포함될 수 있습니다. 설정에서 이를 \n 구성할 수 있습니다.</string>
-
+    <string name="copy_link_success">링크가 복사되었습니다.</string>
+    <string name="copy_link_fail">링크 복사에 실패하였습니다.</string>
 </resources>
