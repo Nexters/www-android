@@ -92,7 +92,7 @@
             app:layout_constraintStart_toEndOf="@id/tv_place_list"
             android:layout_marginStart="@dimen/size_4"
             android:textColor="@color/www_green"
-            android:text="@{@string/number(viewModel.meetingPlaceCandidates.size())}"
+            android:text="@{@string/number(viewModel.meetingPlaceCandidates.size() + viewModel.meetingRegisteredPlaces.size())}"
             tools:text="1"/>
 
         <!-- height 고쳐야 됨 -->

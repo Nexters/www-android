@@ -37,18 +37,32 @@
             app:layout_constraintTop_toBottomOf="@id/tv_title"
             app:layout_constraintVertical_chainStyle="spread_inside" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_minus"
+            android:layout_width="@dimen/size_24_padding_8"
+            android:layout_height="@dimen/size_24_padding_8"
+            android:enabled="@{(viewModel.meetingCapacity > 1)}"
+            android:padding="@dimen/size_8"
+            android:src="@drawable/selector_button_delete"
+            android:layout_marginStart="@dimen/size_104"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintBottom_toBottomOf="@id/tv_info_capacity"
+            app:layout_constraintEnd_toStartOf="@id/tv_info_capacity"
+            app:layout_constraintTop_toTopOf="@id/tv_info_capacity"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_info_capacity"
             style="@style/Text.Heading1"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/size_88"
             android:textColor="@color/www_black"
+            android:gravity="center"
             android:text="@{@string/number(viewModel.meetingCapacity)}"
             app:layout_constraintBottom_toTopOf="@id/btn_next"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_plus"
+            app:layout_constraintStart_toEndOf="@id/iv_minus"
             app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
             tools:text="1" />
 
@@ -56,25 +70,16 @@
             android:id="@+id/iv_plus"
             android:layout_width="@dimen/size_24_padding_8"
             android:layout_height="@dimen/size_24_padding_8"
-            android:layout_marginStart="@dimen/size_38"
             android:enabled="@{(viewModel.meetingCapacity &lt; 20)}"
             android:padding="@dimen/size_8"
+            android:layout_marginEnd="@dimen/size_104"
             android:src="@drawable/selector_button_add"
             app:layout_constraintBottom_toBottomOf="@id/tv_info_capacity"
             app:layout_constraintStart_toEndOf="@id/tv_info_capacity"
-            app:layout_constraintTop_toTopOf="@id/tv_info_capacity" />
+            app:layout_constraintTop_toTopOf="@id/tv_info_capacity"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_minus"
-            android:layout_width="@dimen/size_24_padding_8"
-            android:layout_height="@dimen/size_24_padding_8"
-            android:layout_marginEnd="@dimen/size_38"
-            android:enabled="@{(viewModel.meetingCapacity > 1)}"
-            android:padding="@dimen/size_8"
-            android:src="@drawable/selector_button_delete"
-            app:layout_constraintBottom_toBottomOf="@id/tv_info_capacity"
-            app:layout_constraintEnd_toStartOf="@id/tv_info_capacity"
-            app:layout_constraintTop_toTopOf="@id/tv_info_capacity" />
+
 
         <!-- background 수정 필요 -->
         <androidx.appcompat.widget.AppCompatButton

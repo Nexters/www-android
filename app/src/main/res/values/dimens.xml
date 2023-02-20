@@ -38,8 +38,13 @@
     <dimen name="size_64">64dp</dimen>
     <dimen name="size_78">78dp</dimen>
     <dimen name="size_88">88dp</dimen>
+    <dimen name="size_104">104dp</dimen>
     <dimen name="size_106">106dp</dimen>
     <dimen name="size_188">188dp</dimen>
+
+    <!-- yaksogi size -->
+    <dimen name="yaksogi_front_width">320dp</dimen>
+    <dimen name="yaksogi_front_height">278dp</dimen>
 
     <!-- plus padding size -->
     <dimen name="size_16_padding_8">32dp</dimen>
@@ -47,15 +52,16 @@
 
 
     <!-- font size -->
-    <dimen name="font_size_72">72sp</dimen>
-    <dimen name="font_size_36">36sp</dimen>
-    <dimen name="font_size_24">24sp</dimen>
-    <dimen name="font_size_22">22sp</dimen>
-    <dimen name="font_size_20">20sp</dimen>
-    <dimen name="font_size_18">18sp</dimen>
-    <dimen name="font_size_16">16sp</dimen>
-    <dimen name="font_size_15">15sp</dimen>
-    <dimen name="font_size_14">14sp</dimen>
-    <dimen name="font_size_12">12sp</dimen>
-    <dimen name="font_size_11">11sp</dimen>
+
+    <dimen name="font_size_72">72dp</dimen>
+    <dimen name="font_size_36">36dp</dimen>
+    <dimen name="font_size_24">24dp</dimen>
+    <dimen name="font_size_22">22dp</dimen>
+    <dimen name="font_size_20">20dp</dimen>
+    <dimen name="font_size_18">18dp</dimen>
+    <dimen name="font_size_16">16dp</dimen>
+    <dimen name="font_size_15">15dp</dimen>
+    <dimen name="font_size_14">14dp</dimen>
+    <dimen name="font_size_12">12dp</dimen>
+    <dimen name="font_size_11">11dp</dimen>
 </resources>

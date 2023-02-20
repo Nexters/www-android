@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentMeetingInfoPlaceBinding
 import com.promiseeight.www.ui.adapter.CandidateAdapter
+import com.promiseeight.www.ui.adapter.ItemDecoration.InfoItemDecoration
 import com.promiseeight.www.ui.common.AddNavHostFragment
 import com.promiseeight.www.ui.common.BaseFragment
 import com.promiseeight.www.ui.common.InfoFragment
@@ -23,6 +24,7 @@ import com.promiseeight.www.ui.common.JoinNavHostFragment
 import com.promiseeight.www.ui.meeting.*
 import com.promiseeight.www.ui.model.CandidateUiModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -32,7 +34,7 @@ class MeetingInfoPlaceFragment : InfoFragment<FragmentMeetingInfoPlaceBinding>()
     private val viewModel : InfoViewModel by viewModels ({ getHostFragment() })
 
     private val candidateAdapter: CandidateAdapter by lazy {
-        CandidateAdapter { candidate ->
+        CandidateAdapter(binding.rvPlace) { candidate ->
             viewModel.removeMeetingPlaceCandidate(candidate.title)
         }
     }
@@ -82,6 +84,8 @@ class MeetingInfoPlaceFragment : InfoFragment<FragmentMeetingInfoPlaceBinding>()
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = candidateAdapter
+            removeItemDecorations(recyclerView) // 추가된 ItemDecoration이 있으면 삭제한다.
+            addItemDecoration(InfoItemDecoration(requireContext())) // ItemDocoration을 추가한다.
         }
     }
 

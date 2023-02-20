@@ -37,16 +37,6 @@ class InfoViewModel @Inject constructor(
 
     private var _meetingCodeStatus = MutableStateFlow(CodeStatus.READY)
     val meetingCodeStatus: StateFlow<CodeStatus> get() = _meetingCodeStatus
-//        = _meetingCodeStatus.asStateFlow().combine(meetingCode){ status , code ->
-//            if(code.length < codeMaxSize) CodeStatus.READY
-//            else if(status == CodeStatus.INVALID) CodeStatus.INVALID
-//            else if(code.length == codeMaxSize) CodeStatus.ACTIVE
-//            else CodeStatus.READY
-//    }.stateIn(
-//        scope = viewModelScope,
-//        started = SharingStarted.WhileSubscribed(500),
-//        initialValue = CodeStatus.READY
-//    )
 
     private var _meetingCapacity = MutableStateFlow(1)
     val meetingCapacity: StateFlow<Int> get() = _meetingCapacity
@@ -65,14 +55,13 @@ class InfoViewModel @Inject constructor(
         meetingRegisteredPlaces
     ) { candidates, registeredPlaces ->
         if (candidates.isEmpty() && registeredPlaces.isEmpty()) listOf(CandidateUiModel("예시) 강남역",false))
-        else candidates + registeredPlaces
+        else candidates.reversed() + registeredPlaces
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(500),
         initialValue = emptyList()
     )
 
-    val meetingState = MutableStateFlow(false)
     private val _meetingInvitation = MutableStateFlow<MeetingInvitation?>(null)
     val meetingInvitation : StateFlow<MeetingInvitation?> get() = _meetingInvitation
 

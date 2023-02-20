@@ -1,11 +1,15 @@
 package com.promiseeight.www.ui.meeting
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context.CLIPBOARD_SERVICE
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.navArgs
+import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentMeetingShareBinding
 import com.promiseeight.www.ui.common.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,9 +26,20 @@ class MeetingShareFragment : BaseFragment<FragmentMeetingShareBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //확인을 위한 Toast, 삭제 예정
-        navArgs<MeetingShareFragmentArgs>().value.run {
-            Toast.makeText(requireContext(),"초대 코드 : $argInvitationCode 링크 : $argInvitationLink",Toast.LENGTH_SHORT).show()
+        binding.btnShare.setOnClickListener {
+            copy(navArgs<MeetingShareFragmentArgs>().value.argInvitationLink)
         }
+    }
+
+    private fun copy(text : String){
+        try {
+            (requireActivity().getSystemService(CLIPBOARD_SERVICE) as ClipboardManager).run {
+                setPrimaryClip(ClipData.newPlainText("link",text))
+                showToast(getString(R.string.copy_link_success))
+            }
+        } catch (e : Exception){
+            showToast(getString(R.string.copy_link_fail))
+        }
+
     }
 }
