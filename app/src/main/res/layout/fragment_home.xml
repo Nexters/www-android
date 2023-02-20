@@ -5,24 +5,39 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_setting"
+            android:id="@+id/iv_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/size_28"
+            android:layout_marginStart="@dimen/size_20"
             android:layout_marginTop="@dimen/size_18"
-            android:src="@drawable/ic_setting"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/img_logo_small"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_logo_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo_ww_main"
-            android:layout_marginStart="@dimen/size_28"
-            android:layout_marginTop="@dimen/size_18"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_marginEnd="@dimen/size_18"
+            android:src="@drawable/ic_settings"
+            app:layout_constraintBottom_toBottomOf="@id/iv_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_logo" />
+
+        <!-- 디자인 수정 필요 -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tb_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_26"
+            app:layout_constraintTop_toBottomOf="@id/iv_logo" />
+
+        <!-- tabLayout에서 선택한 탭 화면을 담을 ViewPager -->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_home"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0"
+            app:layout_constraintTop_toBottomOf="@id/tb_home"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_test"
