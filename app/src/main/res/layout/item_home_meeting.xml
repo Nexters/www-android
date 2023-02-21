@@ -3,7 +3,7 @@
     <data>
         <variable
             name="homeMeeting"
-            type="String" />
+            type="com.promiseeight.www.ui.model.MeetingUiModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,19 +13,25 @@
         <!-- Test TextView -->
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_test"
+            style="@style/Text.Title8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{homeMeeting}"
+            android:text="@{homeMeeting.meetingName}"
+            app:layout_constraintBottom_toTopOf="@id/tv_image"
+            app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Test TextView -->
         <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/size_0"
+            android:id="@+id/tv_image"
+            android:layout_width="@dimen/size_106"
+            android:layout_height="@dimen/size_106"
             android:gravity="center"
-            android:text="약소기"
+            android:text="약소기 그림"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_test" />
 
