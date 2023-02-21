@@ -27,42 +27,42 @@
         android:id="@+id/tv1_snackbar_goto_vote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/snackbar_tv1"
+        android:text="@string/snackbar_govote_tv1"
         android:layout_marginTop="@dimen/size_12"
         style="@style/Text.Body1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/character_snackbar_goto_vote"/>
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv2_1_snackbar_goto_vote"
+        android:id="@+id/tv1_1_snackbar_goto_vote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_70"
-        android:text="@string/snackbar_tv2_1"
+        android:text="@string/snackbar_govote_tv2_1"
         style="@style/Text.Body1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv1_snackbar_goto_vote"/>
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv2_2_snackbar_goto_vote"
+        android:id="@+id/tv1_2_snackbar_goto_vote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_4"
-        android:text="@string/snackbar_tv2_2_color"
+        android:text="@string/snackbar_govote_tv2_2_color"
         android:textColor="@color/www_green"
         style="@style/Text.Body1"
         app:layout_constraintTop_toBottomOf="@id/tv1_snackbar_goto_vote"
-        app:layout_constraintStart_toEndOf="@id/tv2_1_snackbar_goto_vote"/>
+        app:layout_constraintStart_toEndOf="@id/tv1_1_snackbar_goto_vote"/>
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv2_3_snackbar_goto_vote"
+        android:id="@+id/tv1_3_snackbar_goto_vote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_4"
-        android:text="@string/snackbar_tv3"
+        android:text="@string/snackbar_govote_tv3"
         style="@style/Text.Body1"
         app:layout_constraintTop_toBottomOf="@id/tv1_snackbar_goto_vote"
-        app:layout_constraintStart_toEndOf="@id/tv2_2_snackbar_goto_vote"/>
+        app:layout_constraintStart_toEndOf="@id/tv1_2_snackbar_goto_vote"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_snack_Bar_goTo_vote"
