@@ -9,7 +9,7 @@
             name="viewModel"
             type="com.promiseeight.www.ui.meeting.InfoViewModel" />
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,7 +39,202 @@
             app:layout_constraintTop_toBottomOf="@id/tv_title"
             app:layout_constraintVertical_chainStyle="spread_inside" />
 
-        <!-- ViewPager 넣는 곳 -->
+        <View
+            android:id="@+id/v_divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_1"
+            android:layout_marginTop="@dimen/size_78"
+            android:background="@color/gray_150"
+            app:layout_constraintTop_toBottomOf="@id/tv_subtitle" />
+
+        <View
+            android:id="@+id/v_morning"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            android:layout_marginTop="@dimen/size_5"
+            android:layout_marginBottom="@dimen/size_5"
+            app:layout_constraintBottom_toTopOf="@id/v_lunch"
+            app:layout_constraintEnd_toStartOf="@id/vp_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/vp_date" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_morning"
+            style="@style/Text.Body3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_20"
+            android:text="@string/info_date_morning"
+            android:textColor="@color/www_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/v_morning" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_morning_time"
+            style="@style/Text.Body6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_2"
+            android:text="@string/info_date_morning_time"
+            android:textColor="@color/gray_500"
+            app:layout_constraintStart_toStartOf="@id/tv_morning"
+            app:layout_constraintTop_toBottomOf="@id/tv_morning" />
+
+        <View
+            android:id="@+id/v_lunch"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            android:layout_marginBottom="@dimen/size_5"
+            app:layout_constraintBottom_toBottomOf="@id/v_dinner"
+            app:layout_constraintEnd_toStartOf="@id/vp_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/v_morning" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_lunch"
+            style="@style/Text.Body3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/info_date_lunch"
+            android:textColor="@color/www_black"
+            app:layout_constraintStart_toStartOf="@id/tv_morning"
+            app:layout_constraintTop_toTopOf="@id/v_lunch" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_lunch_time"
+            style="@style/Text.Body6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_2"
+            android:text="@string/info_date_lunch_time"
+            android:textColor="@color/gray_500"
+            app:layout_constraintStart_toStartOf="@id/tv_lunch"
+            app:layout_constraintTop_toBottomOf="@id/tv_lunch" />
+
+        <View
+            android:id="@+id/v_dinner"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            android:layout_marginBottom="@dimen/size_5"
+            app:layout_constraintBottom_toTopOf="@id/v_night"
+            app:layout_constraintEnd_toStartOf="@id/vp_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/v_lunch" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_dinner"
+            style="@style/Text.Body3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/info_date_dinner"
+            android:textColor="@color/www_black"
+            app:layout_constraintStart_toStartOf="@id/tv_morning"
+            app:layout_constraintTop_toTopOf="@id/v_dinner" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_dinner_time"
+            style="@style/Text.Body6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_2"
+            android:text="@string/info_date_dinner_time"
+            android:textColor="@color/gray_500"
+            app:layout_constraintStart_toStartOf="@id/tv_dinner"
+            app:layout_constraintTop_toBottomOf="@id/tv_dinner" />
+
+        <View
+            android:id="@+id/v_night"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            app:layout_constraintBottom_toBottomOf="@id/vp_date"
+            app:layout_constraintEnd_toStartOf="@id/vp_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/v_dinner" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_night"
+            style="@style/Text.Body3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/info_date_night"
+            android:textColor="@color/www_black"
+            app:layout_constraintStart_toStartOf="@id/tv_morning"
+            app:layout_constraintTop_toTopOf="@id/v_night" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_night_time"
+            style="@style/Text.Body6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_2"
+            android:text="@string/info_date_night_time"
+            android:textColor="@color/gray_500"
+            app:layout_constraintStart_toStartOf="@id/tv_night"
+            app:layout_constraintTop_toBottomOf="@id/tv_night" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_first_day"
+            style="@style/Text.Body4"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="25 (토)"
+            android:textColor="@color/www_black"
+            android:layout_marginBottom="@dimen/size_13"
+            app:layout_constraintStart_toStartOf="@id/vp_date"
+            app:layout_constraintEnd_toStartOf="@id/tv_second_day"
+            app:layout_constraintBottom_toTopOf="@id/v_divider" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_second_day"
+            style="@style/Text.Body4"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="26 (일)"
+            android:textColor="@color/www_black"
+            android:layout_marginBottom="@dimen/size_13"
+            app:layout_constraintStart_toEndOf="@id/tv_first_day"
+            app:layout_constraintEnd_toStartOf="@id/tv_third_day"
+            app:layout_constraintBottom_toTopOf="@id/v_divider" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_third_day"
+            style="@style/Text.Body4"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="27 (월)"
+            android:textColor="@color/www_black"
+            android:layout_marginBottom="@dimen/size_13"
+            app:layout_constraintStart_toEndOf="@id/tv_second_day"
+            app:layout_constraintEnd_toStartOf="@id/tv_fourth_day"
+            app:layout_constraintBottom_toTopOf="@id/v_divider" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_fourth_day"
+            style="@style/Text.Body4"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="28 (화)"
+            android:textColor="@color/www_black"
+            android:layout_marginBottom="@dimen/size_13"
+            app:layout_constraintStart_toEndOf="@id/tv_third_day"
+            app:layout_constraintEnd_toEndOf="@id/vp_date"
+            app:layout_constraintBottom_toTopOf="@id/v_divider" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_date"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_19"
+            android:layout_marginTop="@dimen/size_11"
+            android:layout_marginEnd="@dimen/size_15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_morning_time"
+            app:layout_constraintTop_toBottomOf="@id/v_divider" />
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -50,8 +245,8 @@
             android:layout_marginBottom="@dimen/size_18"
             android:background="@drawable/rectangle_white_border_gray100_radius_10"
             android:clipToPadding="true"
-            android:paddingVertical="@dimen/size_11"
             android:paddingHorizontal="@dimen/size_14"
+            android:paddingVertical="@dimen/size_11"
             app:layout_constraintBottom_toTopOf="@id/btn_next" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -79,7 +274,6 @@
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </layout>
