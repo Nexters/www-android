@@ -24,8 +24,8 @@ class MeetingRemoteDataSourceImpl @Inject constructor(
             val response =  meetingService.createMeeting(
                 meetingCreateRequest
             )
-            if(response.code == 200) Result.success(response.result)
-            else throw getWwwException(response.code)
+            if(response.code == 0) Result.success(response.result)
+            else Result.failure(getWwwException(response.code))
         } catch (e: Exception){
             Result.failure(e)
         }
@@ -36,8 +36,8 @@ class MeetingRemoteDataSourceImpl @Inject constructor(
             val response = meetingService.getMeetingDetailByCode(
                 meetingCode
             )
-            if(response.code == 200) Result.success(response.result)
-            else throw getWwwException(response.code)
+            if(response.code == 0) Result.success(response.result)
+            else Result.failure(getWwwException(response.code))
         } catch (e: Exception){
             Result.failure(e)
         }
