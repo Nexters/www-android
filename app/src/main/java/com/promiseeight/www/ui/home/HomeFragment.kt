@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
@@ -17,6 +18,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+
+    private val viewModel : HomeViewModel by viewModels()
 
     private var homeTabAdapter : HomeTabAdapter? = null
 
@@ -76,6 +79,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private fun initViewPager(viewPager: ViewPager2) {
         homeTabAdapter = HomeTabAdapter(this)
         viewPager.adapter = homeTabAdapter
+        viewPager.isUserInputEnabled = false
     }
 
     private fun setTabLayoutMediator(tabLayout: TabLayout, viewPager: ViewPager2){
