@@ -23,7 +23,6 @@ class AuthLocalDataSourceImpl @Inject constructor(
 ) : AuthLocalDataSource {
     private val KEY_FCM_TOKEN = stringPreferencesKey("fcm_token")
     private val KEY_ACCESS_TOKEN = stringPreferencesKey("access_token")
-    private val VERSION_NAME = stringPreferencesKey("version_name")
 
     override fun getPreferenceFcmToken(): Flow<Result<String>> =
         preferenceDataStore.data.map { preferences ->
@@ -63,7 +62,4 @@ class AuthLocalDataSourceImpl @Inject constructor(
         }
     }
 
-    override fun getVersionInfo() : String {
-        return BuildConfig.VERSION_NAME;
-    }
 }

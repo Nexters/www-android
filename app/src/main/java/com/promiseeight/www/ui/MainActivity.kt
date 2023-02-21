@@ -13,14 +13,14 @@ import com.promiseeight.www.databinding.ActivityMainBinding
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private var Binding : ActivityMainBinding? = null
-    private val binding get() = Binding!!
+    private var _binding : ActivityMainBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)
 
-        Binding = ActivityMainBinding.inflate(layoutInflater)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        Binding = null
         super.onDestroy()
     }
 

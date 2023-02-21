@@ -18,5 +18,4 @@ interface AuthLocalDataSource {
 
     suspend fun setAccessToken(accessToken : String)
 
-    fun getVersionInfo() : String // VERSION_NAME 리턴
 }

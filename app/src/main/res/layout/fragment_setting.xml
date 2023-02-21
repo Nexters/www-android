@@ -24,7 +24,7 @@
             android:gravity="center"
             android:textColor="@color/www_black"
             android:maxLines="1"
-            android:text="설정"
+            android:text="@string/system_top_bar"
             app:layout_constraintBottom_toBottomOf="@id/iv_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
         <!-- System list -->
 
         <TextView
-            android:id="@+id/tv1_setting_list"
+            android:id="@+id/tv1_setting_push"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -71,14 +71,14 @@
         <!-- app_version -->
 
         <TextView
-            android:id="@+id/tv2_setting_list"
+            android:id="@+id/tv_setting_version"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="35dp"
             android:text="앱 버전"
             style="@style/Text.Title9"
-            app:layout_constraintTop_toBottomOf="@id/tv1_setting_list"/>
+            app:layout_constraintTop_toBottomOf="@id/tv1_setting_push"/>
 
         <TextView
             android:id="@+id/tv_setting_app_version"
@@ -89,21 +89,21 @@
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
             android:textColor="@color/gray_350"
             android:textSize="14sp"
-            app:layout_constraintTop_toTopOf="@id/tv2_setting_list"
-            app:layout_constraintEnd_toEndOf="@id/tv2_setting_list"/>
+            app:layout_constraintTop_toTopOf="@id/tv_setting_version"
+            app:layout_constraintEnd_toEndOf="@id/tv_setting_version"/>
 
 
         <!-- devleoper information -->
 
         <TextView
-            android:id="@+id/tv3_setting_list"
+            android:id="@+id/tv_setting_dev"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="35dp"
             android:text="개발자 정보"
             style="@style/Text.Title9"
-            app:layout_constraintTop_toBottomOf="@id/tv2_setting_list"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_setting_version"/>
 
         <TextView
             android:id="@+id/tv_setting_dev_info"
@@ -115,27 +115,27 @@
             android:textColor="@color/gray_350"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv3_setting_list"/>
+            app:layout_constraintTop_toTopOf="@id/tv_setting_dev"/>
 
         <TextView
-            android:id="@+id/tv4_setting_list"
+            android:id="@+id/tv_setting_feedback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="35dp"
             android:text="피드백 남기기"
             style="@style/Text.Title9"
-            app:layout_constraintTop_toBottomOf="@id/tv3_setting_list"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_setting_dev"/>
 
         <TextView
-            android:id="@+id/tv5_setting_list"
+            android:id="@+id/tv_setting_private_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="35dp"
             android:text="개인정보 처리방침"
             style="@style/Text.Title9"
-            app:layout_constraintTop_toBottomOf="@id/tv4_setting_list"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_setting_feedback"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

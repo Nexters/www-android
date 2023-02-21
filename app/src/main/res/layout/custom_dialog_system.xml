@@ -24,7 +24,7 @@
         android:id="@+id/tv2_system_custom_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/system_dialog_alarm2"
+        android:text="@string/system_dialog_alarm"
         android:layout_marginTop="4dp"
         android:gravity="center"
         android:textSize="13sp"
