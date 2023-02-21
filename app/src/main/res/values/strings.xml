@@ -27,6 +27,14 @@
     <!-- info date -->
     <string name="info_date_title">가능한 시간대를 선택해주세요.</string>
     <string name="info_date_empty">선택한 시간대가 없습니다.</string>
+    <string name="info_date_morning">아침🥚</string>
+    <string name="info_date_lunch">낮🔅</string>
+    <string name="info_date_dinner">저녁🌙</string>
+    <string name="info_date_night">밤🍻</string>
+    <string name="info_date_morning_time">06–10시</string>
+    <string name="info_date_lunch_time">11–16시</string>
+    <string name="info_date_dinner_time">17–20시</string>
+    <string name="info_date_night_time">21–24시</string>
 
     <!-- info place -->
     <string name="info_place_title">원하는 장소를 입력해 주세요.</string>
