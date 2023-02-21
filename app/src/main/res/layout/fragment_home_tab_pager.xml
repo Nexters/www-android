@@ -8,14 +8,8 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_meeting"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <!-- 확인용 textView , 언제든지 삭제 가능 -->
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="test" />
+            android:nestedScrollingEnabled="true"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
