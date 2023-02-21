@@ -9,6 +9,7 @@ import com.promiseeight.www.domain.model.PromiseTime
 import com.promiseeight.www.domain.usecase.meeting.CreateMeetingUseCase
 import com.promiseeight.www.domain.usecase.meeting.GetMeetingByCodeUseCase
 import com.promiseeight.www.ui.model.CandidateUiModel
+import com.promiseeight.www.ui.model.TimeUiModel
 import com.promiseeight.www.ui.model.enums.CodeStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -52,6 +53,9 @@ class InfoViewModel @Inject constructor(
     private var _meetingRegisteredPlaces = MutableStateFlow<List<CandidateUiModel>>(emptyList())
     val meetingRegisteredPlaces: StateFlow<List<CandidateUiModel>> get() = _meetingRegisteredPlaces
 
+    private var _meetingDates = MutableStateFlow<List<TimeUiModel>>(emptyList())
+    val meetingDates : StateFlow<List<TimeUiModel>> get() = _meetingDates
+
     val meetingPlaces: StateFlow<List<CandidateUiModel>> = combine(
         meetingPlaceCandidates,
         meetingRegisteredPlaces
@@ -75,6 +79,10 @@ class InfoViewModel @Inject constructor(
             CandidateUiModel("26 (일) 밤"),
             CandidateUiModel("27 (월) 저녁")
         )
+
+        _meetingDates.value = (0 .. 15).map {
+            TimeUiModel(it,"","",false,if(it % 4 == 3) true else false)
+        }
     }
 
     fun setPage(page: Int) {

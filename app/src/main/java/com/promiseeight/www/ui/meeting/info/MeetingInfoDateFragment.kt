@@ -17,6 +17,7 @@ import com.promiseeight.www.ui.adapter.CandidateAdapter
 import com.promiseeight.www.ui.adapter.ItemDecoration.InfoItemDecoration
 import com.promiseeight.www.ui.common.InfoFragment
 import com.promiseeight.www.ui.meeting.InfoViewModel
+import com.promiseeight.www.ui.meeting.info.date.DatePagerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -29,6 +30,8 @@ class MeetingInfoDateFragment : InfoFragment<FragmentMeetingInfoDateBinding>() {
     private val candidateAdapter: CandidateAdapter by lazy {
         CandidateAdapter(binding.rvSelectedDate)
     }
+
+    private var dateViewPagerAdapter : DatePagerAdapter? = null
 
     override fun getFragmentBinding(
         inflater: LayoutInflater,
@@ -63,6 +66,9 @@ class MeetingInfoDateFragment : InfoFragment<FragmentMeetingInfoDateBinding>() {
                 }
             )
         }
+        dateViewPagerAdapter = DatePagerAdapter(this)
+        binding.vpDate.adapter = dateViewPagerAdapter
+
 
         initRecyclerView(binding.rvSelectedDate)
         initObserver()
