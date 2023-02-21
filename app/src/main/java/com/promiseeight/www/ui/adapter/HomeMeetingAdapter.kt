@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.promiseeight.www.databinding.ItemHomeMeetingBinding
+import com.promiseeight.www.ui.model.MeetingUiModel
 
-/// Meeting Model 만들어지면 String -> Meeting 으로 바뀔 예정!!
-class HomeMeetingAdapter : ListAdapter<String,HomeMeetingAdapter.HomeMeetingViewHolder>(HomeMeetingDiffCallback()) {
+class HomeMeetingAdapter : ListAdapter<MeetingUiModel,HomeMeetingAdapter.HomeMeetingViewHolder>(HomeMeetingDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeMeetingViewHolder {
         return HomeMeetingViewHolder(
@@ -26,22 +26,22 @@ class HomeMeetingAdapter : ListAdapter<String,HomeMeetingAdapter.HomeMeetingView
         val binding : ItemHomeMeetingBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(homeMeeting : String) {
+        fun bind(homeMeeting : MeetingUiModel) {
             binding.homeMeeting = homeMeeting
         }
     }
 
-    private class HomeMeetingDiffCallback : DiffUtil.ItemCallback<String>() {
+    private class HomeMeetingDiffCallback : DiffUtil.ItemCallback<MeetingUiModel>() {
         override fun areItemsTheSame(
-            oldItem: String,
-            newItem: String
+            oldItem: MeetingUiModel,
+            newItem: MeetingUiModel
         ): Boolean {
-            return oldItem == newItem
+            return oldItem.meetingId == newItem.meetingId
         }
 
         override fun areContentsTheSame(
-            oldItem: String,
-            newItem: String
+            oldItem: MeetingUiModel,
+            newItem: MeetingUiModel
         ): Boolean {
             return oldItem == newItem
         }
