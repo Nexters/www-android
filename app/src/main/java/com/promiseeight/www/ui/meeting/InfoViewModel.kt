@@ -7,6 +7,7 @@ import com.promiseeight.www.domain.model.MeetingInvitation
 import com.promiseeight.www.domain.model.PromiseInfo
 import com.promiseeight.www.domain.model.PromiseTime
 import com.promiseeight.www.domain.usecase.meeting.CreateMeetingUseCase
+import com.promiseeight.www.domain.usecase.meeting.GetMeetingByCodeUseCase
 import com.promiseeight.www.ui.model.CandidateUiModel
 import com.promiseeight.www.ui.model.enums.CodeStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +18,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class InfoViewModel @Inject constructor(
-    private val createMeetingUseCase: CreateMeetingUseCase
+    private val createMeetingUseCase: CreateMeetingUseCase,
+    private val getMeetingByCodeUseCase: GetMeetingByCodeUseCase
 ) : ViewModel() {
     var totalPage = 1
 
@@ -132,14 +134,19 @@ class InfoViewModel @Inject constructor(
         }
     }
 
-    fun checkCodeValid() : Boolean {
-        return if(meetingCode.value == "aaaaaa"){
-            _meetingCodeStatus.value = CodeStatus.ACTIVE
-            true
-        }
-        else {
-            _meetingCodeStatus.value = CodeStatus.INVALID
-            false
+    fun checkCodeValid() {
+        viewModelScope.launch {
+            getMeetingByCodeUseCase(meetingCode.value)
+                .catch {
+                    _meetingCodeStatus.value = CodeStatus.INVALID
+                    Timber.d("WWW error : getMeetingByCode")
+                }.collectLatest {
+                    it.onSuccess {
+                        _meetingCodeStatus.value = CodeStatus.SUCCESS
+                    }.onFailure {
+                        _meetingCodeStatus.value = CodeStatus.INVALID
+                    }
+                }
         }
     }
 

@@ -40,8 +40,7 @@ class MeetingInfoCodeFragment : InfoFragment<FragmentMeetingInfoCodeBinding>() {
         initObserver()
         binding.run {
             btnNext.setOnClickListener {
-                if(viewModel?.checkCodeValid() == true)
-                    findNavController().navigate(ACTION_JOIN_CODE_TO_USER_NAME)
+                viewModel?.checkCodeValid()
             }
 
             ivClose.setOnClickListener {
@@ -57,6 +56,19 @@ class MeetingInfoCodeFragment : InfoFragment<FragmentMeetingInfoCodeBinding>() {
                     viewModel.meetingCode.collectLatest { code ->
                         if(code.length < viewModel.codeMaxSize) viewModel.setCodeStatus(CodeStatus.READY)
                         else if(code.length == viewModel.codeMaxSize) viewModel.setCodeStatus(CodeStatus.ACTIVE)
+                    }
+                }
+                launch {
+                    viewModel.meetingCodeStatus.collectLatest {
+                        when(it){
+                            CodeStatus.SUCCESS -> {
+                                viewModel.setCodeStatus(CodeStatus.READY)
+                                findNavController().navigate(ACTION_JOIN_CODE_TO_USER_NAME)
+                            }
+                            else -> {
+                                //
+                            }
+                        }
                     }
                 }
             }

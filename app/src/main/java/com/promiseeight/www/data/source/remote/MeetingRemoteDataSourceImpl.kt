@@ -1,9 +1,11 @@
 package com.promiseeight.www.data.source.remote
 
 import android.util.Log
+import com.promiseeight.www.data.model.getWwwException
 import com.promiseeight.www.data.model.request.MeetingCreateRequest
 import com.promiseeight.www.data.model.request.UserPromiseTimeRequest
 import com.promiseeight.www.data.model.response.MeetingCreateResponse
+import com.promiseeight.www.data.model.response.MeetingDetailResponse
 import com.promiseeight.www.data.source.remote.api.MeetingService
 import timber.log.Timber
 import javax.inject.Inject
@@ -22,7 +24,20 @@ class MeetingRemoteDataSourceImpl @Inject constructor(
             val response =  meetingService.createMeeting(
                 meetingCreateRequest
             )
-            Result.success(response.result)
+            if(response.code == 0) Result.success(response.result)
+            else Result.failure(getWwwException(response.code))
+        } catch (e: Exception){
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun getMeetingDetailByCode(meetingCode: String): Result<MeetingDetailResponse> {
+        return try {
+            val response = meetingService.getMeetingDetailByCode(
+                meetingCode
+            )
+            if(response.code == 0) Result.success(response.result)
+            else Result.failure(getWwwException(response.code))
         } catch (e: Exception){
             Result.failure(e)
         }
