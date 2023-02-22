@@ -47,7 +47,8 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
 
             it.btnVote.setOnClickListener {
                 findNavController().navigate(
-                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToFragmentMeetingDetailRank()
+                    //MeetingDetailFragmentDirections.actionFragmentMeetingDetailToFragmentMeetingDetailRank()
+                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVoteFragment()
                 )
             }
         }

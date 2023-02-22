@@ -69,11 +69,18 @@
         <deepLink
             android:id="@+id/deeplink_meeting_detail"
             app:uri="https://www/meeting/detail" />
+        <action
+            android:id="@+id/action_fragment_meeting_detail_to_meetingDetailVoteFragment"
+            app:destination="@id/meetingDetailVoteFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/fragment_meeting_detail_rank"
         android:name="com.promiseeight.www.ui.meeting.detail.MeetingDetailRankFragment" />
+    <fragment
+        android:id="@+id/meetingDetailVoteFragment"
+        android:name="com.promiseeight.www.ui.meeting.detail.MeetingDetailVoteFragment"
+        android:label="MeetingDetailVoteFragment" />
 
 
 </navigation>
