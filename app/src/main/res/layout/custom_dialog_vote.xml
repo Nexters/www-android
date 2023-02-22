@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/gray_200"
+    android:layout_height="543dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/background_custom_dialog_vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_custom_dialog_vote"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_custom_dialog_vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_50"
+        android:src="@drawable/img_custom_dialog_vote"
+        app:layout_constraintEnd_toEndOf="@id/background_custom_dialog_vote"
+        app:layout_constraintStart_toStartOf="@id/background_custom_dialog_vote"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv1_custom_dialog_vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_101"
+        android:text="@string/tv1_dialog_vote"
+        style="@style/Text.Title6"
+        app:layout_constraintTop_toTopOf="@id/background_custom_dialog_vote"
+        app:layout_constraintEnd_toEndOf="@id/background_custom_dialog_vote"
+        app:layout_constraintStart_toStartOf="@id/background_custom_dialog_vote"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv2_custom_dialog_vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_4"
+        android:text="@string/tv2_dialog_vote"
+        style="@style/Text.Body3"
+        android:textColor="#747474"
+        app:layout_constraintTop_toBottomOf="@id/tv1_custom_dialog_vote"
+        app:layout_constraintEnd_toEndOf="@id/background_custom_dialog_vote"
+        app:layout_constraintStart_toStartOf="@id/background_custom_dialog_vote"/>
+
+    <View
+        android:id="@+id/view_custom_dialog_vote"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/size_200"
+        android:background="@color/gray_100"
+        app:layout_constraintTop_toTopOf="@id/background_custom_dialog_vote"
+        app:layout_constraintEnd_toEndOf="@id/background_custom_dialog_vote"
+        app:layout_constraintStart_toStartOf="@id/background_custom_dialog_vote"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_nope_custom_dialog_vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_46"
+        android:layout_marginTop="@dimen/size_23"
+        android:text="@string/tv3_dialog_vote"
+        style="@style/Text.Body3"
+        android:textColor="#747474"
+        app:layout_constraintTop_toBottomOf="@id/view_custom_dialog_vote"
+        app:layout_constraintStart_toStartOf="@id/background_custom_dialog_vote"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_yes_custom_dialog_vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_40"
+        android:layout_marginTop="@dimen/size_23"
+        android:text="@string/tv4_dialog_vote"
+        style="@style/Text.Body3"
+        android:textColor="@color/www_green"
+        app:layout_constraintTop_toBottomOf="@id/view_custom_dialog_vote"
+        app:layout_constraintEnd_toEndOf="@id/background_custom_dialog_vote"/>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

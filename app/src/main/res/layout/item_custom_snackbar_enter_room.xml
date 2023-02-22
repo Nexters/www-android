@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="335dp"
+    android:layout_height="122dp"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/background_snackbar_enter_room">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_meeting_name_snackbar_enter_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_24"
+        android:layout_marginStart="@dimen/size_24"
+        android:text="&apos; 크리스마스 파티 &apos;"
+        style="@style/Text.Body3"
+        android:textColor="@color/www_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_snackbar_enter_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_24"
+        android:text="@string/snackbar_enterroom_tv"
+        android:textColor="@color/www_white"
+        style="@style/Text.Body3"
+        app:layout_constraintStart_toEndOf="@id/tv_meeting_name_snackbar_enter_room"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_15"
+        android:layout_marginEnd="@dimen/size_15"
+        android:src="@drawable/btn_close_snackbar_enterroom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv1_1_snackbar_goto_vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_7"
+        android:layout_marginStart="@dimen/size_24"
+        android:text="@string/snackbar_enterroom_tv1_1"
+        style="@style/Text.Body3"
+        android:textColor="@color/www_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_snackbar_enter_room"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tv1_2_snackbar_goto_vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_7"
+        android:layout_marginStart="@dimen/size_4"
+        android:text="@string/snackbar_enterroom_tv1_2"
+        android:textColor="@color/www_green"
+        style="@style/Text.Body3"
+        app:layout_constraintStart_toEndOf="@id/tv1_1_snackbar_goto_vote"
+        app:layout_constraintTop_toBottomOf="@id/tv_snackbar_enter_room"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/tv1_3_snackbar_goto_vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_7"
+        android:text="@string/snackbar_enterroom_tv1_3"
+        android:textColor="@color/www_white"
+        style="@style/Text.Body3"
+        app:layout_constraintStart_toEndOf="@id/tv1_2_snackbar_goto_vote"
+        app:layout_constraintTop_toBottomOf="@id/tv_snackbar_enter_room"/>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv1_4_snackbar_enterroom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_23"
+        android:layout_marginStart="@dimen/size_24"
+        android:text="@string/snackbar_enterroom_tv1_4"
+        style="@style/Text.Body2"
+        android:textColor="@color/www_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/vector_snackbar_enterroom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_27"
+        android:layout_marginStart="@dimen/size_12"
+        android:src="@drawable/vector_snackbar_enterroom"
+        app:layout_constraintStart_toEndOf="@id/tv1_4_snackbar_enterroom"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_56"
+        android:src="@drawable/character_snackbar_enterroom"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

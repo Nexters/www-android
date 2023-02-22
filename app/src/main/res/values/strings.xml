@@ -66,7 +66,30 @@
     <string name="copy_link_success">링크가 복사되었습니다.</string>
     <string name="copy_link_fail">링크 복사에 실패하였습니다.</string>
 
+
     <!-- System -->
     <string name="system_dialog_alarm">경고, 사운드 및 아이콘 배지가 알림에\n포함될 수 있습니다. 설정에서 이를\n구성할 수 있습니다.</string>
     <string name="system_top_bar">설정</string>
+
+    <!-- SnackBar Go Vote-->
+    <string name="button_goto_vote">투표하러 가기</string>
+    <string name="snackbar_govote_tv1">투표가 시작됐어요</string>
+
+    <string name="snackbar_govote_tv2_1">지금 바로</string>
+    <string name="snackbar_govote_tv2_2_color">원하는 장소에 투표</string>
+    <string name="snackbar_govote_tv3">해주세요</string>
+
+    <!-- SnackBar Enter Room -->
+    <string name="snackbar_enterroom_tv">방의 투표가 마감됐어요</string>
+    <string name="snackbar_enterroom_tv1_1">장소와 시간을 </string>
+    <string name="snackbar_enterroom_tv1_2">확정</string>
+    <string name="snackbar_enterroom_tv1_3">하러 가볼까요?</string>
+    <string name="snackbar_enterroom_tv1_4">약속방 입장하기</string>
+
+    <!-- dialog vote -->
+    <string name="tv1_dialog_vote">투표를 종료하시겠어요?</string>
+    <string name="tv2_dialog_vote">투표가 종료되면 재투표는 불가능해요</string>
+    <string name="tv3_dialog_vote">관둘래요</string>
+    <string name="tv4_dialog_vote">네, 시작할래요</string>
+
 </resources>

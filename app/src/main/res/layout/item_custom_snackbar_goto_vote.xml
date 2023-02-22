@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="320dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/background_snackbar_goto_vote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_snackbar_goto_vote"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/character_snackbar_goto_vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/character_snack_bar_goto_vote"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv1_snackbar_goto_vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/snackbar_govote_tv1"
+        android:layout_marginTop="@dimen/size_12"
+        style="@style/Text.Body1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/character_snackbar_goto_vote"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv1_1_snackbar_goto_vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_70"
+        android:text="@string/snackbar_govote_tv2_1"
+        style="@style/Text.Body1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv1_snackbar_goto_vote"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv1_2_snackbar_goto_vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_4"
+        android:text="@string/snackbar_govote_tv2_2_color"
+        android:textColor="@color/www_green"
+        style="@style/Text.Body1"
+        app:layout_constraintTop_toBottomOf="@id/tv1_snackbar_goto_vote"
+        app:layout_constraintStart_toEndOf="@id/tv1_1_snackbar_goto_vote"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv1_3_snackbar_goto_vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_4"
+        android:text="@string/snackbar_govote_tv3"
+        style="@style/Text.Body1"
+        app:layout_constraintTop_toBottomOf="@id/tv1_snackbar_goto_vote"
+        app:layout_constraintStart_toEndOf="@id/tv1_2_snackbar_goto_vote"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_snack_Bar_goTo_vote"
+        style="@style/Button.Basic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/size_20"
+        android:layout_marginBottom="@dimen/size_38"
+        android:text="@string/button_goto_vote"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
