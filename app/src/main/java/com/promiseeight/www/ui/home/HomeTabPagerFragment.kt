@@ -12,6 +12,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.promiseeight.www.databinding.FragmentHomeTabPagerBinding
 import com.promiseeight.www.ui.adapter.HomeMeetingAdapter
 import com.promiseeight.www.ui.common.BaseFragment
+import com.promiseeight.www.ui.model.MeetingUiModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -33,7 +34,9 @@ class HomeTabPagerFragment : BaseFragment<FragmentHomeTabPagerBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        homeMeetingAdapter = HomeMeetingAdapter()
+        homeMeetingAdapter = HomeMeetingAdapter{ meeting ->
+            navigateToMeetingDetail(meeting)
+        }
 
         binding.let {
             initViewPager(it.vpMeeting)
@@ -69,6 +72,11 @@ class HomeTabPagerFragment : BaseFragment<FragmentHomeTabPagerBinding>() {
             }
         }
     }
+
+    private fun navigateToMeetingDetail(meetingUiModel: MeetingUiModel) {
+        showToast(meetingUiModel.meetingName) // meetingDetail로 이동하는 코드 추가 , Toast는 확인용 코드 (나중에 삭제)
+    }
+
     companion object {
         const val TAB_POSITION = "tabPosition"
     }
