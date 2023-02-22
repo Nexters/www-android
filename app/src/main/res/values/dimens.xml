@@ -3,6 +3,7 @@
     <!-- size -->
     <dimen name="size_0">0dp</dimen>
     <dimen name="size_1">1dp</dimen>
+    <dimen name="size_2">2dp</dimen>
     <dimen name="size_3">3dp</dimen>
     <dimen name="size_4">4dp</dimen>
     <dimen name="size_5">5dp</dimen>

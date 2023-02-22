@@ -7,5 +7,6 @@ data class PlaceRankUiModel(
     override val progress: Int,
     val name: String,
     val count : Int,
-    val selected : Boolean = false
+    val selected : Boolean = false,
+    val voted : Boolean = false
 ) : RankModel(id,ranking,type,progress)
