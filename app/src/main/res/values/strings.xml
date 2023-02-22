@@ -65,4 +65,8 @@
     <string name="number">%d</string>
     <string name="copy_link_success">링크가 복사되었습니다.</string>
     <string name="copy_link_fail">링크 복사에 실패하였습니다.</string>
+
+    <!-- System -->
+    <string name="system_dialog_alarm">경고, 사운드 및 아이콘 배지가 알림에\n포함될 수 있습니다. 설정에서 이를\n구성할 수 있습니다.</string>
+    <string name="system_top_bar">설정</string>
 </resources>

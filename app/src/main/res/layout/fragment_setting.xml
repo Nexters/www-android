@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <!-- 상단바 -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_28"
+            android:layout_marginTop="@dimen/size_18"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_setting_title"
+            style="@style/Text.Title8"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/www_black"
+            android:maxLines="1"
+            android:text="@string/system_top_bar"
+            app:layout_constraintBottom_toBottomOf="@id/iv_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="@dimen/size_64"
+            app:layout_constraintTop_toTopOf="@id/iv_back"/>
+
+
+        <!-- System list -->
+
+        <TextView
+            android:id="@+id/tv1_setting_push"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="35dp"
+            android:text="푸시 알림 설정"
+            style="@style/Text.Title9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_setting_title"/>
+        
+        <androidx.appcompat.widget.SwitchCompat
+            android:layout_width="54dp"
+            android:layout_height="31dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="35dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_setting_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:thumb="@drawable/selector_toggle_thumb"
+            android:textOff="off"
+            android:textOn="on"
+            app:track="@drawable/selector_toggle_track"/>
+
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            android:layout_marginTop="35dp"-->
+<!--            android:src="@drawable/btn_push_alarm_off"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/tv_setting_title"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:track="@drawable/selector_toggle_track"/>-->
+
+
+        <!-- app_version -->
+
+        <TextView
+            android:id="@+id/tv_setting_version"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="35dp"
+            android:text="앱 버전"
+            style="@style/Text.Title9"
+            app:layout_constraintTop_toBottomOf="@id/tv1_setting_push"/>
+
+        <TextView
+            android:id="@+id/tv_setting_app_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:text="1.0.0"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:textColor="@color/gray_350"
+            android:textSize="14sp"
+            app:layout_constraintTop_toTopOf="@id/tv_setting_version"
+            app:layout_constraintEnd_toEndOf="@id/tv_setting_version"/>
+
+
+        <!-- devleoper information -->
+
+        <TextView
+            android:id="@+id/tv_setting_dev"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="35dp"
+            android:text="개발자 정보"
+            style="@style/Text.Title9"
+            app:layout_constraintTop_toBottomOf="@id/tv_setting_version"/>
+
+        <TextView
+            android:id="@+id/tv_setting_dev_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="www.gmail.com"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:textColor="@color/gray_350"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_setting_dev"/>
+
+        <TextView
+            android:id="@+id/tv_setting_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="35dp"
+            android:text="피드백 남기기"
+            style="@style/Text.Title9"
+            app:layout_constraintTop_toBottomOf="@id/tv_setting_dev"/>
+
+        <TextView
+            android:id="@+id/tv_setting_private_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="35dp"
+            android:text="개인정보 처리방침"
+            style="@style/Text.Title9"
+            app:layout_constraintTop_toBottomOf="@id/tv_setting_feedback"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

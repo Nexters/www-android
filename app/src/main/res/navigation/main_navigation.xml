@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_fragment_home_to_fragment_meeting_detail"
             app:destination="@id/fragment_meeting_detail" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_setting"
+            app:destination="@id/fragment_setting" />
 
     </fragment>
 
@@ -74,6 +77,12 @@
     <fragment
         android:id="@+id/fragment_meeting_detail_rank"
         android:name="com.promiseeight.www.ui.meeting.detail.MeetingDetailRankFragment" />
+
+    <!-- 이거 추가하는거 맞는지 확인해주세요 -->
+    <fragment
+        android:id="@+id/fragment_setting"
+        android:name="com.promiseeight.www.ui.setting.SettingFragment">
+    </fragment>
 
 
 </navigation>
