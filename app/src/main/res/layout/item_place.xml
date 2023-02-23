@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_48"
             android:progress="@{place.progress}"
-            android:progressDrawable="@drawable/progress_green50"
+            android:progressDrawable="@{place.selected ? @drawable/progress_green50 : @drawable/progress_gray200}"
             android:layout_marginTop="@dimen/size_8"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,7 +30,7 @@
             app:layout_constraintStart_toStartOf="@id/pb_rank"
             app:layout_constraintBottom_toBottomOf="@id/pb_rank"
             app:layout_constraintEnd_toEndOf="@id/pb_rank"
-            android:visibility="@{place.selected ? View.VISIBLE : View.INVISIBLE }"
+            android:visibility="@{place.userVoted ? View.INVISIBLE : (place.selected ? View.VISIBLE : View.INVISIBLE) }"
             android:background="@drawable/rectangle_transparent_border_green_radius_15"
             tools:visibility="invisible"/>
 
@@ -39,38 +39,26 @@
             android:layout_width="@dimen/size_24"
             android:layout_height="@dimen/size_24"
             android:layout_marginStart="@dimen/size_12"
-            android:background="@drawable/circle_gray100"
-            android:backgroundTint="@color/www_green"
+            android:background="@{place.userVoted ? @drawable/ic_check_transparent_circle : @drawable/ic_check_green_circle }"
             android:gravity="center"
-            android:visibility="@{place.selected ? View.VISIBLE : View.GONE }"
+            android:visibility="@{place.selected ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="@id/pb_rank"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/pb_rank"
-            app:layout_constraintEnd_toStartOf="@id/tv_place"
-            tools:visibility="invisible"/>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/v_check"
-            app:layout_constraintStart_toStartOf="@id/v_check"
-            app:layout_constraintBottom_toBottomOf="@id/v_check"
-            app:layout_constraintEnd_toEndOf="@id/v_check"
-            android:visibility="@{place.selected ? View.VISIBLE : View.GONE }"
-            android:src="@drawable/ic_check"
-            tools:visibility="gone"/>
+            tools:visibility="visible"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_place"
             style="@style/Text.Body1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_10"
+            android:layout_marginStart="@dimen/size_34"
             android:text="@{place.name}"
             android:textColor="@color/gray_700"
             app:layout_constraintBottom_toBottomOf="@id/pb_rank"
-            app:layout_constraintStart_toEndOf="@id/v_check"
-            app:layout_constraintTop_toTopOf="@id/pb_rank" />
+            app:layout_constraintStart_toStartOf="@id/v_check"
+            app:layout_constraintTop_toTopOf="@id/pb_rank"
+            tools:text="강남"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_count"

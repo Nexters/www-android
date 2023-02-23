@@ -42,6 +42,9 @@ class MeetingDetailVoteFragment : BaseFragment<FragmentMeetingDetailRankBinding>
 
         binding.let {
             initRecyclerView(it.rvRank)
+            it.btnVote.setOnClickListener {
+                viewModel.votePlace()
+            }
         }
 
         initObserver()

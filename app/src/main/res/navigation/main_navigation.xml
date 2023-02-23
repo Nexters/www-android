@@ -72,6 +72,9 @@
         <action
             android:id="@+id/action_fragment_meeting_detail_to_meetingDetailVoteFragment"
             app:destination="@id/meetingDetailVoteFragment" />
+        <action
+            android:id="@+id/action_fragment_meeting_detail_to_meetingDetailConfirmWhenFragment"
+            app:destination="@id/meetingDetailConfirmWhenFragment" />
     </fragment>
 
     <fragment
@@ -81,6 +84,18 @@
         android:id="@+id/meetingDetailVoteFragment"
         android:name="com.promiseeight.www.ui.meeting.detail.MeetingDetailVoteFragment"
         android:label="MeetingDetailVoteFragment" />
+    <fragment
+        android:id="@+id/meetingDetailConfirmWhenFragment"
+        android:name="com.promiseeight.www.ui.meeting.detail.confirm.MeetingDetailConfirmWhenFragment"
+        android:label="MeetingDetailConfirmWhenFragment" >
+        <action
+            android:id="@+id/action_meetingDetailConfirmWhenFragment_to_meetingDetailConfirmWhereFragment"
+            app:destination="@id/meetingDetailConfirmWhereFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/meetingDetailConfirmWhereFragment"
+        android:name="com.promiseeight.www.ui.meeting.detail.confirm.MeetingDetailConfirmWhereFragment"
+        android:label="MeetingDetailConfirmWhereFragment" />
 
 
 </navigation>
