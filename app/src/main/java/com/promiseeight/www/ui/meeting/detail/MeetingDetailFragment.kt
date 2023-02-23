@@ -9,6 +9,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.promiseeight.www.databinding.FragmentMeetingDetailBinding
@@ -41,7 +42,7 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        showToast(navArgs<MeetingDetailFragmentArgs>().value.meetingId)
         binding.let {
             initRecyclerViews(it.rvWhen,it.rvWhere)
 

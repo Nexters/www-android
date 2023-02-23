@@ -1,5 +1,6 @@
 package com.promiseeight.www.ui.meeting.info
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -63,7 +65,7 @@ class MeetingInfoPlaceFragment : InfoFragment<FragmentMeetingInfoPlaceBinding>()
         binding.btnNext.setOnClickListener {
             setParentFragmentBranch(
                 onJoin = {
-
+                    viewModel.joinMeeting()
                 },
                 onAdd = {
                     viewModel.createMeeting()
@@ -103,6 +105,14 @@ class MeetingInfoPlaceFragment : InfoFragment<FragmentMeetingInfoPlaceBinding>()
                             .navigate(AddMeetingFragmentDirections.actionFragmentAddMeetingToFragmentMeetingShare(
                                  it.code,it.shortLink
                             ))
+                    }
+                }
+                launch {
+                    viewModel.meetingJoinState.collectLatest {
+                        if(it) Navigation.findNavController(requireActivity(),R.id.fcv_main)
+                            .navigate(Uri.parse("https://www/meeting/detail/${viewModel.getMeetingId()}"),NavOptions.Builder().apply {
+                                setPopUpTo(R.id.fragment_home,true)
+                            }.build())
                     }
                 }
             }
