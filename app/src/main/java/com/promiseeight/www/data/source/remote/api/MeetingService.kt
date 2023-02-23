@@ -1,5 +1,6 @@
 package com.promiseeight.www.data.source.remote.api
 
+import com.promiseeight.www.data.model.request.JoinMeetingRequest
 import com.promiseeight.www.data.model.request.MeetingCreateRequest
 import com.promiseeight.www.data.model.response.BaseResponse
 import com.promiseeight.www.data.model.response.MeetingCreateResponse
@@ -19,4 +20,10 @@ interface MeetingService {
     suspend fun getMeetingDetailByCode(
         @Path("meetingCode") meetingCode : String
     ) : BaseResponse<MeetingDetailResponse>
+
+    @POST("/meeting/{meetingId}")
+    suspend fun joinMeeting(
+        @Path("meetingId") meetingId : Long,
+        @Body joinMeetingRequest : JoinMeetingRequest
+    ) : BaseResponse<Unit>
 }
