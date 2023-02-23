@@ -109,4 +109,8 @@
     <string name="tv3_dialog_vote">관둘래요</string>
     <string name="tv4_dialog_vote">네, 시작할래요</string>
 
+    <!-- www notification channel-->
+    <string name="www_notification_channel_name">WWW: 언제어디서뭐해 Channel</string>
+    <string name="www_notification_channel_description">WWW: 언제어디서뭐해 앱의 알림을 위한 Channel입니다.</string>
+
 </resources>
