@@ -5,8 +5,10 @@ data class DateRankUiModel(
     override val ranking : Int,
     override val type: RankType = RankType.DATE,
     override val progress: Int,
-    val count : Int,
+    override val selected : Boolean = false,
+    override val count : Int,
+    override val confirmed : Boolean = false,
     val date : String,
     val time : String,
-) : RankModel(id,ranking,type,progress)
+) : RankModel(id,ranking,type,progress,selected,count,confirmed)
 

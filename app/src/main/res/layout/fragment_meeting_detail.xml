@@ -235,7 +235,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_106"
             android:background="@color/www_white"
-            android:elevation="@dimen/size_1"
+            android:elevation="@dimen/size_2"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -257,7 +257,7 @@
             android:layout_marginStart="@dimen/size_9"
             android:layout_marginEnd="@dimen/size_20"
             android:background="@drawable/circle_gray100"
-            android:elevation="@dimen/size_1"
+            android:elevation="@dimen/size_2"
             app:layout_constraintBottom_toBottomOf="@id/btn_vote"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btn_vote"
@@ -266,7 +266,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="@dimen/size_28"
             android:layout_height="@dimen/size_28"
-            android:elevation="@dimen/size_1"
+            android:elevation="@dimen/size_2"
             android:src="@drawable/ic_link_bold"
             app:layout_constraintBottom_toBottomOf="@id/v_share"
             app:layout_constraintEnd_toEndOf="@id/v_share"
