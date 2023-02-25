@@ -8,13 +8,17 @@ import com.promiseeight.www.domain.model.PromiseInfo
 import com.promiseeight.www.domain.model.PromiseTime
 import com.promiseeight.www.domain.usecase.meeting.CreateMeetingUseCase
 import com.promiseeight.www.domain.usecase.meeting.GetMeetingByCodeUseCase
+import com.promiseeight.www.ui.common.util.DateTimeUtil.getDateTimeTableSize
+import com.promiseeight.www.ui.common.util.DateTimeUtil.getTimeUiModelList
 import com.promiseeight.www.ui.model.CandidateUiModel
 import com.promiseeight.www.ui.model.TimeUiModel
 import com.promiseeight.www.ui.model.enums.CodeStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import org.joda.time.DateTime
 import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -44,8 +48,39 @@ class InfoViewModel @Inject constructor(
     private var _meetingCapacity = MutableStateFlow(1)
     val meetingCapacity: StateFlow<Int> get() = _meetingCapacity
 
+    private var _startDate = MutableStateFlow(DateTime.now())
+    val startDate : StateFlow<DateTime> get() = _startDate
+    private var _endDate = MutableStateFlow(DateTime.now().plusDays(10)) // 임시코드
+    val endDate : StateFlow<DateTime> get() = _endDate
+
+    var meetingDateTime = MutableStateFlow<List<TimeUiModel>>(emptyList())
+
+    val meetingDateTimeFromPeriod : StateFlow<List<TimeUiModel>> = combine(startDate, endDate){ start, end ->
+        val size = getDateTimeTableSize(start, end)
+        val dateTimes = mutableListOf<TimeUiModel>()
+        for(i in 0 until size){
+            dateTimes += getTimeUiModelList(start,end,i)
+        }
+        meetingDateTime.value = dateTimes
+        dateTimes
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = emptyList()
+    )
+
     private var _meetingDateCandidates = MutableStateFlow<List<CandidateUiModel>>(emptyList())
-    val meetingDateCandidates: StateFlow<List<CandidateUiModel>> get() = _meetingDateCandidates
+    val meetingDateCandidates : StateFlow<List<CandidateUiModel>> = combine(_meetingDateCandidates,meetingDateTime){ candidates, dateTimes ->
+        dateTimes.filter {
+            it.selected
+        }.map {
+            CandidateUiModel(it.id , "${it.date.dayOfMonth} (${it.date.dayOfWeek().getAsText(Locale.KOREAN)[0]}) ${it.time.korean}")
+        }
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(500),
+        emptyList()
+    )
 
     private var _meetingPlaceCandidates = MutableStateFlow<List<CandidateUiModel>>(emptyList())
     val meetingPlaceCandidates: StateFlow<List<CandidateUiModel>> get() = _meetingPlaceCandidates
@@ -53,14 +88,24 @@ class InfoViewModel @Inject constructor(
     private var _meetingRegisteredPlaces = MutableStateFlow<List<CandidateUiModel>>(emptyList())
     val meetingRegisteredPlaces: StateFlow<List<CandidateUiModel>> get() = _meetingRegisteredPlaces
 
-    private var _meetingDates = MutableStateFlow<List<TimeUiModel>>(emptyList())
-    val meetingDates : StateFlow<List<TimeUiModel>> get() = _meetingDates
+    val meetingPeriodState : StateFlow<Int> = combine(startDate, endDate) { start, end ->
+        getDateTimeTableSize(start, end)
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = 0
+    )
+
+    fun initDates() {
+        _startDate.value = DateTime.now()
+        _endDate.value = DateTime.now().plusDays(10)
+    }
 
     val meetingPlaces: StateFlow<List<CandidateUiModel>> = combine(
         meetingPlaceCandidates,
         meetingRegisteredPlaces
     ) { candidates, registeredPlaces ->
-        if (candidates.isEmpty() && registeredPlaces.isEmpty()) listOf(CandidateUiModel("예시) 강남역",false))
+        if (candidates.isEmpty() && registeredPlaces.isEmpty()) listOf(CandidateUiModel(title = "예시) 강남역", isPossibleDelete =  false))
         else candidates.reversed() + registeredPlaces
     }.stateIn(
         scope = viewModelScope,
@@ -71,19 +116,6 @@ class InfoViewModel @Inject constructor(
     private val _meetingInvitation = MutableStateFlow<MeetingInvitation?>(null)
     val meetingInvitation : StateFlow<MeetingInvitation?> get() = _meetingInvitation
 
-
-    init { //dummy 데이터 넣는 init임
-        _meetingDateCandidates.value = mutableListOf(
-            CandidateUiModel("25 (토) 낮"),
-            CandidateUiModel("26 (일) 저녁"),
-            CandidateUiModel("26 (일) 밤"),
-            CandidateUiModel("27 (월) 저녁")
-        )
-
-        _meetingDates.value = (0 .. 15).map {
-            TimeUiModel(it,"","",false,if(it % 4 == 3) true else false)
-        }
-    }
 
     fun setPage(page: Int) {
         _page.value = page
@@ -117,8 +149,11 @@ class InfoViewModel @Inject constructor(
 
     }
 
-    fun removeMeetingDateCandidate() {
-
+    fun removeMeetingDateCandidate(id : Long){
+        meetingDateTime.value = meetingDateTime.value.map {
+            if(it.id == id) it.copy(selected = false)
+            else it.copy()
+        }
     }
 
     fun checkMeetingPlaceDuplicate(): Boolean {
@@ -130,7 +165,7 @@ class InfoViewModel @Inject constructor(
     fun addMeetingPlaceCandidate() {
         _meetingPlaceCandidates.value = meetingPlaceCandidates.value.plus(
             CandidateUiModel(
-                meetingPlace.value.trim() // 공백 제거한 문자 추가
+                title = meetingPlace.value.trim() // 공백 제거한 문자 추가
             )
         )
         meetingPlace.value = "" // 장소명 초기화
@@ -142,12 +177,13 @@ class InfoViewModel @Inject constructor(
         }
     }
 
+
+
     fun checkCodeValid() {
         viewModelScope.launch {
             getMeetingByCodeUseCase(meetingCode.value)
                 .catch {
                     _meetingCodeStatus.value = CodeStatus.INVALID
-                    Timber.d("WWW error : getMeetingByCode")
                 }.collectLatest {
                     it.onSuccess {
                         _meetingCodeStatus.value = CodeStatus.SUCCESS
@@ -185,6 +221,17 @@ class InfoViewModel @Inject constructor(
                 Timber.d("WWW error : createMeeting")
             }.collectLatest {
                 _meetingInvitation.value = it.getOrThrow()
+            }
+        }
+    }
+
+    fun selectMeetingDateTime(id : Long){
+        meetingDateTime.value = meetingDateTime.value.map {
+            if(it.id == id){
+                it.copy(selected = !it.selected)
+            }
+            else {
+                it.copy()
             }
         }
     }
