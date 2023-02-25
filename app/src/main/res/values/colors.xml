@@ -12,7 +12,10 @@
     <color name="www_green">#FF41E29E</color>
     <color name="www_green_transparent_50">#8041E29E</color>
     <color name="www_green_transparent_20">#3341E29E</color>
+    <color name="www_green_transparent_35">#5941E29E</color>
     <color name="www_green_transparent_8">#1441E29E</color>
+    <color name="www_green_transparent_0">#0041E29E</color>
+
 
     <color name="www_green_sub">#FF68E3CD</color>
     <color name="www_green_sub_transparent_50">#8068E3CD</color>

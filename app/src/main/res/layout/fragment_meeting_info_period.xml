@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.promiseeight.www.ui.meeting.InfoViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -32,18 +35,122 @@
             android:text="@string/info_period_subtitle"
             android:textColor="@color/gray_450"
             app:layout_constraintStart_toStartOf="@id/tv_title"
-            app:layout_constraintTop_toBottomOf="@id/tv_title"
-            app:layout_constraintBottom_toTopOf="@id/cv_period"
-            app:layout_constraintVertical_chainStyle="spread_inside"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/cv_period"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:text="달력 들어갈 자리"
+            android:id="@+id/tv_sun"
+            style="@style/Text.Body4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_20"
+            android:layout_marginTop="@dimen/size_38"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
-            app:layout_constraintBottom_toTopOf="@id/btn_next"/>
+            android:textColor="@color/www_red"
+            android:text="@string/sunday_short"
+            app:layout_constraintEnd_toStartOf="@id/tv_mon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_subtitle" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_mon"
+            style="@style/Text.Body4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_38"
+            android:gravity="center"
+            android:textColor="@color/gray_300"
+            android:text="@string/monday_short"
+            app:layout_constraintEnd_toStartOf="@id/tv_tue"
+            app:layout_constraintStart_toEndOf="@id/tv_sun"
+            app:layout_constraintTop_toBottomOf="@id/tv_subtitle" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_tue"
+            style="@style/Text.Body4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_38"
+            android:gravity="center"
+            android:textColor="@color/gray_300"
+            android:text="@string/tuesday_short"
+            app:layout_constraintEnd_toStartOf="@id/tv_wed"
+            app:layout_constraintStart_toEndOf="@id/tv_mon"
+            app:layout_constraintTop_toBottomOf="@id/tv_subtitle" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_wed"
+            style="@style/Text.Body4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_38"
+            android:gravity="center"
+            android:textColor="@color/gray_300"
+            android:text="@string/wednesday_short"
+            app:layout_constraintEnd_toStartOf="@id/tv_thu"
+            app:layout_constraintStart_toEndOf="@id/tv_tue"
+            app:layout_constraintTop_toBottomOf="@id/tv_subtitle" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_thu"
+            style="@style/Text.Body4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_38"
+            android:gravity="center"
+            android:textColor="@color/gray_300"
+            android:text="@string/thursday_short"
+            app:layout_constraintEnd_toStartOf="@id/tv_fri"
+            app:layout_constraintStart_toEndOf="@id/tv_wed"
+            app:layout_constraintTop_toBottomOf="@id/tv_subtitle" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_fri"
+            style="@style/Text.Body4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_38"
+            android:gravity="center"
+            android:textColor="@color/gray_300"
+            android:text="@string/friday_short"
+            app:layout_constraintEnd_toStartOf="@id/tv_sat"
+            app:layout_constraintStart_toEndOf="@id/tv_thu"
+            app:layout_constraintTop_toBottomOf="@id/tv_subtitle" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_sat"
+            style="@style/Text.Body4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_38"
+            android:layout_marginEnd="@dimen/size_20"
+            android:gravity="center"
+            android:textColor="@color/gray_300"
+            android:text="@string/saturday_short"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_fri"
+            app:layout_constraintTop_toBottomOf="@id/tv_subtitle" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_1"
+            app:layout_constraintBottom_toTopOf="@id/rv_calendar"
+            android:background="@color/gray_150"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_calendar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0"
+            app:layout_constraintTop_toBottomOf="@id/tv_mon"
+            app:layout_constraintBottom_toTopOf="@id/btn_next"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="@dimen/size_20"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="7"
+            tools:listitem="@layout/item_calendar_day"
+            android:layout_marginTop="@dimen/size_13"
+            android:layout_marginBottom="@dimen/size_6"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
@@ -53,8 +160,7 @@
             android:layout_marginHorizontal="@dimen/size_20"
             android:layout_marginBottom="@dimen/size_38"
             android:text="@string/button_next"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cv_period" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
