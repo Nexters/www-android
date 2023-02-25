@@ -10,8 +10,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentMeetingDetailBinding
 import com.promiseeight.www.ui.adapter.RankAdapter
 import com.promiseeight.www.ui.common.BaseFragment
@@ -20,10 +22,11 @@ import com.promiseeight.www.ui.model.PlaceRankUiModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
 
-    private val viewModel : MeetingDetailViewModel by viewModels()
+    private val viewModel : MeetingDetailViewModel by navGraphViewModels(R.id.main_navigation)
 
     private val dateRankAdapter: RankAdapter<DateRankUiModel> by lazy {
         RankAdapter()
@@ -48,8 +51,13 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
 
             it.btnVote.setOnClickListener {
                 findNavController().navigate(
-                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToFragmentMeetingDetailRank()
+                    //MeetingDetailFragmentDirections.actionFragmentMeetingDetailToFragmentMeetingDetailRank()
+                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVoteFragment()
                 )
+            }
+
+            it.vShare.setOnClickListener {
+                navigateToDetailConfirm()
             }
         }
 
@@ -85,5 +93,13 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
                 }
             }
         }
+    }
+
+    private fun navigateToDetailConfirm() {
+        viewModel.confirmDate(-1) // 초기화
+        viewModel.confirmPlace(-1) // 초기화
+        findNavController().navigate(
+            MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailConfirmWhenFragment()
+        )
     }
 }

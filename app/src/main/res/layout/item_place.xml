@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="place"
+            type="com.promiseeight.www.ui.model.PlaceRankUiModel" />
+
+        <import type="android.view.View"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            android:id="@+id/pb_rank"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_48"
+            android:progress="@{place.progress}"
+            android:progressDrawable="@{place.selected ? @drawable/progress_green50 : @drawable/progress_gray200}"
+            android:layout_marginTop="@dimen/size_8"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            app:layout_constraintTop_toTopOf="@id/pb_rank"
+            app:layout_constraintStart_toStartOf="@id/pb_rank"
+            app:layout_constraintBottom_toBottomOf="@id/pb_rank"
+            app:layout_constraintEnd_toEndOf="@id/pb_rank"
+            android:visibility="@{place.userVoted ? View.INVISIBLE : (place.selected ? View.VISIBLE : View.INVISIBLE) }"
+            android:background="@drawable/rectangle_transparent_border_green_radius_15"
+            tools:visibility="invisible"/>
+
+        <View
+            android:id="@+id/v_check"
+            android:layout_width="@dimen/size_24"
+            android:layout_height="@dimen/size_24"
+            android:layout_marginStart="@dimen/size_12"
+            android:background="@{place.userVoted ? @drawable/ic_check_transparent_circle : @drawable/ic_check_green_circle }"
+            android:gravity="center"
+            android:visibility="@{place.selected ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/pb_rank"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/pb_rank"
+            tools:visibility="visible"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_place"
+            style="@style/Text.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_34"
+            android:text="@{place.name}"
+            android:textColor="@color/gray_700"
+            app:layout_constraintBottom_toBottomOf="@id/pb_rank"
+            app:layout_constraintStart_toStartOf="@id/v_check"
+            app:layout_constraintTop_toTopOf="@id/pb_rank"
+            tools:text="강남"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_count"
+            style="@style/Text.Body3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_18"
+            android:text="@{@string/meeting_detail_rank_count(place.count)}"
+            android:textColor="@color/gray_700"
+            app:layout_constraintBottom_toBottomOf="@id/pb_rank"
+            app:layout_constraintEnd_toEndOf="@id/pb_rank"
+            app:layout_constraintTop_toTopOf="@id/pb_rank" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

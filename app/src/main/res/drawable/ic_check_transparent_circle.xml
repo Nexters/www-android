@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/transparent"/>
+    <item android:drawable="@drawable/ic_check" android:top="@dimen/size_4"
+        android:left="@dimen/size_5"
+        android:bottom="@dimen/size_5"
+        android:right="@dimen/size_4"/>
+</layer-list>
