@@ -7,6 +7,7 @@ import com.promiseeight.www.data.source.remote.MeetingRemoteDataSource
 import com.promiseeight.www.domain.model.MeetingCondition
 import com.promiseeight.www.domain.model.MeetingDetail
 import com.promiseeight.www.domain.model.MeetingInvitation
+import com.promiseeight.www.domain.model.MeetingJoinCondition
 import com.promiseeight.www.domain.repository.MeetingRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -33,5 +34,17 @@ class MeetingRepositoryImpl @Inject constructor(
         }.onFailure {
             emit(Result.failure(it))
         }
+    }
+
+    override fun joinMeeting(
+        meetingId: Long,
+        meetingJoinCondition: MeetingJoinCondition
+    ): Flow<Result<Unit>> = flow {
+        meetingRemoteDataSource.joinMeeting(meetingId,meetingJoinCondition)
+            .onSuccess {
+                emit(Result.success(Unit))
+            }.onFailure {
+                emit(Result.success(Unit))
+            }
     }
 }

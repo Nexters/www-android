@@ -6,6 +6,6 @@ data class MeetingCondition(
     val minimumAlertMembers : Long,
     val startDate : String,
     val endDate : String,
-    val promiseInfoList : List<PromiseInfo>,
+    val promiseTimeList : List<UserPromiseTime>,
     val promisePlaceList : List<String>
 )

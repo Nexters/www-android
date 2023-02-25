@@ -19,7 +19,7 @@ fun MeetingCondition.toMeetingCreateRequest() = MeetingCreateRequest(
     minimumAlertMembers = minimumAlertMembers,
     startDate = startDate,
     endDate = endDate,
-    promiseDateTimeList = promiseInfoList.map {
+    promiseDateTimeList = promiseTimeList.map {
         it.toUserPromiseTimeRequest()
     },
     promisePlaceList = promisePlaceList

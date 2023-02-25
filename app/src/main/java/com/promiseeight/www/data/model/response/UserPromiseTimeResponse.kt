@@ -1,6 +1,7 @@
 package com.promiseeight.www.data.model.response
 
 import com.google.gson.annotations.SerializedName
+import com.promiseeight.www.domain.model.PromiseTime
 import com.promiseeight.www.domain.model.UserPromiseTime
 
 data class UserPromiseTimeResponse(
@@ -17,6 +18,6 @@ data class UserPromiseTimeResponse(
 fun UserPromiseTimeResponse.toUserPromiseTime() = UserPromiseTime(
     promiseDate = promiseDate,
     promiseDayOfWeek = promiseDayOfWeek,
-    promiseTime = promiseTime,
+    promiseTime = PromiseTime.valueOf(promiseTime),
     userNameList = userNameList
 )

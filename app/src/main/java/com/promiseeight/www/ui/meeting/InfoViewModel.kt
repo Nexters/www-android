@@ -2,12 +2,10 @@ package com.promiseeight.www.ui.meeting
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.promiseeight.www.domain.model.MeetingCondition
-import com.promiseeight.www.domain.model.MeetingInvitation
-import com.promiseeight.www.domain.model.PromiseInfo
-import com.promiseeight.www.domain.model.PromiseTime
+import com.promiseeight.www.domain.model.*
 import com.promiseeight.www.domain.usecase.meeting.CreateMeetingUseCase
 import com.promiseeight.www.domain.usecase.meeting.GetMeetingByCodeUseCase
+import com.promiseeight.www.domain.usecase.meeting.JoinMeetingUseCase
 import com.promiseeight.www.ui.model.CandidateUiModel
 import com.promiseeight.www.ui.model.enums.CodeStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class InfoViewModel @Inject constructor(
     private val createMeetingUseCase: CreateMeetingUseCase,
-    private val getMeetingByCodeUseCase: GetMeetingByCodeUseCase
+    private val getMeetingByCodeUseCase: GetMeetingByCodeUseCase,
+    private val joinMeetingUseCase: JoinMeetingUseCase
 ) : ViewModel() {
     var totalPage = 1
 
@@ -36,6 +35,8 @@ class InfoViewModel @Inject constructor(
     val meetingPlace = MutableStateFlow("")
 
     val meetingCode = MutableStateFlow("")
+
+    private var meetingId : Long? = null
 
     private var _meetingCodeStatus = MutableStateFlow(CodeStatus.READY)
     val meetingCodeStatus: StateFlow<CodeStatus> get() = _meetingCodeStatus
@@ -67,6 +68,8 @@ class InfoViewModel @Inject constructor(
     private val _meetingInvitation = MutableStateFlow<MeetingInvitation?>(null)
     val meetingInvitation : StateFlow<MeetingInvitation?> get() = _meetingInvitation
 
+    private val _meetingJoinState = MutableStateFlow(false)
+    val meetingJoinState : StateFlow<Boolean> get() = _meetingJoinState
 
     init { //dummy 데이터 넣는 init임
         _meetingDateCandidates.value = mutableListOf(
@@ -142,6 +145,7 @@ class InfoViewModel @Inject constructor(
                     Timber.d("WWW error : getMeetingByCode")
                 }.collectLatest {
                     it.onSuccess {
+                        meetingId = it.meetingId
                         _meetingCodeStatus.value = CodeStatus.SUCCESS
                     }.onFailure {
                         _meetingCodeStatus.value = CodeStatus.INVALID
@@ -163,10 +167,16 @@ class InfoViewModel @Inject constructor(
                     startDate = "2023-02-22",
                     endDate = "2023-03-04",
                     minimumAlertMembers = meetingCapacity.value.toLong(),
-                    promiseInfoList = listOf(
-                        PromiseInfo(date = "2023-02-23",promiseTime = PromiseTime.DINNER),
-                        PromiseInfo(date = "2023-02-24",promiseTime = PromiseTime.MORNING),
-                        PromiseInfo(date = "2023-02-25",promiseTime = PromiseTime.LUNCH)
+                    promiseTimeList = listOf(
+                        UserPromiseTime(
+                            promiseDate = "2023-02-23",
+                            promiseTime = PromiseTime.DINNER
+                        ),
+                        UserPromiseTime(
+                            promiseDate = "2023-02-24",
+                            promiseTime = PromiseTime.MORNING
+                        ),
+                        UserPromiseTime(promiseDate = "2023-02-25", promiseTime = PromiseTime.LUNCH)
 
                     ),
                     promisePlaceList = meetingPlaceCandidates.value.map {
@@ -180,4 +190,37 @@ class InfoViewModel @Inject constructor(
             }
         }
     }
+
+    fun joinMeeting() {
+        meetingId?.let {  meetingId ->
+            viewModelScope.launch {
+                joinMeetingUseCase(
+                    meetingId = meetingId,
+                    meetingJoinCondition = MeetingJoinCondition(
+                        nickname = meetingUserName.value,
+                        promisePlaceList = meetingPlaceCandidates.value.map { it.title },
+                        userPromiseTimeList = listOf(
+                            UserPromiseTime(
+                                promiseDate = "2023-02-23",
+                                promiseTime = PromiseTime.DINNER
+                            ),
+                            UserPromiseTime(
+                                promiseDate = "2023-02-24",
+                                promiseTime = PromiseTime.MORNING
+                            ),
+                            UserPromiseTime(promiseDate = "2023-02-25", promiseTime = PromiseTime.LUNCH)
+
+                        )
+                    )
+                ).catch {
+
+                }.collectLatest {
+                    if(it.isSuccess) _meetingJoinState.value = true
+                }
+            }
+        }
+
+    }
+
+    fun getMeetingId() = meetingId
 }
