@@ -1,9 +1,6 @@
 package com.promiseeight.www.ui.meeting.info
 
-import android.content.Context
-import android.graphics.PointF
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSmoothScroller
-import androidx.recyclerview.widget.RecyclerView
 import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentMeetingInfoPeriodBinding
 import com.promiseeight.www.ui.adapter.CalendarAdapter
@@ -26,7 +20,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import com.promiseeight.www.ui.model.CalendarUiModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import org.joda.time.DateTime
 import java.util.*
 
 @AndroidEntryPoint
@@ -62,7 +55,7 @@ class MeetingInfoPeriodFragment : InfoFragment<FragmentMeetingInfoPeriodBinding>
                 findNavController().navigate(ACTION_ADD_PERIOD_TO_DATE)
             }
             rvCalendar.itemAnimator = null
-            //calendarAdapter.setHasStableIds(true)
+            calendarAdapter.setHasStableIds(true)
             rvCalendar.adapter = calendarAdapter
             rvCalendar.layoutManager = GridLayoutManager(requireContext(), 7).apply {
                 spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {

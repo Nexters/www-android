@@ -1,5 +1,6 @@
 package com.promiseeight.www.ui.meeting
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.promiseeight.www.ui.common.util.CalendarUtil
@@ -147,6 +148,15 @@ class InfoViewModel @Inject constructor(
     private val _meetingJoinState = MutableStateFlow(false)
     val meetingJoinState : StateFlow<Boolean> get() = _meetingJoinState
 
+    init { //dummy 데이터 넣는 init임
+        _meetingDateCandidates.value = mutableListOf(
+            CandidateUiModel("25 (토) 낮"),
+            CandidateUiModel("26 (일) 저녁"),
+            CandidateUiModel("26 (일) 밤"),
+            CandidateUiModel("27 (월) 저녁")
+        )
+    }
+
     fun setPage(page: Int) {
         _page.value = page
     }
@@ -277,18 +287,27 @@ class InfoViewModel @Inject constructor(
     }
 
     fun selectDate(calendarUiModel: CalendarUiModel) {
-        if (meetingPeriodState.value.meetingPeriodStart == null) {
+        if (meetingPeriodState.value.meetingPeriodStart == null) { // start가 null 이면 start에 값 넣는다.
             setMeetingPeriodStart(calendarUiModel)
-        } else if (meetingPeriodState.value.meetingPeriodStart?.dateTime == calendarUiModel.dateTime) {
+        } else if (meetingPeriodState.value.meetingPeriodStart?.dateTime == calendarUiModel.dateTime) { //  start를 다시 누르면 null 로 된다.
             setMeetingPeriodState()
-        } else if (meetingPeriodState.value.meetingPeriodEnd?.dateTime == null) {
-            setMeetingPeriodEnd(calendarUiModel)
-        } else if (meetingPeriodState.value.meetingPeriodEnd?.dateTime == calendarUiModel.dateTime) {
+        } else if (meetingPeriodState.value.meetingPeriodEnd?.dateTime == null) { // 누른 날짜가 start가 아니고 end에 값이 없으면 end에 값 넣는다
+            meetingPeriodState.value.meetingPeriodStart?.dateTime?.let {
+                if(calendarUiModel.dateTime.isAfter(it.millis)) { // end가 이후가 맞는지?
+                    if(it.plusDays(14).dayOfYear > calendarUiModel.dateTime.dayOfYear ){
+                        Log.d("asdasd", "맞다")
+                        setMeetingPeriodEnd(calendarUiModel)
+                    } else {
+                        Log.d("asdasd", "14일 초과")
+                    }
+                }
+                else {
+                    Log.d("asdasd","선택안됨")
+                }
+            }
+
+        } else if (meetingPeriodState.value.meetingPeriodEnd?.dateTime == calendarUiModel.dateTime) { // 누른 날짜가 end랑 같으면 null
             setMeetingPeriodState()
-        } else if (calendarUiModel.dateTime != meetingPeriodState.value.meetingPeriodEnd?.dateTime &&
-            calendarUiModel.dateTime == meetingPeriodState.value.meetingPeriodStart?.dateTime
-        ) {
-            setMeetingPeriodState(calendarUiModel, null)
         } else {
             setMeetingPeriodState()
         }
