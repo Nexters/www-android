@@ -89,4 +89,10 @@ dependencies {
 
     //Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    //joda
+    implementation 'joda-time:joda-time:2.12.2'
+
+    //viewPager indicator
+    implementation 'com.tbuonomo:dotsindicator:4.3'
 }
