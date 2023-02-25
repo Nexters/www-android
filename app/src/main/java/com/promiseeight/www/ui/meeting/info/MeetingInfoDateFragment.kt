@@ -104,7 +104,7 @@ class MeetingInfoDateFragment : InfoFragment<FragmentMeetingInfoDateBinding>() {
                     }
                 }
                 launch {
-                        viewModel.meetingPeriodState.collectLatest {
+                        viewModel.meetingPeriodSize.collectLatest {
                             dateViewPagerAdapter = null
                             dateViewPagerAdapter = DatePagerAdapter(this@MeetingInfoDateFragment,  it )
                             binding.vpDate.adapter = dateViewPagerAdapter

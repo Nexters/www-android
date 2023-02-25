@@ -55,7 +55,7 @@ class MeetingInfoPeriodFragment : InfoFragment<FragmentMeetingInfoPeriodBinding>
                 findNavController().navigate(ACTION_ADD_PERIOD_TO_DATE)
             }
             rvCalendar.itemAnimator = null
-            calendarAdapter.setHasStableIds(true)
+            //calendarAdapter.setHasStableIds(true)
             rvCalendar.adapter = calendarAdapter
             rvCalendar.layoutManager = GridLayoutManager(requireContext(), 7).apply {
                 spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {

@@ -18,7 +18,6 @@ import com.promiseeight.www.ui.model.enums.CodeStatus
 import com.promiseeight.www.ui.model.enums.DateUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
-import org.joda.time.DateTime
 import kotlinx.coroutines.launch
 import org.joda.time.DateTime
 import timber.log.Timber
@@ -105,7 +104,7 @@ class InfoViewModel @Inject constructor(
     private var _meetingRegisteredPlaces = MutableStateFlow<List<CandidateUiModel>>(emptyList())
     val meetingRegisteredPlaces: StateFlow<List<CandidateUiModel>> get() = _meetingRegisteredPlaces
 
-    val meetingPeriodState : StateFlow<Int> = combine(startDate, endDate) { start, end ->
+    val meetingPeriodSize : StateFlow<Int> = combine(startDate, endDate) { start, end ->
         getDateTimeTableSize(start, end)
     }.stateIn(
         scope = viewModelScope,
@@ -147,15 +146,6 @@ class InfoViewModel @Inject constructor(
 
     private val _meetingJoinState = MutableStateFlow(false)
     val meetingJoinState : StateFlow<Boolean> get() = _meetingJoinState
-
-    init { //dummy 데이터 넣는 init임
-        _meetingDateCandidates.value = mutableListOf(
-            CandidateUiModel("25 (토) 낮"),
-            CandidateUiModel("26 (일) 저녁"),
-            CandidateUiModel("26 (일) 밤"),
-            CandidateUiModel("27 (월) 저녁")
-        )
-    }
 
     fun setPage(page: Int) {
         _page.value = page
