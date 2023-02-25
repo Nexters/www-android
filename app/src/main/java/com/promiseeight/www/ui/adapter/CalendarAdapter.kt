@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.promiseeight.www.databinding.ItemCalendarDayBinding
 import com.promiseeight.www.databinding.ItemCalendarMonthBinding
 import com.promiseeight.www.ui.model.CalendarUiModel
+import com.promiseeight.www.ui.model.enums.DateUiState
 
 class CalendarAdapter(
     private val onClick: (CalendarUiModel) -> Unit
@@ -66,7 +67,15 @@ class CalendarAdapter(
         }
 
         fun bind(calendar: CalendarUiModel) {
+            if(calendar.dateState == null || calendar.dateState == DateUiState.INITIAL ) {
+                binding.ivDayRectangleLeft.setImageResource(0)
+                binding.ivDayCircle.setImageResource(0)
+                binding.ivDayRectangleRight.setImageResource(0)
+            }
+
             binding.calendar = calendar
+
+
         }
     }
 
