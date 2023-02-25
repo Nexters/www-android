@@ -236,7 +236,22 @@
             app:layout_constraintStart_toEndOf="@id/tv_morning_time"
             app:layout_constraintTop_toBottomOf="@id/v_divider" />
 
-
+        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+            android:id="@+id/di_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:dotsColor="@color/gray_200"
+            app:dotsCornerRadius="@dimen/size_4"
+            app:dotsSize="@dimen/size_8"
+            app:dotsSpacing="@dimen/size_3"
+            app:progressMode="true"
+            app:selectedDotColor="@color/www_green"
+            app:layout_constraintTop_toBottomOf="@id/vp_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/size_20"/>
+        
+        
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_selected_date"
             android:layout_width="match_parent"

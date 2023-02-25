@@ -1,6 +1,5 @@
 package com.promiseeight.www.ui.meeting.info
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +11,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.promiseeight.www.databinding.FragmentMeetingInfoDateBinding
 import com.promiseeight.www.ui.adapter.CandidateAdapter
 import com.promiseeight.www.ui.adapter.ItemDecoration.InfoItemDecoration
@@ -21,6 +21,8 @@ import com.promiseeight.www.ui.meeting.info.date.DatePagerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import timber.log.Timber
+import java.util.*
 
 @AndroidEntryPoint
 class MeetingInfoDateFragment : InfoFragment<FragmentMeetingInfoDateBinding>() {
@@ -28,7 +30,9 @@ class MeetingInfoDateFragment : InfoFragment<FragmentMeetingInfoDateBinding>() {
     private val viewModel: InfoViewModel by viewModels({ getHostFragment() })
 
     private val candidateAdapter: CandidateAdapter by lazy {
-        CandidateAdapter(binding.rvSelectedDate)
+        CandidateAdapter(binding.rvSelectedDate){
+            viewModel.removeMeetingDateCandidate(it.id)
+        }
     }
 
     private var dateViewPagerAdapter : DatePagerAdapter? = null
@@ -43,6 +47,7 @@ class MeetingInfoDateFragment : InfoFragment<FragmentMeetingInfoDateBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
+        Timber.d("asdasd : ${viewModel.hashCode()}")
 
         setParentFragmentBranch(
             { viewModel.setPage(3) },
@@ -66,11 +71,17 @@ class MeetingInfoDateFragment : InfoFragment<FragmentMeetingInfoDateBinding>() {
                 }
             )
         }
-        dateViewPagerAdapter = DatePagerAdapter(this)
-        binding.vpDate.adapter = dateViewPagerAdapter
-
 
         initRecyclerView(binding.rvSelectedDate)
+        binding.vpDate.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                binding.tvFirstDay.text = getKoreanDate(position,0)
+                binding.tvSecondDay.text = getKoreanDate(position,1)
+                binding.tvThirdDay.text = getKoreanDate(position,2)
+                binding.tvFourthDay.text = getKoreanDate(position,3)
+            }
+        })
         initObserver()
     }
 
@@ -89,10 +100,32 @@ class MeetingInfoDateFragment : InfoFragment<FragmentMeetingInfoDateBinding>() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.meetingDateCandidates.collectLatest { candidates ->
-                        candidateAdapter.submitList(candidates.reversed())
+                        candidateAdapter.submitList(candidates)
                     }
                 }
+                launch {
+                        viewModel.meetingPeriodState.collectLatest {
+                            dateViewPagerAdapter = null
+                            dateViewPagerAdapter = DatePagerAdapter(this@MeetingInfoDateFragment,  it )
+                            binding.vpDate.adapter = dateViewPagerAdapter
+                            binding.diDate.attachTo(binding.vpDate)
+                        }
+//                        viewModel.startDate.combine(viewModel.endDate){ start, end ->
+//                            // 년이 바뀔 때 처리 필요
+//                           // if (.isNotEmpty()){
+//                                dateViewPagerAdapter = null
+//                                dateViewPagerAdapter = DatePagerAdapter(this@MeetingInfoDateFragment,  (end.dayOfYear - start.dayOfYear + 1) / 4)
+//                                binding.vpDate.adapter = dateViewPagerAdapter
+//                           // }
+//                    }
+                }
             }
+        }
+    }
+
+    private fun getKoreanDate(position: Int,offset : Int) : String {
+        return viewModel.meetingDateTimeFromPeriod.value[position * 16 + offset].date.let {
+            "${it.dayOfMonth}일 (${it.dayOfWeek().getAsText(Locale.KOREAN)[0]})"
         }
     }
 }
