@@ -45,6 +45,10 @@ class InfoViewModel @Inject constructor(
 
     val meetingCode = MutableStateFlow("")
 
+    val meetingNicknameHint = MutableStateFlow("")
+
+    val meetingNicknameList = MutableStateFlow<List<String>>(emptyList())
+
     private var meetingId : Long? = null
 
     private var _meetingCodeStatus = MutableStateFlow(CodeStatus.READY)

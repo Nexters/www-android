@@ -41,7 +41,7 @@
             android:layout_marginHorizontal="@dimen/size_20"
             android:layout_marginTop="@dimen/size_32"
             android:background="@drawable/rectangle_white_border_gray200_radius_30"
-            android:hint="@string/info_user_name_hint"
+            android:hint="@{viewModel.meetingNicknameHint.blank ? @string/info_user_name_hint : viewModel.meetingNicknameHint}"
             android:maxLength="8"
             android:inputType="text"
             android:maxLines="1"

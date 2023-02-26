@@ -36,9 +36,13 @@ class MeetingInfoUserNameFragment : InfoFragment<FragmentMeetingInfoUserNameBind
             btnNext.setOnClickListener {
                 setParentFragmentBranch(
                     onJoin = {
-                        findNavController().navigate(
-                            ACTION_JOIN_USER_NAME_TO_DATE
-                        )
+                        if(viewModel?.meetingNicknameList?.value?.contains(viewModel?.meetingUserName?.value) == false)
+                            findNavController().navigate(
+                                ACTION_JOIN_USER_NAME_TO_DATE
+                            )
+                        else {
+                            showToast("동일한 닉네임이 존재해요")
+                        }
                     },
                     onAdd = {
                         findNavController().navigate(
