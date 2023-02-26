@@ -4,5 +4,6 @@ enum class CodeStatus {
     ACTIVE,
     READY,
     INVALID,
+    IS_JOINED,
     SUCCESS
 }

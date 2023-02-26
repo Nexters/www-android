@@ -191,14 +191,28 @@ class InfoViewModel @Inject constructor(
 
 
     fun checkCodeValid() {
+        var index = 0L
         viewModelScope.launch {
             getMeetingByCodeUseCase(meetingCode.value)
                 .catch {
                     _meetingCodeStatus.value = CodeStatus.INVALID
                 }.collectLatest {
                     it.onSuccess {
-                        meetingId = it.meetingId
-                        _meetingCodeStatus.value = CodeStatus.SUCCESS
+                        if(!it.isJoined) {
+                            meetingId = it.meetingId
+                            _startDate.value = DateTime.parse(it.startDate)
+                            _endDate.value = DateTime.parse(it.endDate)
+                            meetingNicknameHint.value = it.currentUserName ?: ""
+                            meetingNicknameList.value = it.joinedUserInfoList.map {
+                                it.joinedUserName
+                            }
+                            _meetingRegisteredPlaces.value = it.userPromisePlaceList?.map {
+                                CandidateUiModel(index++, it.promisePlace, isPossibleDelete = false)
+                            } ?: emptyList<CandidateUiModel>()
+                            _meetingCodeStatus.value = CodeStatus.SUCCESS
+                        } else {
+                            _meetingCodeStatus.value = CodeStatus.IS_JOINED
+                        }
                     }.onFailure {
                         _meetingCodeStatus.value = CodeStatus.INVALID
                     }
