@@ -97,11 +97,19 @@ class CalendarAdapter(
             }
             binding.calendar = calendar
             binding.tvDay.setTextColor(
-                if(calendar.dateTime.dayOfYear == DateTime.now().dayOfYear) ContextCompat.getColor(binding.root.context, R.color.www_black)
+                if (calendar.dateState == DateUiState.SELECTED_SUNDAY_END || calendar.dateState == DateUiState.SELECTED ||
+                    calendar.dateState == DateUiState.SELECTED_START || calendar.dateState == DateUiState.SELECTED_END ||
+                    calendar.dateState == DateUiState.SELECTED_SATURDAY_START
+                ) ContextCompat.getColor(binding.root.context, R.color.www_white)
+                else if(calendar.dateTime.dayOfYear == DateTime.now().dayOfYear) ContextCompat.getColor(binding.root.context, R.color.www_black)
                 else if (calendar.dateTime.isBeforeNow) ContextCompat.getColor(binding.root.context, R.color.gray_350)
                 else ContextCompat.getColor(binding.root.context, R.color.www_black)
             )
-
+            calendar.dateState?.let {
+                binding.ivDayCircle.setDateCircle(dateUiState = it)
+                binding.ivDayRectangleLeft.setLeftRect(dateUiState = it)
+                binding.ivDayRectangleRight.setRightRect(dateUiState = it)
+            }
         }
 
         fun bindDateState(calendar: CalendarUiModel) {
@@ -158,5 +166,6 @@ class CalendarAdapter(
 
 enum class DateChangeState {
     SELECT_TO_SELECT,
-    NOT_SELECT_TO_SELECT
+    NOT_SELECT_TO_SELECT,
+
 }
