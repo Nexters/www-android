@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.google.android.material.tabs.TabLayout
 import com.promiseeight.www.ui.home.HomeTabPagerFragment
 
 class HomeTabAdapter(fragment : Fragment) : FragmentStateAdapter(fragment) {

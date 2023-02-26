@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="280dp"
+        android:background="@drawable/background_custom_dialog_push"
+        android:layout_height="211dp">
+
+        <TextView
+            android:id="@+id/title_system_custom_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_24"
+            android:layout_marginEnd="@dimen/size_24"
+            android:layout_marginTop="@dimen/size_22"
+            android:text="&apos;WWW&apos;에서 알림을 보내고자 합니다."
+            style="@style/Text.Title5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/content_system_custom_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_24"
+            android:layout_marginEnd="@dimen/size_24"
+            android:text="@string/system_dialog_alarm"
+            android:layout_marginTop="@dimen/size_14"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_system_custom_dialog"/>
+
+        <!-- btn 2개일때 -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layout_bottom_type_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_marginEnd="@dimen/size_16"
+            android:layout_marginBottom="@dimen/size_18"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_cancle_type_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/www_white"
+                android:text="@string/system_dialog_no"
+                android:textColor="#5856D6"
+                style="@style/Text.Body4"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_complete_type_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/www_white"
+                android:text="@string/system_dialog_yes"
+                android:textColor="#5856D6"
+                style="@style/Text.Body4"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <!-- btn 1개일때 -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layout_bottom_type_One"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_16"
+            android:layout_marginBottom="@dimen/size_18"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_complete_type_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/www_white"
+                android:text="@string/system_dialog_no"
+                android:textColor="#5856D6"
+                style="@style/Text.Body4"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <!--        <TextView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="32dp"-->
+        <!--            android:layout_marginBottom="11dp"-->
+        <!--            android:text="허용 안 함"-->
+        <!--            android:fontFamily="@font/spoqa_han_sans_neo_regular"-->
+        <!--            android:textColor="#007AFF"-->
+        <!--            android:textSize="17sp"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent" />-->
+
+
+        <!--        <TextView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginEnd="52dp"-->
+        <!--            android:layout_marginBottom="11dp"-->
+        <!--            android:text="허용"-->
+        <!--            android:fontFamily="@font/spoqa_han_sans_neo_bold"-->
+        <!--            android:textColor="#007AFF"-->
+        <!--            android:textSize="17sp"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"/>-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>

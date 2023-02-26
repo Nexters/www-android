@@ -51,6 +51,7 @@
     <dimen name="size_101">101dp</dimen>
     <dimen name="size_104">104dp</dimen>
     <dimen name="size_106">106dp</dimen>
+    <dimen name="size_152">152dp</dimen>
     <dimen name="size_188">188dp</dimen>
     <dimen name="size_200">200dp</dimen>
 
@@ -74,6 +75,7 @@
     <dimen name="font_size_16">16dp</dimen>
     <dimen name="font_size_15">15dp</dimen>
     <dimen name="font_size_14">14dp</dimen>
+    <dimen name="font_size_13">13dp</dimen>
     <dimen name="font_size_12">12dp</dimen>
     <dimen name="font_size_11">11dp</dimen>
 </resources>
