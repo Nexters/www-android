@@ -11,5 +11,7 @@ interface MeetingRepository {
 
     fun getMeetingDetailByCode(code : String) : Flow<Result<MeetingDetail>>
 
+    fun getMeetingDetailById(meetingId: Long) : Flow<Result<MeetingDetail>>
+
     fun joinMeeting(meetingId : Long, meetingJoinCondition: MeetingJoinCondition) : Flow<Result<Unit>>
 }
