@@ -25,6 +25,7 @@
     <dimen name="size_22">22dp</dimen>
     <dimen name="size_23">23dp</dimen>
     <dimen name="size_24">24dp</dimen>
+    <dimen name="size_26">26dp</dimen>
     <dimen name="size_27">27dp</dimen>
     <dimen name="size_28">28dp</dimen>
     <dimen name="size_30">30dp</dimen>
@@ -40,6 +41,7 @@
     <dimen name="size_52">52dp</dimen>
     <dimen name="size_54">54dp</dimen>
     <dimen name="size_56">56dp</dimen>
+    <dimen name="size_60">60dp</dimen>
     <dimen name="size_61">61dp</dimen>
     <dimen name="size_64">64dp</dimen>
     <dimen name="size_66">66dp</dimen>
@@ -50,8 +52,10 @@
     <dimen name="size_101">101dp</dimen>
     <dimen name="size_104">104dp</dimen>
     <dimen name="size_106">106dp</dimen>
+    <dimen name="size_152">152dp</dimen>
     <dimen name="size_188">188dp</dimen>
     <dimen name="size_200">200dp</dimen>
+    <dimen name="size_218">218dp</dimen>
 
     <!-- yaksogi size -->
     <dimen name="yaksogi_front_width">320dp</dimen>
@@ -73,6 +77,7 @@
     <dimen name="font_size_16">16dp</dimen>
     <dimen name="font_size_15">15dp</dimen>
     <dimen name="font_size_14">14dp</dimen>
+    <dimen name="font_size_13">13dp</dimen>
     <dimen name="font_size_12">12dp</dimen>
     <dimen name="font_size_11">11dp</dimen>
 </resources>
