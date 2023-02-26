@@ -1,5 +1,6 @@
 package com.promiseeight.www.ui.home
 
+import android.animation.ObjectAnimator
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,6 +20,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
+    private var isFabOpen = false //floating
+
     private val viewModel : HomeViewModel by viewModels()
 
     private var homeTabAdapter : HomeTabAdapter? = null
@@ -33,23 +36,40 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 마지막에 수정할 부분 ,
-        binding.btnAdd.setOnClickListener {
+        binding.btn1FloatingMain.setOnClickListener{
+            btnVisible()
+            toggleFab()
+        }
+
+        binding.btn3FloatingMain.setOnClickListener{
             findNavController().navigate(
                 HomeFragmentDirections.actionFragmentHomeToFragmentAddMeeting()
             )
         }
-        binding.btnJoin.setOnClickListener {
+
+        binding.btn2FloatingMain.setOnClickListener{
             findNavController().navigate(
                 HomeFragmentDirections.actionFragmentHomeToFragmentJoinMeeting()
             )
         }
-        binding.btnTest.setOnClickListener {
+
+//        // 마지막에 수정할 부분 ,
+//        binding.btnAdd.setOnClickListener {
 //            findNavController().navigate(
-//                HomeFragmentDirections.actionFragmentHomeToFragmentMeetingDetail()
+//                HomeFragmentDirections.actionFragmentHomeToFragmentAddMeeting()
 //            )
-            findNavController().navigate(Uri.parse("https://www/meeting/detail/{meetingId}"))
-        }
+//        }
+//        binding.btnJoin.setOnClickListener {
+//            findNavController().navigate(
+//                HomeFragmentDirections.actionFragmentHomeToFragmentJoinMeeting()
+//            )
+//        }
+//        binding.btnTest.setOnClickListener {
+////            findNavController().navigate(
+////                HomeFragmentDirections.actionFragmentHomeToFragmentMeetingDetail()
+////            )
+//            findNavController().navigate(Uri.parse("https://www/meeting/detail"))
+//        }
 
         binding.ivSetting.setOnClickListener {
             findNavController().navigate(
@@ -61,6 +81,34 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.let{
             initViewPager(it.vpHome)
             setTabLayoutMediator(it.tbHome,it.vpHome)
+        }
+    }
+
+    private fun toggleFab() {
+        //플로팅 액션 닫기
+        if(isFabOpen) {
+            ObjectAnimator.ofFloat(binding.btn2FloatingMain, "translationY", 0f).apply{start()}
+            ObjectAnimator.ofFloat(binding.btn3FloatingMain, "TranslationY", 0f).apply{start()}
+            binding.btn1FloatingMain.setImageResource(R.drawable.ic_floating_vector_default)
+        } else {
+            ObjectAnimator.ofFloat(binding.btn2FloatingMain, "translationY", -200f).apply{start()}
+            ObjectAnimator.ofFloat(binding.btn3FloatingMain, "TranslationY", -400f).apply{start()}
+            binding.btn1FloatingMain.setImageResource(R.drawable.ic_floating_vector_click)
+        }
+
+        isFabOpen = !isFabOpen
+
+    }
+
+
+    private fun btnVisible() {
+        if(isFabOpen) {
+            binding.btn2FloatingMain.visibility= View.INVISIBLE;
+            binding.btn3FloatingMain.visibility= View.INVISIBLE;
+
+        } else {
+            binding.btn2FloatingMain.visibility= View.VISIBLE;
+            binding.btn3FloatingMain.visibility= View.VISIBLE;
         }
     }
 

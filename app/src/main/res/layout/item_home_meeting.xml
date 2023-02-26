@@ -1,39 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="homeMeeting"
             type="com.promiseeight.www.ui.model.MeetingUiModel" />
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/gray_100"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Test TextView -->
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_test"
-            style="@style/Text.Title8"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/indicator_person_Ex"
+            android:layout_width="86dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="@dimen/size_16"
+            android:background="@drawable/indicator_gray_item_home"
+            android:text="@string/indicator_ex_vote"
+            android:gravity="center"
+            android:textColor="@color/gray_600"
+            style="@style/Text.Body4.5"
+            app:layout_constraintEnd_toEndOf="@+id/iv_background"
+            app:layout_constraintBottom_toTopOf="@id/iv_background"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/indicator_person_onGoing"
+            style="@style/Text.Body4.5"
+            android:layout_width="86dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="@dimen/size_16"
+            android:background="@drawable/indicator_green_item_home"
+            android:gravity="center"
+            android:text="@string/indicator_ex_vote"
+            android:textColor="@color/www_green"
+            app:layout_constraintBottom_toTopOf="@id/iv_background"
+            app:layout_constraintEnd_toEndOf="@+id/iv_background" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/indicator_vote_onGoing"
+            android:layout_width="86dp"
+            android:layout_height="28dp"
+            android:background="@drawable/indicator_black_item_home"
+            android:text="@string/indicator_ex_vote"
+            android:layout_marginEnd="@dimen/size_5"
+            android:gravity="center"
+            android:textColor="@color/www_white"
+            style="@style/Text.Body4.5"
+            app:layout_constraintEnd_toStartOf="@id/indicator_person_onGoing"
+            app:layout_constraintBottom_toTopOf="@id/iv_background"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/indicator_vote_ex"
+            android:layout_width="86dp"
+            android:layout_height="28dp"
+            android:background="@drawable/indicator_black_item_home"
+            android:text="@string/indicator_ex_vote"
+            android:gravity="center"
+            android:layout_marginEnd="@dimen/size_5"
+            android:textColor="@color/www_white"
+            style="@style/Text.Body4.5"
+            app:layout_constraintEnd_toStartOf="@id/indicator_person_Ex"
+            app:layout_constraintBottom_toTopOf="@id/iv_background"/>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_background"
+            android:layout_width="288dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="@dimen/size_61"
+            android:background="@drawable/background_meeting_item"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_polygon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{homeMeeting.meetingName}"
-            app:layout_constraintBottom_toTopOf="@id/tv_image"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:src="@drawable/ic_polygon"
+            app:layout_constraintStart_toStartOf="@id/iv_background"
+            app:layout_constraintEnd_toEndOf="@id/iv_background"
+            app:layout_constraintTop_toBottomOf="@id/iv_background"/>
 
-        <!-- Test TextView -->
+
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_image"
-            android:layout_width="@dimen/size_106"
-            android:layout_height="@dimen/size_106"
-            android:gravity="center"
-            android:text="약소기 그림"
+            android:id="@+id/tv_meeting_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_20"
+            android:layout_marginStart="@dimen/size_18"
+            android:text="@{homeMeeting.meetingName}"
+            style="@style/Text.Title8"
+            android:textColor="@color/www_black"
+            app:layout_constraintStart_toStartOf="@id/iv_background"
+            app:layout_constraintTop_toTopOf="@id/iv_background"/>
+
+        <View
+            android:id="@+id/view_item"
+            android:layout_width="wrap_content"
+            android:layout_height="9dp"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginStart="@dimen/size_18"
+            android:background="@color/www_green_transparent_20"
+            app:layout_constraintStart_toStartOf="@id/iv_background"
+            app:layout_constraintTop_toTopOf="@id/tv_meeting_name"/>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ic_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_15"
+            android:layout_marginStart="@dimen/size_18"
+            android:src="@drawable/ic_calendar"
+            app:layout_constraintTop_toBottomOf="@id/tv_meeting_name"
+            app:layout_constraintStart_toStartOf="@id/iv_background"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{homeMeeting.confirmedDate}"
+            android:layout_marginTop="@dimen/size_13"
+            android:layout_marginStart="@dimen/size_7"
+            style="@style/Text.Body3"
+            android:textColor="@color/gray_700"
+            app:layout_constraintTop_toBottomOf="@id/tv_meeting_name"
+            app:layout_constraintStart_toEndOf="@id/ic_calendar"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_term"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="•"
+            android:layout_marginTop="@dimen/size_13"
+            style="@style/Text.Body3"
+            android:textColor="@color/gray_700"
+            app:layout_constraintTop_toBottomOf="@id/tv_meeting_name"
+            app:layout_constraintStart_toEndOf="@id/tv_date"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{homeMeeting.confirmedTime}"
+            android:layout_marginStart="@dimen/size_1"
+            android:layout_marginTop="@dimen/size_13"
+            style="@style/Text.Body3"
+            android:textColor="@color/gray_700"
+            app:layout_constraintTop_toBottomOf="@id/tv_meeting_name"
+            app:layout_constraintStart_toEndOf="@id/tv_term"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_location"
+            android:layout_marginTop="@dimen/size_15"
+            android:layout_marginStart="@dimen/size_18"
+            app:layout_constraintTop_toBottomOf="@id/tv_date"
+            app:layout_constraintStart_toStartOf="@id/iv_background"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_meeting_place_item_meeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{homeMeeting.confirmedPlace}"
+            android:layout_marginTop="@dimen/size_13"
+            android:layout_marginStart="@dimen/size_7"
+            style="@style/Text.Body3"
+            android:textColor="@color/gray_700"
+            app:layout_constraintTop_toBottomOf="@id/tv_date"
+            app:layout_constraintStart_toEndOf="@id/ic_calendar"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_character"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_16"
+            android:src="@drawable/character_item_meeting"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_test" />
+            app:layout_constraintTop_toBottomOf="@id/iv_polygon"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/toggle_item_meeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_23"
+            android:background="@drawable/background_page_toggle_item_meeting"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_character"/>
+
+        <TextView
+            android:id="@+id/meeting_index_item_meeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:layout_marginStart="@dimen/size_14"
+            style="@style/Text.Body4"
+            android:textColor="@color/www_green"
+            app:layout_constraintTop_toTopOf="@id/toggle_item_meeting"
+            app:layout_constraintBottom_toBottomOf="@id/toggle_item_meeting"
+            app:layout_constraintStart_toStartOf="@id/toggle_item_meeting"/>
+
+        <TextView
+            android:id="@+id/meeting_count_end_item_meeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:layout_marginEnd="@dimen/size_14"
+            style="@style/Text.Body4"
+            android:textColor="@color/gray_450"
+            app:layout_constraintTop_toTopOf="@id/toggle_item_meeting"
+            app:layout_constraintBottom_toBottomOf="@id/toggle_item_meeting"
+            app:layout_constraintEnd_toEndOf="@id/toggle_item_meeting"/>
+
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/"
+            android:textColor="@color/gray_450"
+            app:layout_constraintStart_toStartOf="@id/toggle_item_meeting"
+            app:layout_constraintEnd_toEndOf="@id/toggle_item_meeting"
+            app:layout_constraintTop_toTopOf="@id/toggle_item_meeting"
+            app:layout_constraintBottom_toBottomOf="@id/toggle_item_meeting"/>
+
+
+
+        <!--        &lt;!&ndash; Test TextView &ndash;&gt;-->
+<!--        <androidx.appcompat.widget.AppCompatTextView-->
+<!--            android:id="@+id/tv_image"-->
+<!--            android:layout_width="@dimen/size_106"-->
+<!--            android:layout_height="@dimen/size_106"-->
+<!--            android:gravity="center"-->
+<!--            android:text="약소기 그림"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/tv_test" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

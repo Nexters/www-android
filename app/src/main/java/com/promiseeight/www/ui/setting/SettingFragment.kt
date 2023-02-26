@@ -1,5 +1,6 @@
 package com.promiseeight.www.ui.setting
 
+import android.app.AlertDialog
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -30,6 +31,10 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
     private fun getVersionInfo() = BuildConfig.VERSION_NAME
 
     private fun switchToggleBtn() {
+        binding.pushToggleSetting.setOnClickListener {
+//            val builder = AlertDialog.Builder(this.parentFragmentManager.getFragment(SettingFragment))
+
+        }
 
     }
 }

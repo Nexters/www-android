@@ -12,7 +12,7 @@
 
     <!-- add / join -->
     <string name="add_join_pages">%d/%d</string>
-    
+
     <!-- info name -->
     <string name="info_name_title">약속방의\n이름을 알려주세요.</string>
     <string name="info_name_hint">약속방 이름 입력</string>
@@ -92,6 +92,8 @@
     <!-- System -->
     <string name="system_dialog_alarm">경고, 사운드 및 아이콘 배지가 알림에\n포함될 수 있습니다. 설정에서 이를\n구성할 수 있습니다.</string>
     <string name="system_top_bar">설정</string>
+    <string name="system_dialog_no">허용 안 함</string>
+    <string name="system_dialog_yes">허용</string>
 
     <!-- SnackBar Go Vote-->
     <string name="button_goto_vote">투표하러 가기</string>
@@ -113,5 +115,21 @@
     <string name="tv2_dialog_vote">투표가 종료되면 재투표는 불가능해요</string>
     <string name="tv3_dialog_vote">관둘래요</string>
     <string name="tv4_dialog_vote">네, 시작할래요</string>
+
+    <!-- tablayout title -->
+    <string name="tab_title_ongoing">진행 중 약속</string>
+    <string name="tab_title_finish">종료된 약속</string>
+
+    <!-- item indicator -->
+    <string name="indicator_vote_ing">  투표 중  </string>
+    <string name="indicator_ex_vote">투표 시작 전</string>
+
+
+    <!-- onGoing text -->
+    <string name="tv_no_ongoing_meet">아직 진행 중인 약속이 없어요!</string>
+
+    <!-- floating btn text -->
+    <string name="btn_floating_tv1">새로운 약속 생성하기</string>
+    <string name="btn_floating_tv2">초대코드로 입장하기</string>
 
 </resources>
