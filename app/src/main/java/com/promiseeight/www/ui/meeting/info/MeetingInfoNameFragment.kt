@@ -1,7 +1,6 @@
 package com.promiseeight.www.ui.meeting.info
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +9,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentMeetingInfoNameBinding
 import com.promiseeight.www.ui.common.InfoFragment
 import com.promiseeight.www.ui.meeting.InfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -48,6 +45,10 @@ class MeetingInfoNameFragment : InfoFragment<FragmentMeetingInfoNameBinding>() {
 
             ivClose.setOnClickListener {
                 viewModel?.setMeetingNameEmpty()
+            }
+            showKeyboardWithEditText(etInfoName)
+            root.setOnClickListener {
+                hideKeyboardWithLayout(etInfoName.windowToken)
             }
         }
     }

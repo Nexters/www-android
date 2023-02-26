@@ -12,21 +12,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentMeetingInfoPlaceBinding
 import com.promiseeight.www.ui.adapter.CandidateAdapter
 import com.promiseeight.www.ui.adapter.ItemDecoration.InfoItemDecoration
-import com.promiseeight.www.ui.common.AddNavHostFragment
-import com.promiseeight.www.ui.common.BaseFragment
 import com.promiseeight.www.ui.common.InfoFragment
-import com.promiseeight.www.ui.common.JoinNavHostFragment
 import com.promiseeight.www.ui.meeting.*
-import com.promiseeight.www.ui.model.CandidateUiModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -62,23 +56,30 @@ class MeetingInfoPlaceFragment : InfoFragment<FragmentMeetingInfoPlaceBinding>()
         super.initView()
         initRecyclerView(binding.rvPlace)
         initObserver()
-        binding.btnNext.setOnClickListener {
-            setParentFragmentBranch(
-                onJoin = {
-                    viewModel.joinMeeting()
-                },
-                onAdd = {
-                    viewModel.createMeeting()
+        binding.run {
+            btnNext.setOnClickListener {
+                setParentFragmentBranch(
+                    onJoin = {
+                        viewModel?.joinMeeting()
+                    },
+                    onAdd = {
+                        viewModel?.createMeeting()
+                    }
+                )
+            }
+            ivAdd.setOnClickListener {
+                if(viewModel?.checkMeetingPlaceDuplicate() == true) {
+                    viewModel?.addMeetingPlaceCandidate()
+                } else {
+                    Toast.makeText(requireContext(),getString(R.string.info_place_duplicate),Toast.LENGTH_SHORT).show()
                 }
-            )
-        }
-        binding.ivAdd.setOnClickListener {
-            if(viewModel.checkMeetingPlaceDuplicate()) {
-                viewModel.addMeetingPlaceCandidate()
-            } else {
-                Toast.makeText(requireContext(),getString(R.string.info_place_duplicate),Toast.LENGTH_SHORT).show()
+            }
+            showKeyboardWithEditText(etInfoPlace)
+            root.setOnClickListener {
+                hideKeyboardWithLayout(etInfoPlace.windowToken)
             }
         }
+
     }
 
     private fun initRecyclerView(recyclerView: RecyclerView) {
