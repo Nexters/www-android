@@ -121,15 +121,26 @@
     <string name="tab_title_finish">종료된 약속</string>
 
     <!-- item indicator -->
-    <string name="indicator_vote_ing">  투표 중  </string>
+    <string name="indicator_vote_ing">투표 중</string>
     <string name="indicator_ex_vote">투표 시작 전</string>
 
 
     <!-- onGoing text -->
-    <string name="tv_no_ongoing_meet">아직 진행 중인 약속이 없어요!</string>
+    <string name="tv_ongoing_meet">아직 진행 중인 약속이 없어요!</string>
+
+
 
     <!-- floating btn text -->
     <string name="btn_floating_tv1">새로운 약속 생성하기</string>
     <string name="btn_floating_tv2">초대코드로 입장하기</string>
+
+    <!-- Meeting Statue -->
+    <string name="meeting_status1">WAITING</string>
+    <string name="meeting_status2">VOTING</string>
+    <string name="meeting_status3">VOTED</string>
+    <string name="meeting_status5">CONFIRMED</string>
+    <string name="meeting_status4">DONE</string>
+
+
 
 </resources>
