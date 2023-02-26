@@ -233,13 +233,20 @@ class InfoViewModel @Inject constructor(
         _meetingInitialPeriod.value = meetingInitialPeriod.value.map {
             if (it.isCurrentMonth == true) {
                 if (meetingPeriodState.value.meetingPeriodStart != null && meetingPeriodState.value.meetingPeriodEnd != null) {
-                    if (meetingPeriodState.value.meetingPeriodStart?.dateTime == it.dateTime)
-                        it.copy(dateState = DateUiState.SELECTED_START)
-                    else if (meetingPeriodState.value.meetingPeriodEnd?.dateTime == it.dateTime)
-                        it.copy(dateState = DateUiState.SELECTED_END)
-                    //월요일일 때, 토요일일 떄, 1일일때, 28,30,31일때  조건 추가
+                    if (meetingPeriodState.value.meetingPeriodStart?.dateTime == it.dateTime){
+                        if(meetingPeriodState.value.meetingPeriodStart?.dateTime?.dayOfWeek == 6
+                            || it.dateTime.dayOfMonth().withMaximumValue().dayOfMonth == it.dateTime.dayOfMonth) it.copy(dateState = DateUiState.SELECTED_SATURDAY_START)
+                        else it.copy(dateState = DateUiState.SELECTED_START)
+                    }
+                    else if (meetingPeriodState.value.meetingPeriodEnd?.dateTime == it.dateTime){
+                        if(meetingPeriodState.value.meetingPeriodEnd?.dateTime?.dayOfWeek == 7
+                            || it.dateTime.dayOfMonth().withMinimumValue().dayOfMonth == it.dateTime.dayOfMonth) it.copy(dateState = DateUiState.SELECTED_SUNDAY_END)
+                        else it.copy(dateState = DateUiState.SELECTED_END)
+                    }
                     else if (it.dateTime.millis in meetingPeriodState.value.meetingPeriodStart!!.dateTime.millis..meetingPeriodState.value.meetingPeriodEnd!!.dateTime.millis)
-                        it.copy(dateState = DateUiState.PASS)
+                        if(it.dateTime.dayOfWeek == 7 || it.dateTime.dayOfMonth().withMinimumValue().dayOfMonth == it.dateTime.dayOfMonth) it.copy(dateState = DateUiState.PASS_START)
+                        else if(it.dateTime.dayOfWeek == 6  || it.dateTime.dayOfMonth().withMaximumValue().dayOfMonth == it.dateTime.dayOfMonth) it.copy(dateState = DateUiState.PASS_END)
+                        else it.copy(dateState = DateUiState.PASS)
                     else it.copy(dateState = DateUiState.INITIAL)
                 } else if (meetingPeriodState.value.meetingPeriodStart != null && meetingPeriodState.value.meetingPeriodEnd == null) {
                     if (meetingPeriodState.value.meetingPeriodStart?.dateTime == it.dateTime) {

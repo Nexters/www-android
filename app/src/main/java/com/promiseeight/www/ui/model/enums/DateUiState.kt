@@ -5,6 +5,8 @@ enum class DateUiState {
     SELECTED,
     SELECTED_START,
     SELECTED_END,
+    SELECTED_SUNDAY_END,
+    SELECTED_SATURDAY_START,
     PASS,
     PASS_START,
     PASS_END,

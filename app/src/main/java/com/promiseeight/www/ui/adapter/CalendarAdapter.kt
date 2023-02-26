@@ -3,9 +3,11 @@ package com.promiseeight.www.ui.adapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.promiseeight.www.R
 import com.promiseeight.www.databinding.ItemCalendarDayBinding
 import com.promiseeight.www.databinding.ItemCalendarMonthBinding
 import com.promiseeight.www.ui.model.CalendarUiModel
@@ -74,7 +76,13 @@ class CalendarAdapter(
             }
 
             binding.calendar = calendar
-
+            binding.tvDay.setTextColor(
+                if(calendar.dateState == DateUiState.SELECTED_SUNDAY_END || calendar.dateState == DateUiState.SELECTED ||
+                     calendar.dateState == DateUiState.SELECTED_START || calendar.dateState == DateUiState.SELECTED_END ||
+                    calendar.dateState == DateUiState.SELECTED_SATURDAY_START) ContextCompat.getColor(binding.root.context, R.color.www_white)
+                else if(calendar.isCurrentMonth == false) ContextCompat.getColor(binding.root.context, R.color.gray_350)
+                else ContextCompat.getColor(binding.root.context, R.color.www_black)
+            )
 
         }
     }
