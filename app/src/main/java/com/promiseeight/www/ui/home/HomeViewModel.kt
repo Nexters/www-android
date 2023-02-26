@@ -17,6 +17,8 @@ class HomeViewModel : ViewModel() {
         _doingMeetings.value = doingMeetingsDummy
         _doneMeetings.value = doneMeetingsDummy
     }
+
+
 }
 
 val doingMeetingsDummy = listOf(

@@ -5,64 +5,79 @@
         <variable
             name="homeMeeting"
             type="com.promiseeight.www.ui.model.MeetingUiModel" />
+
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:background="@color/gray_100"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/indicator_person_Ex"
-            android:layout_width="86dp"
-            android:layout_height="28dp"
-            android:layout_marginEnd="@dimen/size_16"
-            android:background="@drawable/indicator_gray_item_home"
-            android:text="@string/indicator_ex_vote"
-            android:gravity="center"
-            android:textColor="@color/gray_600"
-            style="@style/Text.Body4.5"
-            app:layout_constraintEnd_toEndOf="@+id/iv_background"
-            app:layout_constraintBottom_toTopOf="@id/iv_background"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_ongoing_meet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_218"
+            android:text="@string/tv_ongoing_meet"
+            style="@style/Text.Title6"
+            android:visibility="invisible"
+            android:textColor="@color/gray_300"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/indicator_person_onGoing"
+        <!-- 투표 status indicator -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/indicator_status_Gray"
             style="@style/Text.Body4.5"
-            android:layout_width="86dp"
+            android:layout_width="wrap_content"
             android:layout_height="28dp"
-            android:layout_marginEnd="@dimen/size_16"
-            android:background="@drawable/indicator_green_item_home"
+            android:layout_marginEnd="@dimen/size_5"
+            android:paddingStart="@dimen/size_10"
+            android:paddingEnd="@dimen/size_10"
+            android:background="@drawable/indicator_black_item_home"
             android:gravity="center"
             android:text="@string/indicator_ex_vote"
-            android:textColor="@color/www_green"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/iv_background"
+            app:layout_constraintEnd_toStartOf="@+id/indicator_back_person_Gray" />
+
+
+        <!-- 투표 시작 전 사람 indicator-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/indicator_back_person_Gray"
+            style="@style/Text.Body4.5"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_marginEnd="@dimen/size_16"
+            android:drawableLeft="@drawable/ic_group_person_gray"
+            android:drawablePadding="@dimen/size_4"
+            android:paddingStart="@dimen/size_10"
+            android:paddingEnd="@dimen/size_10"
+            android:background="@drawable/indicator_gray_item_home"
+            android:gravity="center"
+            android:text="진행/전체"
+            android:textColor="@color/gray_600"
             app:layout_constraintBottom_toTopOf="@id/iv_background"
             app:layout_constraintEnd_toEndOf="@+id/iv_background" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/indicator_vote_onGoing"
-            android:layout_width="86dp"
-            android:layout_height="28dp"
-            android:background="@drawable/indicator_black_item_home"
-            android:text="@string/indicator_ex_vote"
-            android:layout_marginEnd="@dimen/size_5"
-            android:gravity="center"
-            android:textColor="@color/www_white"
-            style="@style/Text.Body4.5"
-            app:layout_constraintEnd_toStartOf="@id/indicator_person_onGoing"
-            app:layout_constraintBottom_toTopOf="@id/iv_background"/>
+        <!-- 투표 진행 중 person-->
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/indicator_vote_ex"
-            android:layout_width="86dp"
-            android:layout_height="28dp"
-            android:background="@drawable/indicator_black_item_home"
-            android:text="@string/indicator_ex_vote"
-            android:gravity="center"
-            android:layout_marginEnd="@dimen/size_5"
-            android:textColor="@color/www_white"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/indicator_back_person_Green"
             style="@style/Text.Body4.5"
-            app:layout_constraintEnd_toStartOf="@id/indicator_person_Ex"
-            app:layout_constraintBottom_toTopOf="@id/iv_background"/>
-
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_marginEnd="@dimen/size_16"
+            android:drawableLeft="@drawable/ic_group_person"
+            android:drawablePadding="@dimen/size_4"
+            android:paddingStart="@dimen/size_10"
+            android:paddingEnd="@dimen/size_10"
+            android:background="@drawable/indicator_green_item_home"
+            android:gravity="center"
+            android:text="1"
+            app:layout_constraintBottom_toTopOf="@id/iv_background"
+            app:layout_constraintEnd_toEndOf="@+id/iv_background" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_background"
@@ -98,12 +113,12 @@
 
         <View
             android:id="@+id/view_item"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/size_0"
             android:layout_height="9dp"
             android:layout_marginTop="@dimen/size_12"
-            android:layout_marginStart="@dimen/size_18"
             android:background="@color/www_green_transparent_20"
-            app:layout_constraintStart_toStartOf="@id/iv_background"
+            app:layout_constraintStart_toStartOf="@id/tv_meeting_name"
+            app:layout_constraintEnd_toEndOf="@id/tv_meeting_name"
             app:layout_constraintTop_toTopOf="@id/tv_meeting_name"/>
 
 
@@ -234,16 +249,16 @@
 
 
         <!--        &lt;!&ndash; Test TextView &ndash;&gt;-->
-<!--        <androidx.appcompat.widget.AppCompatTextView-->
-<!--            android:id="@+id/tv_image"-->
-<!--            android:layout_width="@dimen/size_106"-->
-<!--            android:layout_height="@dimen/size_106"-->
-<!--            android:gravity="center"-->
-<!--            android:text="약소기 그림"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/tv_test" />-->
+        <!--        <androidx.appcompat.widget.AppCompatTextView-->
+        <!--            android:id="@+id/tv_image"-->
+        <!--            android:layout_width="@dimen/size_106"-->
+        <!--            android:layout_height="@dimen/size_106"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="약소기 그림"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/tv_test" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

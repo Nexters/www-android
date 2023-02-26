@@ -54,6 +54,7 @@
     <dimen name="size_152">152dp</dimen>
     <dimen name="size_188">188dp</dimen>
     <dimen name="size_200">200dp</dimen>
+    <dimen name="size_218">218dp</dimen>
 
     <!-- yaksogi size -->
     <dimen name="yaksogi_front_width">320dp</dimen>
