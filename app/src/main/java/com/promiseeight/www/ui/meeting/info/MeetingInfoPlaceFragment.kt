@@ -112,8 +112,16 @@ class MeetingInfoPlaceFragment : InfoFragment<FragmentMeetingInfoPlaceBinding>()
                     viewModel.meetingJoinState.collectLatest {
                         if(it) Navigation.findNavController(requireActivity(),R.id.fcv_main)
                             .navigate(Uri.parse("https://www/meeting/detail/${viewModel.getMeetingId()}"),NavOptions.Builder().apply {
-                                setPopUpTo(R.id.fragment_home,true)
+                                setPopUpTo(R.id.fragment_home,false)
                             }.build())
+                    }
+                }
+                launch {
+                    viewModel.infoMessage.collectLatest {
+                        if(it.isNotBlank()){
+                            showToast(it)
+                            viewModel.setInfoMessageEmpty()
+                        }
                     }
                 }
             }

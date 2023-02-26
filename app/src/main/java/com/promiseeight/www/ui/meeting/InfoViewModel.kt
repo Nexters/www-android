@@ -1,6 +1,5 @@
 package com.promiseeight.www.ui.meeting
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.promiseeight.www.ui.common.util.CalendarUtil
@@ -50,16 +49,6 @@ class InfoViewModel @Inject constructor(
 
     private var _meetingCodeStatus = MutableStateFlow(CodeStatus.READY)
     val meetingCodeStatus: StateFlow<CodeStatus> get() = _meetingCodeStatus
-//        = _meetingCodeStatus.asStateFlow().combine(meetingCode){ status , code ->
-//            if(code.length < codeMaxSize) CodeStatus.READY
-//            else if(status == CodeStatus.INVALID) CodeStatus.INVALID
-//            else if(code.length == codeMaxSize) CodeStatus.ACTIVE
-//            else CodeStatus.READY
-//    }.stateIn(
-//        scope = viewModelScope,
-//        started = SharingStarted.WhileSubscribed(500),
-//        initialValue = CodeStatus.READY
-//    )
 
     private var _meetingCapacity = MutableStateFlow(1)
     val meetingCapacity: StateFlow<Int> get() = _meetingCapacity
@@ -309,21 +298,17 @@ class InfoViewModel @Inject constructor(
                 MeetingCondition(
                     meetingName = meetingName.value,
                     userName = meetingUserName.value,
-                    startDate = "2023-02-22",
-                    endDate = "2023-03-04",
+                    startDate = startDate.value.toString("yyyy-MM-dd"),
+                    endDate =  endDate.value.toString("yyyy-MM-dd"),
                     minimumAlertMembers = meetingCapacity.value.toLong(),
-                    promiseTimeList = listOf(
+                    promiseTimeList = meetingDateTimes.value.filter {
+                        it.selected
+                    }.map {
                         UserPromiseTime(
-                            promiseDate = "2023-02-23",
-                            promiseTime = PromiseTime.DINNER
-                        ),
-                        UserPromiseTime(
-                            promiseDate = "2023-02-24",
-                            promiseTime = PromiseTime.MORNING
-                        ),
-                        UserPromiseTime(promiseDate = "2023-02-25", promiseTime = PromiseTime.LUNCH)
-
-                    ),
+                            promiseDate = it.date.toString("yyyy-MM-dd"),
+                            promiseTime = it.time
+                        )
+                    },
                     promisePlaceList = meetingPlaceCandidates.value.map {
                         it.title
                     }
@@ -354,23 +339,23 @@ class InfoViewModel @Inject constructor(
                     meetingJoinCondition = MeetingJoinCondition(
                         nickname = meetingUserName.value,
                         promisePlaceList = meetingPlaceCandidates.value.map { it.title },
-                        userPromiseTimeList = listOf(
+                        userPromiseTimeList = meetingDateTimes.value.filter {
+                            it.selected
+                        }.map {
                             UserPromiseTime(
-                                promiseDate = "2023-02-23",
-                                promiseTime = PromiseTime.DINNER
-                            ),
-                            UserPromiseTime(
-                                promiseDate = "2023-02-24",
-                                promiseTime = PromiseTime.MORNING
-                            ),
-                            UserPromiseTime(promiseDate = "2023-02-25", promiseTime = PromiseTime.LUNCH)
-
-                        )
+                                promiseDate = it.date.toString("yyyy-MM-dd"),
+                                promiseTime = it.time
+                            )
+                        }
                     )
                 ).catch {
 
                 }.collectLatest {
-                    if(it.isSuccess) _meetingJoinState.value = true
+                   it.onSuccess {
+                       _meetingJoinState.value = true
+                   }.onFailure {
+                       _infoMessage.value = it.message ?: "방에 참여할 수 없어요"
+                   }
                 }
             }
         }
@@ -378,4 +363,8 @@ class InfoViewModel @Inject constructor(
     }
 
     fun getMeetingId() = meetingId
+
+    fun setInfoMessageEmpty(){
+        _infoMessage.value = ""
+    }
 }
