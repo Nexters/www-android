@@ -46,7 +46,7 @@
             android:layout_height="@dimen/size_52"
             android:layout_marginHorizontal="@dimen/size_20"
             android:layout_marginTop="@dimen/size_32"
-            android:background="@{viewModel.meetingCodeStatus == CodeStatus.INVALID ? @drawable/rectangle_white_border_red_radius_30: @drawable/rectangle_white_border_gray200_radius_30}"
+            android:background="@{(viewModel.meetingCodeStatus == CodeStatus.INVALID || viewModel.meetingCodeStatus == CodeStatus.IS_JOINED) ? @drawable/rectangle_white_border_red_radius_30: @drawable/rectangle_white_border_gray200_radius_30}"
             android:hint="@string/info_code_hint"
             android:inputType="text"
             android:maxLength="@{viewModel.codeMaxSize}"
@@ -78,7 +78,7 @@
             app:layout_constraintStart_toStartOf="@id/et_info_code"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginStart="@dimen/size_1"
-            android:visibility="@{viewModel.meetingCodeStatus == CodeStatus.INVALID ? View.VISIBLE : View.INVISIBLE}"/>
+            android:visibility="@{(viewModel.meetingCodeStatus == CodeStatus.INVALID || viewModel.meetingCodeStatus == CodeStatus.IS_JOINED) ? View.VISIBLE : View.INVISIBLE}"/>
 
 
         
@@ -87,8 +87,8 @@
             style="@style/Text.Body8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{viewModel.meetingCodeStatus == CodeStatus.INVALID ? View.VISIBLE : View.INVISIBLE}"
-            android:text="@string/info_code_warning"
+            android:visibility="@{(viewModel.meetingCodeStatus == CodeStatus.INVALID || viewModel.meetingCodeStatus == CodeStatus.IS_JOINED) ? View.VISIBLE : View.INVISIBLE}"
+            android:text="@{viewModel.meetingCodeStatus == CodeStatus.INVALID ? @string/info_code_warning : (viewModel.meetingCodeStatus == CodeStatus.IS_JOINED ? @string/info_code_warning_is_joined  : @string/empty_text)}"
             android:textColor="@color/www_red"
             app:layout_constraintTop_toTopOf="@id/iv_warning"
             app:layout_constraintBottom_toBottomOf="@id/iv_warning"

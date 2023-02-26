@@ -53,6 +53,7 @@
     <string name="info_code_title">친구에게 받은\n참여 코드를 입력해주세요.</string>
     <string name="info_code_hint">참여 코드 입력</string>
     <string name="info_code_warning">존재하지 않는 참여 코드에요.</string>
+    <string name="info_code_warning_is_joined">이미 참여한 약속방이에요.</string>
 
     <!-- meeting share -->
     <string name="meeting_share_title">함께할 친구들을 초대해 보세요.</string>

@@ -66,10 +66,10 @@ class InfoViewModel @Inject constructor(
 
     private var _startDate = MutableStateFlow(DateTime.now())
     val startDate : StateFlow<DateTime> get() = _startDate
-    private var _endDate = MutableStateFlow(DateTime.now().plusDays(10)) // 임시코드
+    private var _endDate = MutableStateFlow(DateTime.now().plusDays(10))
     val endDate : StateFlow<DateTime> get() = _endDate
 
-    var meetingDateTime = MutableStateFlow<List<TimeUiModel>>(emptyList())
+    var meetingDateTimes = MutableStateFlow<List<TimeUiModel>>(emptyList())
 
     val meetingDateTimeFromPeriod : StateFlow<List<TimeUiModel>> = combine(startDate, endDate){ start, end ->
         val size = getDateTimeTableSize(start, end)
@@ -77,7 +77,7 @@ class InfoViewModel @Inject constructor(
         for(i in 0 until size){
             dateTimes += getTimeUiModelList(start,end,i)
         }
-        meetingDateTime.value = dateTimes
+        meetingDateTimes.value = dateTimes
         dateTimes
     }.stateIn(
         scope = viewModelScope,
@@ -86,7 +86,7 @@ class InfoViewModel @Inject constructor(
     )
 
     private var _meetingDateCandidates = MutableStateFlow<List<CandidateUiModel>>(emptyList())
-    val meetingDateCandidates : StateFlow<List<CandidateUiModel>> = combine(_meetingDateCandidates,meetingDateTime){ candidates, dateTimes ->
+    val meetingDateCandidates : StateFlow<List<CandidateUiModel>> = combine(_meetingDateCandidates,meetingDateTimes){ candidates, dateTimes ->
         dateTimes.filter {
             it.selected
         }.map {
@@ -112,11 +112,6 @@ class InfoViewModel @Inject constructor(
         initialValue = 0
     )
 
-    fun initDates() {
-        _startDate.value = DateTime.now()
-        _endDate.value = DateTime.now().plusDays(10)
-    }
-
     val meetingPlaces: StateFlow<List<CandidateUiModel>> = combine(
         meetingPlaceCandidates,
         meetingRegisteredPlaces
@@ -131,21 +126,18 @@ class InfoViewModel @Inject constructor(
 
     private val _meetingInvitation = MutableStateFlow<MeetingInvitation?>(null)
     val meetingInvitation : StateFlow<MeetingInvitation?> get() = _meetingInvitation
+
     private var _meetingInitialPeriod = MutableStateFlow(CalendarUtil.calendarList)
     val meetingInitialPeriod: StateFlow<List<CalendarUiModel>> get() = _meetingInitialPeriod
-
-
-    private var _meetingPeriodStart = MutableStateFlow<CalendarUiModel?>(null)
-    val meetingPeriodStart: StateFlow<CalendarUiModel?> get() = _meetingPeriodStart
-
-    private var _meetingPeriodEnd = MutableStateFlow<CalendarUiModel?>(null)
-    val meetingPeriodEnd: StateFlow<CalendarUiModel?> get() = _meetingPeriodEnd
 
     private var _meetingPeriodState = MutableStateFlow(MeetingInfoPeriodState())
     val meetingPeriodState: StateFlow<MeetingInfoPeriodState> get() = _meetingPeriodState
 
     private val _meetingJoinState = MutableStateFlow(false)
     val meetingJoinState : StateFlow<Boolean> get() = _meetingJoinState
+
+    private var _infoMessage = MutableStateFlow("")
+    val infoMessage : StateFlow<String> get() = _infoMessage
 
     fun setPage(page: Int) {
         _page.value = page
@@ -180,7 +172,7 @@ class InfoViewModel @Inject constructor(
     }
 
     fun removeMeetingDateCandidate(id : Long){
-        meetingDateTime.value = meetingDateTime.value.map {
+        meetingDateTimes.value = meetingDateTimes.value.map {
             if(it.id == id) it.copy(selected = false)
             else it.copy()
         }
@@ -292,14 +284,15 @@ class InfoViewModel @Inject constructor(
             meetingPeriodState.value.meetingPeriodStart?.dateTime?.let {
                 if(calendarUiModel.dateTime.isAfter(it.millis)) { // end가 이후가 맞는지?
                     if(it.plusDays(14).dayOfYear > calendarUiModel.dateTime.dayOfYear ){
-                        Log.d("asdasd", "맞다")
                         setMeetingPeriodEnd(calendarUiModel)
+                        _startDate.value = meetingPeriodState.value.meetingPeriodStart?.dateTime
+                        _endDate.value = meetingPeriodState.value.meetingPeriodEnd?.dateTime
                     } else {
-                        Log.d("asdasd", "14일 초과")
+                        _infoMessage.value = "14일 이내로 선택할 수 있어요"
                     }
                 }
                 else {
-                    Log.d("asdasd","선택안됨")
+                    _infoMessage.value = "끝 날짜는 시작 날짜 이후로 선택할 수 있어요"
                 }
             }
 
@@ -344,7 +337,7 @@ class InfoViewModel @Inject constructor(
     }
 
     fun selectMeetingDateTime(id : Long){
-        meetingDateTime.value = meetingDateTime.value.map {
+        meetingDateTimes.value = meetingDateTimes.value.map {
             if(it.id == id){
                 it.copy(selected = !it.selected)
             }
