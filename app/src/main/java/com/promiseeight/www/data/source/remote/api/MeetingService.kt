@@ -21,7 +21,7 @@ interface MeetingService {
         @Path("meetingCode") meetingCode : String
     ) : BaseResponse<MeetingDetailResponse>
 
-    @POST("/meeting/{meetingId}")
+    @POST("/meetings/{meetingId}")
     suspend fun joinMeeting(
         @Path("meetingId") meetingId : Long,
         @Body joinMeetingRequest : JoinMeetingRequest
