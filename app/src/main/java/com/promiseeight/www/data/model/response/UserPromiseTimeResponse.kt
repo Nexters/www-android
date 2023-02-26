@@ -11,13 +11,15 @@ data class UserPromiseTimeResponse(
     val promiseDayOfWeek : String,
     @SerializedName("promiseTime")
     val promiseTime : String,
-    @SerializedName("userNameList")
-    val userNameList : List<String>
+    @SerializedName("userInfoList")
+    val userInfoList : List<UserResponse>
 )
 
 fun UserPromiseTimeResponse.toUserPromiseTime() = UserPromiseTime(
     promiseDate = promiseDate,
     promiseDayOfWeek = promiseDayOfWeek,
     promiseTime = PromiseTime.valueOf(promiseTime),
-    userNameList = userNameList
+    userInfoList = userInfoList.map {
+        it.toUser()
+    }
 )
