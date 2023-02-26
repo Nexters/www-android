@@ -1,5 +1,6 @@
 package com.promiseeight.www.ui.meeting
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.promiseeight.www.domain.model.MeetingCondition
@@ -19,7 +20,8 @@ import javax.inject.Inject
 @HiltViewModel
 class InfoViewModel @Inject constructor(
     private val createMeetingUseCase: CreateMeetingUseCase,
-    private val getMeetingByCodeUseCase: GetMeetingByCodeUseCase
+    private val getMeetingByCodeUseCase: GetMeetingByCodeUseCase,
+
 ) : ViewModel() {
     var totalPage = 1
 
