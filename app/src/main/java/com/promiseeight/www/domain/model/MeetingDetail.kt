@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.promiseeight.www.data.model.response.EntryResponse
 import com.promiseeight.www.data.model.response.UserPromisePlaceResponse
 import com.promiseeight.www.data.model.response.UserPromiseTimeResponse
+import com.promiseeight.www.data.model.response.UserResponse
 
 data class MeetingDetail(
     val hostName : String,
@@ -23,5 +24,8 @@ data class MeetingDetail(
     val userPromiseDateTimeList : List<UserPromiseTime>,
     val userPromisePlaceList : List<UserPromisePlace>?,
     val userVoteList : List<PlaceVote>?,
-    val votingUserCount : Int
+    val votingUserCount : Int,
+    val joinedUserInfoList : List<User>,
+    val startDate : String,
+    val endDate : String
 )

@@ -39,7 +39,13 @@ data class MeetingDetailResponse(
     @SerializedName("userVoteList")
     val userVoteList : List<EntryResponse>?,
     @SerializedName("votingUserCount")
-    val votingUserCount : Int
+    val votingUserCount : Int,
+    @SerializedName("joinedUserInfoList")
+    val joinedUserInfoList : List<UserResponse>,
+    @SerializedName("startDate")
+    val startDate : String,
+    @SerializedName("endDate")
+    val endDate : String
 )
 
 fun MeetingDetailResponse.toMeetingDetail() = MeetingDetail(
@@ -66,5 +72,10 @@ fun MeetingDetailResponse.toMeetingDetail() = MeetingDetail(
     userVoteList = userVoteList?.map {
         it.toPlaceVote()
     },
-    votingUserCount = votingUserCount
+    votingUserCount = votingUserCount,
+    joinedUserInfoList = joinedUserInfoList.map{
+        it.toUser()
+    },
+    startDate = startDate,
+    endDate = endDate
 )
