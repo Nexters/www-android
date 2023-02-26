@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -24,9 +25,10 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
+@AndroidEntryPoint
 class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
 
-    private val viewModel : MeetingDetailViewModel by navGraphViewModels(R.id.main_navigation)
+    private val viewModel : MeetingDetailViewModel by hiltNavGraphViewModels(R.id.main_navigation)
 
     private val dateRankAdapter: RankAdapter<DateRankUiModel> by lazy {
         RankAdapter()
@@ -35,6 +37,8 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
     private val placeRankAdapter: RankAdapter<PlaceRankUiModel> by lazy {
         RankAdapter()
     }
+
+    private var meetingId : Long? = null
 
     override fun getFragmentBinding(
         inflater: LayoutInflater,
@@ -45,7 +49,7 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showToast(navArgs<MeetingDetailFragmentArgs>().value.meetingId)
+        meetingId = (navArgs<MeetingDetailFragmentArgs>().value.meetingId).toLong()
         binding.let {
             initRecyclerViews(it.rvWhen,it.rvWhere)
 
@@ -89,6 +93,11 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
                 launch {
                     viewModel.placeRanks.collectLatest {
                         placeRankAdapter.submitList(it)
+                    }
+                }
+                launch {
+                    meetingId?.let {
+                        viewModel.getMeetingDetailById(it)
                     }
                 }
             }
