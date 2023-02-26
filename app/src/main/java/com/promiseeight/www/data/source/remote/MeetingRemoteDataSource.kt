@@ -15,5 +15,7 @@ interface MeetingRemoteDataSource {
 
     suspend fun getMeetingDetailByCode(meetingCode : String) : Result<MeetingDetailResponse>
 
+    suspend fun getMeetingDetailById(meetingId: Long) : Result<MeetingDetailResponse>
+
     suspend fun joinMeeting(meetingId : Long, meetingJoinCondition: MeetingJoinCondition) : Result<Unit>
 }

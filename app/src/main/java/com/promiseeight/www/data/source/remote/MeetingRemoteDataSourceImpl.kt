@@ -43,6 +43,18 @@ class MeetingRemoteDataSourceImpl @Inject constructor(
         }
     }
 
+    override suspend fun getMeetingDetailById(meetingId: Long): Result<MeetingDetailResponse> {
+        return try {
+            val response = meetingService.getMeetingDetailById(
+                meetingId
+            )
+            if(response.code == 0) Result.success(response.result)
+            else Result.failure(getWwwException(response.code))
+        } catch (e: Exception){
+            Result.failure(e)
+        }
+    }
+
     override suspend fun joinMeeting(meetingId: Long,meetingJoinCondition: MeetingJoinCondition): Result<Unit> {
         return try {
             val response = meetingService.joinMeeting(meetingId,meetingJoinCondition.toJoinMeetingRequest())
