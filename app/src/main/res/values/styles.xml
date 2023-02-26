@@ -115,6 +115,13 @@
         <item name="android:includeFontPadding">false</item>
     </style>
 
+    <style name="Text.Body4.5" parent="android:TextAppearance">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/font_size_13</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_regular</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
     <style name="Text.Body5" parent="android:TextAppearance">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/font_size_12</item>
@@ -153,6 +160,15 @@
         <item name="android:textSize">@dimen/font_size_15</item>
         <item name="android:textColor">@color/www_white</item>
         <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
+    </style>
+
+    <style name="dialog_default" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">1</item>
+
     </style>
 
 

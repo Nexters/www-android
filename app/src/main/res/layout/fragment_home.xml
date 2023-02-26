@@ -1,52 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent">'
+
+        <!-- 상단 메뉴바 -->
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_20"
+            android:layout_marginTop="@dimen/size_18"
+            android:src="@drawable/img_logo_small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/size_28"
-            android:layout_marginTop="@dimen/size_18"
-            android:src="@drawable/ic_setting"
+            android:layout_marginEnd="@dimen/size_18"
+            android:src="@drawable/ic_settings"
+            app:layout_constraintBottom_toBottomOf="@id/iv_logo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/iv_logo" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_logo_main"
+        <!-- 디자인 수정 필요 + indicator 배경 색에 맞춰야함-->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tb_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_26"
+            android:layout_marginEnd="157dp"
+            android:layout_marginStart="@dimen/size_5"
+            app:tabPaddingEnd="0dp"
+            app:tabTextAppearance="@style/Text.Title5"
+            app:tabTextColor="@color/gray_250"
+            app:tabIndicatorColor="@color/www_white"
+            app:tabSelectedTextColor="@color/www_black"
+            app:layout_constraintTop_toBottomOf="@id/iv_logo" />
+
+        <!-- tabLayout에서 선택한 탭 화면을 담을 ViewPager -->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_home"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0"
+            app:layout_constraintTop_toBottomOf="@id/tb_home"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn1_floating_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo_ww_main"
-            android:layout_marginStart="@dimen/size_28"
-            android:layout_marginTop="@dimen/size_18"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btn_add"
-            android:text="meetingdetail test"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btn_join"
-            android:text="@string/home_add"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_join"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            app:backgroundTint="@color/www_black"
+            android:backgroundTint="@color/www_white"
+            android:src="@drawable/selector_floating_btn"
+            android:layout_marginBottom="@dimen/size_38"
+            android:layout_marginEnd="@dimen/size_20"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="@string/home_join"/>
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/btn3_floating_main"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginBottom="@dimen/size_10"
+            android:backgroundTint="@color/www_black"
+            android:text="@string/btn_floating_tv1"
+            android:textColor="@color/www_white"
+            android:gravity="center"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@id/btn1_floating_main"
+            app:layout_constraintTop_toTopOf="@id/btn1_floating_main"
+            app:layout_constraintBottom_toBottomOf="@id/btn1_floating_main"
+            style="@style/Text.Body2"/>
+        
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/btn2_floating_main"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:visibility="invisible"
+            android:layout_marginBottom="@dimen/size_12"
+            android:backgroundTint="@color/www_white"
+            android:text="@string/btn_floating_tv2"
+            android:textColor="@color/www_black"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@id/btn1_floating_main"
+            app:layout_constraintBottom_toBottomOf="@id/btn1_floating_main"
+            style="@style/Text.Body2"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

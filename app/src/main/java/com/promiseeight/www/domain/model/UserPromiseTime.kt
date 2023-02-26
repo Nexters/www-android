@@ -6,5 +6,5 @@ data class UserPromiseTime(
     val promiseDate : String,
     val promiseDayOfWeek : String = "",
     val promiseTime : PromiseTime,
-    val userNameList : List<String> = emptyList()
+    val userInfoList : List<User> = emptyList()
 )
