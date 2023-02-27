@@ -9,6 +9,7 @@ import com.promiseeight.www.domain.model.MeetingDetail
 import com.promiseeight.www.domain.model.MeetingInvitation
 import com.promiseeight.www.domain.model.MeetingJoinCondition
 import com.promiseeight.www.domain.repository.MeetingRepository
+import com.promiseeight.www.ui.meeting.detail.MeetingStatus
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import timber.log.Timber
@@ -55,6 +56,18 @@ class MeetingRepositoryImpl @Inject constructor(
         meetingJoinCondition: MeetingJoinCondition
     ): Flow<Result<Unit>> = flow {
         meetingRemoteDataSource.joinMeeting(meetingId,meetingJoinCondition)
+            .onSuccess {
+                emit(Result.success(Unit))
+            }.onFailure {
+                emit(Result.success(Unit))
+            }
+    }
+
+    override fun putMeetingStatus(
+        meetingId: Long,
+        meetingStatus: MeetingStatus
+    ): Flow<Result<Unit>> = flow {
+        meetingRemoteDataSource.putMeetingStatus(meetingId,meetingStatus)
             .onSuccess {
                 emit(Result.success(Unit))
             }.onFailure {
