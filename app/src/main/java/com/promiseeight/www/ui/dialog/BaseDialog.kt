@@ -21,6 +21,11 @@ abstract class BaseDialog<VB: ViewDataBinding>(@LayoutRes private val layoutId: 
         ONE, TWO
     }
 
+    class DialogBody(title : String, message : String) {
+        lateinit var title : String
+        lateinit var message : String
+    }
+
     override fun onCreate(savedInstance: Bundle?) {
         super.onCreate(savedInstance)
         setStyle(STYLE_NO_TITLE, R.style.dialog_default)

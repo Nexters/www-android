@@ -106,6 +106,9 @@
     <fragment
         android:id="@+id/fragment_setting"
         android:name="com.promiseeight.www.ui.setting.SettingFragment">
+        <action
+            android:id="@+id/action_fragment_setting_to_fragment_home"
+            app:destination="@id/fragment_home" />
     </fragment>
 
 

@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.promiseeight.www.BuildConfig
 import com.promiseeight.www.databinding.FragmentSettingBinding
 import com.promiseeight.www.ui.common.BaseFragment
@@ -24,7 +25,12 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.tvSettingAppVersion.text = getVersionInfo();
+        binding.tvSettingAppVersion.text = getVersionInfo()
+        binding.ivBack.setOnClickListener {
+            findNavController().navigate(
+                SettingFragmentDirections.actionFragmentSettingToFragmentHome()
+            )
+        }
 
     }
 
