@@ -1,9 +1,6 @@
 package com.promiseeight.www.domain.repository
 
-import com.promiseeight.www.domain.model.MeetingCondition
-import com.promiseeight.www.domain.model.MeetingDetail
-import com.promiseeight.www.domain.model.MeetingInvitation
-import com.promiseeight.www.domain.model.MeetingJoinCondition
+import com.promiseeight.www.domain.model.*
 import kotlinx.coroutines.flow.Flow
 
 interface MeetingRepository {
@@ -12,4 +9,6 @@ interface MeetingRepository {
     fun getMeetingDetailByCode(code : String) : Flow<Result<MeetingDetail>>
 
     fun joinMeeting(meetingId : Long, meetingJoinCondition: MeetingJoinCondition) : Flow<Result<Unit>>
+
+    fun getMeetings() : Flow<Result<MeetingMainList>>
 }

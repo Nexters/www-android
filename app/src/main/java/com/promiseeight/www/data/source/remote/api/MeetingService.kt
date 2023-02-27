@@ -5,6 +5,7 @@ import com.promiseeight.www.data.model.request.MeetingCreateRequest
 import com.promiseeight.www.data.model.response.BaseResponse
 import com.promiseeight.www.data.model.response.MeetingCreateResponse
 import com.promiseeight.www.data.model.response.MeetingDetailResponse
+import com.promiseeight.www.data.model.response.MeetingMainListResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -16,8 +17,12 @@ interface MeetingService {
         @Body meetingCreateRequest : MeetingCreateRequest
     ) : BaseResponse<MeetingCreateResponse>
 
+    @GET("/meetings")
+    suspend fun getMeetings()
+    : BaseResponse<MeetingMainListResponse>//arguments x
+
     @GET("/meetings/code/{meetingCode}")
-    suspend fun getMeetingDetailByCode(
+    suspend fun getMeetingDetailByCode( //arguments 있음
         @Path("meetingCode") meetingCode : String
     ) : BaseResponse<MeetingDetailResponse>
 

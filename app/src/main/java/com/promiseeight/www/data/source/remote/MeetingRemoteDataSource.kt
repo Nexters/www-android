@@ -4,6 +4,7 @@ import com.promiseeight.www.data.model.request.JoinMeetingRequest
 import com.promiseeight.www.data.model.request.MeetingCreateRequest
 import com.promiseeight.www.data.model.response.MeetingCreateResponse
 import com.promiseeight.www.data.model.response.MeetingDetailResponse
+import com.promiseeight.www.data.model.response.MeetingMainListResponse
 import com.promiseeight.www.domain.model.MeetingJoinCondition
 
 /*
@@ -16,4 +17,6 @@ interface MeetingRemoteDataSource {
     suspend fun getMeetingDetailByCode(meetingCode : String) : Result<MeetingDetailResponse>
 
     suspend fun joinMeeting(meetingId : Long, meetingJoinCondition: MeetingJoinCondition) : Result<Unit>
+
+    suspend fun getMeetings() : Result<MeetingMainListResponse>
 }
