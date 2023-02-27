@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="meetingDetail"
+            type="com.promiseeight.www.ui.model.MeetingDetailUiModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -50,7 +52,7 @@
             android:layout_marginStart="@dimen/size_20"
             android:layout_marginTop="@dimen/size_34"
             android:elevation="@dimen/size_1"
-            android:text="@{@string/meeting_detail_subtitle(7,7)}"
+            android:text="@{@string/meeting_detail_subtitle(meetingDetail.joinedUserCount ,meetingDetail.minimumAlertMembers)}"
             android:textColor="@color/gray_600"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_back"
@@ -64,10 +66,19 @@
             android:layout_marginStart="@dimen/size_20"
             android:layout_marginTop="@dimen/size_8"
             android:elevation="@dimen/size_1"
-            android:text="크리스마스 파티"
+            android:text="@{meetingDetail.meetingName}"
             android:textColor="@color/www_black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_subtitle" />
+        
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:elevation="@dimen/size_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/img_character_3"
+            app:layout_constraintWidth_percent="70"/>
 
         <!-- 수정 필요 -->
         <androidx.core.widget.NestedScrollView

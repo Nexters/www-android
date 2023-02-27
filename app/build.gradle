@@ -99,4 +99,6 @@ dependencies {
 
     //viewPager indicator
     implementation 'com.tbuonomo:dotsindicator:4.3'
+
+    implementation "androidx.hilt:hilt-navigation-fragment:1.0.0"
 }

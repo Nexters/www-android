@@ -26,4 +26,9 @@ interface MeetingService {
         @Path("meetingId") meetingId : Long,
         @Body joinMeetingRequest : JoinMeetingRequest
     ) : BaseResponse<Unit>
+
+    @GET("/meetings/{meetingId}")
+    suspend fun getMeetingDetailById(
+        @Path("meetingId") meetingId : Long
+    ) : BaseResponse<MeetingDetailResponse>
 }

@@ -11,6 +11,7 @@ import com.promiseeight.www.domain.model.MeetingJoinCondition
 import com.promiseeight.www.domain.repository.MeetingRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import timber.log.Timber
 import javax.inject.Inject
 
 class MeetingRepositoryImpl @Inject constructor(
@@ -27,7 +28,20 @@ class MeetingRepositoryImpl @Inject constructor(
     }
 
     override fun getMeetingDetailByCode(code: String): Flow<Result<MeetingDetail>> = flow {
-        meetingRemoteDataSource.getMeetingDetailByCode(code).runCatching {
+        meetingRemoteDataSource.getMeetingDetailByCode(code).onSuccess {
+            try{
+                emit(Result.success(it.toMeetingDetail()))
+            } catch (e : Exception){
+                Timber.d("asdasd ${e.toString()}")
+            }
+        }.onFailure {
+            Timber.d("asdasd ${it.toString()}")
+            emit(Result.failure(it))
+        }
+    }
+
+    override fun getMeetingDetailById(meetingId: Long): Flow<Result<MeetingDetail>> = flow {
+        meetingRemoteDataSource.getMeetingDetailById(meetingId).runCatching {
             getOrThrow()
         }.onSuccess {
             emit(Result.success(it.toMeetingDetail()))
