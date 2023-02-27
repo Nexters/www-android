@@ -11,7 +11,11 @@
 
         <action
             android:id="@+id/action_fragment_join_meeting_info_code_to_fragment_join_meeting_info_user_name"
-            app:destination="@id/fragment_join_meeting_info_user_name" />
+            app:destination="@id/fragment_join_meeting_info_user_name"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -21,7 +25,11 @@
 
         <action
             android:id="@+id/action_fragment_join_meeting_info_user_name_to_fragment_join_meeting_info_date"
-            app:destination="@id/fragment_join_meeting_info_date" />
+            app:destination="@id/fragment_join_meeting_info_date"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
 
@@ -31,7 +39,11 @@
 
         <action
             android:id="@+id/action_fragment_join_meeting_info_date_to_fragment_join_meeting_info_place"
-            app:destination="@id/fragment_join_meeting_info_place" />
+            app:destination="@id/fragment_join_meeting_info_place"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
