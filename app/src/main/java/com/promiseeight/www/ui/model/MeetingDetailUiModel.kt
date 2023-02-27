@@ -4,6 +4,7 @@ import com.promiseeight.www.domain.model.MeetingDetail
 import com.promiseeight.www.domain.model.PlaceVote
 import com.promiseeight.www.domain.model.UserPromisePlace
 import com.promiseeight.www.domain.model.UserPromiseTime
+import com.promiseeight.www.ui.meeting.detail.MeetingStatus
 
 data class MeetingDetailUiModel(
     val hostName : String,
@@ -13,7 +14,7 @@ data class MeetingDetailUiModel(
     val meetingCode : String,
     val meetingId : Long,
     val meetingName : String,
-    val meetingStatus : String,
+    val meetingStatus : MeetingStatus,
     val minimumAlertMembers : Long,
     val shortLink : String,
     val confirmedDate : String?,
@@ -34,7 +35,7 @@ fun MeetingDetail.toMeetingDetailUiModel() = MeetingDetailUiModel(
     meetingCode = meetingCode,
     meetingId =  meetingId,
     meetingName = meetingName,
-    meetingStatus = meetingStatus,
+    meetingStatus = MeetingStatus.valueOf(meetingStatus),
     minimumAlertMembers = minimumAlertMembers,
     shortLink = shortLink,
     confirmedDate = confirmedDate,
@@ -46,3 +47,5 @@ fun MeetingDetail.toMeetingDetailUiModel() = MeetingDetailUiModel(
     userVoteList = userVoteList,
     votingUserCount = votingUserCount
 )
+
+
