@@ -34,6 +34,7 @@ class MeetingInfoUserNameFragment : InfoFragment<FragmentMeetingInfoUserNameBind
         super.initView()
         binding.run {
             btnNext.setOnClickListener {
+                hideKeyboardWithLayout(etInfoUserName.windowToken)
                 setParentFragmentBranch(
                     onJoin = {
                         if(viewModel?.meetingNicknameList?.value?.contains(viewModel?.meetingUserName?.value) == false)
