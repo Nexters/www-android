@@ -1,11 +1,28 @@
 package com.promiseeight.www.ui.home
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.promiseeight.www.domain.model.MeetingMainList
+import com.promiseeight.www.domain.usecase.meeting.GetMeetingsUseCase
 import com.promiseeight.www.ui.model.MeetingUiModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import hilt_aggregated_deps._com_promiseeight_www_ui_meeting_InfoViewModel_HiltModules_BindsModule
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import timber.log.Timber
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val getMeetingsUseCase : GetMeetingsUseCase
+    ) : ViewModel() {
+
+    private var _meetingMainList = MutableStateFlow<MeetingMainList?>(null) //들어간 아이템 null인지 아닌지~
+    val meetingMainList : StateFlow<MeetingMainList?> get() = _meetingMainList
     
     private var _doingMeetings = MutableStateFlow<List<MeetingUiModel>>(emptyList())
     val doingMeeting : StateFlow<List<MeetingUiModel>> get() = _doingMeetings // 진행 중 약속 리스트, 변수 이름은 더 고민해보기..
@@ -16,6 +33,28 @@ class HomeViewModel : ViewModel() {
     init {
         _doingMeetings.value = doingMeetingsDummy
         _doneMeetings.value = doneMeetingsDummy
+    }
+
+    fun getMeetings() {
+        try {
+            viewModelScope.launch {
+                getMeetingsUseCase()
+                    .catch {
+
+                    }
+                    .collectLatest {
+                        Timber.d(it.toString())
+                        if(it.isSuccess) _meetingMainList.emit(it.getOrThrow())
+                        else
+//                            Timber.tag("HomeViewModel").d(it.exceptionOrNull())
+                            Log.d("collectLatest", "not Success")
+                    }
+            }
+        } catch (e: Exception) {
+            Timber.d(e) //exception log (timber)
+        }
+
+
     }
 
 
