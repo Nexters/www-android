@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="meetingDetail"
-            type="com.promiseeight.www.ui.model.MeetingDetailUiModel" />
+            name="viewModel"
+            type="com.promiseeight.www.ui.meeting.detail.MeetingDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,7 +52,7 @@
             android:layout_marginStart="@dimen/size_20"
             android:layout_marginTop="@dimen/size_34"
             android:elevation="@dimen/size_1"
-            android:text="@{@string/meeting_detail_subtitle(meetingDetail.joinedUserCount ,meetingDetail.minimumAlertMembers)}"
+            android:text="@{@string/meeting_detail_subtitle(viewModel.meetingDetail.joinedUserCount ,viewModel.meetingDetail.minimumAlertMembers)}"
             android:textColor="@color/gray_600"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_back"
@@ -66,7 +66,7 @@
             android:layout_marginStart="@dimen/size_20"
             android:layout_marginTop="@dimen/size_8"
             android:elevation="@dimen/size_1"
-            android:text="@{meetingDetail.meetingName}"
+            android:text="@{viewModel.meetingDetail.meetingName}"
             android:textColor="@color/www_black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_subtitle" />
@@ -148,7 +148,7 @@
                     android:layout_marginStart="@dimen/size_19"
                     android:layout_marginTop="@dimen/size_10"
                     android:elevation="@dimen/size_1"
-                    android:text="0명 참여"
+                    android:text="@{@string/meeting_detail_vote_count(viewModel.meetingDetail.joinedUserCount)}"
                     android:textColor="@color/gray_350"
                     app:layout_constraintStart_toStartOf="@id/rv_when"
                     app:layout_constraintTop_toBottomOf="@id/v_when_divider" />
@@ -221,7 +221,7 @@
                     android:layout_marginStart="@dimen/size_19"
                     android:layout_marginTop="@dimen/size_10"
                     android:elevation="@dimen/size_1"
-                    android:text="0명 참여"
+                    android:text="@{@string/meeting_detail_vote_count(viewModel.meetingDetail.votingUserCount)}"
                     android:textColor="@color/gray_350"
                     app:layout_constraintStart_toStartOf="@id/rv_where"
                     app:layout_constraintTop_toBottomOf="@id/v_where_divider" />
