@@ -195,7 +195,7 @@
             android:layout_width="399dp"
             android:layout_height="295dp"
             android:layout_marginTop="@dimen/size_16"
-            android:src="@drawable/yak"
+            android:src="@drawable/img_yaksogi1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_polygon"/>
