@@ -34,11 +34,11 @@ class MeetingShareFragment : BaseFragment<FragmentMeetingShareBinding>() {
         }
 
         binding.btnNext.setOnClickListener {
-            findNavController().navigate(
-                Uri.parse("https://www/meeting/detail/${navArgs<MeetingShareFragmentArgs>().value.argInvitationCode}"),
-                NavOptions.Builder().apply {
-                setPopUpTo(R.id.fragment_home,false)
-            }.build())
+//            findNavController().navigate(
+//                Uri.parse("https://www/meeting/detail/${navArgs<MeetingShareFragmentArgs>().value.argInvitationCode}"),
+//                NavOptions.Builder().apply {
+//                setPopUpTo(R.id.fragment_home,false)
+//            }.build())
         }
     }
 

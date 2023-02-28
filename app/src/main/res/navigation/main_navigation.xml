@@ -79,13 +79,10 @@
             app:popExitAnim="@anim/slide_out_right" />
         <argument android:name="meetingId"
             app:argType="string"/>
-        <argument android:name="code"
-            app:argType="string"/>
+
         <deepLink
             android:id="@+id/deeplink_meeting_detail"
             app:uri="https://www/meeting/detail/{meetingId}" />
-        <deepLink
-            app:uri="https://www/meeting/detail/{code}"/>
         <action
             android:id="@+id/action_fragment_meeting_detail_to_meetingDetailVoteFragment"
             app:destination="@id/meetingDetailVoteFragment"
