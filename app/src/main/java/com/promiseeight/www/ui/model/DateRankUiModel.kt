@@ -15,7 +15,7 @@ data class DateRankUiModel(
     val time : String,
 ) : RankModel(id,ranking,type,progress,selected,count,confirmed, tied)
 
-fun getDateRankUiModelList(userPromiseDateTimeList : List<UserPromiseTime>, joinedUserCount : Long) : List<DateRankUiModel> {
+fun getDateRankUiModelList(userPromiseDateTimeList : List<UserPromiseTime>) : List<DateRankUiModel> {
     var rank = 1
     var lastUserCount = 0
     val firstRankCount = userPromiseDateTimeList.maxBy {

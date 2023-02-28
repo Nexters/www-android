@@ -24,7 +24,8 @@ data class MeetingDetailUiModel(
     val userPromiseDateTimeList : List<UserPromiseTime>,
     val userPromisePlaceList : List<UserPromisePlace>?,
     val userVoteList : List<PlaceVote>?,
-    val votingUserCount : Int
+    val votingUserCount : Int,
+    val userVoted : Boolean = false
 )
 
 fun MeetingDetail.toMeetingDetailUiModel() = MeetingDetailUiModel(
