@@ -1,11 +1,10 @@
 package com.promiseeight.www.ui.home
 
 import android.animation.ObjectAnimator
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
@@ -53,24 +52,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             )
         }
 
-//        // 마지막에 수정할 부분 ,
-//        binding.btnAdd.setOnClickListener {
-//            findNavController().navigate(
-//                HomeFragmentDirections.actionFragmentHomeToFragmentAddMeeting()
-//            )
-//        }
-//        binding.btnJoin.setOnClickListener {
-//            findNavController().navigate(
-//                HomeFragmentDirections.actionFragmentHomeToFragmentJoinMeeting()
-//            )
-//        }
-//        binding.btnTest.setOnClickListener {
-////            findNavController().navigate(
-////                HomeFragmentDirections.actionFragmentHomeToFragmentMeetingDetail()
-////            )
-//            findNavController().navigate(Uri.parse("https://www/meeting/detail"))
-//        }
-
         binding.ivSetting.setOnClickListener {
             findNavController().navigate(
                 HomeFragmentDirections.actionFragmentHomeToFragmentSetting()
@@ -91,8 +72,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             ObjectAnimator.ofFloat(binding.btn3FloatingMain, "TranslationY", 0f).apply{start()}
             binding.btn1FloatingMain.setImageResource(R.drawable.ic_floating_vector_default)
         } else {
-            ObjectAnimator.ofFloat(binding.btn2FloatingMain, "translationY", -200f).apply{start()}
-            ObjectAnimator.ofFloat(binding.btn3FloatingMain, "TranslationY", -400f).apply{start()}
+            ObjectAnimator.ofFloat(binding.btn2FloatingMain, "translationY", -150f).apply{start()}
+            ObjectAnimator.ofFloat(binding.btn3FloatingMain, "TranslationY", -310f).apply{start()}
             binding.btn1FloatingMain.setImageResource(R.drawable.ic_floating_vector_click)
         }
 
@@ -123,9 +104,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
+
     //viewPager 초기화 및 세팅하는 메서드
     private fun initViewPager(viewPager: ViewPager2) {
         homeTabAdapter = HomeTabAdapter(this)
+
         viewPager.adapter = homeTabAdapter
         viewPager.isUserInputEnabled = false
     }
@@ -142,3 +125,4 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         // 디자인 수정 코드 추가
     }
 }
+
