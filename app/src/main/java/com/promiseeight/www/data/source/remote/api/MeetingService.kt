@@ -2,6 +2,7 @@ package com.promiseeight.www.data.source.remote.api
 
 import com.promiseeight.www.data.model.request.JoinMeetingRequest
 import com.promiseeight.www.data.model.request.MeetingCreateRequest
+import com.promiseeight.www.data.model.request.PlaceVoteRequest
 import com.promiseeight.www.data.model.response.BaseResponse
 import com.promiseeight.www.data.model.response.MeetingCreateResponse
 import com.promiseeight.www.data.model.response.MeetingDetailResponse
@@ -15,34 +16,38 @@ import retrofit2.http.Path
 interface MeetingService {
     @POST("/meetings")
     suspend fun createMeeting(
-        @Body meetingCreateRequest : MeetingCreateRequest
-    ) : BaseResponse<MeetingCreateResponse>
+        @Body meetingCreateRequest: MeetingCreateRequest
+    ): BaseResponse<MeetingCreateResponse>
 
     @GET("/meetings")
     suspend fun getMeetings()
-    : BaseResponse<MeetingMainListResponse>//arguments x
+            : BaseResponse<MeetingMainListResponse>//arguments x
 
     @GET("/meetings/code/{meetingCode}")
     suspend fun getMeetingDetailByCode( //arguments 있음
-        @Path("meetingCode") meetingCode : String
-    ) : BaseResponse<MeetingDetailResponse>
+        @Path("meetingCode") meetingCode: String
+    ): BaseResponse<MeetingDetailResponse>
 
     @POST("/meetings/{meetingId}")
     suspend fun joinMeeting(
-        @Path("meetingId") meetingId : Long,
-        @Body joinMeetingRequest : JoinMeetingRequest
-    ) : BaseResponse<Unit>
+        @Path("meetingId") meetingId: Long,
+        @Body joinMeetingRequest: JoinMeetingRequest
+    ): BaseResponse<Unit>
 
     @GET("/meetings/{meetingId}")
     suspend fun getMeetingDetailById(
-        @Path("meetingId") meetingId : Long
-    ) : BaseResponse<MeetingDetailResponse>
+        @Path("meetingId") meetingId: Long
+    ): BaseResponse<MeetingDetailResponse>
 
     @PUT("/meetings/{meetingId}/meetingStatus/{meetingStatus}")
     suspend fun putMeetingStatus(
-        @Path("meetingId") meetingId : Long,
-        @Path("meetingStatus") meetingStatus : String
+        @Path("meetingId") meetingId: Long,
+        @Path("meetingStatus") meetingStatus: String
+    ): BaseResponse<Unit>
+
+    @POST("/meetings/{meetingId}/votes")
+    suspend fun votePlaces(
+        @Path("meetingId") meetingId: Long,
+        @Body placeVoteRequest : PlaceVoteRequest
     ) : BaseResponse<Unit>
-
-
 }

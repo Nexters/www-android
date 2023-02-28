@@ -24,4 +24,6 @@ interface MeetingRemoteDataSource {
     suspend fun putMeetingStatus(meetingId : Long, meetingStatus : MeetingStatus) : Result<Unit>
 
     suspend fun getMeetings() : Result<MeetingMainListResponse>
+
+    suspend fun votePlaces(meetingId : Long, placeIdList : List<Long>) : Result<Unit>
 }
