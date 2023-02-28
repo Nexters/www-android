@@ -13,6 +13,7 @@ data class DateRankUiModel(
     override val tied : Boolean = false,
     val date : String,
     val time : String,
+    val timetableId : Long
 ) : RankModel(id,ranking,type,progress,selected,count,confirmed, tied)
 
 fun getDateRankUiModelList(userPromiseDateTimeList : List<UserPromiseTime>) : List<DateRankUiModel> {
@@ -43,7 +44,8 @@ fun getDateRankUiModelList(userPromiseDateTimeList : List<UserPromiseTime>) : Li
                 date = userPromiseTime.promiseDate,
                 progress = 100 * userPromiseTime.userInfoList.size / firstRankCount.userInfoList.size,
                 time = userPromiseTime.promiseTime.korean,
-                tied = tied
+                tied = tied,
+                timetableId = userPromiseTime.timetableId
             )
         )
     }
