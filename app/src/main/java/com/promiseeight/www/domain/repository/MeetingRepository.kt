@@ -20,4 +20,6 @@ interface MeetingRepository {
     fun getMeetings() : Flow<Result<MeetingMainList>>
 
     fun putMeetingStatus(meetingId : Long, meetingStatus : MeetingStatus) : Flow<Result<Unit>>
+
+    fun votePlaces(meetingId : Long, placeIdList : List<Long>) : Flow<Result<Unit>>
 }

@@ -69,7 +69,16 @@ class MeetingRepositoryImpl @Inject constructor(
             .onSuccess {
                 emit(Result.success(Unit))
             }.onFailure {
-                emit(Result.failure(it)) //확인부탁
+                emit(Result.failure(it))
+            }
+    }
+
+    override fun votePlaces(meetingId: Long, placeIdList: List<Long>): Flow<Result<Unit>> = flow {
+        meetingRemoteDataSource.votePlaces(meetingId,placeIdList)
+            .onSuccess {
+                emit(Result.success(Unit))
+            }.onFailure {
+                emit(Result.failure(it))
             }
     }
 
