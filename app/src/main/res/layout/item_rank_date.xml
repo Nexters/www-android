@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_48"
             android:progress="@{rank.progress}"
-            android:progressDrawable="@drawable/progress_green50"
+            android:progressDrawable="@{rank.ranking == 1 ? @drawable/progress_green50 : @drawable/progress_green30 }"
             android:layout_marginTop="@dimen/size_8"
             app:layout_constraintTop_toTopOf="@id/iv_rank_first" />
 
@@ -39,7 +39,7 @@
             android:paddingBottom="@dimen/size_3"
             android:text="@{@string/number(1)}"
             android:textColor="@color/www_green"
-            android:visibility="@{rank.ranking == 1 ? View.VISIBLE : View.GONE }"
+            android:visibility="@{rank.ranking == 1 ? (rank.tied ? View.GONE : View.VISIBLE) : View.GONE }"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -54,7 +54,7 @@
             android:gravity="center"
             android:text="@{@string/number(rank.ranking)}"
             android:textColor="@color/www_green"
-            android:visibility="@{rank.ranking == 1 ? View.INVISIBLE : View.VISIBLE }"
+            android:visibility="@{rank.ranking == 1 ? View.INVISIBLE : (rank.tied ? View.INVISIBLE : View.VISIBLE) }"
             app:layout_constraintBottom_toBottomOf="@id/pb_rank"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/pb_rank" />

@@ -8,6 +8,7 @@ import com.promiseeight.www.data.model.response.MeetingDetailResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface MeetingService {
@@ -21,7 +22,7 @@ interface MeetingService {
         @Path("meetingCode") meetingCode : String
     ) : BaseResponse<MeetingDetailResponse>
 
-    @POST("/meeting/{meetingId}")
+    @POST("/meetings/{meetingId}")
     suspend fun joinMeeting(
         @Path("meetingId") meetingId : Long,
         @Body joinMeetingRequest : JoinMeetingRequest
@@ -31,4 +32,12 @@ interface MeetingService {
     suspend fun getMeetingDetailById(
         @Path("meetingId") meetingId : Long
     ) : BaseResponse<MeetingDetailResponse>
+
+    @PUT("/meetings/{meetingId}/meetingStatus/{meetingStatus}")
+    suspend fun putMeetingStatus(
+        @Path("meetingId") meetingId : Long,
+        @Path("meetingStatus") meetingStatus : String
+    ) : BaseResponse<Unit>
+
+
 }
