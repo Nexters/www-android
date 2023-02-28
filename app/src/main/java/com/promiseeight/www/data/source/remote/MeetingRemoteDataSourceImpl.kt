@@ -6,6 +6,7 @@ import com.promiseeight.www.data.model.request.MeetingCreateRequest
 import com.promiseeight.www.data.model.request.toJoinMeetingRequest
 import com.promiseeight.www.data.model.response.MeetingCreateResponse
 import com.promiseeight.www.data.model.response.MeetingDetailResponse
+import com.promiseeight.www.data.model.response.MeetingMainListResponse
 import com.promiseeight.www.data.source.remote.api.MeetingService
 import com.promiseeight.www.domain.model.MeetingJoinCondition
 import com.promiseeight.www.ui.meeting.detail.MeetingStatus
@@ -72,6 +73,16 @@ class MeetingRemoteDataSourceImpl @Inject constructor(
             if(response.code == 0) Result.success(response.result)
             else Result.failure(getWwwException(response.code))
         } catch (e : Exception){
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun getMeetings(): Result<MeetingMainListResponse> {
+        return try {
+            val response = meetingService.getMeetings()
+            if(response.code == 0) Result.success(response.result)
+            else Result.failure(getWwwException(response.code))
+        } catch(e : Exception) {
             Result.failure(e)
         }
     }

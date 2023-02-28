@@ -4,6 +4,7 @@ import com.promiseeight.www.data.model.request.JoinMeetingRequest
 import com.promiseeight.www.data.model.request.MeetingCreateRequest
 import com.promiseeight.www.data.model.response.MeetingCreateResponse
 import com.promiseeight.www.data.model.response.MeetingDetailResponse
+import com.promiseeight.www.data.model.response.MeetingMainListResponse
 import com.promiseeight.www.domain.model.MeetingJoinCondition
 import com.promiseeight.www.ui.meeting.detail.MeetingStatus
 
@@ -21,4 +22,6 @@ interface MeetingRemoteDataSource {
     suspend fun joinMeeting(meetingId : Long, meetingJoinCondition: MeetingJoinCondition) : Result<Unit>
 
     suspend fun putMeetingStatus(meetingId : Long, meetingStatus : MeetingStatus) : Result<Unit>
+
+    suspend fun getMeetings() : Result<MeetingMainListResponse>
 }
