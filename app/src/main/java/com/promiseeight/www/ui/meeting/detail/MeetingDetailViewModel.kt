@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.promiseeight.www.domain.usecase.meeting.ChangeMeetingStatusUseCase
 import com.promiseeight.www.domain.usecase.meeting.GetMeetingByIdUseCase
+import com.promiseeight.www.domain.usecase.meeting.VotePlacesUseCase
 import com.promiseeight.www.ui.model.*
 import com.promiseeight.www.domain.model.MeetingStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MeetingDetailViewModel @Inject constructor(
     private val getMeetingByIdUseCase: GetMeetingByIdUseCase,
-    private val changeMeetingStatusUseCase: ChangeMeetingStatusUseCase
+    private val changeMeetingStatusUseCase: ChangeMeetingStatusUseCase,
+    private val votePlacesUseCase: VotePlacesUseCase
 ) : ViewModel() {
 
     private var _meetingId = MutableStateFlow(-1L)
@@ -79,7 +81,7 @@ class MeetingDetailViewModel @Inject constructor(
                     MeetingStatus.WAITING,
                     MeetingStatus.VOTING-> {
                         _dateRanks.emit(
-                            getDateRankUiModelList(it.userPromiseDateTimeList,it.joinedUserCount)
+                            getDateRankUiModelList(it.userPromiseDateTimeList)
                         )
                     }
                     else -> {
@@ -113,16 +115,8 @@ class MeetingDetailViewModel @Inject constructor(
                     MeetingStatus.VOTING -> {
                         // 투표 반영해서 바꿔야함
                         _placeRanks.emit(
-                            it.userPromisePlaceList?.map {
-                                PlaceRankUiModel(
-                                    id = it.promisePlace,
-                                    name = it.promisePlace,
-                                    count = 0,
-                                    progress = 0,
-                                    ranking = 0,
-                                    meetingVotingStarted = false
-                                )
-                            } ?: emptyList()
+                            getPlaceRankUiModelList(it.userPromisePlaceList ?: emptyList(),it.userVoteList ?: emptyList())
+
                         )
                     }
                     else -> {
@@ -171,7 +165,29 @@ class MeetingDetailViewModel @Inject constructor(
         }
     }
 
-    fun getNextMeetingStatus(meetingStatus : MeetingStatus) : MeetingStatus { // 현재 상태를 통해 다음 상태를 받아온다.
+    fun votePlaces() {
+        try {
+            viewModelScope.launch {
+                meetingDetail.value?.let { meetingDetail ->
+                    votePlacesUseCase(meetingDetail.meetingId,placeRanks.value.filter {
+                        it.selected
+                    }.map {
+                        it.placeId
+                    })
+                }
+            }
+        } catch (e : Exception){
+            Timber.e(e)
+        }
+    }
+
+//    fun getUserVoted() : Boolean {
+//        meetingDetail.value?.let {
+//            it.userVoteList
+//        }
+//    }
+
+    private fun getNextMeetingStatus(meetingStatus : MeetingStatus) : MeetingStatus { // 현재 상태를 통해 다음 상태를 받아온다.
         return when(meetingStatus){
             MeetingStatus.WAITING -> MeetingStatus.VOTING
             MeetingStatus.VOTING -> MeetingStatus.VOTED
