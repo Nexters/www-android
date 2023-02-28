@@ -77,7 +77,7 @@
             android:elevation="@dimen/size_2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/img_character_3"
+            android:src="@drawable/img_yaksogi1"
             app:layout_constraintWidth_percent="70"/>
 
         <!-- 수정 필요 -->
