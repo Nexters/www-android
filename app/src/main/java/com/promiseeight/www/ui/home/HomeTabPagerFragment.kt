@@ -47,6 +47,8 @@ class HomeTabPagerFragment : BaseFragment<FragmentHomeTabPagerBinding>() {
 
     private fun initViewPager(viewPager: ViewPager2) {
         viewPager.adapter = homeMeetingAdapter
+        viewPager.offscreenPageLimit = 3
+        viewPager.setPadding(100, 0 ,100 ,0)
     }
 
     private fun initObserver() {

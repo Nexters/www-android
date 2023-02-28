@@ -192,10 +192,10 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_character"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="399dp"
+            android:layout_height="295dp"
             android:layout_marginTop="@dimen/size_16"
-            android:src="@drawable/character_item_meeting"
+            android:src="@drawable/yak"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_polygon"/>
