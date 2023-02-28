@@ -21,4 +21,6 @@ interface MeetingRepository {
     fun putMeetingStatus(meetingId : Long, meetingStatus : MeetingStatus) : Flow<Result<Unit>>
 
     fun votePlaces(meetingId : Long, placeIdList : List<Long>) : Flow<Result<Unit>>
+
+    fun putMeetingStatusConfirmed(meetingId: Long, meetingPlaceId : Long , meetingUserTimetableId : Long) : Flow<Result<Unit>>
 }

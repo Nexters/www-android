@@ -82,6 +82,16 @@ class MeetingRepositoryImpl @Inject constructor(
             }
     }
 
+    override fun putMeetingStatusConfirmed(
+        meetingId: Long,
+        meetingPlaceId: Long,
+        meetingUserTimetableId: Long
+    ): Flow<Result<Unit>> = flow {
+        meetingRemoteDataSource.putMeetingStatusConfirmed(
+            meetingId,meetingPlaceId,meetingUserTimetableId
+        )
+    }
+
     override fun getMeetings(): Flow<Result<MeetingMainList>> = flow {
         meetingRemoteDataSource.getMeetings()
             .onSuccess {
