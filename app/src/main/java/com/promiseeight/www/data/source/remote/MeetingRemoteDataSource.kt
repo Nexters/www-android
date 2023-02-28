@@ -1,6 +1,7 @@
 package com.promiseeight.www.data.source.remote
 
 import com.promiseeight.www.data.model.request.JoinMeetingRequest
+import com.promiseeight.www.data.model.request.MeetingConfirmRequest
 import com.promiseeight.www.data.model.request.MeetingCreateRequest
 import com.promiseeight.www.data.model.response.MeetingCreateResponse
 import com.promiseeight.www.data.model.response.MeetingDetailResponse
@@ -26,4 +27,6 @@ interface MeetingRemoteDataSource {
     suspend fun getMeetings() : Result<MeetingMainListResponse>
 
     suspend fun votePlaces(meetingId : Long, placeIdList : List<Long>) : Result<Unit>
+
+    suspend fun putMeetingStatusConfirmed(meetingId: Long, meetingPlaceId : Long , meetingUserTimetableId : Long) : Result<Unit>
 }

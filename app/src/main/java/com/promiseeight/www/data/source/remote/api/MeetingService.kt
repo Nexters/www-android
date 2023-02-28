@@ -1,6 +1,7 @@
 package com.promiseeight.www.data.source.remote.api
 
 import com.promiseeight.www.data.model.request.JoinMeetingRequest
+import com.promiseeight.www.data.model.request.MeetingConfirmRequest
 import com.promiseeight.www.data.model.request.MeetingCreateRequest
 import com.promiseeight.www.data.model.request.PlaceVoteRequest
 import com.promiseeight.www.data.model.response.BaseResponse
@@ -49,5 +50,11 @@ interface MeetingService {
     suspend fun votePlaces(
         @Path("meetingId") meetingId: Long,
         @Body placeVoteRequest : PlaceVoteRequest
+    ) : BaseResponse<Unit>
+
+    @PUT("/meetings/{meetingId}/confirmed")
+    suspend fun putMeetingStatusConfirmed(
+        @Path("meetingId") meetingId: Long,
+        @Body meetingConfirmRequest : MeetingConfirmRequest
     ) : BaseResponse<Unit>
 }
