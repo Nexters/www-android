@@ -11,14 +11,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.promiseeight.www.databinding.FragmentDatePagerBinding
-import com.promiseeight.www.domain.model.PromiseTime
 import com.promiseeight.www.ui.adapter.TimeAdapter
 import com.promiseeight.www.ui.common.BaseFragment
 import com.promiseeight.www.ui.meeting.InfoViewModel
-import com.promiseeight.www.ui.model.CandidateUiModel
 import com.promiseeight.www.ui.model.TimeUiModel
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -56,7 +53,7 @@ class DatePagerFragment : BaseFragment<FragmentDatePagerBinding>(){
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
                 launch {
-                    viewModel.meetingDateTime.collectLatest {
+                    viewModel.meetingDateTimes.collectLatest {
                         val position = arguments?.getInt(FRAGMENT_POSITION) ?: 0
                         if(it.isNotEmpty()){
                             val list = mutableListOf<TimeUiModel>()

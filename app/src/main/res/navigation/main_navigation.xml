@@ -36,7 +36,11 @@
         <action
             android:id="@+id/action_fragment_add_meeting_to_fragment_meeting_share"
             app:destination="@id/fragment_meeting_share"
-            app:popUpTo="@id/fragment_home"/>
+            app:popUpTo="@id/fragment_home"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_fragment_add_meeting_to_fragment_meeting_detail"
             app:destination="@id/fragment_meeting_detail" />
@@ -68,18 +72,34 @@
         android:name="com.promiseeight.www.ui.meeting.detail.MeetingDetailFragment" >
         <action
             android:id="@+id/action_fragment_meeting_detail_to_fragment_meeting_detail_rank"
-            app:destination="@id/fragment_meeting_detail_rank" />
+            app:destination="@id/fragment_meeting_detail_rank"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <argument android:name="meetingId"
+            app:argType="string"/>
+        <argument android:name="code"
             app:argType="string"/>
         <deepLink
             android:id="@+id/deeplink_meeting_detail"
             app:uri="https://www/meeting/detail/{meetingId}" />
+        <deepLink
+            app:uri="https://www/meeting/detail/{code}"/>
         <action
             android:id="@+id/action_fragment_meeting_detail_to_meetingDetailVoteFragment"
-            app:destination="@id/meetingDetailVoteFragment" />
+            app:destination="@id/meetingDetailVoteFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_fragment_meeting_detail_to_meetingDetailConfirmWhenFragment"
-            app:destination="@id/meetingDetailConfirmWhenFragment" />
+            app:destination="@id/meetingDetailConfirmWhenFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -95,7 +115,11 @@
         android:label="MeetingDetailConfirmWhenFragment" >
         <action
             android:id="@+id/action_meetingDetailConfirmWhenFragment_to_meetingDetailConfirmWhereFragment"
-            app:destination="@id/meetingDetailConfirmWhereFragment" />
+            app:destination="@id/meetingDetailConfirmWhereFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/meetingDetailConfirmWhereFragment"

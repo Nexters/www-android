@@ -1,6 +1,5 @@
 package com.promiseeight.www.ui.meeting
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.promiseeight.www.ui.common.util.CalendarUtil
@@ -46,30 +45,24 @@ class InfoViewModel @Inject constructor(
 
     val meetingCode = MutableStateFlow("")
 
+    val meetingNicknameHint = MutableStateFlow("")
+
+    val meetingNicknameList = MutableStateFlow<List<String>>(emptyList())
+
     private var meetingId : Long? = null
 
     private var _meetingCodeStatus = MutableStateFlow(CodeStatus.READY)
     val meetingCodeStatus: StateFlow<CodeStatus> get() = _meetingCodeStatus
-//        = _meetingCodeStatus.asStateFlow().combine(meetingCode){ status , code ->
-//            if(code.length < codeMaxSize) CodeStatus.READY
-//            else if(status == CodeStatus.INVALID) CodeStatus.INVALID
-//            else if(code.length == codeMaxSize) CodeStatus.ACTIVE
-//            else CodeStatus.READY
-//    }.stateIn(
-//        scope = viewModelScope,
-//        started = SharingStarted.WhileSubscribed(500),
-//        initialValue = CodeStatus.READY
-//    )
 
     private var _meetingCapacity = MutableStateFlow(1)
     val meetingCapacity: StateFlow<Int> get() = _meetingCapacity
 
     private var _startDate = MutableStateFlow(DateTime.now())
     val startDate : StateFlow<DateTime> get() = _startDate
-    private var _endDate = MutableStateFlow(DateTime.now().plusDays(10)) // 임시코드
+    private var _endDate = MutableStateFlow(DateTime.now().plusDays(10))
     val endDate : StateFlow<DateTime> get() = _endDate
 
-    var meetingDateTime = MutableStateFlow<List<TimeUiModel>>(emptyList())
+    var meetingDateTimes = MutableStateFlow<List<TimeUiModel>>(emptyList())
 
     val meetingDateTimeFromPeriod : StateFlow<List<TimeUiModel>> = combine(startDate, endDate){ start, end ->
         val size = getDateTimeTableSize(start, end)
@@ -77,7 +70,7 @@ class InfoViewModel @Inject constructor(
         for(i in 0 until size){
             dateTimes += getTimeUiModelList(start,end,i)
         }
-        meetingDateTime.value = dateTimes
+        meetingDateTimes.value = dateTimes
         dateTimes
     }.stateIn(
         scope = viewModelScope,
@@ -86,7 +79,7 @@ class InfoViewModel @Inject constructor(
     )
 
     private var _meetingDateCandidates = MutableStateFlow<List<CandidateUiModel>>(emptyList())
-    val meetingDateCandidates : StateFlow<List<CandidateUiModel>> = combine(_meetingDateCandidates,meetingDateTime){ candidates, dateTimes ->
+    val meetingDateCandidates : StateFlow<List<CandidateUiModel>> = combine(_meetingDateCandidates,meetingDateTimes){ candidates, dateTimes ->
         dateTimes.filter {
             it.selected
         }.map {
@@ -112,11 +105,6 @@ class InfoViewModel @Inject constructor(
         initialValue = 0
     )
 
-    fun initDates() {
-        _startDate.value = DateTime.now()
-        _endDate.value = DateTime.now().plusDays(10)
-    }
-
     val meetingPlaces: StateFlow<List<CandidateUiModel>> = combine(
         meetingPlaceCandidates,
         meetingRegisteredPlaces
@@ -131,21 +119,18 @@ class InfoViewModel @Inject constructor(
 
     private val _meetingInvitation = MutableStateFlow<MeetingInvitation?>(null)
     val meetingInvitation : StateFlow<MeetingInvitation?> get() = _meetingInvitation
+
     private var _meetingInitialPeriod = MutableStateFlow(CalendarUtil.calendarList)
     val meetingInitialPeriod: StateFlow<List<CalendarUiModel>> get() = _meetingInitialPeriod
-
-
-    private var _meetingPeriodStart = MutableStateFlow<CalendarUiModel?>(null)
-    val meetingPeriodStart: StateFlow<CalendarUiModel?> get() = _meetingPeriodStart
-
-    private var _meetingPeriodEnd = MutableStateFlow<CalendarUiModel?>(null)
-    val meetingPeriodEnd: StateFlow<CalendarUiModel?> get() = _meetingPeriodEnd
 
     private var _meetingPeriodState = MutableStateFlow(MeetingInfoPeriodState())
     val meetingPeriodState: StateFlow<MeetingInfoPeriodState> get() = _meetingPeriodState
 
     private val _meetingJoinState = MutableStateFlow(false)
     val meetingJoinState : StateFlow<Boolean> get() = _meetingJoinState
+
+    private var _infoMessage = MutableStateFlow("")
+    val infoMessage : StateFlow<String> get() = _infoMessage
 
     fun setPage(page: Int) {
         _page.value = page
@@ -180,7 +165,7 @@ class InfoViewModel @Inject constructor(
     }
 
     fun removeMeetingDateCandidate(id : Long){
-        meetingDateTime.value = meetingDateTime.value.map {
+        meetingDateTimes.value = meetingDateTimes.value.map {
             if(it.id == id) it.copy(selected = false)
             else it.copy()
         }
@@ -210,14 +195,28 @@ class InfoViewModel @Inject constructor(
 
 
     fun checkCodeValid() {
+        var index = 0L
         viewModelScope.launch {
             getMeetingByCodeUseCase(meetingCode.value)
                 .catch {
                     _meetingCodeStatus.value = CodeStatus.INVALID
                 }.collectLatest {
                     it.onSuccess {
-                        meetingId = it.meetingId
-                        _meetingCodeStatus.value = CodeStatus.SUCCESS
+                        if(!it.isJoined) {
+                            meetingId = it.meetingId
+                            _startDate.value = DateTime.parse(it.startDate)
+                            _endDate.value = DateTime.parse(it.endDate)
+                            meetingNicknameHint.value = it.currentUserName ?: ""
+                            meetingNicknameList.value = it.joinedUserInfoList.map {
+                                it.joinedUserName
+                            }
+                            _meetingRegisteredPlaces.value = it.userPromisePlaceList?.map {
+                                CandidateUiModel(index++, it.promisePlace, isPossibleDelete = false)
+                            } ?: emptyList<CandidateUiModel>()
+                            _meetingCodeStatus.value = CodeStatus.SUCCESS
+                        } else {
+                            _meetingCodeStatus.value = CodeStatus.IS_JOINED
+                        }
                     }.onFailure {
                         _meetingCodeStatus.value = CodeStatus.INVALID
                     }
@@ -233,13 +232,20 @@ class InfoViewModel @Inject constructor(
         _meetingInitialPeriod.value = meetingInitialPeriod.value.map {
             if (it.isCurrentMonth == true) {
                 if (meetingPeriodState.value.meetingPeriodStart != null && meetingPeriodState.value.meetingPeriodEnd != null) {
-                    if (meetingPeriodState.value.meetingPeriodStart?.dateTime == it.dateTime)
-                        it.copy(dateState = DateUiState.SELECTED_START)
-                    else if (meetingPeriodState.value.meetingPeriodEnd?.dateTime == it.dateTime)
-                        it.copy(dateState = DateUiState.SELECTED_END)
-                    //월요일일 때, 토요일일 떄, 1일일때, 28,30,31일때  조건 추가
+                    if (meetingPeriodState.value.meetingPeriodStart?.dateTime == it.dateTime){
+                        if(meetingPeriodState.value.meetingPeriodStart?.dateTime?.dayOfWeek == 6
+                            || it.dateTime.dayOfMonth().withMaximumValue().dayOfMonth == it.dateTime.dayOfMonth) it.copy(dateState = DateUiState.SELECTED_SATURDAY_START)
+                        else it.copy(dateState = DateUiState.SELECTED_START)
+                    }
+                    else if (meetingPeriodState.value.meetingPeriodEnd?.dateTime == it.dateTime){
+                        if(meetingPeriodState.value.meetingPeriodEnd?.dateTime?.dayOfWeek == 7
+                            || it.dateTime.dayOfMonth().withMinimumValue().dayOfMonth == it.dateTime.dayOfMonth) it.copy(dateState = DateUiState.SELECTED_SUNDAY_END)
+                        else it.copy(dateState = DateUiState.SELECTED_END)
+                    }
                     else if (it.dateTime.millis in meetingPeriodState.value.meetingPeriodStart!!.dateTime.millis..meetingPeriodState.value.meetingPeriodEnd!!.dateTime.millis)
-                        it.copy(dateState = DateUiState.PASS)
+                        if(it.dateTime.dayOfWeek == 7 || it.dateTime.dayOfMonth().withMinimumValue().dayOfMonth == it.dateTime.dayOfMonth) it.copy(dateState = DateUiState.PASS_START)
+                        else if(it.dateTime.dayOfWeek == 6  || it.dateTime.dayOfMonth().withMaximumValue().dayOfMonth == it.dateTime.dayOfMonth) it.copy(dateState = DateUiState.PASS_END)
+                        else it.copy(dateState = DateUiState.PASS)
                     else it.copy(dateState = DateUiState.INITIAL)
                 } else if (meetingPeriodState.value.meetingPeriodStart != null && meetingPeriodState.value.meetingPeriodEnd == null) {
                     if (meetingPeriodState.value.meetingPeriodStart?.dateTime == it.dateTime) {
@@ -285,14 +291,15 @@ class InfoViewModel @Inject constructor(
             meetingPeriodState.value.meetingPeriodStart?.dateTime?.let {
                 if(calendarUiModel.dateTime.isAfter(it.millis)) { // end가 이후가 맞는지?
                     if(it.plusDays(14).dayOfYear > calendarUiModel.dateTime.dayOfYear ){
-                        Log.d("asdasd", "맞다")
                         setMeetingPeriodEnd(calendarUiModel)
+                        _startDate.value = meetingPeriodState.value.meetingPeriodStart?.dateTime
+                        _endDate.value = meetingPeriodState.value.meetingPeriodEnd?.dateTime
                     } else {
-                        Log.d("asdasd", "14일 초과")
+                        _infoMessage.value = "14일 이내로 선택할 수 있어요"
                     }
                 }
                 else {
-                    Log.d("asdasd","선택안됨")
+                    _infoMessage.value = "끝 날짜는 시작 날짜 이후로 선택할 수 있어요"
                 }
             }
 
@@ -309,21 +316,17 @@ class InfoViewModel @Inject constructor(
                 MeetingCondition(
                     meetingName = meetingName.value,
                     userName = meetingUserName.value,
-                    startDate = "2023-02-22",
-                    endDate = "2023-03-04",
+                    startDate = startDate.value.toString("yyyy-MM-dd"),
+                    endDate =  endDate.value.toString("yyyy-MM-dd"),
                     minimumAlertMembers = meetingCapacity.value.toLong(),
-                    promiseTimeList = listOf(
+                    promiseTimeList = meetingDateTimes.value.filter {
+                        it.selected
+                    }.map {
                         UserPromiseTime(
-                            promiseDate = "2023-02-23",
-                            promiseTime = PromiseTime.DINNER
-                        ),
-                        UserPromiseTime(
-                            promiseDate = "2023-02-24",
-                            promiseTime = PromiseTime.MORNING
-                        ),
-                        UserPromiseTime(promiseDate = "2023-02-25", promiseTime = PromiseTime.LUNCH)
-
-                    ),
+                            promiseDate = it.date.toString("yyyy-MM-dd"),
+                            promiseTime = it.time
+                        )
+                    },
                     promisePlaceList = meetingPlaceCandidates.value.map {
                         it.title
                     }
@@ -337,7 +340,7 @@ class InfoViewModel @Inject constructor(
     }
 
     fun selectMeetingDateTime(id : Long){
-        meetingDateTime.value = meetingDateTime.value.map {
+        meetingDateTimes.value = meetingDateTimes.value.map {
             if(it.id == id){
                 it.copy(selected = !it.selected)
             }
@@ -354,23 +357,23 @@ class InfoViewModel @Inject constructor(
                     meetingJoinCondition = MeetingJoinCondition(
                         nickname = meetingUserName.value,
                         promisePlaceList = meetingPlaceCandidates.value.map { it.title },
-                        userPromiseTimeList = listOf(
+                        userPromiseTimeList = meetingDateTimes.value.filter {
+                            it.selected
+                        }.map {
                             UserPromiseTime(
-                                promiseDate = "2023-02-23",
-                                promiseTime = PromiseTime.DINNER
-                            ),
-                            UserPromiseTime(
-                                promiseDate = "2023-02-24",
-                                promiseTime = PromiseTime.MORNING
-                            ),
-                            UserPromiseTime(promiseDate = "2023-02-25", promiseTime = PromiseTime.LUNCH)
-
-                        )
+                                promiseDate = it.date.toString("yyyy-MM-dd"),
+                                promiseTime = it.time
+                            )
+                        }
                     )
                 ).catch {
 
                 }.collectLatest {
-                    if(it.isSuccess) _meetingJoinState.value = true
+                   it.onSuccess {
+                       _meetingJoinState.value = true
+                   }.onFailure {
+                       _infoMessage.value = it.message ?: "방에 참여할 수 없어요"
+                   }
                 }
             }
         }
@@ -378,4 +381,8 @@ class InfoViewModel @Inject constructor(
     }
 
     fun getMeetingId() = meetingId
+
+    fun setInfoMessageEmpty(){
+        _infoMessage.value = ""
+    }
 }

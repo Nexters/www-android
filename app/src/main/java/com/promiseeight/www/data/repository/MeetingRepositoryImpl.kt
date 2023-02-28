@@ -59,7 +59,7 @@ class MeetingRepositoryImpl @Inject constructor(
             .onSuccess {
                 emit(Result.success(Unit))
             }.onFailure {
-                emit(Result.success(Unit))
+                emit(Result.failure(it))
             }
     }
 
