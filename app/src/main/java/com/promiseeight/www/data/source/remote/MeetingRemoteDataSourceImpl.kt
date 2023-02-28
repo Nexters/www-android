@@ -1,10 +1,7 @@
 package com.promiseeight.www.data.source.remote
 
 import com.promiseeight.www.data.model.exception.getWwwException
-import com.promiseeight.www.data.model.request.JoinMeetingRequest
-import com.promiseeight.www.data.model.request.MeetingCreateRequest
-import com.promiseeight.www.data.model.request.PlaceVoteRequest
-import com.promiseeight.www.data.model.request.toJoinMeetingRequest
+import com.promiseeight.www.data.model.request.*
 import com.promiseeight.www.data.model.response.MeetingCreateResponse
 import com.promiseeight.www.data.model.response.MeetingDetailResponse
 import com.promiseeight.www.data.model.response.MeetingMainListResponse
@@ -103,6 +100,26 @@ class MeetingRemoteDataSourceImpl @Inject constructor(
                     meetingPlaceIdList = placeIdList
                 )
             )
+            if (response.code == 0) Result.success(response.result)
+            else Result.failure(getWwwException(response.code))
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun putMeetingStatusConfirmed(
+        meetingId: Long,
+        meetingPlaceId: Long,
+        meetingUserTimetableId: Long
+    ) : Result<Unit> {
+        return try {
+            val response = meetingService.putMeetingStatusConfirmed(
+                meetingId,
+                meetingConfirmRequest = MeetingConfirmRequest(
+                    meetingPlaceId,meetingUserTimetableId
+                )
+            )
+
             if (response.code == 0) Result.success(response.result)
             else Result.failure(getWwwException(response.code))
         } catch (e: Exception) {
