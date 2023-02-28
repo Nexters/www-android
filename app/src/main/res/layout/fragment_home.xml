@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">'
+        android:background="@color/gray_100"
+        android:layout_height="match_parent">
 
         <!-- 상단 메뉴바 -->
 
@@ -35,11 +36,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_26"
             android:layout_marginEnd="157dp"
+            android:background="@color/gray_100"
             android:layout_marginStart="@dimen/size_5"
-            app:tabPaddingEnd="0dp"
+            android:clipToPadding="false"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            app:tabRippleColor="@color/transparent"
             app:tabTextAppearance="@style/Text.Title5"
             app:tabTextColor="@color/gray_250"
-            app:tabIndicatorColor="@color/www_white"
+            app:tabIndicatorColor="@color/gray_100"
             app:tabSelectedTextColor="@color/www_black"
             app:layout_constraintTop_toBottomOf="@id/iv_logo" />
 
@@ -57,10 +62,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:backgroundTint="@color/www_black"
-            android:backgroundTint="@color/www_white"
+            android:tint="@color/www_white"
+            app:tint="@null"
+            android:scaleType="center"
+            android:backgroundTint="@color/www_black"
             android:src="@drawable/selector_floating_btn"
-            android:layout_marginBottom="@dimen/size_38"
-            android:layout_marginEnd="@dimen/size_20"
+            android:layout_margin="21.5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
