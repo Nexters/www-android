@@ -161,6 +161,7 @@
     <string name="mockup1_1">편리한 약속 관리</string>
     <string name="mockup1_2">여러 개의 약속 일정,한 눈에 파악하고 살펴보기</string>
 
-
-
+    <!-- meeting detail user list -->
+    <string name="meeting_detail_users_title">약속방 참여자</string>
+    <string name="meeting_detail_voting_users_title">투표 참여자</string>
 </resources>
