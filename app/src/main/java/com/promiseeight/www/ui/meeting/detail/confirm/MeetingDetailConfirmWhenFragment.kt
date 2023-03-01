@@ -45,7 +45,7 @@ class MeetingDetailConfirmWhenFragment : BaseFragment<FragmentMeetingDetailConfi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Timber.d("asdasd ${viewModel.hashCode()}")
+
         binding.let {
             initRecyclerView(it.rvRank)
             it.btnConfirm.setOnClickListener {
