@@ -5,6 +5,7 @@ import com.promiseeight.www.domain.model.PlaceVote
 import com.promiseeight.www.domain.model.UserPromisePlace
 import com.promiseeight.www.domain.model.UserPromiseTime
 import com.promiseeight.www.domain.model.MeetingStatus
+import com.promiseeight.www.ui.model.enums.MeetingYaksogi
 
 data class MeetingDetailUiModel(
     val hostName: String,
@@ -25,7 +26,8 @@ data class MeetingDetailUiModel(
     val userPromisePlaceList: List<UserPromisePlace>?,
     val userVoteList: List<PlaceVote>?,
     val votingUserCount: Int,
-    val userVoted: Boolean = false
+    val userVoted: Boolean = false,
+    val yaksogi: MeetingYaksogi,
 )
 
 fun MeetingDetail.toMeetingDetailUiModel() = MeetingDetailUiModel(
@@ -51,7 +53,8 @@ fun MeetingDetail.toMeetingDetailUiModel() = MeetingDetailUiModel(
     },
     userVoteList = userVoteList,
     votingUserCount = votingUserCount,
-    userVoted = getUserVoted()
+    userVoted = getUserVoted(),
+    yaksogi = MeetingYaksogi.valueOf(yaksogi)
 )
 
 fun MeetingDetail.getUserVoted(): Boolean {
