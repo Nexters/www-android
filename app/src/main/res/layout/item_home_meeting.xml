@@ -5,25 +5,11 @@
         <variable
             name="homeMeeting"
             type="com.promiseeight.www.ui.model.MeetingUiModel" />
-
+        <import type="com.promiseeight.www.domain.model.MeetingStatus"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/gray_100"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_ongoing_meet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_218"
-            android:text="@string/tv_ongoing_meet"
-            style="@style/Text.Title6"
-            android:visibility="invisible"
-            android:textColor="@color/gray_300"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
 
         <!-- 투표 status indicator -->
         <androidx.appcompat.widget.AppCompatTextView
@@ -34,9 +20,10 @@
             android:layout_marginEnd="@dimen/size_5"
             android:paddingStart="@dimen/size_10"
             android:paddingEnd="@dimen/size_10"
+            android:backgroundTint="@{homeMeeting.meetingStatus == MeetingStatus.WAITING ? @color/www_black : @color/www_green}"
             android:background="@drawable/indicator_black_item_home"
             android:gravity="center"
-            android:text="@string/indicator_ex_vote"
+            android:text="@{homeMeeting.meetingStatus == MeetingStatus.WAITING ? @string/indicator_ex_vote : (homeMeeting.meetingStatus == MeetingStatus.VOTING ? @string/indicator_vote_ing : @string/indicator_d_day(String.valueOf(1)))}"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@id/iv_background"
             app:layout_constraintEnd_toStartOf="@+id/indicator_back_person_Gray" />
@@ -49,14 +36,14 @@
             android:layout_width="wrap_content"
             android:layout_height="28dp"
             android:layout_marginEnd="@dimen/size_16"
-            android:drawableLeft="@drawable/ic_group_person_gray"
+            android:drawableStart="@{homeMeeting.meetingStatus == MeetingStatus.WAITING ? @drawable/ic_group_person_gray : @drawable/ic_group_person}"
             android:drawablePadding="@dimen/size_4"
             android:paddingStart="@dimen/size_10"
             android:paddingEnd="@dimen/size_10"
-            android:background="@drawable/indicator_gray_item_home"
+            android:background="@{homeMeeting.meetingStatus == MeetingStatus.WAITING ? @drawable/indicator_gray_item_home : @drawable/indicator_green_item_home}"
             android:gravity="center"
-            android:text="진행/전체"
-            android:textColor="@color/gray_600"
+            android:text="@{@string/indicator_count(homeMeeting.votingUserCount,homeMeeting.joinedUserCount)}"
+            android:textColor="@{homeMeeting.meetingStatus == MeetingStatus.WAITING ? @color/gray_600 : @color/www_white}"
             app:layout_constraintBottom_toTopOf="@id/iv_background"
             app:layout_constraintEnd_toEndOf="@+id/iv_background" />
 
@@ -81,9 +68,10 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_background"
-            android:layout_width="288dp"
+            android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginTop="@dimen/size_61"
+            android:layout_marginHorizontal="@dimen/size_43.5"
             android:background="@drawable/background_meeting_item"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -137,36 +125,13 @@
             android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{homeMeeting.confirmedDate}"
+            android:text="@{homeMeeting.confirmedTime == null ? @string/home_meeting_unconfirmed : @string/home_meeting_date_and_time(homeMeeting.confirmedDate,homeMeeting.confirmedTime) }"
             android:layout_marginTop="@dimen/size_13"
             android:layout_marginStart="@dimen/size_7"
             style="@style/Text.Body3"
-            android:textColor="@color/gray_700"
+            android:textColor="@{homeMeeting.confirmedTime == null ? @color/gray_250 : @color/gray_700 }"
             app:layout_constraintTop_toBottomOf="@id/tv_meeting_name"
             app:layout_constraintStart_toEndOf="@id/ic_calendar"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_term"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="•"
-            android:layout_marginTop="@dimen/size_13"
-            style="@style/Text.Body3"
-            android:textColor="@color/gray_700"
-            app:layout_constraintTop_toBottomOf="@id/tv_meeting_name"
-            app:layout_constraintStart_toEndOf="@id/tv_date"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{homeMeeting.confirmedTime}"
-            android:layout_marginStart="@dimen/size_1"
-            android:layout_marginTop="@dimen/size_13"
-            style="@style/Text.Body3"
-            android:textColor="@color/gray_700"
-            app:layout_constraintTop_toBottomOf="@id/tv_meeting_name"
-            app:layout_constraintStart_toEndOf="@id/tv_term"/>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_location"
@@ -182,69 +147,28 @@
             android:id="@+id/tv_meeting_place_item_meeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{homeMeeting.confirmedPlace}"
+            android:text="@{homeMeeting.confirmedPlace == null ? @string/home_meeting_unconfirmed : homeMeeting.confirmedPlace }"
             android:layout_marginTop="@dimen/size_13"
             android:layout_marginStart="@dimen/size_7"
             style="@style/Text.Body3"
-            android:textColor="@color/gray_700"
+            android:textColor="@{homeMeeting.confirmedPlace == null ? @color/gray_250 : @color/gray_700 }"
             app:layout_constraintTop_toBottomOf="@id/tv_date"
             app:layout_constraintStart_toEndOf="@id/ic_calendar"/>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_character"
-            android:layout_width="399dp"
-            android:layout_height="295dp"
-            android:layout_marginTop="@dimen/size_16"
-            android:src="@drawable/img_yaksogi1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_polygon"/>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/toggle_item_meeting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_23"
-            android:background="@drawable/background_page_toggle_item_meeting"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_character"/>
-
-        <TextView
-            android:id="@+id/meeting_index_item_meeting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1"
-            android:layout_marginStart="@dimen/size_14"
-            style="@style/Text.Body4"
-            android:textColor="@color/www_green"
-            app:layout_constraintTop_toTopOf="@id/toggle_item_meeting"
-            app:layout_constraintBottom_toBottomOf="@id/toggle_item_meeting"
-            app:layout_constraintStart_toStartOf="@id/toggle_item_meeting"/>
-
-        <TextView
-            android:id="@+id/meeting_count_end_item_meeting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="5"
-            android:layout_marginEnd="@dimen/size_14"
-            style="@style/Text.Body4"
-            android:textColor="@color/gray_450"
-            app:layout_constraintTop_toTopOf="@id/toggle_item_meeting"
-            app:layout_constraintBottom_toBottomOf="@id/toggle_item_meeting"
-            app:layout_constraintEnd_toEndOf="@id/toggle_item_meeting"/>
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            android:layout_marginTop="@dimen/size_4"
+            android:adjustViewBounds="true"
+            android:layout_marginHorizontal="@dimen/size_10"
+            app:meetingYaksogi="@{homeMeeting.yaksogi}"
+            app:layout_constraintStart_toStartOf="@id/iv_background"
+            app:layout_constraintEnd_toEndOf="@id/iv_background"
+            app:layout_constraintTop_toBottomOf="@id/iv_polygon"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
 
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="/"
-            android:textColor="@color/gray_450"
-            app:layout_constraintStart_toStartOf="@id/toggle_item_meeting"
-            app:layout_constraintEnd_toEndOf="@id/toggle_item_meeting"
-            app:layout_constraintTop_toTopOf="@id/toggle_item_meeting"
-            app:layout_constraintBottom_toBottomOf="@id/toggle_item_meeting"/>
 
 
 
