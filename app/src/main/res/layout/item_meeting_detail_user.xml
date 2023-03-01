@@ -18,19 +18,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:src="@drawable/img_user_green_small"
+            android:layout_marginStart="@dimen/size_20"
+            app:userImageSmall="@{meetingDetailUser.characterType}"
             android:layout_marginVertical="@dimen/size_8"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_user"
-            style="@style/Text.Body8"
+            style="@style/Text.Title9"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
+            android:text="@{meetingDetailUser.userName}"
             app:layout_constraintTop_toTopOf="@id/iv_user"
             app:layout_constraintBottom_toBottomOf="@id/iv_user"
             app:layout_constraintStart_toEndOf="@id/iv_user"
             app:layout_constraintEnd_toEndOf="parent"
-            android:gravity="center"
+            android:gravity="start"
             android:layout_marginStart="@dimen/size_8"
             android:textColor="@color/www_black"/>
 

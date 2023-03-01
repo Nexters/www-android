@@ -12,6 +12,7 @@ data class MeetingDetailUiModel(
     val isHost: Boolean,
     val isJoined: Boolean,
     val joinedUserCount: Long,
+    val joinedUserList : List<MeetingDetailUserUiModel>,
     val meetingCode: String,
     val meetingId: Long,
     val meetingName: String,
@@ -35,6 +36,9 @@ fun MeetingDetail.toMeetingDetailUiModel() = MeetingDetailUiModel(
     isHost = isHost,
     isJoined = isJoined,
     joinedUserCount = joinedUserCount,
+    joinedUserList = joinedUserInfoList.map {
+        it.toMeetingDetailUserUiModel()
+    },
     meetingCode = meetingCode,
     meetingId = meetingId,
     meetingName = meetingName,
@@ -54,7 +58,7 @@ fun MeetingDetail.toMeetingDetailUiModel() = MeetingDetailUiModel(
     userVoteList = userVoteList,
     votingUserCount = votingUserCount,
     userVoted = getUserVoted(),
-    yaksogi = MeetingYaksogi.valueOf(yaksogi)
+    yaksogi = MeetingYaksogi.valueOf(yaksogi),
 )
 
 fun MeetingDetail.getUserVoted(): Boolean {

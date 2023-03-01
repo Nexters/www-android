@@ -65,6 +65,12 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
                     MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVoteFragment()
                 )
             }
+
+            it.ivParticipant.setOnClickListener {
+                findNavController().navigate(
+                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailUsersFragment()
+                )
+            }
         }
 
         initObserver()
