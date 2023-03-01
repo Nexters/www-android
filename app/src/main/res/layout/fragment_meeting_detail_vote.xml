@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.promiseeight.www.ui.meeting.detail.MeetingDetailViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -83,7 +89,7 @@
                     android:layout_marginStart="@dimen/size_19"
                     android:layout_marginTop="@dimen/size_10"
                     android:elevation="@dimen/size_1"
-                    android:text="0명 참여 완료"
+                    android:text="@{@string/meeting_detail_vote_count(viewModel.meetingDetail.votingUserCount)}"
                     android:textColor="@color/gray_350"
                     app:layout_constraintStart_toStartOf="@id/rv_rank"
                     app:layout_constraintTop_toBottomOf="@id/v_rank_divider" />
@@ -116,7 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/size_20"
             android:layout_marginTop="@dimen/size_12"
-            android:text="@string/meeting_detail_start_voting"
+            android:text="@string/meeting_detail_vote"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/v_bottom" />
