@@ -69,8 +69,10 @@
     <string name="meeting_detail_start_voting">투표 시작하기</string>
     <string name="meeting_detail_go_to_vote">투표 하러가기</string>
     <string name="meeting_detail_vote">투표하기</string>
+    <string name="meeting_detail_voted">투표 완료</string>
     <string name="meeting_detail_vote_count">%d명 참여</string>
     <string name="meeting_detail_voting_count">%d명 참여 중</string>
+    <string name="meeting_detail_voted_count">%d명 참여 완료</string>
     <string name="meeting_detail_rank_count">%d명</string>
 
     <!-- common -->

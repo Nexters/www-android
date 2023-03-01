@@ -67,7 +67,7 @@
     <!-- plus padding size -->
     <dimen name="size_16_padding_8">32dp</dimen>
     <dimen name="size_24_padding_8">40dp</dimen>
-
+    <dimen name="size_30_padding_8">46dp</dimen>
 
     <!-- font size -->
 
