@@ -39,7 +39,6 @@ class DatePagerFragment : BaseFragment<FragmentDatePagerBinding>(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Timber.d("asdasd : ${viewModel.hashCode()}")
         initRecyclerView(binding.rvDatePager)
         initObserver()
     }

@@ -63,7 +63,8 @@ fun ImageView.setRightRect(dateUiState: DateUiState) {
 }
 
 @BindingAdapter("meetingYaksogi")
-fun ImageView.setMeetingYaksogi(meetingYaksogi: MeetingYaksogi) {
+fun ImageView.setMeetingYaksogi(meetingYaksogi: MeetingYaksogi?) {
+    if(meetingYaksogi == null) return
     Glide.with(this.context)
         .load(
             when (meetingYaksogi) {

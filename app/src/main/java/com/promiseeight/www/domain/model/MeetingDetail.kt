@@ -27,5 +27,6 @@ data class MeetingDetail(
     val votingUserCount : Int,
     val joinedUserInfoList : List<User>,
     val startDate : String,
-    val endDate : String
+    val endDate : String,
+    val yaksogi: String
 )

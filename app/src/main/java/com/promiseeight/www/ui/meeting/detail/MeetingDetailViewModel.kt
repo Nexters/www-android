@@ -7,6 +7,7 @@ import com.promiseeight.www.domain.usecase.meeting.GetMeetingByIdUseCase
 import com.promiseeight.www.domain.usecase.meeting.VotePlacesUseCase
 import com.promiseeight.www.ui.model.*
 import com.promiseeight.www.domain.model.MeetingStatus
+import com.promiseeight.www.domain.usecase.meeting.ConfirmMeetingUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,7 +21,8 @@ import javax.inject.Inject
 class MeetingDetailViewModel @Inject constructor(
     private val getMeetingByIdUseCase: GetMeetingByIdUseCase,
     private val changeMeetingStatusUseCase: ChangeMeetingStatusUseCase,
-    private val votePlacesUseCase: VotePlacesUseCase
+    private val votePlacesUseCase: VotePlacesUseCase,
+    private val confirmMeetingUseCase: ConfirmMeetingUseCase
 ) : ViewModel() {
 
     private var _meetingId = MutableStateFlow(-1L)
@@ -187,12 +189,6 @@ class MeetingDetailViewModel @Inject constructor(
         }
     }
 
-//    fun getUserVoted() : Boolean {
-//        meetingDetail.value?.let {
-//            it.userVoteList
-//        }
-//    }
-
     private fun getNextMeetingStatus(meetingStatus: MeetingStatus): MeetingStatus { // 현재 상태를 통해 다음 상태를 받아온다.
         return when (meetingStatus) {
             MeetingStatus.WAITING -> MeetingStatus.VOTING
@@ -201,5 +197,32 @@ class MeetingDetailViewModel @Inject constructor(
             MeetingStatus.CONFIRMED -> MeetingStatus.DONE
             else -> MeetingStatus.TERMINATED
         }
+    }
+
+    fun confirmMeeting() {
+        try {
+            if(dateRanks.value.any { it.confirmed } && placeRanks.value.any { it.confirmed }) {
+                meetingDetail.value?.let { meetingDetail ->
+                    viewModelScope.launch {
+                        confirmMeetingUseCase(
+                            meetingDetail.meetingId,
+                            placeRanks.value.filter { it.confirmed }.first().placeId,
+                            dateRanks.value.filter { it.confirmed }.first().timetableId,
+                        ).catch {
+                            Timber.e(it)
+                        }.collectLatest {
+                            it.onSuccess {
+                                getMeetingDetailById(meetingDetail.meetingId)
+                            }.onFailure {
+                                Timber.e(it)
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (e : Exception){
+            Timber.e(e)
+        }
+
     }
 }
