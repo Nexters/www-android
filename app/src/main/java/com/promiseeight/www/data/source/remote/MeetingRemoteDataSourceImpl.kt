@@ -9,7 +9,7 @@ import com.promiseeight.www.data.model.response.MeetingDetailResponse
 import com.promiseeight.www.data.model.response.MeetingMainListResponse
 import com.promiseeight.www.data.source.remote.api.MeetingService
 import com.promiseeight.www.domain.model.MeetingJoinCondition
-import com.promiseeight.www.ui.meeting.detail.MeetingStatus
+import com.promiseeight.www.domain.model.MeetingStatus
 import javax.inject.Inject
 
 /*

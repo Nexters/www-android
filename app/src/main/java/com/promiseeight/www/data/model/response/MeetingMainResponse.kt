@@ -5,23 +5,23 @@ import com.promiseeight.www.domain.model.MeetingMain
 
 data class MeetingMainResponse(
     @SerializedName("confirmedDate")
-    val confirmedDate: String?,
+    val confirmedDate: String? = null,
     @SerializedName("confirmedPlace")
-    val confirmedPlace: String?,
+    val confirmedPlace: String?  = null,
     @SerializedName("confirmedTime")
-    val confirmedTime: String?,
+    val confirmedTime: String?  = null,
     @SerializedName("hostName")
     val hostName: String,
     @SerializedName("joinedUserCount")
     val joinedUserCount: Int,
     @SerializedName("meetingId")
-    val meetingId: Int,
+    val meetingId: Long,
     @SerializedName("meetingName")
     val meetingName: String,
     @SerializedName("meetingStatus")
     val meetingStatus: String,
     @SerializedName("minimumAlertMembers")
-    val minimumAlertMembers: Int,
+    val minimumAlertMembers: Long,
     @SerializedName("votingUserCount")
     val votingUserCount: Int,
     @SerializedName("yaksokiType")

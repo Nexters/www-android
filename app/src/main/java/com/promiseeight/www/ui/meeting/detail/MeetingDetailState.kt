@@ -1,14 +1,8 @@
 package com.promiseeight.www.ui.meeting.detail
 
+import com.promiseeight.www.domain.model.MeetingStatus
+
 data class MeetingDetailState(
     val meetingStatus : MeetingStatus = MeetingStatus.WAITING
 )
 
-enum class MeetingStatus{
-    WAITING,
-    VOTING,
-    VOTED,
-    DONE,
-    CONFIRMED,
-    TERMINATED // 완전 끝
-}

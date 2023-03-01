@@ -6,7 +6,7 @@ import com.promiseeight.www.data.model.response.MeetingCreateResponse
 import com.promiseeight.www.data.model.response.MeetingDetailResponse
 import com.promiseeight.www.data.model.response.MeetingMainListResponse
 import com.promiseeight.www.domain.model.MeetingJoinCondition
-import com.promiseeight.www.ui.meeting.detail.MeetingStatus
+import com.promiseeight.www.domain.model.MeetingStatus
 
 /*
     Meeting(약속) 관련 RemoteDataSource 인터페이스

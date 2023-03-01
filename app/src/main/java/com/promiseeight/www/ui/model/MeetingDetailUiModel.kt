@@ -4,7 +4,7 @@ import com.promiseeight.www.domain.model.MeetingDetail
 import com.promiseeight.www.domain.model.PlaceVote
 import com.promiseeight.www.domain.model.UserPromisePlace
 import com.promiseeight.www.domain.model.UserPromiseTime
-import com.promiseeight.www.ui.meeting.detail.MeetingStatus
+import com.promiseeight.www.domain.model.MeetingStatus
 
 data class MeetingDetailUiModel(
     val hostName : String,
