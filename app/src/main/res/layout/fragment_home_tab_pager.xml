@@ -6,6 +6,7 @@
             type="com.promiseeight.www.ui.home.HomeViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -22,12 +23,13 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/toggle_item_meeting"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_23"
             android:background="@drawable/background_page_toggle_item_meeting"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+           android:paddingStart="@dimen/size_14"
+            app:layout_constraintStart_toStartOf="@id/meeting_index_item_meeting"
+            app:layout_constraintEnd_toEndOf="@id/meeting_count_end_item_meeting"
             app:layout_constraintTop_toBottomOf="@id/vp_meeting"/>
 
         <TextView
@@ -35,24 +37,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{viewModel.homePosition == 0 ? @string/number(viewModel.ingPage) : @string/number(viewModel.endPage) }"
-            android:layout_marginStart="@dimen/size_14"
+            android:paddingStart="@dimen/size_14"
             style="@style/Text.Body4"
             android:textColor="@color/www_green"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintTop_toTopOf="@id/toggle_item_meeting"
             app:layout_constraintBottom_toBottomOf="@id/toggle_item_meeting"
-            app:layout_constraintStart_toStartOf="@id/toggle_item_meeting"/>
+            tools:text="20"
+            app:layout_constraintEnd_toStartOf="@id/tv_slash"/>
 
         <TextView
             android:id="@+id/meeting_count_end_item_meeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{viewModel.homePosition == 0 ? @string/number(viewModel.meetingMainList.meetingIngList.size()) : @string/number(viewModel.meetingMainList.meetingEndList.size()) }"
-            android:layout_marginEnd="@dimen/size_14"
+            android:paddingEnd="@dimen/size_14"
             style="@style/Text.Body4"
+            tools:text="30"
             android:textColor="@color/gray_450"
             app:layout_constraintTop_toTopOf="@id/toggle_item_meeting"
-            app:layout_constraintBottom_toBottomOf="@id/toggle_item_meeting"
-            app:layout_constraintEnd_toEndOf="@id/toggle_item_meeting"/>
+            app:layout_constraintStart_toEndOf="@id/tv_slash"
+            app:layout_constraintBottom_toBottomOf="@id/toggle_item_meeting"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_slash"
@@ -60,8 +65,8 @@
             android:layout_height="wrap_content"
             android:text="/"
             android:textColor="@color/gray_450"
-            app:layout_constraintStart_toStartOf="@id/toggle_item_meeting"
-            app:layout_constraintEnd_toEndOf="@id/toggle_item_meeting"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/toggle_item_meeting"
             app:layout_constraintBottom_toBottomOf="@id/toggle_item_meeting"/>
 
