@@ -7,6 +7,7 @@
         <variable
             name="viewModel"
             type="com.promiseeight.www.ui.meeting.detail.MeetingDetailViewModel" />
+        <import type="android.view.View"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -72,13 +73,18 @@
             app:layout_constraintTop_toBottomOf="@id/tv_subtitle" />
         
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:id="@+id/iv_meeting"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/size_0"
             android:elevation="@dimen/size_2"
+            android:adjustViewBounds="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/img_yaksogi_rest"
-            app:layout_constraintWidth_percent="70"/>
+            app:layout_constraintTop_toBottomOf="@id/iv_participant"
+            android:layout_marginEnd="@dimen/size_30"
+            app:layout_constraintBottom_toBottomOf="@id/v_top"
+            app:meetingYaksogi="@{viewModel.meetingDetail.yaksogi}"
+            app:layout_constraintWidth_percent="70"
+            tools:src="@drawable/img_yaksogi_eating"/>
 
         <!-- 수정 필요 -->
         <androidx.core.widget.NestedScrollView
@@ -91,7 +97,90 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingBottom="@dimen/size_44">
+                
+                <View
+                    android:id="@+id/v_confirm_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_54"
+                    android:background="@drawable/rectangle_white_radius_10"
+                    android:layout_marginHorizontal="@dimen/size_20"
+                    android:elevation="@dimen/size_1"
+                    android:layout_marginTop="@dimen/size_16"
+                    android:visibility="@{viewModel.meetingDetail.confirmedDate == null ? View.GONE : View.VISIBLE }"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_bell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/v_confirm_info"
+                    app:layout_constraintStart_toStartOf="@id/v_confirm_info"
+                    app:layout_constraintBottom_toBottomOf="@id/v_confirm_info"
+                    android:visibility="@{viewModel.meetingDetail.confirmedDate == null ? View.GONE : View.VISIBLE }"
+                    android:src="@drawable/ic_bell"
+                    android:elevation="@dimen/size_1"
+                    android:layout_marginHorizontal="@dimen/size_15"
+                    android:layout_marginStart="@dimen/size_16"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_confirm_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Text.Body4"
+                    android:elevation="@dimen/size_1"
+                    android:text="@{viewModel.meetingDetail.confirmedDate}"
+                    android:visibility="@{viewModel.meetingDetail.confirmedDate == null ? View.GONE : View.VISIBLE }"
+                    app:layout_constraintTop_toTopOf="@id/iv_bell"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_bell"
+                    app:layout_constraintStart_toEndOf="@id/iv_bell"
+                    android:layout_marginStart="@dimen/size_8"
+                    android:textColor="@color/www_black"
+                    tools:text="23. 01. 20 금"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_confirm_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Text.Body4"
+                    android:text="@{viewModel.meetingDetail.confirmedTime}"
+                    android:visibility="@{viewModel.meetingDetail.confirmedDate == null ? View.GONE : View.VISIBLE }"
+                    android:elevation="@dimen/size_1"
+                    app:layout_constraintTop_toTopOf="@id/tv_confirm_date"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_confirm_date"
+                    app:layout_constraintStart_toEndOf="@id/tv_confirm_date"
+                    android:layout_marginStart="@dimen/size_6"
+                    android:textColor="@color/www_black"
+                    tools:text="아침"/>
+
+                <View
+                    android:id="@+id/v_border_horiz"
+                    android:layout_width="@dimen/size_1"
+                    android:layout_height="@dimen/size_12"
+                    android:elevation="@dimen/size_1"
+                    android:visibility="@{viewModel.meetingDetail.confirmedDate == null ? View.GONE : View.VISIBLE }"
+                    app:layout_constraintTop_toTopOf="@id/tv_confirm_time"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_confirm_time"
+                    app:layout_constraintStart_toEndOf="@id/tv_confirm_time"
+                    android:layout_marginStart="@dimen/size_8"
+                    android:background="@color/gray_300"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_confirm_place"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Text.Body4"
+                    android:visibility="@{viewModel.meetingDetail.confirmedDate == null ? View.GONE : View.VISIBLE }"
+                    android:text="@{viewModel.meetingDetail.confirmedPlace}"
+                    android:elevation="@dimen/size_1"
+                    app:layout_constraintTop_toTopOf="@id/v_border_horiz"
+                    app:layout_constraintBottom_toBottomOf="@id/v_border_horiz"
+                    app:layout_constraintStart_toEndOf="@id/v_border_horiz"
+                    android:layout_marginStart="@dimen/size_8"
+                    android:textColor="@color/www_black"
+                    tools:text="합정역"/>
+                
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_when"
                     style="@style/Text.Title3"
@@ -102,7 +191,8 @@
                     android:text="@string/meeting_detail_when"
                     android:textColor="@color/www_black"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/v_confirm_info"
+                    />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/iv_when_more"
@@ -113,7 +203,7 @@
                     android:padding="@dimen/size_8"
                     android:src="@drawable/ic_next"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/v_confirm_info" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_when"

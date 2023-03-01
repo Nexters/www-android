@@ -31,10 +31,10 @@ class MeetingRepositoryImpl @Inject constructor(
             try{
                 emit(Result.success(it.toMeetingDetail()))
             } catch (e : Exception){
-                Timber.d("asdasd ${e.toString()}")
+                Timber.e(e)
             }
         }.onFailure {
-            Timber.d("asdasd ${it.toString()}")
+            Timber.e(it)
             emit(Result.failure(it))
         }
     }
@@ -89,7 +89,11 @@ class MeetingRepositoryImpl @Inject constructor(
     ): Flow<Result<Unit>> = flow {
         meetingRemoteDataSource.putMeetingStatusConfirmed(
             meetingId,meetingPlaceId,meetingUserTimetableId
-        )
+        ).onSuccess {
+            emit(Result.success(Unit))
+        }.onFailure {
+            emit(Result.failure(it))
+        }
     }
 
     override fun getMeetings(): Flow<Result<MeetingMainList>> = flow {

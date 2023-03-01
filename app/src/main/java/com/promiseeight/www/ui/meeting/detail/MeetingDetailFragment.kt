@@ -173,12 +173,18 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
                         viewModel.changeMeetingStatus()
                     }
                     MeetingStatus.VOTING -> {
-                        findNavController().navigate(
-                            MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVoteFragment()
-                        )
+                        if(!meetingDetail.userVoted) { // 방장이 투표하기전이면 투표하는 화면으로 이동
+                            findNavController().navigate(
+                                MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVoteFragment()
+                            )
+                        }else { // 방장이 투표했으면 투표종료하기 버튼으로 종료할 수 있음
+                            viewModel.changeMeetingStatus()
+                        }
                     }
                     MeetingStatus.VOTED -> {
-
+                        findNavController().navigate(
+                            MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailConfirmWhenFragment()
+                        )
                     }
                     else -> {
 

@@ -125,7 +125,13 @@
     <fragment
         android:id="@+id/meetingDetailConfirmWhereFragment"
         android:name="com.promiseeight.www.ui.meeting.detail.confirm.MeetingDetailConfirmWhereFragment"
-        android:label="MeetingDetailConfirmWhereFragment" />
+        android:label="MeetingDetailConfirmWhereFragment" >
+
+        <action
+            android:id="@+id/action_meetingDetailConfirmWhereFragment_to_fragment_meeting_detail"
+            app:destination="@id/fragment_meeting_detail"
+            app:popUpTo="@id/fragment_home"/>
+    </fragment>
 
     <!-- 이거 추가하는거 맞는지 확인해주세요 -->
     <fragment

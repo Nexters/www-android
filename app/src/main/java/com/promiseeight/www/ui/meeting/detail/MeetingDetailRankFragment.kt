@@ -37,6 +37,7 @@ class MeetingDetailRankFragment : BaseFragment<FragmentMeetingDetailRankBinding>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.viewModel = viewModel
 
         binding.let {
             initRecyclerView(it.rvRank)
