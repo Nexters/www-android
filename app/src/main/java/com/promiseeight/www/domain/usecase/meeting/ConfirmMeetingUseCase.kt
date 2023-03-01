@@ -1,7 +1,6 @@
 package com.promiseeight.www.domain.usecase.meeting
 
 import com.promiseeight.www.domain.repository.MeetingRepository
-import com.promiseeight.www.ui.meeting.detail.MeetingStatus
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
