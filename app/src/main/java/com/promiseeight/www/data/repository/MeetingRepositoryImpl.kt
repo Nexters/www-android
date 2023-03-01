@@ -7,7 +7,7 @@ import com.promiseeight.www.data.model.response.toMeetingMainList
 import com.promiseeight.www.data.source.remote.MeetingRemoteDataSource
 import com.promiseeight.www.domain.model.*
 import com.promiseeight.www.domain.repository.MeetingRepository
-import com.promiseeight.www.ui.meeting.detail.MeetingStatus
+import com.promiseeight.www.domain.model.MeetingStatus
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import timber.log.Timber
