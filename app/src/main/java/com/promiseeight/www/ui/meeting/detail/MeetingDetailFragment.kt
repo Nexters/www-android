@@ -26,7 +26,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
 
-    private val viewModel : MeetingDetailViewModel by hiltNavGraphViewModels(R.id.main_navigation)
+    private val viewModel: MeetingDetailViewModel by hiltNavGraphViewModels(R.id.main_navigation)
 
     private val dateRankAdapter: RankAdapter<DateRankUiModel> by lazy {
         RankAdapter()
@@ -46,23 +46,27 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.getMeetingDetailById(-1L)
         viewModel.setMeetingId((navArgs<MeetingDetailFragmentArgs>().value.meetingId).toLong())
         binding.viewModel = viewModel
         binding.let {
-            initRecyclerViews(it.rvWhen,it.rvWhere)
+            initRecyclerViews(it.rvWhen, it.rvWhere)
 
             it.btnVote.setOnClickListener {
-                findNavController().navigate(
-                    //MeetingDetailFragmentDirections.actionFragmentMeetingDetailToFragmentMeetingDetailRank()
-                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVoteFragment()
-                )
+                clickNextButton()
             }
 
             it.vShare.setOnClickListener {
                 navigateToDetailConfirm()
             }
+
+            it.ivWhereMore.setOnClickListener {
+                findNavController().navigate(
+                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVoteFragment()
+                )
+            }
         }
-        setOnBtnNext()
+
         initObserver()
     }
 
@@ -82,7 +86,7 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
 
     private fun initObserver() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.dateRanks.collectLatest {
                         dateRankAdapter.submitList(it)
@@ -95,14 +99,14 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
                 }
                 launch {
                     viewModel.meetingId.collectLatest {
-                        if(it >= 0L){
+                        if (it >= 0L) {
                             viewModel.getMeetingDetailById(it)
                         }
                     }
                 }
                 launch {
                     viewModel.meetingDetail.collectLatest {
-                        if(it != null){
+                        if (it != null) {
                             viewModel.setDateRanks()
                             viewModel.setPlaceRanks()
                             updateButton()
@@ -113,22 +117,22 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
         }
     }
 
-    private fun updateButton(){
-        viewModel.meetingDetail.value?.let{
-            if(it.isHost){
-                when(it.meetingStatus){
+    private fun updateButton() {
+        viewModel.meetingDetail.value?.let {
+            if (it.isHost) {
+                when (it.meetingStatus) {
                     MeetingStatus.WAITING -> {
                         binding.btnVote.text = "투표 시작하기"
                         binding.btnVote.isEnabled = true
                     }
                     MeetingStatus.VOTING -> {
-                     //   if () { 방장이 투표안했으면
+                        if (!it.userVoted) {
                             binding.btnVote.text = "투표 하러가기"
                             binding.btnVote.isEnabled = true
-                       // } else {
-                        binding.btnVote.text = "투표 종료하기"
-                        binding.btnVote.isEnabled = true
-                        //}
+                        } else {
+                            binding.btnVote.text = "투표 종료하기"
+                            binding.btnVote.isEnabled = true
+                        }
                     }
                     MeetingStatus.VOTED -> {
                         binding.btnVote.text = "약속 확정하기"
@@ -140,15 +144,17 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
                 }
 
 
-            } else if(it.isJoined){
-                when(it.meetingStatus){
+            } else if (it.isJoined) {
+                when (it.meetingStatus) {
                     MeetingStatus.WAITING -> {
                         binding.btnVote.text = "투표 하러가기"
                         binding.btnVote.isEnabled = false
                     }
                     MeetingStatus.VOTING -> {
-                        binding.btnVote.isEnabled = true
-                        binding.btnVote.text = "투표 하러가기"
+                        if (!it.userVoted) {
+                            binding.btnVote.isEnabled = true
+                            binding.btnVote.text = "투표 하러가기"
+                        } else binding.vBottom.visibility = View.GONE
                     }
                     else -> {
                         binding.vBottom.visibility = View.GONE
@@ -159,44 +165,51 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
         }
     }
 
-    private fun setOnBtnNext() {
-        //viewModel
-//        if(meetingDetail.isHost){
-//            when(meetingDetail.meetingStatus){
-//                MeetingStatus.WAITING -> {
-//
-//                }
-//                MeetingStatus.VOTING -> {
-//                    //   if () { 방장이 투표안했으면
-//                    binding.btnVote.text = "투표 하러가기"
-//                    binding.btnVote.isEnabled = true
-//                    // } else {
-//                    binding.btnVote.text = "투표 종료하기"
-//                    binding.btnVote.isEnabled = true
-//                    //}
-//                }
-//                MeetingStatus.VOTED -> {
-//
-//                }
-//                else -> {
-//
-//                }
-//            }
-//
-//
-//        } else if(meetingDetail.isJoined){
-//            when(meetingDetail.meetingStatus){
-//                MeetingStatus.WAITING -> {
-//
-//                }
-//                MeetingStatus.VOTING -> {
-//
-//                }
-//                else -> {
-//                    binding.vBottom.visibility = View.GONE
-//                }
-//            }
-//        }
+    private fun clickNextButton() {
+        viewModel.meetingDetail.value?.let { meetingDetail ->
+            if (meetingDetail.isHost) {
+                when (meetingDetail.meetingStatus) {
+                    MeetingStatus.WAITING -> {
+                        viewModel.changeMeetingStatus()
+                    }
+                    MeetingStatus.VOTING -> {
+                        findNavController().navigate(
+                            MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVoteFragment()
+                        )
+                    }
+                    MeetingStatus.VOTED -> {
+
+                    }
+                    else -> {
+
+                    }
+                }
+
+
+            } else if (meetingDetail.isJoined) {
+                when (meetingDetail.meetingStatus) {
+                    MeetingStatus.WAITING -> {
+                        //버튼 막혀있음
+                    }
+                    MeetingStatus.VOTING -> {
+                        if(!meetingDetail.userVoted)
+                            findNavController().navigate(
+                                MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVoteFragment()
+                            )
+                        else {
+                            //버튼 막혀있음
+                        }
+                    }
+                    else -> {
+
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
     }
 
     private fun navigateToDetailConfirm() {

@@ -69,8 +69,27 @@ class MeetingRepositoryImpl @Inject constructor(
             .onSuccess {
                 emit(Result.success(Unit))
             }.onFailure {
-                emit(Result.failure(it)) //확인부탁
+                emit(Result.failure(it))
             }
+    }
+
+    override fun votePlaces(meetingId: Long, placeIdList: List<Long>): Flow<Result<Unit>> = flow {
+        meetingRemoteDataSource.votePlaces(meetingId,placeIdList)
+            .onSuccess {
+                emit(Result.success(Unit))
+            }.onFailure {
+                emit(Result.failure(it))
+            }
+    }
+
+    override fun putMeetingStatusConfirmed(
+        meetingId: Long,
+        meetingPlaceId: Long,
+        meetingUserTimetableId: Long
+    ): Flow<Result<Unit>> = flow {
+        meetingRemoteDataSource.putMeetingStatusConfirmed(
+            meetingId,meetingPlaceId,meetingUserTimetableId
+        )
     }
 
     override fun getMeetings(): Flow<Result<MeetingMainList>> = flow {

@@ -54,6 +54,10 @@
             app:argType="string"/>
         <argument android:name="arg_invitation_link"
             app:argType="string"/>
+        <action
+            android:id="@+id/action_fragment_meeting_share_to_fragment_meeting_detail"
+            app:destination="@id/fragment_meeting_detail"
+            app:popUpTo="@id/fragment_home"/>
 
     </fragment>
     <fragment

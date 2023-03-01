@@ -9,6 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -16,9 +20,14 @@ import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentMeetingShareBinding
 import com.promiseeight.www.ui.common.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MeetingShareFragment : BaseFragment<FragmentMeetingShareBinding>() {
+
+    private val viewModel : MeetingShareViewModel by viewModels()
+
     override fun getFragmentBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -34,11 +43,25 @@ class MeetingShareFragment : BaseFragment<FragmentMeetingShareBinding>() {
         }
 
         binding.btnNext.setOnClickListener {
-//            findNavController().navigate(
-//                Uri.parse("https://www/meeting/detail/${navArgs<MeetingShareFragmentArgs>().value.argInvitationCode}"),
-//                NavOptions.Builder().apply {
-//                setPopUpTo(R.id.fragment_home,false)
-//            }.build())
+            viewModel.getMeetingByCode(navArgs<MeetingShareFragmentArgs>().value.argInvitationCode)
+        }
+
+        initObserver()
+    }
+
+    private fun initObserver(){
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+                launch {
+                    viewModel.meetingId.collectLatest {
+                        if(it>=0){
+                            findNavController().navigate(
+                                MeetingShareFragmentDirections.actionFragmentMeetingShareToFragmentMeetingDetail(it.toString())
+                            )
+                        }
+                    }
+                }
+            }
         }
     }
 
