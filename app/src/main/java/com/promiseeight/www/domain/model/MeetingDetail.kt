@@ -28,5 +28,6 @@ data class MeetingDetail(
     val joinedUserInfoList : List<User>,
     val startDate : String,
     val endDate : String,
-    val yaksogi: String
+    val yaksogi: String,
+    val confirmedDayOfWeek : String?
 )

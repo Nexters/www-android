@@ -125,7 +125,7 @@
             android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{homeMeeting.confirmedTime == null ? @string/home_meeting_unconfirmed : @string/home_meeting_date_and_time(homeMeeting.confirmedDate,homeMeeting.confirmedTime) }"
+            android:text="@{homeMeeting.confirmedTime == null ? @string/home_meeting_unconfirmed : @string/home_meeting_date_and_time(homeMeeting.confirmedDate,homeMeeting.confirmedDayOfWeek,homeMeeting.confirmedTime) }"
             android:layout_marginTop="@dimen/size_13"
             android:layout_marginStart="@dimen/size_7"
             style="@style/Text.Body3"

@@ -1,10 +1,6 @@
 package com.promiseeight.www.ui.model
 
-import com.promiseeight.www.domain.model.MeetingDetail
-import com.promiseeight.www.domain.model.PlaceVote
-import com.promiseeight.www.domain.model.UserPromisePlace
-import com.promiseeight.www.domain.model.UserPromiseTime
-import com.promiseeight.www.domain.model.MeetingStatus
+import com.promiseeight.www.domain.model.*
 import com.promiseeight.www.ui.model.enums.MeetingYaksogi
 
 data class MeetingDetailUiModel(
@@ -29,6 +25,7 @@ data class MeetingDetailUiModel(
     val votingUserCount: Int,
     val userVoted: Boolean = false,
     val yaksogi: MeetingYaksogi,
+    val confirmedDayOfWeek : String?
 )
 
 fun MeetingDetail.toMeetingDetailUiModel() = MeetingDetailUiModel(
@@ -47,7 +44,7 @@ fun MeetingDetail.toMeetingDetailUiModel() = MeetingDetailUiModel(
     shortLink = shortLink,
     confirmedDate = confirmedDate,
     confirmedPlace = confirmedPlace,
-    confirmedTime = confirmedTime,
+    confirmedTime = if(confirmedTime!=null) PromiseTime.valueOf(confirmedTime).korean else "",
     currentUserName = currentUserName,
     userPromiseDateTimeList = userPromiseDateTimeList,
     userPromisePlaceList = userPromisePlaceList?.map {
@@ -59,6 +56,7 @@ fun MeetingDetail.toMeetingDetailUiModel() = MeetingDetailUiModel(
     votingUserCount = votingUserCount,
     userVoted = getUserVoted(),
     yaksogi = MeetingYaksogi.valueOf(yaksogi),
+    confirmedDayOfWeek = confirmedDayOfWeek
 )
 
 fun MeetingDetail.getUserVoted(): Boolean {

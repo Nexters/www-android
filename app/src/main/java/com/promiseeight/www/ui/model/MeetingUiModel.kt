@@ -3,8 +3,10 @@ package com.promiseeight.www.ui.model
 import android.icu.number.IntegerWidth
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.promiseeight.www.data.model.response.getPromiseDateFormatted
 import com.promiseeight.www.domain.model.MeetingMain
 import com.promiseeight.www.domain.model.MeetingStatus
+import com.promiseeight.www.domain.model.PromiseTime
 import com.promiseeight.www.ui.model.enums.MeetingYaksogi
 import org.joda.time.DateTime
 import org.joda.time.Period
@@ -25,7 +27,8 @@ data class MeetingUiModel(
     val confirmedTime : String?,
     val votingUserCount : Int,
     val yaksogi: MeetingYaksogi,
-    val dDay : String = ""
+    val dDay : String = "",
+    val confirmedDayOfWeek :  String?
 )
 
 fun MeetingMain.toMeetingUiModel() = MeetingUiModel(
@@ -34,9 +37,13 @@ fun MeetingMain.toMeetingUiModel() = MeetingUiModel(
     meetingId = meetingId,
     meetingName,
     meetingStatus = MeetingStatus.valueOf(meetingStatus)
-    , minimumAlertMembers, confirmedDate, confirmedPlace, confirmedTime, votingUserCount,
+    , minimumAlertMembers,
+    confirmedDate = getPromiseDateFormatted(confirmedDate), confirmedPlace,
+    confirmedTime = if(confirmedTime!=null) PromiseTime.valueOf(confirmedTime).korean else "",
+    votingUserCount,
     yaksogi = MeetingYaksogi.valueOf(yaksokiType),
-    dDay = getDday(confirmedDate)
+    dDay = getDday(confirmedDate),
+    confirmedDayOfWeek
 )
 
 fun getDday(confirmedDate: String?) : String {

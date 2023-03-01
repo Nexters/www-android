@@ -11,5 +11,6 @@ data class MeetingMain (
     val meetingStatus: String,
     val minimumAlertMembers: Long,
     val votingUserCount: Int,
-    val yaksokiType: String
+    val yaksokiType: String,
+    val confirmedDayOfWeek : String?
 )

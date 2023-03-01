@@ -25,7 +25,9 @@ data class MeetingMainResponse(
     @SerializedName("votingUserCount")
     val votingUserCount: Int,
     @SerializedName("yaksokiType")
-    val yaksokiType: String
+    val yaksokiType: String,
+    @SerializedName("confirmedDayOfWeek")
+    val confirmedDayOfWeek : String?
 )
 
 fun MeetingMainResponse.toMeetingMain() = MeetingMain(
@@ -39,5 +41,6 @@ fun MeetingMainResponse.toMeetingMain() = MeetingMain(
     meetingStatus,
     minimumAlertMembers,
     votingUserCount,
-    yaksokiType
+    yaksokiType,
+    confirmedDayOfWeek
 )

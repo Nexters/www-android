@@ -31,10 +31,14 @@ fun UserPromiseTimeResponse.toUserPromiseTime() = UserPromiseTime(
     timetableId = timetableId
 )
 
-fun getPromiseDateFormatted(promiseDate: String) : String{
-    val dateTime =  DateTime.parse(promiseDate)
-    return dateTime.toString(DateTimeFormat.forPattern("yy.MM.dd"))
+fun getPromiseDateFormatted(promiseDate: String?) : String{
+    return if(promiseDate != null){
+        val dateTime =  DateTime.parse(promiseDate)
+        return dateTime.toString(DateTimeFormat.forPattern("yy.MM.dd"))
+    }
+    else ""
 }
+
 
 fun getDayOfWeekKorean(promiseDayOfWeek : String) : String {
     return when(DayOfWeekKorean.valueOf(promiseDayOfWeek)){

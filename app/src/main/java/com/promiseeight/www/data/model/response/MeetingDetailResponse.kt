@@ -48,7 +48,9 @@ data class MeetingDetailResponse(
     @SerializedName("endDate")
     val endDate : String,
     @SerializedName("yaksokiType")
-    val yaksokiType: String
+    val yaksokiType: String,
+    @SerializedName("confirmedDayOfWeek")
+    val confirmedDayOfWeek : String?
 )
 
 fun MeetingDetailResponse.toMeetingDetail() = MeetingDetail(
@@ -79,7 +81,8 @@ fun MeetingDetailResponse.toMeetingDetail() = MeetingDetail(
     },
     startDate = startDate,
     endDate = endDate,
-    yaksogi = yaksokiType
+    yaksogi = yaksokiType,
+    confirmedDayOfWeek = confirmedDayOfWeek
 )
 
 fun getUserVoteList(mapList : List<Map<String,List<String>>>?) : List<PlaceVote> {
