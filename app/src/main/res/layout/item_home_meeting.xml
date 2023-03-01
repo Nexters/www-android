@@ -23,7 +23,7 @@
             android:backgroundTint="@{homeMeeting.meetingStatus == MeetingStatus.WAITING ? @color/www_black : @color/www_green}"
             android:background="@drawable/indicator_black_item_home"
             android:gravity="center"
-            android:text="@{homeMeeting.meetingStatus == MeetingStatus.WAITING ? @string/indicator_ex_vote : ((homeMeeting.meetingStatus == MeetingStatus.VOTING || homeMeeting.meetingStatus == MeetingStatus.VOTED) ? @string/indicator_vote_ing : @string/indicator_d_day(String.valueOf(1)))}"
+            android:text="@{homeMeeting.meetingStatus == MeetingStatus.WAITING ? @string/indicator_ex_vote : ((homeMeeting.meetingStatus == MeetingStatus.VOTING || homeMeeting.meetingStatus == MeetingStatus.VOTED) ? @string/indicator_vote_ing : @string/indicator_d_day(homeMeeting.dDay))}"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@id/iv_background"
             app:layout_constraintEnd_toStartOf="@+id/indicator_back_person_Gray" />
