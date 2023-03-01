@@ -37,11 +37,11 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
         }
 
         binding.tvSettingFeedback.setOnClickListener {
-            UriParse("")
+            uriParse("")
         }
 
         binding.tvSettingPrivateInfo.setOnClickListener {
-            UriParse("https://whenwherewhat.notion.site/WWW-d44308e244964fb7a12006efe2eb94cb") //클릭시 개인정보방침
+            uriParse("https://whenwherewhat.notion.site/WWW-d44308e244964fb7a12006efe2eb94cb") //클릭시 개인정보방침
         }
 
         binding.tvSettingOpenSource.setOnClickListener {
@@ -60,7 +60,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
     }
 
 
-    private fun UriParse(urlGet : String) {
+    private fun uriParse(urlGet : String) {
         val url = urlGet
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(intent)
