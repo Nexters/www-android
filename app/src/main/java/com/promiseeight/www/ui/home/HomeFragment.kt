@@ -34,7 +34,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.viewModel = viewModel
         viewModel.getMeetings()
 
         binding.btn1FloatingMain.setOnClickListener{
@@ -113,6 +113,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         viewPager.adapter = homeTabAdapter
         viewPager.isUserInputEnabled = false
+
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                viewModel.setHomePosition(position)
+            }
+        })
     }
 
     private fun setTabLayoutMediator(tabLayout: TabLayout, viewPager: ViewPager2){

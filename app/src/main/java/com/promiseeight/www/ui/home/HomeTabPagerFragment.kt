@@ -39,7 +39,7 @@ class HomeTabPagerFragment : BaseFragment<FragmentHomeTabPagerBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.viewModel = viewModel
         homeMeetingAdapter = HomeMeetingAdapter { meeting ->
             navigateToMeetingDetail(meeting)
         }
@@ -63,7 +63,22 @@ class HomeTabPagerFragment : BaseFragment<FragmentHomeTabPagerBinding>() {
         viewPager.setPageTransformer { page, position ->
             page.translationX = position * -resources.getDimensionPixelOffset(R.dimen.size_60)
         }
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                arguments?.getInt(TAB_POSITION)?.let { tabPosition ->
+                    when(tabPosition){
+                        0 -> {
+                            viewModel.setIngPage(position+1)
+                        }
+                        else -> {
+                            viewModel.setEndPage(position+1)
+                        }
+                    }
+                }
+            }
 
+        })
     }
 
     private fun initObserver() {
@@ -86,7 +101,7 @@ class HomeTabPagerFragment : BaseFragment<FragmentHomeTabPagerBinding>() {
                                                 visibility = View.VISIBLE
                                             }
                                         }
-
+                                        showAndHidePageView(meetingMainList.meetingIngList.isEmpty())
                                     }
 
                                     else -> {
@@ -102,6 +117,7 @@ class HomeTabPagerFragment : BaseFragment<FragmentHomeTabPagerBinding>() {
                                                 visibility = View.VISIBLE
                                             }
                                         }
+                                        showAndHidePageView(meetingMainList.meetingEndList.isEmpty())
                                     }
                                 }
                             }
@@ -109,6 +125,21 @@ class HomeTabPagerFragment : BaseFragment<FragmentHomeTabPagerBinding>() {
                     }
                 }
             }
+        }
+
+    }
+
+    private fun showAndHidePageView(empty : Boolean) {
+        if(empty){
+            binding.toggleItemMeeting.visibility = View.INVISIBLE
+            binding.meetingCountEndItemMeeting.visibility = View.INVISIBLE
+            binding.meetingIndexItemMeeting.visibility = View.INVISIBLE
+            binding.tvSlash.visibility = View.INVISIBLE
+        } else {
+            binding.toggleItemMeeting.visibility = View.VISIBLE
+            binding.meetingCountEndItemMeeting.visibility = View.VISIBLE
+            binding.meetingIndexItemMeeting.visibility = View.VISIBLE
+            binding.tvSlash.visibility = View.VISIBLE
         }
 
     }

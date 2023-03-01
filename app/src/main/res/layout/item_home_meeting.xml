@@ -42,7 +42,7 @@
             android:paddingEnd="@dimen/size_10"
             android:background="@{homeMeeting.meetingStatus == MeetingStatus.WAITING ? @drawable/indicator_gray_item_home : @drawable/indicator_green_item_home}"
             android:gravity="center"
-            android:text="@{@string/indicator_count(homeMeeting.votingUserCount,homeMeeting.joinedUserCount)}"
+            android:text="@{homeMeeting.meetingStatus == MeetingStatus.WAITING ? @string/indicator_count(homeMeeting.joinedUserCount, Long.max(homeMeeting.minimumAlertMembers, Integer.toUnsignedLong(homeMeeting.joinedUserCount))) : @string/indicator_count(homeMeeting.votingUserCount,homeMeeting.joinedUserCount)}"
             android:textColor="@{homeMeeting.meetingStatus == MeetingStatus.WAITING ? @color/gray_600 : @color/www_white}"
             app:layout_constraintBottom_toTopOf="@id/iv_background"
             app:layout_constraintEnd_toEndOf="@+id/iv_background" />

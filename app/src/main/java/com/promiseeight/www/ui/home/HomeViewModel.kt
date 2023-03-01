@@ -26,6 +26,15 @@ class HomeViewModel @Inject constructor(
     private var _meetingMainList = MutableStateFlow<MeetingMainListUiModel?>(null) //들어간 아이템 null인지 아닌지~
     val meetingMainList : StateFlow<MeetingMainListUiModel?> get() = _meetingMainList
 
+    private var _homePosition = MutableStateFlow(0)
+    val homePosition : StateFlow<Int> get() = _homePosition
+
+    private var _ingPage = MutableStateFlow(1)
+    val ingPage : StateFlow<Int> get() = _ingPage
+
+    private var _endPage = MutableStateFlow(1)
+    val endPage : StateFlow<Int> get() = _endPage
+
     fun getMeetings() {
         try {
             viewModelScope.launch {
@@ -48,5 +57,15 @@ class HomeViewModel @Inject constructor(
 
     }
 
+    fun setIngPage(page : Int){
+        _ingPage.value = page
+    }
 
+    fun setEndPage(page : Int){
+        _endPage.value = page
+    }
+
+    fun setHomePosition(position : Int){
+        _homePosition.value = position
+    }
 }
