@@ -7,5 +7,6 @@ data class UserPromisePlace(
     val promisePlace : String,
     val userName : String,
     val userCharacter : String,
+    val userInfoList : List<User> = emptyList(),
     val voted : Boolean = false
 )

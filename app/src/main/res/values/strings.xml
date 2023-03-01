@@ -164,4 +164,5 @@
     <!-- meeting detail user list -->
     <string name="meeting_detail_users_title">약속방 참여자</string>
     <string name="meeting_detail_voting_users_title">투표 참여자</string>
+    <string name="meeting_detail_users_header_count">%d</string>
 </resources>

@@ -10,7 +10,7 @@ data class MeetingDetailUserUiModel(
     val rank : Int = 0,
     val count : Int = 0,
     val userName : String = "",
-    val characterType : CharacterType,
+    val characterType : CharacterType = CharacterType.CREATOR,
     val isHost : Boolean = false
 )
 
