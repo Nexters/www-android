@@ -95,7 +95,7 @@
             android:textColor="@color/www_white"
             android:layout_marginStart="@dimen/size_20"
             android:layout_marginEnd="@dimen/size_20"
-            app:layout_constraintTop_toTopOf="@id/ll_onboard3"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:background="@drawable/btn_onboarding"/>

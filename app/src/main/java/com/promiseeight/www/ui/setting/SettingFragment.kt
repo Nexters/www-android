@@ -37,7 +37,6 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
             UriParse("https://whenwherewhat.notion.site/WWW-d44308e244964fb7a12006efe2eb94cb") //클릭시 개인정보방침
         }
 
-
     }
 
     private fun getVersionInfo() = BuildConfig.VERSION_NAME
@@ -54,6 +53,5 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(intent)
     }
-
 
 }

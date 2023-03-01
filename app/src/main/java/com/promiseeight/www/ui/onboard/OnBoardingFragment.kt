@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.promiseeight.www.ui.adapter.OnBoardAdapter
 import com.promiseeight.www.databinding.FragmentOnBoardingBinding
 import com.promiseeight.www.ui.common.BaseFragment
+import com.promiseeight.www.ui.home.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
