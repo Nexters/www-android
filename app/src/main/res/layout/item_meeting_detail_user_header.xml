@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="meetingDetailUser"
+            type="com.promiseeight.www.ui.model.MeetingDetailUserUiModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_rank"
+        style="@style/Text.Body3"
+        android:layout_width="@dimen/size_24"
+        android:layout_height="@dimen/size_24"
+        android:layout_marginVertical="@dimen/size_8"
+        android:background="@drawable/circle_white_border_gray200"
+        android:gravity="center"
+        android:textColor="@color/www_green"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Text.Title8"
+        app:layout_constraintTop_toTopOf="@id/tv_rank"
+        app:layout_constraintBottom_toBottomOf="@id/tv_rank"
+        app:layout_constraintStart_toEndOf="@id/tv_rank"
+        android:layout_marginStart="@dimen/size_8"
+        android:textColor="@color/gray_700"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Text.Title9"
+        app:layout_constraintTop_toTopOf="@id/tv_title"
+        app:layout_constraintBottom_toBottomOf="@id/tv_title"
+        app:layout_constraintStart_toEndOf="@id/tv_title"
+        android:layout_marginStart="@dimen/size_4"
+        android:textColor="@color/gray_350"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
