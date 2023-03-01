@@ -138,6 +138,16 @@
             style="@style/Text.Title9"
             app:layout_constraintTop_toBottomOf="@id/tv_setting_feedback"/>
 
+        <TextView
+            android:id="@+id/tv_setting_open_source"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="35dp"
+            android:text="오픈소스 라이선스 목록"
+            style="@style/Text.Title9"
+            app:layout_constraintTop_toBottomOf="@id/tv_setting_private_info"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
