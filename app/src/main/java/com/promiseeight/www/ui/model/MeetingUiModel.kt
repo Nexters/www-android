@@ -6,6 +6,8 @@ import androidx.annotation.RequiresApi
 import com.promiseeight.www.domain.model.MeetingMain
 import com.promiseeight.www.domain.model.MeetingStatus
 import com.promiseeight.www.ui.model.enums.MeetingYaksogi
+import org.joda.time.DateTime
+import org.joda.time.Period
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -26,7 +28,6 @@ data class MeetingUiModel(
     val dDay : String = ""
 )
 
-@RequiresApi(Build.VERSION_CODES.O)
 fun MeetingMain.toMeetingUiModel() = MeetingUiModel(
     hostName = hostName,
     joinedUserCount = joinedUserCount,
@@ -38,20 +39,13 @@ fun MeetingMain.toMeetingUiModel() = MeetingUiModel(
     dDay = getDday(confirmedDate)
 )
 
-@RequiresApi(Build.VERSION_CODES.O)
 fun getDday(confirmedDate: String?) : String {
-    var dDay : String
-    val dateFormat = SimpleDateFormat("yyyy-MM-dd")
-    val endDate = dateFormat.parse(confirmedDate).time
+    if(confirmedDate == null) return ""
+    val targetDate = DateTime.parse(confirmedDate).withTime(0,0,0,0)
+    val nowDate = DateTime.now().withTime(0,0,0,0)
+    val period = Period(targetDate,nowDate).days
+    return if(period < 0) period.toString()
+            else if(period == 0) "-Day"
+            else "+$period"
 
-    val today = Calendar.getInstance().apply {
-        set(Calendar.HOUR_OF_DAY, 0)
-        set(Calendar.MINUTE, 0)
-        set(Calendar.SECOND, 0)
-        set(Calendar.MILLISECOND, 0)
-    }.time.time
-
-    var calcuDate = (endDate- today) / (60 * 60 * 24 * 1000)
-    dDay = calcuDate.toString()
-    return dDay
 }
