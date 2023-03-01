@@ -23,7 +23,7 @@
             android:backgroundTint="@{homeMeeting.meetingStatus == MeetingStatus.WAITING ? @color/www_black : @color/www_green}"
             android:background="@drawable/indicator_black_item_home"
             android:gravity="center"
-            android:text="@{homeMeeting.meetingStatus == MeetingStatus.WAITING ? @string/indicator_ex_vote : (homeMeeting.meetingStatus == MeetingStatus.VOTING ? @string/indicator_vote_ing : @string/indicator_d_day(String.valueOf(1)))}"
+            android:text="@{homeMeeting.meetingStatus == MeetingStatus.WAITING ? @string/indicator_ex_vote : (homeMeeting.meetingStatus == MeetingStatus.VOTING ? @string/indicator_vote_ing : @string/indicator_d_day(homeMeeting.dDay))}"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@id/iv_background"
             app:layout_constraintEnd_toStartOf="@+id/indicator_back_person_Gray" />
@@ -168,21 +168,6 @@
             app:layout_constraintTop_toBottomOf="@id/iv_polygon"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
-
-
-
-
-        <!--        &lt;!&ndash; Test TextView &ndash;&gt;-->
-        <!--        <androidx.appcompat.widget.AppCompatTextView-->
-        <!--            android:id="@+id/tv_image"-->
-        <!--            android:layout_width="@dimen/size_106"-->
-        <!--            android:layout_height="@dimen/size_106"-->
-        <!--            android:gravity="center"-->
-        <!--            android:text="약소기 그림"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/tv_test" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -71,7 +71,6 @@ class HomeTabPagerFragment : BaseFragment<FragmentHomeTabPagerBinding>() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.meetingMainList.collectLatest { it ->
-                        Timber.d("asdasd ${it?.meetingIngList?.get(0)?.confirmedDate == null}")
                         it?.let { meetingMainList ->
                             arguments?.getInt(TAB_POSITION)?.let { position -> // 개선할 여지가 많은 코드..
                                 when (position) {
