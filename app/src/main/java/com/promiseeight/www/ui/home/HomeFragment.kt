@@ -113,6 +113,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         viewPager.adapter = homeTabAdapter
         viewPager.isUserInputEnabled = false
+
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                viewModel.setHomePosition(position)
+            }
+        })
     }
 
     private fun setTabLayoutMediator(tabLayout: TabLayout, viewPager: ViewPager2){
