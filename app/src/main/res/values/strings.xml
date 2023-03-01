@@ -8,6 +8,8 @@
         <item>진행 중 약속</item>
         <item>종료된 약속</item>
     </string-array>
+    <string name="home_meeting_unconfirmed">미확정</string>
+    <string name="home_meeting_date_and_time">%s • %s</string>
 
 
     <!-- add / join -->
@@ -129,10 +131,13 @@
     <!-- item indicator -->
     <string name="indicator_vote_ing">투표 중</string>
     <string name="indicator_ex_vote">투표 시작 전</string>
+    <string name="indicator_d_day">D%s</string>
+    <string name="indicator_count">%d/%d명</string>
 
 
     <!-- onGoing text -->
-    <string name="tv_ongoing_meet">아직 진행 중인 약속이 없어요!</string>
+    <string name="tv_ongoing_meeting_empty">아직 진행 중인 약속이 없어요!</string>
+    <string name="tv_done_meeting_empty">종료된 약속이 없어요!</string>
 
 
     <!-- floating btn text -->
