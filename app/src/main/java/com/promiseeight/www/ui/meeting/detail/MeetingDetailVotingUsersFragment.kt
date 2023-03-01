@@ -46,6 +46,9 @@ class MeetingDetailVotingUsersFragment : BaseFragment<FragmentMeetingDetailVotin
 
         binding.let {
             initRecyclerView(it.rvDetailUser)
+            it.ivBack.setOnClickListener {
+                onClickBackIcon()
+            }
         }
 
         initObserver()

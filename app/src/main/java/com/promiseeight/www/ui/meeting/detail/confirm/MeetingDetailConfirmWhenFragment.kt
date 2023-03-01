@@ -53,6 +53,9 @@ class MeetingDetailConfirmWhenFragment : BaseFragment<FragmentMeetingDetailConfi
                     MeetingDetailConfirmWhenFragmentDirections.actionMeetingDetailConfirmWhenFragmentToMeetingDetailConfirmWhereFragment()
                 )
             }
+            it.ivBack.setOnClickListener {
+                onClickBackIcon()
+            }
         }
 
         initObserver()

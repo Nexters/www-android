@@ -30,6 +30,9 @@ class JoinMeetingFragment : BaseFragment<FragmentJoinMeetingBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
+        binding.ivBack.setOnClickListener {
+            onClickBackIcon()
+        }
         viewModel.totalPage = 4
         parentFragmentManager.backStackEntryCount
         initObserver()

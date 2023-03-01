@@ -46,6 +46,9 @@ class MeetingDetailVoteFragment : BaseFragment<FragmentMeetingDetailVoteBinding>
             it.btnVote.setOnClickListener {
                 viewModel.votePlaces()
             }
+            it.ivBack.setOnClickListener {
+                onClickBackIcon()
+            }
         }
 
         initObserver()

@@ -42,6 +42,9 @@ class MeetingDetailRankFragment : BaseFragment<FragmentMeetingDetailRankBinding>
 
         binding.let {
             initRecyclerView(it.rvRank)
+            it.ivBack.setOnClickListener {
+                onClickBackIcon()
+            }
         }
 
         initObserver()

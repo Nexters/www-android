@@ -31,6 +31,9 @@ class AddMeetingFragment : BaseFragment<FragmentAddMeetingBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
+        binding.ivBack.setOnClickListener {
+            onClickBackIcon()
+        }
         viewModel.totalPage = 6
         initObserver()
     }

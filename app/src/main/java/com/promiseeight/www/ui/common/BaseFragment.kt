@@ -65,4 +65,8 @@ abstract class BaseFragment<B: ViewDataBinding> : Fragment() {
     fun hideKeyboardWithLayout(windowToken: IBinder?){
         imm?.hideSoftInputFromWindow(windowToken,0)
     }
+
+    fun onClickBackIcon() {
+        requireActivity().onBackPressed() // 바로 수정할 코드..
+    }
 }

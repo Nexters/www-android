@@ -89,6 +89,9 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
                     MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVotingUsersFragment(false)
                 )
             }
+            it.ivBack.setOnClickListener {
+                onClickBackIcon()
+            }
         }
 
         initObserver()

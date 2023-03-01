@@ -31,9 +31,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
 
         binding.tvSettingAppVersion.text = getVersionInfo()
         binding.ivBack.setOnClickListener {
-            findNavController().navigate(
-                SettingFragmentDirections.actionFragmentSettingToFragmentHome()
-            )
+            onClickBackIcon()
         }
 
         binding.tvSettingFeedback.setOnClickListener {

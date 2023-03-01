@@ -52,6 +52,9 @@ class MeetingDetailConfirmWhereFragment : BaseFragment<FragmentMeetingDetailConf
             it.btnConfirm.setOnClickListener {
                 viewModel.confirmMeeting()
             }
+            it.ivBack.setOnClickListener {
+                onClickBackIcon()
+            }
         }
 
         initObserver()
