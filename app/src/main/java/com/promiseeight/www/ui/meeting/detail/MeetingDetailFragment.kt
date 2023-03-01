@@ -60,9 +60,33 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
                 navigateToDetailConfirm()
             }
 
+            it.ivWhenMore.setOnClickListener {
+                findNavController().navigate(
+                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToFragmentMeetingDetailRank()
+                )
+            }
+
             it.ivWhereMore.setOnClickListener {
                 findNavController().navigate(
                     MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVoteFragment()
+                )
+            }
+
+            it.ivParticipant.setOnClickListener {
+                findNavController().navigate(
+                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailUsersFragment()
+                )
+            }
+
+            it.tvWhenCount.setOnClickListener {
+                findNavController().navigate(
+                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVotingUsersFragment(true)
+                )
+            }
+
+            it.tvWhereCount.setOnClickListener {
+                findNavController().navigate(
+                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVotingUsersFragment(false)
                 )
             }
         }

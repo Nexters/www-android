@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="meetingDetailUser"
+            type="com.promiseeight.www.ui.model.MeetingDetailUserUiModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_user"
+            android:layout_width="@dimen/size_38"
+            android:layout_height="@dimen/size_38"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="@dimen/size_20"
+            app:userImageSmall="@{meetingDetailUser.characterType}"
+            android:layout_marginVertical="@dimen/size_8"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_user"
+            style="@style/Text.Title9"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:text="@{meetingDetailUser.userName}"
+            app:layout_constraintTop_toTopOf="@id/iv_user"
+            app:layout_constraintBottom_toBottomOf="@id/iv_user"
+            app:layout_constraintStart_toEndOf="@id/iv_user"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="start"
+            android:layout_marginStart="@dimen/size_8"
+            android:textColor="@color/www_black"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

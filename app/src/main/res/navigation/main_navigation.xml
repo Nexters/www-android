@@ -101,6 +101,15 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_fragment_meeting_detail_to_meetingDetailUsersFragment"
+            app:destination="@id/meetingDetailUsersFragment" />
+        <action
+            android:id="@+id/action_fragment_meeting_detail_to_meetingDetailVotingUsersFragment"
+            app:destination="@id/meetingDetailVotingUsersFragment">
+
+        </action>
+
     </fragment>
 
     <fragment
@@ -140,6 +149,17 @@
         <action
             android:id="@+id/action_fragment_setting_to_fragment_home"
             app:destination="@id/fragment_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/meetingDetailUsersFragment"
+        android:name="com.promiseeight.www.ui.meeting.detail.MeetingDetailUsersFragment"
+        android:label="MeetingDetailUsersFragment" />
+    <fragment
+        android:id="@+id/meetingDetailVotingUsersFragment"
+        android:name="com.promiseeight.www.ui.meeting.detail.MeetingDetailVotingUsersFragment"
+        android:label="MeetingDetailVotingUsersFragment" >
+        <argument android:name="isWhen"
+            app:argType="boolean"/>
     </fragment>
 
 

@@ -40,12 +40,16 @@ class MeetingRepositoryImpl @Inject constructor(
     }
 
     override fun getMeetingDetailById(meetingId: Long): Flow<Result<MeetingDetail>> = flow {
-        meetingRemoteDataSource.getMeetingDetailById(meetingId).runCatching {
-            getOrThrow()
-        }.onSuccess {
-            emit(Result.success(it.toMeetingDetail()))
-        }.onFailure {
-            emit(Result.failure(it))
+        try {
+            meetingRemoteDataSource.getMeetingDetailById(meetingId).runCatching {
+                getOrThrow()
+            }.onSuccess {
+                emit(Result.success(it.toMeetingDetail()))
+            }.onFailure {
+                emit(Result.failure(it))
+            }
+        } catch (e : Exception){
+            Timber.e(e)
         }
     }
 

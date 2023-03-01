@@ -16,6 +16,7 @@ import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentMeetingDetailRankBinding
 import com.promiseeight.www.ui.adapter.RankAdapter
 import com.promiseeight.www.ui.common.BaseFragment
+import com.promiseeight.www.ui.model.DateRankUiModel
 import com.promiseeight.www.ui.model.PlaceRankUiModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -24,7 +25,7 @@ class MeetingDetailRankFragment : BaseFragment<FragmentMeetingDetailRankBinding>
 
     private val viewModel : MeetingDetailViewModel by hiltNavGraphViewModels(R.id.main_navigation)
 
-    private val rankAdapter: RankAdapter<PlaceRankUiModel> by lazy {
+    private val rankAdapter: RankAdapter<DateRankUiModel> by lazy {
         RankAdapter()
     }
 
@@ -60,7 +61,7 @@ class MeetingDetailRankFragment : BaseFragment<FragmentMeetingDetailRankBinding>
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
                 launch {
-                    viewModel.placeRanks.collectLatest {
+                    viewModel.dateRanks.collectLatest {
                         rankAdapter.submitList(it)
                     }
                 }

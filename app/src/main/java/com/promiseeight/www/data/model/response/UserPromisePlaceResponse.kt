@@ -12,11 +12,16 @@ data class UserPromisePlaceResponse(
     val placeId : Long,
     @SerializedName("userCharacter")
     val userCharacter : String,
+    @SerializedName("userInfoList")
+    val userInfoList : List<UserResponse>
 )
 
 fun UserPromisePlaceResponse.toUserPromisePlace() = UserPromisePlace(
     promisePlace = promisePlace,
     userName = userName,
     placeId = placeId,
-    userCharacter = userCharacter
+    userCharacter = userCharacter,
+    userInfoList = userInfoList.map {
+        it.toUser()
+    }
 )

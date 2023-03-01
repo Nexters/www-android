@@ -372,21 +372,9 @@
                             <option name="y" value="150" />
                           </Point>
                         </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="fragment_on_boarding">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="235" />
-                            <option name="y" value="-109" />
-                          </Point>
-                        </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_fragment_on_boarding_to_fragment_home">
+                            <entry key="action_fragment_meeting_share_to_fragment_meeting_detail">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -405,6 +393,15 @@
                             <option name="y" value="841" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_fragment_setting_to_fragment_home">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
@@ -420,11 +417,6 @@
                         <option name="myPositions">
                           <map>
                             <entry key="action_fragment_splash_to_fragment_home">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                            <entry key="action_fragment_splash_to_fragment_on_boarding">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -472,8 +464,29 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="230" />
-                            <option name="y" value="368" />
+                            <option name="x" value="33" />
+                            <option name="y" value="841" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_meetingDetailConfirmWhereFragment_to_fragment_meeting_detail">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="meetingDetailUsersFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="662" />
+                            <option name="y" value="882" />
                           </Point>
                         </option>
                       </LayoutPositions>
