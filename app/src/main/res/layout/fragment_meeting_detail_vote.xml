@@ -106,13 +106,17 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_1"
+            app:layout_constraintBottom_toTopOf="@id/v_bottom"
+            android:background="@color/gray_100"/>
 
         <View
             android:id="@+id/v_bottom"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_106"
             android:background="@color/www_white"
-            android:elevation="@dimen/size_2"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
