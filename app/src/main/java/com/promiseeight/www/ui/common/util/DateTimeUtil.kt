@@ -23,7 +23,6 @@ object DateTimeUtil {
                         disabled = startDate.plusDays(pagePosition * 4 + day).dayOfYear > endDate.dayOfYear
                     )
                 )
-                Timber.d("asd ${pagePosition * 4 + 4 * time + day}")
             }
         }
         return list
