@@ -1,5 +1,8 @@
 package com.promiseeight.www.ui.meeting.detail
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -57,7 +60,10 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
             }
 
             it.vShare.setOnClickListener {
-                navigateToDetailConfirm()
+                viewModel.meetingDetail.value?.let {
+                    copy(it.meetingCode)
+                }
+
             }
 
             it.ivWhenMore.setOnClickListener {
@@ -243,6 +249,18 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+    }
+
+    private fun copy(text : String){
+        try {
+            (requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).run {
+                setPrimaryClip(ClipData.newPlainText("link",text))
+                showToast(getString(R.string.copy_code_success))
+            }
+        } catch (e : Exception){
+            showToast(getString(R.string.copy_code_fail))
+        }
+
     }
 
     private fun navigateToDetailConfirm() {

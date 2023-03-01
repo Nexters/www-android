@@ -39,7 +39,7 @@ class MeetingShareFragment : BaseFragment<FragmentMeetingShareBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnShare.setOnClickListener {
-            copy(navArgs<MeetingShareFragmentArgs>().value.argInvitationLink)
+            copy(navArgs<MeetingShareFragmentArgs>().value.argInvitationCode)
         }
 
         binding.btnNext.setOnClickListener {
@@ -69,10 +69,10 @@ class MeetingShareFragment : BaseFragment<FragmentMeetingShareBinding>() {
         try {
             (requireActivity().getSystemService(CLIPBOARD_SERVICE) as ClipboardManager).run {
                 setPrimaryClip(ClipData.newPlainText("link",text))
-                showToast(getString(R.string.copy_link_success))
+                showToast(getString(R.string.copy_code_success))
             }
         } catch (e : Exception){
-            showToast(getString(R.string.copy_link_fail))
+            showToast(getString(R.string.copy_code_fail))
         }
 
     }

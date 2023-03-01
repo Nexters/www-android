@@ -9,7 +9,7 @@
         <item>종료된 약속</item>
     </string-array>
     <string name="home_meeting_unconfirmed">미확정</string>
-    <string name="home_meeting_date_and_time">%s • %s</string>
+    <string name="home_meeting_date_and_time">%s %s• %s</string>
 
 
     <!-- add / join -->
@@ -62,6 +62,7 @@
     <string name="meeting_share_subtitle">약속방 만들기</string>
     <string name="meeting_share_subtitle_second">가 완료되었어요!</string>
     <string name="meeting_share_link">링크 복사하기</string>
+    <string name="meeting_share_code">코드 복사하기</string>
     <string name="meeting_share_next">약속방으로 가기</string>
 
     <!-- meeting detail -->
@@ -91,8 +92,11 @@
     <string name="friday_short">금</string>
     <string name="saturday_short">토</string>
     <string name="minus"> - </string>
+    <string name="string_blank_string">%s %s</string>
     <string name="copy_link_success">링크가 복사되었습니다.</string>
     <string name="copy_link_fail">링크 복사에 실패하였습니다.</string>
+    <string name="copy_code_success">코드가 복사되었습니다.</string>
+    <string name="copy_code_fail">코드 복사에 실패하였습니다.</string>
 
 
     <!-- System -->

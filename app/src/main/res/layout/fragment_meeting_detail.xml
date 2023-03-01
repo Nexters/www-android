@@ -130,7 +130,7 @@
                     android:layout_height="wrap_content"
                     style="@style/Text.Body4"
                     android:elevation="@dimen/size_1"
-                    android:text="@{viewModel.meetingDetail.confirmedDate}"
+                    android:text="@{@string/string_blank_string(viewModel.meetingDetail.confirmedDate,viewModel.meetingDetail.confirmedDayOfWeek)}"
                     android:visibility="@{viewModel.meetingDetail.confirmedDate == null ? View.GONE : View.VISIBLE }"
                     app:layout_constraintTop_toTopOf="@id/iv_bell"
                     app:layout_constraintBottom_toBottomOf="@id/iv_bell"
