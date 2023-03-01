@@ -20,6 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import com.promiseeight.www.ui.model.CalendarUiModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.joda.time.DateTime
 import java.util.*
 
 @AndroidEntryPoint
@@ -29,7 +30,7 @@ class MeetingInfoPeriodFragment : InfoFragment<FragmentMeetingInfoPeriodBinding>
 
     private val calendarAdapter: CalendarAdapter by lazy {
         CalendarAdapter {
-            if (it.isCurrentMonth == true)
+            if (it.isCurrentMonth == true && (it.dateTime.dayOfYear == DateTime.now().dayOfYear || it.dateTime.isAfterNow))
                 viewModel.selectDate(it)
         }
     }
@@ -88,13 +89,21 @@ class MeetingInfoPeriodFragment : InfoFragment<FragmentMeetingInfoPeriodBinding>
                                     it.meetingPeriodStart?.dateTime?.monthOfYear,
                                     it.meetingPeriodStart?.dateTime?.dayOfMonth,
                                     it.meetingPeriodStart?.dateTime?.dayOfWeek()?.getAsText(Locale.KOREAN)?.substring(0,1)
-                                    ) + getString(R.string.minus) +
+                                    )+ " " + getString(R.string.minus) + " " +
                                      if(it.meetingPeriodEnd?.dateTime != null) getString(R.string.info_period_subtitle_selected,
                                         it.meetingPeriodEnd.dateTime.monthOfYear,
                                         it.meetingPeriodEnd.dateTime.dayOfMonth,
                                         it.meetingPeriodEnd.dateTime.dayOfWeek().getAsText(Locale.KOREAN)?.substring(0,1)
                                     ) else getString(R.string.empty_text)
                             }
+                    }
+                }
+                launch {
+                    viewModel.infoMessage.collectLatest {
+                        if(it.isNotBlank()) {
+                            showToast(it)
+                            viewModel.setInfoMessageEmpty()
+                        }
                     }
                 }
             }

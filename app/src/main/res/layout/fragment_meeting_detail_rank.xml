@@ -2,7 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <data>
+        <variable
+            name="viewModel"
+            type="com.promiseeight.www.ui.meeting.detail.MeetingDetailViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,7 +30,7 @@
             android:layout_marginHorizontal="@dimen/size_64"
             android:gravity="center"
             android:maxLines="1"
-            android:text="언제"
+            android:text="@string/meeting_detail_where"
             android:textColor="@color/www_black"
             app:layout_constraintBottom_toBottomOf="@id/iv_back"
             app:layout_constraintEnd_toEndOf="parent"
@@ -99,14 +103,17 @@
                     app:layout_constraintTop_toTopOf="@id/tv_rank_count" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_1"
+            app:layout_constraintBottom_toTopOf="@id/v_bottom"
+            android:background="@color/gray_100"/>
 
         <View
             android:id="@+id/v_bottom"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_106"
             android:background="@color/www_white"
-            android:elevation="@dimen/size_2"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton

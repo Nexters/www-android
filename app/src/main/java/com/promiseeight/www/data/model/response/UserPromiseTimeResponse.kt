@@ -12,7 +12,9 @@ data class UserPromiseTimeResponse(
     @SerializedName("promiseTime")
     val promiseTime : String,
     @SerializedName("userInfoList")
-    val userInfoList : List<UserResponse>
+    val userInfoList : List<UserResponse>,
+    @SerializedName("timetableId")
+    val timetableId : Long
 )
 
 fun UserPromiseTimeResponse.toUserPromiseTime() = UserPromiseTime(
@@ -21,5 +23,6 @@ fun UserPromiseTimeResponse.toUserPromiseTime() = UserPromiseTime(
     promiseTime = PromiseTime.valueOf(promiseTime),
     userInfoList = userInfoList.map {
         it.toUser()
-    }
+    },
+    timetableId = timetableId
 )

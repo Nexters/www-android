@@ -46,6 +46,10 @@ class MeetingInfoCodeFragment : InfoFragment<FragmentMeetingInfoCodeBinding>() {
             ivClose.setOnClickListener {
                 viewModel?.setMeetingCodeEmpty()
             }
+            showKeyboardWithEditText(etInfoCode)
+            root.setOnClickListener {
+                hideKeyboardWithLayout(etInfoCode.windowToken)
+            }
         }
     }
 

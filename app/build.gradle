@@ -103,4 +103,5 @@ dependencies {
 
     //openSource
     implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
+    implementation "androidx.hilt:hilt-navigation-fragment:1.0.0"
 }

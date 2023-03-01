@@ -3,6 +3,15 @@
 
 
     <!-- Typography -->
+
+    <style name="Text.OnBoard1" parent="android:TextAppearance">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/font_size_24</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+
     <style name="Text.Heading1" parent="android:TextAppearance">
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">@dimen/font_size_72</item>

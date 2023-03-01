@@ -1,12 +1,16 @@
 package com.promiseeight.www.ui.dialog
 
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import com.google.firebase.messaging.ktx.remoteMessage
 import com.promiseeight.www.R
+import com.promiseeight.www.databinding.FragmentHomeBinding
 import com.promiseeight.www.databinding.FragmentPushDialogBinding
 //import kotlinx.coroutines.NonCancellable.message
 import java.math.BigInteger.TWO
+
 
 class PushDialog(
     private val buttonType: ButtonType,
@@ -52,3 +56,4 @@ class PushDialog(
     }
 
 }
+

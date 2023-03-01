@@ -37,7 +37,6 @@ class WwwFirebaseMessagingService: FirebaseMessagingService()  {
                 try {
                     val data = Gson().fromJson(it,WwwNotificationModel::class.java)
                     createNotification(context = this,data)
-                    Timber.d("asdasd ${data.contentType}")
                 } catch (e : Exception){
                     Timber.d("WwwException : onMessageReceived ")
                 }

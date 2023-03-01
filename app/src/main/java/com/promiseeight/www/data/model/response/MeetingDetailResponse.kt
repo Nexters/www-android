@@ -2,6 +2,7 @@ package com.promiseeight.www.data.model.response
 
 import com.google.gson.annotations.SerializedName
 import com.promiseeight.www.domain.model.MeetingDetail
+import com.promiseeight.www.domain.model.PlaceVote
 
 data class MeetingDetailResponse(
     @SerializedName("hostName")
@@ -37,7 +38,7 @@ data class MeetingDetailResponse(
     @SerializedName("userPromisePlaceList")
     val userPromisePlaceList : List<UserPromisePlaceResponse>?,
     @SerializedName("userVoteList")
-    val userVoteList : List<EntryResponse>?,
+    val userVoteList : List<Map<String,List<String>>>?,
     @SerializedName("votingUserCount")
     val votingUserCount : Int,
     @SerializedName("joinedUserInfoList")
@@ -45,7 +46,9 @@ data class MeetingDetailResponse(
     @SerializedName("startDate")
     val startDate : String,
     @SerializedName("endDate")
-    val endDate : String
+    val endDate : String,
+    @SerializedName("yaksokiType")
+    val yaksokiType: String
 )
 
 fun MeetingDetailResponse.toMeetingDetail() = MeetingDetail(
@@ -69,13 +72,28 @@ fun MeetingDetailResponse.toMeetingDetail() = MeetingDetail(
     userPromisePlaceList = userPromisePlaceList?.map {
         it.toUserPromisePlace()
     },
-    userVoteList = userVoteList?.map {
-        it.toPlaceVote()
-    },
+    userVoteList = getUserVoteList(userVoteList),
     votingUserCount = votingUserCount,
     joinedUserInfoList = joinedUserInfoList.map{
         it.toUser()
     },
     startDate = startDate,
-    endDate = endDate
+    endDate = endDate,
+    yaksogi = yaksokiType
 )
+
+fun getUserVoteList(mapList : List<Map<String,List<String>>>?) : List<PlaceVote> {
+    val mutableList = mutableListOf<PlaceVote>()
+    mapList?.forEachIndexed { index, map ->
+        map.keys.forEach {
+            mutableList.add(
+                PlaceVote(
+                    placeName = it,
+                    userNameList = map[it]?: emptyList()
+                )
+            )
+        }
+    }
+
+    return mutableList
+}

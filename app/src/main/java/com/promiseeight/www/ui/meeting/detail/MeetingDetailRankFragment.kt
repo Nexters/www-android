@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -21,7 +22,7 @@ import kotlinx.coroutines.launch
 
 class MeetingDetailRankFragment : BaseFragment<FragmentMeetingDetailRankBinding>() {
 
-    private val viewModel : MeetingDetailViewModel by navGraphViewModels(R.id.main_navigation)
+    private val viewModel : MeetingDetailViewModel by hiltNavGraphViewModels(R.id.main_navigation)
 
     private val rankAdapter: RankAdapter<PlaceRankUiModel> by lazy {
         RankAdapter()
@@ -36,6 +37,7 @@ class MeetingDetailRankFragment : BaseFragment<FragmentMeetingDetailRankBinding>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.viewModel = viewModel
 
         binding.let {
             initRecyclerView(it.rvRank)

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -27,7 +28,7 @@ import timber.log.Timber
 
 class MeetingDetailConfirmWhenFragment : BaseFragment<FragmentMeetingDetailConfirmWhenBinding>() {
 
-    private val viewModel : MeetingDetailViewModel by navGraphViewModels(R.id.main_navigation)
+    private val viewModel : MeetingDetailViewModel by hiltNavGraphViewModels(R.id.main_navigation)
 
     private val rankAdapter: RankConfirmAdapter<RankModel> by lazy {
         RankConfirmAdapter{
@@ -44,7 +45,7 @@ class MeetingDetailConfirmWhenFragment : BaseFragment<FragmentMeetingDetailConfi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Timber.d("asdasd ${viewModel.hashCode()}")
+        binding.viewModel = viewModel
         binding.let {
             initRecyclerView(it.rvRank)
             it.btnConfirm.setOnClickListener {
@@ -62,6 +63,7 @@ class MeetingDetailConfirmWhenFragment : BaseFragment<FragmentMeetingDetailConfi
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = rankAdapter
+            itemAnimator = null
         }
 
 
@@ -73,6 +75,7 @@ class MeetingDetailConfirmWhenFragment : BaseFragment<FragmentMeetingDetailConfi
                 launch {
                     viewModel.dateRanks.collectLatest {
                         rankAdapter.submitList(it)
+                        binding.btnConfirm.isEnabled = it.any { it.confirmed }
                     }
                 }
             }

@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +27,7 @@ import kotlinx.coroutines.launch
 
 class MeetingDetailConfirmWhereFragment : BaseFragment<FragmentMeetingDetailConfirmWhereBinding>() {
 
-    private val viewModel : MeetingDetailViewModel by navGraphViewModels(R.id.main_navigation)
+    private val viewModel : MeetingDetailViewModel by hiltNavGraphViewModels(R.id.main_navigation)
 
     private val rankAdapter: RankConfirmAdapter<RankModel> by lazy {
         RankConfirmAdapter{
@@ -42,9 +44,14 @@ class MeetingDetailConfirmWhereFragment : BaseFragment<FragmentMeetingDetailConf
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.viewModel = viewModel
 
         binding.let {
             initRecyclerView(it.rvRank)
+
+            it.btnConfirm.setOnClickListener {
+                viewModel.confirmMeeting()
+            }
         }
 
         initObserver()
@@ -55,6 +62,7 @@ class MeetingDetailConfirmWhereFragment : BaseFragment<FragmentMeetingDetailConf
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = rankAdapter
+            itemAnimator = null
         }
 
 
@@ -66,6 +74,18 @@ class MeetingDetailConfirmWhereFragment : BaseFragment<FragmentMeetingDetailConf
                 launch {
                     viewModel.placeRanks.collectLatest {
                         rankAdapter.submitList(it)
+                        binding.btnConfirm.isEnabled = it.any { it.confirmed }
+                    }
+                }
+                launch {
+                    viewModel.meetingDetail.collectLatest {
+                        it?.let { meetingDetail ->
+                            if(meetingDetail.confirmedDate != null && meetingDetail.confirmedDate.isNotBlank()){
+                                findNavController().navigate(
+                                    MeetingDetailConfirmWhereFragmentDirections.actionMeetingDetailConfirmWhereFragmentToFragmentMeetingDetail(meetingDetail.meetingId.toString())
+                                )
+                            }
+                        }
                     }
                 }
             }

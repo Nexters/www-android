@@ -8,6 +8,8 @@
         <item>진행 중 약속</item>
         <item>종료된 약속</item>
     </string-array>
+    <string name="home_meeting_unconfirmed">미확정</string>
+    <string name="home_meeting_date_and_time">%s • %s</string>
 
 
     <!-- add / join -->
@@ -53,6 +55,7 @@
     <string name="info_code_title">친구에게 받은\n참여 코드를 입력해주세요.</string>
     <string name="info_code_hint">참여 코드 입력</string>
     <string name="info_code_warning">존재하지 않는 참여 코드에요.</string>
+    <string name="info_code_warning_is_joined">이미 참여한 약속방이에요.</string>
 
     <!-- meeting share -->
     <string name="meeting_share_title">함께할 친구들을 초대해 보세요.</string>
@@ -68,8 +71,11 @@
     <string name="meeting_detail_start_voting">투표 시작하기</string>
     <string name="meeting_detail_go_to_vote">투표 하러가기</string>
     <string name="meeting_detail_vote">투표하기</string>
+    <string name="meeting_detail_voted">투표 완료</string>
+    <string name="meeting_detail_confirm">확정 완료</string>
     <string name="meeting_detail_vote_count">%d명 참여</string>
     <string name="meeting_detail_voting_count">%d명 참여 중</string>
+    <string name="meeting_detail_voted_count">%d명 참여 완료</string>
     <string name="meeting_detail_rank_count">%d명</string>
 
     <!-- common -->
@@ -128,11 +134,13 @@
     <!-- item indicator -->
     <string name="indicator_vote_ing">투표 중</string>
     <string name="indicator_ex_vote">투표 시작 전</string>
+    <string name="indicator_d_day">D%s</string>
+    <string name="indicator_count">%d/%d명</string>
 
 
     <!-- onGoing text -->
-    <string name="tv_ongoing_meet">아직 진행 중인 약속이 없어요!</string>
-
+    <string name="tv_ongoing_meeting_empty">아직 진행 중인 약속이 없어요!</string>
+    <string name="tv_done_meeting_empty">종료된 약속이 없어요!</string>
 
 
     <!-- floating btn text -->
@@ -145,7 +153,13 @@
     <string name="meeting_status3">VOTED</string>
     <string name="meeting_status5">CONFIRMED</string>
     <string name="meeting_status4">DONE</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- OnBoard -->
+    <string name="btn_mockup">시작하기</string>
+    <string name="mockup1_1">편리한 약속 관리</string>
+    <string name="mockup1_2">여러 개의 약속 일정,한 눈에 파악하고 살펴보기</string>
 
 
 
