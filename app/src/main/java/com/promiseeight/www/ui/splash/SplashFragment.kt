@@ -1,6 +1,9 @@
 package com.promiseeight.www.ui.splash
 
+import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,6 +38,8 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
         super.onViewCreated(view, savedInstanceState)
         initObserver()
         setFirebaseMessagingTokenSuccessListener()
+
+
     }
 
     private fun initObserver() {
@@ -43,7 +48,15 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
                 launch {
                     viewModel.isAccessTokenInDevice.collectLatest { isInDevice ->
                         if(isInDevice.isSuccess){
-                            findNavController().navigate(SplashFragmentDirections.actionFragmentSplashToFragmentHome())
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                if(isOnBoardingFinished()) { //온보딩 완료시
+                                    findNavController().navigate(SplashFragmentDirections.actionFragmentSplashToFragmentHome())
+                                }
+                                else { //온보딩 완료 x시
+                                    findNavController().navigate(SplashFragmentDirections.actionFragmentSplashToFragmentOnBoarding())
+                                }
+                            },1500) //1.5초 딜레이
+
                         }
                     }
                 }
@@ -67,6 +80,11 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
         FirebaseMessaging.getInstance().token.addOnSuccessListener {
             viewModel.getAccessTokenWithFcmToken(fcmToken = it)
         }
+    }
+
+    private fun isOnBoardingFinished() : Boolean {
+        val prefs = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
+        return prefs.getBoolean("finished", false)
     }
 
 }
