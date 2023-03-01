@@ -45,6 +45,7 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.getMeetingDetailById(-1L)
         viewModel.setMeetingId((navArgs<MeetingDetailFragmentArgs>().value.meetingId).toLong())
         binding.viewModel = viewModel
         binding.let {
@@ -56,6 +57,12 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
 
             it.vShare.setOnClickListener {
                 navigateToDetailConfirm()
+            }
+
+            it.ivWhereMore.setOnClickListener {
+                findNavController().navigate(
+                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVoteFragment()
+                )
             }
         }
 
@@ -118,13 +125,13 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
                         binding.btnVote.isEnabled = true
                     }
                     MeetingStatus.VOTING -> {
-                        //   if () { 방장이 투표안했으면
-                        binding.btnVote.text = "투표 하러가기"
-                        binding.btnVote.isEnabled = true
-                        // } else {
-//                        binding.btnVote.text = "투표 종료하기"
-//                        binding.btnVote.isEnabled = true
-                        //}
+                        if (!it.userVoted) {
+                            binding.btnVote.text = "투표 하러가기"
+                            binding.btnVote.isEnabled = true
+                        } else {
+                            binding.btnVote.text = "투표 종료하기"
+                            binding.btnVote.isEnabled = true
+                        }
                     }
                     MeetingStatus.VOTED -> {
                         binding.btnVote.text = "약속 확정하기"
@@ -143,8 +150,10 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
                         binding.btnVote.isEnabled = false
                     }
                     MeetingStatus.VOTING -> {
-                        binding.btnVote.isEnabled = true
-                        binding.btnVote.text = "투표 하러가기"
+                        if (!it.userVoted) {
+                            binding.btnVote.isEnabled = true
+                            binding.btnVote.text = "투표 하러가기"
+                        } else binding.vBottom.visibility = View.GONE
                     }
                     else -> {
                         binding.vBottom.visibility = View.GONE
@@ -164,7 +173,6 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
                     }
                     MeetingStatus.VOTING -> {
                         findNavController().navigate(
-                            //MeetingDetailFragmentDirections.actionFragmentMeetingDetailToFragmentMeetingDetailRank()
                             MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVoteFragment()
                         )
                     }
@@ -180,10 +188,16 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
             } else if (meetingDetail.isJoined) {
                 when (meetingDetail.meetingStatus) {
                     MeetingStatus.WAITING -> {
-
+                        //버튼 막혀있음
                     }
                     MeetingStatus.VOTING -> {
-
+                        if(!meetingDetail.userVoted)
+                            findNavController().navigate(
+                                MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVoteFragment()
+                            )
+                        else {
+                            //버튼 막혀있음
+                        }
                     }
                     else -> {
 
@@ -191,7 +205,10 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
                 }
             }
         }
+    }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
     }
 
     private fun navigateToDetailConfirm() {
