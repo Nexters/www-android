@@ -46,15 +46,13 @@
             android:id="@+id/meeting_count_end_item_meeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.homePosition == 0 ? @string/number(viewModel.meetingMainList.meetingIngList.size()) : @string/number(viewModel.meetingMainList.meetingIngList.size()) }"
+            android:text="@{viewModel.homePosition == 0 ? @string/number(viewModel.meetingMainList.meetingIngList.size()) : @string/number(viewModel.meetingMainList.meetingEndList.size()) }"
             android:layout_marginEnd="@dimen/size_14"
             style="@style/Text.Body4"
             android:textColor="@color/gray_450"
             app:layout_constraintTop_toTopOf="@id/toggle_item_meeting"
             app:layout_constraintBottom_toBottomOf="@id/toggle_item_meeting"
             app:layout_constraintEnd_toEndOf="@id/toggle_item_meeting"/>
-
-
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_slash"
