@@ -7,4 +7,5 @@ data class UserPromisePlace(
     val promisePlace : String,
     val userName : String,
     val userCharacter : String,
+    val voted : Boolean = false
 )
