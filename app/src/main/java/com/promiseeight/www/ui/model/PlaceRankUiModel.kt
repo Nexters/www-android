@@ -52,7 +52,9 @@ fun getPlaceRankUiModelList(userPromisePlaceList : List<UserPromisePlace>,userVo
                 tied = tied,
                 type = RankType.PLACE,
                 name = userPromisePlace.promisePlace,
-                placeId = userPromisePlace.placeId
+                placeId = userPromisePlace.placeId,
+                userVoted = userVoted,
+                selected = userPromisePlace.voted
             )
         )
     }
