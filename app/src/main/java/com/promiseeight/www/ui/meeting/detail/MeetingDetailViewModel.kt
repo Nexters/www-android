@@ -2,10 +2,10 @@ package com.promiseeight.www.ui.meeting.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.promiseeight.www.data.source.remote.MeetingRemoteDataSource
 import com.promiseeight.www.domain.usecase.meeting.ChangeMeetingStatusUseCase
 import com.promiseeight.www.domain.usecase.meeting.GetMeetingByIdUseCase
 import com.promiseeight.www.ui.model.*
+import com.promiseeight.www.domain.model.MeetingStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

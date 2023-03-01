@@ -4,28 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentMeetingDetailBinding
-import com.promiseeight.www.domain.model.MeetingDetail
 import com.promiseeight.www.ui.adapter.RankAdapter
 import com.promiseeight.www.ui.common.BaseFragment
 import com.promiseeight.www.ui.model.DateRankUiModel
-import com.promiseeight.www.ui.model.MeetingDetailUiModel
 import com.promiseeight.www.ui.model.PlaceRankUiModel
+import com.promiseeight.www.domain.model.MeetingStatus
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 @AndroidEntryPoint
 class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
