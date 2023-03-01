@@ -45,7 +45,7 @@ class MeetingDetailConfirmWhenFragment : BaseFragment<FragmentMeetingDetailConfi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.viewModel = viewModel
         binding.let {
             initRecyclerView(it.rvRank)
             it.btnConfirm.setOnClickListener {
@@ -63,6 +63,7 @@ class MeetingDetailConfirmWhenFragment : BaseFragment<FragmentMeetingDetailConfi
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = rankAdapter
+            itemAnimator = null
         }
 
 
@@ -74,6 +75,7 @@ class MeetingDetailConfirmWhenFragment : BaseFragment<FragmentMeetingDetailConfi
                 launch {
                     viewModel.dateRanks.collectLatest {
                         rankAdapter.submitList(it)
+                        binding.btnConfirm.isEnabled = it.any { it.confirmed }
                     }
                 }
             }
