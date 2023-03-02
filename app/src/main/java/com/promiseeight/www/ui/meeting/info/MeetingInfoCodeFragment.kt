@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
@@ -58,7 +59,10 @@ class MeetingInfoCodeFragment : InfoFragment<FragmentMeetingInfoCodeBinding>() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.meetingCode.collectLatest { code ->
-                        if(code.length < viewModel.codeMaxSize) viewModel.setCodeStatus(CodeStatus.READY)
+                        if(code.length < viewModel.codeMaxSize) {
+                            viewModel.setCodeStatus(CodeStatus.READY)
+                            viewModel.meetingName.value = ""
+                        }
                         else if(code.length == viewModel.codeMaxSize) viewModel.setCodeStatus(CodeStatus.ACTIVE)
                     }
                 }
