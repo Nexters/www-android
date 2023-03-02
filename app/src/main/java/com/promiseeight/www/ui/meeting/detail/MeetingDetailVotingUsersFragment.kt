@@ -100,7 +100,8 @@ class MeetingDetailVotingUsersFragment : BaseFragment<FragmentMeetingDetailVotin
                                                 isHost = CharacterType.CREATOR == CharacterType.valueOf(
                                                     it.characterType
                                                 ),
-                                                isHeader = false
+                                                isHeader = false,
+                                                isVotingUser = true
                                             )
                                         )
                                     }
@@ -125,7 +126,8 @@ class MeetingDetailVotingUsersFragment : BaseFragment<FragmentMeetingDetailVotin
                                                 isHost = CharacterType.CREATOR == CharacterType.valueOf(
                                                     it.characterType
                                                 ),
-                                                isHeader = false
+                                                isHeader = false,
+                                                isVotingUser = true
                                             )
                                         )
                                     }

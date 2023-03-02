@@ -4,17 +4,26 @@
         <variable
             name="meetingDetailUser"
             type="com.promiseeight.www.ui.model.MeetingDetailUserUiModel" />
+        <import type="android.view.View"/>
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_1"
+        android:background="@color/gray_150"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="@{meetingDetailUser.rank == 1 ? View.INVISIBLE : View.VISIBLE }"
+        android:layout_marginHorizontal="@dimen/size_20"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_rank"
         style="@style/Text.Body3"
         android:layout_width="@dimen/size_24"
         android:layout_height="@dimen/size_24"
-        android:layout_marginVertical="@dimen/size_8"
+        android:layout_marginVertical="@dimen/size_16"
         android:background="@drawable/circle_white_border_gray200"
         android:gravity="center"
         android:textColor="@color/www_green"

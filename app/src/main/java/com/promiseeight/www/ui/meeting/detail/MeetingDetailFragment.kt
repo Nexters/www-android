@@ -61,20 +61,20 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
 
             it.vShare.setOnClickListener {
                 viewModel.meetingDetail.value?.let {
-                    copy(it.meetingCode)
+                    copyCode(it.meetingCode)
                 }
 
             }
 
             it.ivWhenMore.setOnClickListener {
                 findNavController().navigate(
-                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToFragmentMeetingDetailRank()
+                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToFragmentMeetingDetailRank(true)
                 )
             }
 
             it.ivWhereMore.setOnClickListener {
                 findNavController().navigate(
-                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVoteFragment()
+                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToFragmentMeetingDetailRank(false)
                 )
             }
 
@@ -86,13 +86,17 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
 
             it.tvWhenCount.setOnClickListener {
                 findNavController().navigate(
-                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVotingUsersFragment(true)
+                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVotingUsersFragment(
+                        true
+                    )
                 )
             }
 
             it.tvWhereCount.setOnClickListener {
                 findNavController().navigate(
-                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVotingUsersFragment(false)
+                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVotingUsersFragment(
+                        false
+                    )
                 )
             }
             it.ivBack.setOnClickListener {
@@ -155,10 +159,12 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
             if (it.isHost) {
                 when (it.meetingStatus) {
                     MeetingStatus.WAITING -> {
+                        binding.vBottom.visibility = View.VISIBLE
                         binding.btnVote.text = "투표 시작하기"
                         binding.btnVote.isEnabled = true
                     }
                     MeetingStatus.VOTING -> {
+                        binding.vBottom.visibility = View.VISIBLE
                         if (!it.userVoted) {
                             binding.btnVote.text = "투표 하러가기"
                             binding.btnVote.isEnabled = true
@@ -170,6 +176,7 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
                     MeetingStatus.VOTED -> {
                         binding.btnVote.text = "약속 확정하기"
                         binding.btnVote.isEnabled = true
+                        binding.vBottom.visibility = View.VISIBLE
                     }
                     else -> {
                         binding.vBottom.visibility = View.GONE
@@ -180,6 +187,7 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
             } else if (it.isJoined) {
                 when (it.meetingStatus) {
                     MeetingStatus.WAITING -> {
+                        binding.vBottom.visibility = View.VISIBLE
                         binding.btnVote.text = "투표 하러가기"
                         binding.btnVote.isEnabled = false
                     }
@@ -187,6 +195,7 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
                         if (!it.userVoted) {
                             binding.btnVote.isEnabled = true
                             binding.btnVote.text = "투표 하러가기"
+                            binding.vBottom.visibility = View.VISIBLE
                         } else binding.vBottom.visibility = View.GONE
                     }
                     else -> {
@@ -206,11 +215,11 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
                         viewModel.changeMeetingStatus()
                     }
                     MeetingStatus.VOTING -> {
-                        if(!meetingDetail.userVoted) { // 방장이 투표하기전이면 투표하는 화면으로 이동
+                        if (!meetingDetail.userVoted) { // 방장이 투표하기전이면 투표하는 화면으로 이동
                             findNavController().navigate(
                                 MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVoteFragment()
                             )
-                        }else { // 방장이 투표했으면 투표종료하기 버튼으로 종료할 수 있음
+                        } else { // 방장이 투표했으면 투표종료하기 버튼으로 종료할 수 있음
                             viewModel.changeMeetingStatus()
                         }
                     }
@@ -231,7 +240,7 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
                         //버튼 막혀있음
                     }
                     MeetingStatus.VOTING -> {
-                        if(!meetingDetail.userVoted)
+                        if (!meetingDetail.userVoted)
                             findNavController().navigate(
                                 MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVoteFragment()
                             )
@@ -247,17 +256,13 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
-
-    private fun copy(text : String){
+    private fun copyCode(text: String) {
         try {
             (requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).run {
-                setPrimaryClip(ClipData.newPlainText("link",text))
+                setPrimaryClip(ClipData.newPlainText("link", text))
                 showToast(getString(R.string.copy_code_success))
             }
-        } catch (e : Exception){
+        } catch (e: Exception) {
             showToast(getString(R.string.copy_code_fail))
         }
 
@@ -272,7 +277,7 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
     }
 
     override fun onResume() {
-        setStatusBarColor(R.color.www_green_transparent_20)
         super.onResume()
+        setStatusBarColor(R.color.www_green_transparent_20)
     }
 }

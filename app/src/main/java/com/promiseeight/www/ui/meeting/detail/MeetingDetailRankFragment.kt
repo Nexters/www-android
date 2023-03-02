@@ -9,6 +9,8 @@ import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +20,7 @@ import com.promiseeight.www.ui.adapter.RankAdapter
 import com.promiseeight.www.ui.common.BaseFragment
 import com.promiseeight.www.ui.model.DateRankUiModel
 import com.promiseeight.www.ui.model.PlaceRankUiModel
+import com.promiseeight.www.ui.model.RankModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -25,7 +28,7 @@ class MeetingDetailRankFragment : BaseFragment<FragmentMeetingDetailRankBinding>
 
     private val viewModel : MeetingDetailViewModel by hiltNavGraphViewModels(R.id.main_navigation)
 
-    private val rankAdapter: RankAdapter<DateRankUiModel> by lazy {
+    private val rankAdapter: RankAdapter<RankModel> by lazy {
         RankAdapter()
     }
 
@@ -46,6 +49,19 @@ class MeetingDetailRankFragment : BaseFragment<FragmentMeetingDetailRankBinding>
             it.ivBack.setOnClickListener {
                 onClickBackIcon()
             }
+
+            binding.tvTitle.text =
+                if (navArgs<MeetingDetailVotingUsersFragmentArgs>().value.isWhen) resources.getString(R.string.meeting_detail_when)
+                else resources.getString(R.string.meeting_detail_where)
+
+            binding.tvRankCount.setOnClickListener {
+                findNavController().navigate(
+                    MeetingDetailRankFragmentDirections.actionFragmentMeetingDetailRankToMeetingDetailVotingUsersFragment(
+                        navArgs<MeetingDetailVotingUsersFragmentArgs>().value.isWhen
+                    )
+                )
+            }
+
         }
 
         initObserver()
@@ -65,8 +81,14 @@ class MeetingDetailRankFragment : BaseFragment<FragmentMeetingDetailRankBinding>
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
                 launch {
-                    viewModel.dateRanks.collectLatest {
-                        rankAdapter.submitList(it)
+                    if (navArgs<MeetingDetailVotingUsersFragmentArgs>().value.isWhen){
+                        viewModel.dateRanks.collectLatest {
+                            rankAdapter.submitList(it)
+                        }
+                    }else {
+                        viewModel.placeRanks.collectLatest {
+                            rankAdapter.submitList(it)
+                        }
                     }
                 }
             }

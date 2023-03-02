@@ -67,6 +67,7 @@
 
     <!-- meeting detail -->
     <string name="meeting_detail_subtitle">%d/%d 입장 중</string>
+    <string name="meeting_detail_subtitle_complete">%d/%d 입장</string>
     <string name="meeting_detail_when">언제</string>
     <string name="meeting_detail_where">어디서</string>
     <string name="meeting_detail_start_voting">투표 시작하기</string>
@@ -168,7 +169,7 @@
     <!-- meeting detail user list -->
     <string name="meeting_detail_users_title">약속방 참여자</string>
     <string name="meeting_detail_voting_users_title">투표 참여자</string>
-    <string name="meeting_detail_users_header_count">%d</string>
+    <string name="meeting_detail_users_header_count">%d명</string>
 
     <!-- setting -->
     <string name="setting_developer_mail">whenwherewhat.official@gmail.com</string>

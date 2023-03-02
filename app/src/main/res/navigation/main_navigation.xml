@@ -114,11 +114,23 @@
 
     <fragment
         android:id="@+id/fragment_meeting_detail_rank"
-        android:name="com.promiseeight.www.ui.meeting.detail.MeetingDetailRankFragment" />
+        android:name="com.promiseeight.www.ui.meeting.detail.MeetingDetailRankFragment" >
+
+        <argument android:name="isWhen"
+            app:argType="boolean"/>
+        <action
+            android:id="@+id/action_fragment_meeting_detail_rank_to_meetingDetailVotingUsersFragment"
+            app:destination="@id/meetingDetailVotingUsersFragment" />
+
+    </fragment>
     <fragment
         android:id="@+id/meetingDetailVoteFragment"
         android:name="com.promiseeight.www.ui.meeting.detail.MeetingDetailVoteFragment"
-        android:label="MeetingDetailVoteFragment" />
+        android:label="MeetingDetailVoteFragment" >
+        <action
+            android:id="@+id/action_meetingDetailVoteFragment_to_meetingDetailVotingUsersFragment"
+            app:destination="@id/meetingDetailVotingUsersFragment" />
+    </fragment>
     <fragment
         android:id="@+id/meetingDetailConfirmWhenFragment"
         android:name="com.promiseeight.www.ui.meeting.detail.confirm.MeetingDetailConfirmWhenFragment"
@@ -130,6 +142,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_meetingDetailConfirmWhenFragment_to_meetingDetailVotingUsersFragment"
+            app:destination="@id/meetingDetailVotingUsersFragment" />
     </fragment>
     <fragment
         android:id="@+id/meetingDetailConfirmWhereFragment"
@@ -140,9 +155,11 @@
             android:id="@+id/action_meetingDetailConfirmWhereFragment_to_fragment_meeting_detail"
             app:destination="@id/fragment_meeting_detail"
             app:popUpTo="@id/fragment_home"/>
+        <action
+            android:id="@+id/action_meetingDetailConfirmWhereFragment_to_meetingDetailVotingUsersFragment"
+            app:destination="@id/meetingDetailVotingUsersFragment" />
     </fragment>
 
-    <!-- 이거 추가하는거 맞는지 확인해주세요 -->
     <fragment
         android:id="@+id/fragment_setting"
         android:name="com.promiseeight.www.ui.setting.SettingFragment">

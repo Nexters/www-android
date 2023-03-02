@@ -55,7 +55,7 @@
             android:layout_marginStart="@dimen/size_20"
             android:layout_marginTop="@dimen/size_34"
             android:elevation="@dimen/size_1"
-            android:text="@{@string/meeting_detail_subtitle(viewModel.meetingDetail.joinedUserCount ,viewModel.meetingDetail.minimumAlertMembers)}"
+            android:text="@{viewModel.meetingDetail.joinedUserCount &lt; viewModel.meetingDetail.minimumAlertMembers ? @string/meeting_detail_subtitle(viewModel.meetingDetail.joinedUserCount ,viewModel.meetingDetail.minimumAlertMembers) : @string/meeting_detail_subtitle_complete(viewModel.meetingDetail.joinedUserCount ,viewModel.meetingDetail.minimumAlertMembers)  }"
             android:textColor="@color/gray_600"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_back"
@@ -352,6 +352,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_106"
             android:background="@color/www_white"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
