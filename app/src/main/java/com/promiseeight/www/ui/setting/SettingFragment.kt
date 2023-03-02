@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.promiseeight.www.BuildConfig
+import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentSettingBinding
 import com.promiseeight.www.ui.common.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,6 +29,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setStatusBarColor(R.color.www_white)
 
         binding.tvSettingAppVersion.text = getVersionInfo()
         binding.ivBack.setOnClickListener {
@@ -50,12 +52,12 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
 
     private fun getVersionInfo() = BuildConfig.VERSION_NAME
 
-    private fun switchToggleBtn() {
-        binding.pushToggleSetting.setOnClickListener {
-//            val builder = AlertDialog.Builder(this.parentFragmentManager.getFragment(SettingFragment))
-
-        }
-    }
+//    private fun switchToggleBtn() {
+//        binding.pushToggleSetting.setOnClickListener {
+////            val builder = AlertDialog.Builder(this.parentFragmentManager.getFragment(SettingFragment))
+//
+//        }
+//    }
 
 
     private fun uriParse(urlGet : String) {

@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentJoinMeetingBinding
 import com.promiseeight.www.ui.common.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,6 +31,7 @@ class JoinMeetingFragment : BaseFragment<FragmentJoinMeetingBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
+        setStatusBarColor(R.color.www_white)
         binding.ivBack.setOnClickListener {
             onClickBackIcon()
         }

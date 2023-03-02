@@ -54,7 +54,7 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
         binding.viewModel = viewModel
         binding.let {
             initRecyclerViews(it.rvWhen, it.rvWhere)
-
+            setStatusBarColor(R.color.www_green_transparent_20)
             it.btnVote.setOnClickListener {
                 clickNextButton()
             }
@@ -269,5 +269,10 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
         findNavController().navigate(
             MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailConfirmWhenFragment()
         )
+    }
+
+    override fun onResume() {
+        setStatusBarColor(R.color.www_green_transparent_20)
+        super.onResume()
     }
 }

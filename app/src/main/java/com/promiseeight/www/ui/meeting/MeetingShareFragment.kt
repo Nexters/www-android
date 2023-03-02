@@ -37,7 +37,7 @@ class MeetingShareFragment : BaseFragment<FragmentMeetingShareBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setStatusBarColor(R.color.www_white)
         binding.btnShare.setOnClickListener {
             copy(navArgs<MeetingShareFragmentArgs>().value.argInvitationCode)
         }

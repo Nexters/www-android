@@ -39,6 +39,7 @@ class MeetingDetailRankFragment : BaseFragment<FragmentMeetingDetailRankBinding>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
+        setStatusBarColor(R.color.www_white)
 
         binding.let {
             initRecyclerView(it.rvRank)

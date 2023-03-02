@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import timber.log.Timber
 
 /*
     동일한 구조의 Fragment가 많을 것 같아 BaseFragment 추가했습니다.
@@ -68,5 +70,13 @@ abstract class BaseFragment<B: ViewDataBinding> : Fragment() {
 
     fun onClickBackIcon() {
         requireActivity().onBackPressed() // 바로 수정할 코드..
+    }
+
+    fun setStatusBarColor(resId: Int) {
+        try {
+            this.requireActivity().window?.statusBarColor = ContextCompat.getColor(requireContext(),resId)
+        } catch (e: Exception) {
+            Timber.e(e)
+        }
     }
 }
