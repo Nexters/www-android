@@ -76,9 +76,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="@dimen/size_30"
             android:text="앱 버전"
             style="@style/Text.Title9"
+            android:paddingVertical="@dimen/size_5"
             app:layout_constraintTop_toBottomOf="@id/tv_setting_title"/>
 
         <TextView
@@ -91,7 +92,8 @@
             android:textColor="@color/gray_350"
             android:textSize="14sp"
             app:layout_constraintTop_toTopOf="@id/tv_setting_version"
-            app:layout_constraintEnd_toEndOf="@id/tv_setting_version"/>
+            app:layout_constraintEnd_toEndOf="@id/tv_setting_version"
+            app:layout_constraintBottom_toBottomOf="@id/tv_setting_version"/>
 
 
         <!-- devleoper information -->
@@ -101,7 +103,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="@dimen/size_25"
+            android:paddingVertical="@dimen/size_5"
             android:text="개발자 정보"
             style="@style/Text.Title9"
             app:layout_constraintTop_toBottomOf="@id/tv_setting_version"/>
@@ -110,43 +113,80 @@
             android:id="@+id/tv_setting_dev_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="www.gmail.com"
+            android:text="@string/setting_developer_mail"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
             android:textColor="@color/gray_350"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_setting_dev"/>
+            app:layout_constraintTop_toTopOf="@id/tv_setting_dev"
+            app:layout_constraintBottom_toBottomOf="@id/tv_setting_dev"/>
 
         <TextView
             android:id="@+id/tv_setting_feedback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="@dimen/size_25"
+            android:paddingVertical="@dimen/size_5"
             android:text="피드백 남기기"
             style="@style/Text.Title9"
             app:layout_constraintTop_toBottomOf="@id/tv_setting_dev"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/size_8"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/tv_setting_feedback"
+            app:layout_constraintBottom_toBottomOf="@id/tv_setting_feedback"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/size_20"
+            android:src="@drawable/ic_back"
+            android:tint="@color/gray_350"
+            android:rotation="180"/>
 
         <TextView
             android:id="@+id/tv_setting_private_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="@dimen/size_25"
+            android:paddingVertical="@dimen/size_5"
             android:text="개인정보 처리방침"
             style="@style/Text.Title9"
             app:layout_constraintTop_toBottomOf="@id/tv_setting_feedback"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/size_8"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/tv_setting_private_info"
+            app:layout_constraintBottom_toBottomOf="@id/tv_setting_private_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/size_20"
+            android:src="@drawable/ic_back"
+            android:tint="@color/gray_350"
+            android:rotation="180"/>
 
         <TextView
             android:id="@+id/tv_setting_open_source"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="@dimen/size_25"
+            android:paddingVertical="@dimen/size_5"
             android:text="오픈소스 라이선스 목록"
             style="@style/Text.Title9"
             app:layout_constraintTop_toBottomOf="@id/tv_setting_private_info"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/size_8"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/tv_setting_open_source"
+            app:layout_constraintBottom_toBottomOf="@id/tv_setting_open_source"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/size_20"
+            android:src="@drawable/ic_back"
+            android:tint="@color/gray_350"
+            android:rotation="180"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
