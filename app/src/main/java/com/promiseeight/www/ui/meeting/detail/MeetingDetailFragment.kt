@@ -61,20 +61,20 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
 
             it.vShare.setOnClickListener {
                 viewModel.meetingDetail.value?.let {
-                    copy(it.meetingCode)
+                    copyCode(it.meetingCode)
                 }
 
             }
 
             it.ivWhenMore.setOnClickListener {
                 findNavController().navigate(
-                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToFragmentMeetingDetailRank()
+                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToFragmentMeetingDetailRank(true)
                 )
             }
 
             it.ivWhereMore.setOnClickListener {
                 findNavController().navigate(
-                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToMeetingDetailVoteFragment()
+                    MeetingDetailFragmentDirections.actionFragmentMeetingDetailToFragmentMeetingDetailRank(false)
                 )
             }
 
@@ -256,11 +256,7 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
-
-    private fun copy(text: String) {
+    private fun copyCode(text: String) {
         try {
             (requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).run {
                 setPrimaryClip(ClipData.newPlainText("link", text))
@@ -281,7 +277,7 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
     }
 
     override fun onResume() {
-        setStatusBarColor(R.color.www_green_transparent_20)
         super.onResume()
+        setStatusBarColor(R.color.www_green_transparent_20)
     }
 }

@@ -67,6 +67,7 @@
 
     <!-- meeting detail -->
     <string name="meeting_detail_subtitle">%d/%d 입장 중</string>
+    <string name="meeting_detail_subtitle_complete">%d/%d 입장</string>
     <string name="meeting_detail_when">언제</string>
     <string name="meeting_detail_where">어디서</string>
     <string name="meeting_detail_start_voting">투표 시작하기</string>

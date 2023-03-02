@@ -114,7 +114,12 @@
 
     <fragment
         android:id="@+id/fragment_meeting_detail_rank"
-        android:name="com.promiseeight.www.ui.meeting.detail.MeetingDetailRankFragment" />
+        android:name="com.promiseeight.www.ui.meeting.detail.MeetingDetailRankFragment" >
+
+        <argument android:name="isWhen"
+            app:argType="boolean"/>
+
+    </fragment>
     <fragment
         android:id="@+id/meetingDetailVoteFragment"
         android:name="com.promiseeight.www.ui.meeting.detail.MeetingDetailVoteFragment"
@@ -142,7 +147,6 @@
             app:popUpTo="@id/fragment_home"/>
     </fragment>
 
-    <!-- 이거 추가하는거 맞는지 확인해주세요 -->
     <fragment
         android:id="@+id/fragment_setting"
         android:name="com.promiseeight.www.ui.setting.SettingFragment">
