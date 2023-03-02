@@ -14,8 +14,9 @@
             android:id="@+id/iv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_28"
-            android:layout_marginTop="@dimen/size_18"
+            android:layout_marginStart="@dimen/size_20"
+            android:layout_marginTop="@dimen/size_10"
+            android:padding="@dimen/size_8"
             android:src="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
