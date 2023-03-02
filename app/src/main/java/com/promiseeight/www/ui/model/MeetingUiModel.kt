@@ -38,8 +38,9 @@ fun MeetingMain.toMeetingUiModel() = MeetingUiModel(
     meetingName,
     meetingStatus = MeetingStatus.valueOf(meetingStatus)
     , minimumAlertMembers,
-    confirmedDate = getPromiseDateFormatted(confirmedDate), confirmedPlace,
-    confirmedTime = if(confirmedTime!=null) PromiseTime.valueOf(confirmedTime).korean else "",
+    confirmedDate = if(confirmedDate!=null) getPromiseDateFormatted(confirmedDate) else null,
+    confirmedPlace,
+    confirmedTime = if(confirmedTime!=null) PromiseTime.valueOf(confirmedTime).korean else null,
     votingUserCount,
     yaksogi = MeetingYaksogi.valueOf(yaksokiType),
     dDay = getDday(confirmedDate),
