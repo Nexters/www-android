@@ -10,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +20,9 @@ import com.promiseeight.www.databinding.FragmentMeetingDetailRankBinding
 import com.promiseeight.www.ui.adapter.RankAdapter
 import com.promiseeight.www.ui.adapter.RankConfirmAdapter
 import com.promiseeight.www.ui.common.BaseFragment
+import com.promiseeight.www.ui.meeting.detail.MeetingDetailFragmentDirections
 import com.promiseeight.www.ui.meeting.detail.MeetingDetailViewModel
+import com.promiseeight.www.ui.meeting.detail.MeetingDetailVotingUsersFragmentArgs
 import com.promiseeight.www.ui.model.PlaceRankUiModel
 import com.promiseeight.www.ui.model.RankModel
 import kotlinx.coroutines.flow.collectLatest
@@ -55,6 +58,13 @@ class MeetingDetailConfirmWhenFragment : BaseFragment<FragmentMeetingDetailConfi
             }
             it.ivBack.setOnClickListener {
                 onClickBackIcon()
+            }
+            it.tvRankCount.setOnClickListener {
+                findNavController().navigate(
+                    MeetingDetailConfirmWhenFragmentDirections.actionMeetingDetailConfirmWhenFragmentToMeetingDetailVotingUsersFragment(
+                        true
+                    )
+                )
             }
         }
 

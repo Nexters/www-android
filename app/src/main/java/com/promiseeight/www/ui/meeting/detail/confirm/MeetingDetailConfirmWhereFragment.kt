@@ -19,6 +19,7 @@ import com.promiseeight.www.databinding.FragmentMeetingDetailRankBinding
 import com.promiseeight.www.ui.adapter.RankAdapter
 import com.promiseeight.www.ui.adapter.RankConfirmAdapter
 import com.promiseeight.www.ui.common.BaseFragment
+import com.promiseeight.www.ui.meeting.detail.MeetingDetailFragmentDirections
 import com.promiseeight.www.ui.meeting.detail.MeetingDetailViewModel
 import com.promiseeight.www.ui.model.PlaceRankUiModel
 import com.promiseeight.www.ui.model.RankModel
@@ -54,6 +55,13 @@ class MeetingDetailConfirmWhereFragment : BaseFragment<FragmentMeetingDetailConf
             }
             it.ivBack.setOnClickListener {
                 onClickBackIcon()
+            }
+            it.tvRankCount.setOnClickListener {
+                findNavController().navigate(
+                    MeetingDetailConfirmWhereFragmentDirections.actionMeetingDetailConfirmWhereFragmentToMeetingDetailVotingUsersFragment(
+                        false
+                    )
+                )
             }
         }
 

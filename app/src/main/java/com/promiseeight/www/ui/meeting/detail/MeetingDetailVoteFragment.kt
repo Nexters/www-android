@@ -9,6 +9,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.promiseeight.www.R
@@ -49,6 +50,13 @@ class MeetingDetailVoteFragment : BaseFragment<FragmentMeetingDetailVoteBinding>
             }
             it.ivBack.setOnClickListener {
                 onClickBackIcon()
+            }
+            it.tvRankCount.setOnClickListener {
+                findNavController().navigate(
+                    MeetingDetailVoteFragmentDirections.actionMeetingDetailVoteFragmentToMeetingDetailVotingUsersFragment(
+                        false
+                    )
+                )
             }
         }
 

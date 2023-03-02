@@ -9,6 +9,7 @@ import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -52,6 +53,14 @@ class MeetingDetailRankFragment : BaseFragment<FragmentMeetingDetailRankBinding>
             binding.tvTitle.text =
                 if (navArgs<MeetingDetailVotingUsersFragmentArgs>().value.isWhen) resources.getString(R.string.meeting_detail_when)
                 else resources.getString(R.string.meeting_detail_where)
+
+            binding.tvRankCount.setOnClickListener {
+                findNavController().navigate(
+                    MeetingDetailRankFragmentDirections.actionFragmentMeetingDetailRankToMeetingDetailVotingUsersFragment(
+                        navArgs<MeetingDetailVotingUsersFragmentArgs>().value.isWhen
+                    )
+                )
+            }
 
         }
 
