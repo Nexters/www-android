@@ -35,7 +35,7 @@
             android:paddingBottom="@dimen/size_3"
             android:text="@{@string/number(1)}"
             android:textColor="@color/www_green"
-            android:visibility="@{rank.meetingVotingStarted ? (rank.ranking == 1 ? (rank.tied ? View.GONE : View.VISIBLE) : View.GONE ): View.GONE }"
+            android:visibility="@{rank.meetingVotingStarted ? (rank.count != 0 ? (rank.ranking == 1 ? (rank.tied ? View.GONE : View.VISIBLE) : View.GONE ) : View.GONE ): View.GONE }"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 

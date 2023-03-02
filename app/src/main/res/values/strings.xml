@@ -8,6 +8,8 @@
         <item>진행 중 약속</item>
         <item>종료된 약속</item>
     </string-array>
+    <string name="home_meeting_unconfirmed">미확정</string>
+    <string name="home_meeting_date_and_time">%s %s• %s</string>
 
 
     <!-- add / join -->
@@ -60,6 +62,7 @@
     <string name="meeting_share_subtitle">약속방 만들기</string>
     <string name="meeting_share_subtitle_second">가 완료되었어요!</string>
     <string name="meeting_share_link">링크 복사하기</string>
+    <string name="meeting_share_code">코드 복사하기</string>
     <string name="meeting_share_next">약속방으로 가기</string>
 
     <!-- meeting detail -->
@@ -69,8 +72,11 @@
     <string name="meeting_detail_start_voting">투표 시작하기</string>
     <string name="meeting_detail_go_to_vote">투표 하러가기</string>
     <string name="meeting_detail_vote">투표하기</string>
+    <string name="meeting_detail_voted">투표 완료</string>
+    <string name="meeting_detail_confirm">확정 완료</string>
     <string name="meeting_detail_vote_count">%d명 참여</string>
     <string name="meeting_detail_voting_count">%d명 참여 중</string>
+    <string name="meeting_detail_voted_count">%d명 참여 완료</string>
     <string name="meeting_detail_rank_count">%d명</string>
 
     <!-- common -->
@@ -86,8 +92,11 @@
     <string name="friday_short">금</string>
     <string name="saturday_short">토</string>
     <string name="minus"> - </string>
+    <string name="string_blank_string">%s %s</string>
     <string name="copy_link_success">링크가 복사되었습니다.</string>
     <string name="copy_link_fail">링크 복사에 실패하였습니다.</string>
+    <string name="copy_code_success">코드가 복사되었습니다.</string>
+    <string name="copy_code_fail">코드 복사에 실패하였습니다.</string>
 
 
     <!-- System -->
@@ -129,10 +138,13 @@
     <!-- item indicator -->
     <string name="indicator_vote_ing">투표 중</string>
     <string name="indicator_ex_vote">투표 시작 전</string>
+    <string name="indicator_d_day">D%s</string>
+    <string name="indicator_count">%d/%d명</string>
 
 
     <!-- onGoing text -->
-    <string name="tv_ongoing_meet">아직 진행 중인 약속이 없어요!</string>
+    <string name="tv_ongoing_meeting_empty">아직 진행 중인 약속이 없어요!</string>
+    <string name="tv_done_meeting_empty">종료된 약속이 없어요!</string>
 
 
     <!-- floating btn text -->
@@ -159,5 +171,11 @@
     <string name="mockup4_1">알림으로 약속 리마인드</string>
     <string name="mockup4_2">빠르게 약속을 정할 수 있도록 알림 받기</string>
 
+    <!-- meeting detail user list -->
+    <string name="meeting_detail_users_title">약속방 참여자</string>
+    <string name="meeting_detail_voting_users_title">투표 참여자</string>
+    <string name="meeting_detail_users_header_count">%d</string>
 
+    <!-- setting -->
+    <string name="setting_developer_mail">whenwherewhat.official@gmail.com</string>
 </resources>

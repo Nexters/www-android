@@ -7,7 +7,7 @@ import com.promiseeight.www.data.model.response.toMeetingMainList
 import com.promiseeight.www.data.source.remote.MeetingRemoteDataSource
 import com.promiseeight.www.domain.model.*
 import com.promiseeight.www.domain.repository.MeetingRepository
-import com.promiseeight.www.ui.meeting.detail.MeetingStatus
+import com.promiseeight.www.domain.model.MeetingStatus
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import timber.log.Timber
@@ -31,21 +31,25 @@ class MeetingRepositoryImpl @Inject constructor(
             try{
                 emit(Result.success(it.toMeetingDetail()))
             } catch (e : Exception){
-                Timber.d("asdasd ${e.toString()}")
+                Timber.e(e)
             }
         }.onFailure {
-            Timber.d("asdasd ${it.toString()}")
+            Timber.e(it)
             emit(Result.failure(it))
         }
     }
 
     override fun getMeetingDetailById(meetingId: Long): Flow<Result<MeetingDetail>> = flow {
-        meetingRemoteDataSource.getMeetingDetailById(meetingId).runCatching {
-            getOrThrow()
-        }.onSuccess {
-            emit(Result.success(it.toMeetingDetail()))
-        }.onFailure {
-            emit(Result.failure(it))
+        try {
+            meetingRemoteDataSource.getMeetingDetailById(meetingId).runCatching {
+                getOrThrow()
+            }.onSuccess {
+                emit(Result.success(it.toMeetingDetail()))
+            }.onFailure {
+                emit(Result.failure(it))
+            }
+        } catch (e : Exception){
+            Timber.e(e)
         }
     }
 
@@ -69,8 +73,31 @@ class MeetingRepositoryImpl @Inject constructor(
             .onSuccess {
                 emit(Result.success(Unit))
             }.onFailure {
-                emit(Result.failure(it)) //확인부탁
+                emit(Result.failure(it))
             }
+    }
+
+    override fun votePlaces(meetingId: Long, placeIdList: List<Long>): Flow<Result<Unit>> = flow {
+        meetingRemoteDataSource.votePlaces(meetingId,placeIdList)
+            .onSuccess {
+                emit(Result.success(Unit))
+            }.onFailure {
+                emit(Result.failure(it))
+            }
+    }
+
+    override fun putMeetingStatusConfirmed(
+        meetingId: Long,
+        meetingPlaceId: Long,
+        meetingUserTimetableId: Long
+    ): Flow<Result<Unit>> = flow {
+        meetingRemoteDataSource.putMeetingStatusConfirmed(
+            meetingId,meetingPlaceId,meetingUserTimetableId
+        ).onSuccess {
+            emit(Result.success(Unit))
+        }.onFailure {
+            emit(Result.failure(it))
+        }
     }
 
     override fun getMeetings(): Flow<Result<MeetingMainList>> = flow {

@@ -6,11 +6,11 @@ data class MeetingMain (
     val confirmedTime: String?,
     val hostName: String,
     val joinedUserCount: Int,
-    val meetingId: Int,
+    val meetingId: Long,
     val meetingName: String,
     val meetingStatus: String,
-    val minimumAlertMembers: Int,
+    val minimumAlertMembers: Long,
     val votingUserCount: Int,
-    val yaksokiType: String
-
+    val yaksokiType: String,
+    val confirmedDayOfWeek : String?
 )

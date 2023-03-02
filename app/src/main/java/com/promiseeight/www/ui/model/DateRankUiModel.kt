@@ -13,9 +13,10 @@ data class DateRankUiModel(
     override val tied : Boolean = false,
     val date : String,
     val time : String,
+    val timetableId : Long
 ) : RankModel(id,ranking,type,progress,selected,count,confirmed, tied)
 
-fun getDateRankUiModelList(userPromiseDateTimeList : List<UserPromiseTime>, joinedUserCount : Long) : List<DateRankUiModel> {
+fun getDateRankUiModelList(userPromiseDateTimeList : List<UserPromiseTime>) : List<DateRankUiModel> {
     var rank = 1
     var lastUserCount = 0
     val firstRankCount = userPromiseDateTimeList.maxBy {
@@ -43,7 +44,8 @@ fun getDateRankUiModelList(userPromiseDateTimeList : List<UserPromiseTime>, join
                 date = userPromiseTime.promiseDate,
                 progress = 100 * userPromiseTime.userInfoList.size / firstRankCount.userInfoList.size,
                 time = userPromiseTime.promiseTime.korean,
-                tied = tied
+                tied = tied,
+                timetableId = userPromiseTime.timetableId
             )
         )
     }

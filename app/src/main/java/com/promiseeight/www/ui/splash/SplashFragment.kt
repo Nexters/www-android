@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.messaging.FirebaseMessaging
+import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentSplashBinding
 import com.promiseeight.www.ui.common.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,6 +38,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initObserver()
+        setStatusBarColor(R.color.www_white)
         setFirebaseMessagingTokenSuccessListener()
 
 

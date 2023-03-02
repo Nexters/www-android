@@ -7,6 +7,7 @@
         <variable
             name="viewModel"
             type="com.promiseeight.www.ui.meeting.detail.MeetingDetailViewModel" />
+        <import type="android.view.View"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,8 +27,9 @@
             android:id="@+id/iv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_28"
-            android:layout_marginTop="@dimen/size_18"
+            android:layout_marginStart="@dimen/size_20"
+            android:layout_marginTop="@dimen/size_10"
+            android:padding="@dimen/size_8"
             android:elevation="@dimen/size_1"
             android:src="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +39,8 @@
             android:id="@+id/iv_participant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/size_24"
+            android:layout_marginEnd="@dimen/size_12"
+            android:padding="@dimen/size_12"
             android:elevation="@dimen/size_1"
             android:src="@drawable/ic_group"
             app:layout_constraintBottom_toBottomOf="@id/iv_back"
@@ -72,13 +75,18 @@
             app:layout_constraintTop_toBottomOf="@id/tv_subtitle" />
         
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:id="@+id/iv_meeting"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/size_0"
             android:elevation="@dimen/size_2"
+            android:adjustViewBounds="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/img_yaksogi1"
-            app:layout_constraintWidth_percent="70"/>
+            app:layout_constraintTop_toBottomOf="@id/iv_participant"
+            android:layout_marginEnd="@dimen/size_30"
+            app:layout_constraintBottom_toBottomOf="@id/v_top"
+            app:meetingYaksogi="@{viewModel.meetingDetail.yaksogi}"
+            app:layout_constraintWidth_percent="70"
+            tools:src="@drawable/img_yaksogi_eating"/>
 
         <!-- 수정 필요 -->
         <androidx.core.widget.NestedScrollView
@@ -91,35 +99,121 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingBottom="@dimen/size_44">
+                
+                <View
+                    android:id="@+id/v_confirm_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_54"
+                    android:background="@drawable/rectangle_white_radius_10"
+                    android:layout_marginHorizontal="@dimen/size_20"
+                    android:elevation="@dimen/size_1"
+                    android:layout_marginTop="@dimen/size_16"
+                    android:visibility="@{viewModel.meetingDetail.confirmedDate == null ? View.GONE : View.VISIBLE }"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_bell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/v_confirm_info"
+                    app:layout_constraintStart_toStartOf="@id/v_confirm_info"
+                    app:layout_constraintBottom_toBottomOf="@id/v_confirm_info"
+                    android:visibility="@{viewModel.meetingDetail.confirmedDate == null ? View.GONE : View.VISIBLE }"
+                    android:src="@drawable/ic_bell"
+                    android:elevation="@dimen/size_1"
+                    android:layout_marginHorizontal="@dimen/size_15"
+                    android:layout_marginStart="@dimen/size_16"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_confirm_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Text.Body4"
+                    android:elevation="@dimen/size_1"
+                    android:text="@{@string/string_blank_string(viewModel.meetingDetail.confirmedDate,viewModel.meetingDetail.confirmedDayOfWeek)}"
+                    android:visibility="@{viewModel.meetingDetail.confirmedDate == null ? View.GONE : View.VISIBLE }"
+                    app:layout_constraintTop_toTopOf="@id/iv_bell"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_bell"
+                    app:layout_constraintStart_toEndOf="@id/iv_bell"
+                    android:layout_marginStart="@dimen/size_8"
+                    android:textColor="@color/www_black"
+                    tools:text="23. 01. 20 금"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_confirm_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Text.Body4"
+                    android:text="@{viewModel.meetingDetail.confirmedTime}"
+                    android:visibility="@{viewModel.meetingDetail.confirmedDate == null ? View.GONE : View.VISIBLE }"
+                    android:elevation="@dimen/size_1"
+                    app:layout_constraintTop_toTopOf="@id/tv_confirm_date"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_confirm_date"
+                    app:layout_constraintStart_toEndOf="@id/tv_confirm_date"
+                    android:layout_marginStart="@dimen/size_6"
+                    android:textColor="@color/www_black"
+                    tools:text="아침"/>
+
+                <View
+                    android:id="@+id/v_border_horiz"
+                    android:layout_width="@dimen/size_1"
+                    android:layout_height="@dimen/size_12"
+                    android:elevation="@dimen/size_1"
+                    android:visibility="@{viewModel.meetingDetail.confirmedDate == null ? View.GONE : View.VISIBLE }"
+                    app:layout_constraintTop_toTopOf="@id/tv_confirm_time"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_confirm_time"
+                    app:layout_constraintStart_toEndOf="@id/tv_confirm_time"
+                    android:layout_marginStart="@dimen/size_8"
+                    android:background="@color/gray_300"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_confirm_place"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Text.Body4"
+                    android:visibility="@{viewModel.meetingDetail.confirmedDate == null ? View.GONE : View.VISIBLE }"
+                    android:text="@{viewModel.meetingDetail.confirmedPlace}"
+                    android:elevation="@dimen/size_1"
+                    app:layout_constraintTop_toTopOf="@id/v_border_horiz"
+                    app:layout_constraintBottom_toBottomOf="@id/v_border_horiz"
+                    app:layout_constraintStart_toEndOf="@id/v_border_horiz"
+                    android:layout_marginStart="@dimen/size_8"
+                    android:textColor="@color/www_black"
+                    tools:text="합정역"/>
+                
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_when"
                     style="@style/Text.Title3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_20"
-                    android:layout_marginTop="@dimen/size_24"
+                    android:layout_marginTop="@dimen/size_12"
+                    android:paddingVertical="@dimen/size_12"
                     android:text="@string/meeting_detail_when"
                     android:textColor="@color/www_black"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/v_confirm_info"
+                    />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/iv_when_more"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_30"
-                    android:layout_marginEnd="@dimen/size_30"
+                    android:layout_marginEnd="@dimen/size_22"
+                    android:padding="@dimen/size_8"
                     android:src="@drawable/ic_next"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@id/tv_when"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_when"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_when"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/size_20"
-                    android:layout_marginTop="@dimen/size_24"
+                    android:layout_marginTop="@dimen/size_10"
                     android:background="@drawable/rectangle_white_radius_20"
                     android:elevation="@dimen/size_1"
                     android:paddingHorizontal="@dimen/size_20"
@@ -146,7 +240,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_19"
-                    android:layout_marginTop="@dimen/size_10"
+                    android:layout_marginTop="@dimen/size_5"
+                    android:paddingVertical="@dimen/size_5"
+                    android:paddingEnd="@dimen/size_14"
                     android:elevation="@dimen/size_1"
                     android:text="@{@string/meeting_detail_vote_count(viewModel.meetingDetail.joinedUserCount)}"
                     android:textColor="@color/gray_350"
@@ -160,7 +256,7 @@
                     android:elevation="@dimen/size_1"
                     android:src="@drawable/ic_next_small"
                     app:layout_constraintBottom_toBottomOf="@id/tv_when_count"
-                    app:layout_constraintStart_toEndOf="@id/tv_when_count"
+                    app:layout_constraintEnd_toEndOf="@id/tv_when_count"
                     app:layout_constraintTop_toTopOf="@id/tv_when_count" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -179,8 +275,9 @@
                     android:id="@+id/iv_where_more"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_30"
-                    android:layout_marginEnd="@dimen/size_30"
+                    android:layout_marginTop="@dimen/size_22"
+                    android:layout_marginEnd="@dimen/size_22"
+                    android:padding="@dimen/size_8"
                     android:src="@drawable/ic_next"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/rv_when" />
@@ -219,12 +316,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_19"
-                    android:layout_marginTop="@dimen/size_10"
+                    android:layout_marginTop="@dimen/size_5"
+                    android:paddingVertical="@dimen/size_5"
+                    android:paddingEnd="@dimen/size_14"
                     android:elevation="@dimen/size_1"
                     android:text="@{@string/meeting_detail_vote_count(viewModel.meetingDetail.votingUserCount)}"
                     android:textColor="@color/gray_350"
                     app:layout_constraintStart_toStartOf="@id/rv_where"
-                    app:layout_constraintTop_toBottomOf="@id/v_where_divider" />
+                    app:layout_constraintTop_toBottomOf="@id/v_where_divider"
+                    tools:text="12명 참여"/>
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
@@ -233,7 +333,7 @@
                     android:elevation="@dimen/size_1"
                     android:src="@drawable/ic_next_small"
                     app:layout_constraintBottom_toBottomOf="@id/tv_where_count"
-                    app:layout_constraintStart_toEndOf="@id/tv_where_count"
+                    app:layout_constraintEnd_toEndOf="@id/tv_where_count"
                     app:layout_constraintTop_toTopOf="@id/tv_where_count" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -242,11 +342,16 @@
         </androidx.core.widget.NestedScrollView>
 
         <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_1"
+            app:layout_constraintBottom_toTopOf="@id/v_bottom"
+            android:background="@color/gray_100"/>
+
+        <View
             android:id="@+id/v_bottom"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_106"
             android:background="@color/www_white"
-            android:elevation="@dimen/size_2"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton

@@ -45,13 +45,16 @@ class MeetingDetailConfirmWhenFragment : BaseFragment<FragmentMeetingDetailConfi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Timber.d("asdasd ${viewModel.hashCode()}")
+        binding.viewModel = viewModel
         binding.let {
             initRecyclerView(it.rvRank)
             it.btnConfirm.setOnClickListener {
                 findNavController().navigate(
                     MeetingDetailConfirmWhenFragmentDirections.actionMeetingDetailConfirmWhenFragmentToMeetingDetailConfirmWhereFragment()
                 )
+            }
+            it.ivBack.setOnClickListener {
+                onClickBackIcon()
             }
         }
 
@@ -63,6 +66,7 @@ class MeetingDetailConfirmWhenFragment : BaseFragment<FragmentMeetingDetailConfi
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = rankAdapter
+            itemAnimator = null
         }
 
 
@@ -74,6 +78,7 @@ class MeetingDetailConfirmWhenFragment : BaseFragment<FragmentMeetingDetailConfi
                 launch {
                     viewModel.dateRanks.collectLatest {
                         rankAdapter.submitList(it)
+                        binding.btnConfirm.isEnabled = it.any { it.confirmed }
                     }
                 }
             }

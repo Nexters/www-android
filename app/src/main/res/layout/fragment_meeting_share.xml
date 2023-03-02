@@ -72,7 +72,7 @@
             android:elevation="@dimen/size_0"
             android:outlineProvider="none"
             android:paddingHorizontal="@dimen/size_20"
-            android:text="@string/meeting_share_link"
+            android:text="@string/meeting_share_code"
             android:textColor="@color/www_black"
             android:layout_marginBottom="@dimen/size_48"
             app:layout_constraintBottom_toTopOf="@id/btn_next"

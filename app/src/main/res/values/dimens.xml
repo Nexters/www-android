@@ -2,6 +2,7 @@
 <resources>
     <!-- size -->
     <dimen name="size_0">0dp</dimen>
+    <dimen name="size_0.5">0.5dp</dimen>
     <dimen name="size_1">1dp</dimen>
     <dimen name="size_2">2dp</dimen>
     <dimen name="size_3">3dp</dimen>
@@ -24,6 +25,7 @@
     <dimen name="size_20">20dp</dimen>
     <dimen name="size_22">22dp</dimen>
     <dimen name="size_23">23dp</dimen>
+    <dimen name="size_23.5">23.5dp</dimen>
     <dimen name="size_24">24dp</dimen>
     <dimen name="size_25">25dp</dimen>
     <dimen name="size_26">26dp</dimen>
@@ -36,6 +38,7 @@
     <dimen name="size_38">38dp</dimen>
     <dimen name="size_40">40dp</dimen>
     <dimen name="size_43">43dp</dimen>
+    <dimen name="size_43.5">43.5dp</dimen>
     <dimen name="size_44">44dp</dimen>
     <dimen name="size_46">46dp</dimen>
     <dimen name="size_48">48dp</dimen>
@@ -55,6 +58,7 @@
     <dimen name="size_104">104dp</dimen>
     <dimen name="size_106">106dp</dimen>
     <dimen name="size_152">152dp</dimen>
+    <dimen name="size_158">158dp</dimen>
     <dimen name="size_188">188dp</dimen>
     <dimen name="size_200">200dp</dimen>
     <dimen name="size_218">218dp</dimen>
@@ -67,7 +71,7 @@
     <!-- plus padding size -->
     <dimen name="size_16_padding_8">32dp</dimen>
     <dimen name="size_24_padding_8">40dp</dimen>
-
+    <dimen name="size_30_padding_8">46dp</dimen>
 
     <!-- font size -->
 

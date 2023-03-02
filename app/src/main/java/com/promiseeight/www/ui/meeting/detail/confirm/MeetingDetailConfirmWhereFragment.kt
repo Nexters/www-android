@@ -9,6 +9,7 @@ import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -43,9 +44,17 @@ class MeetingDetailConfirmWhereFragment : BaseFragment<FragmentMeetingDetailConf
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.viewModel = viewModel
 
         binding.let {
             initRecyclerView(it.rvRank)
+
+            it.btnConfirm.setOnClickListener {
+                viewModel.confirmMeeting()
+            }
+            it.ivBack.setOnClickListener {
+                onClickBackIcon()
+            }
         }
 
         initObserver()
@@ -56,6 +65,7 @@ class MeetingDetailConfirmWhereFragment : BaseFragment<FragmentMeetingDetailConf
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = rankAdapter
+            itemAnimator = null
         }
 
 
@@ -67,6 +77,18 @@ class MeetingDetailConfirmWhereFragment : BaseFragment<FragmentMeetingDetailConf
                 launch {
                     viewModel.placeRanks.collectLatest {
                         rankAdapter.submitList(it)
+                        binding.btnConfirm.isEnabled = it.any { it.confirmed }
+                    }
+                }
+                launch {
+                    viewModel.meetingDetail.collectLatest {
+                        it?.let { meetingDetail ->
+                            if(meetingDetail.confirmedDate != null && meetingDetail.confirmedDate.isNotBlank()){
+                                findNavController().navigate(
+                                    MeetingDetailConfirmWhereFragmentDirections.actionMeetingDetailConfirmWhereFragmentToFragmentMeetingDetail(meetingDetail.meetingId.toString())
+                                )
+                            }
+                        }
                     }
                 }
             }

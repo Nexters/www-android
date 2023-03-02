@@ -34,9 +34,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.viewModel = viewModel
         viewModel.getMeetings()
-
+        setStatusBarColor(R.color.gray_100)
         binding.btn1FloatingMain.setOnClickListener{
             btnVisible()
             toggleFab()
@@ -113,6 +113,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         viewPager.adapter = homeTabAdapter
         viewPager.isUserInputEnabled = false
+
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                viewModel.setHomePosition(position)
+            }
+        })
     }
 
     private fun setTabLayoutMediator(tabLayout: TabLayout, viewPager: ViewPager2){
@@ -121,10 +128,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }.attach()
     }
 
+
     private fun getTabAtPosition(tab : TabLayout.Tab, position : Int){
         tab.text = getHomeTabs()[position].title
 
         // 디자인 수정 코드 추가
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setStatusBarColor(R.color.gray_100)
     }
 }
 

@@ -47,7 +47,6 @@ class MeetingInfoDateFragment : InfoFragment<FragmentMeetingInfoDateBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
-        Timber.d("asdasd : ${viewModel.hashCode()}")
 
         setParentFragmentBranch(
             { viewModel.setPage(3) },
