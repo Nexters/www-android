@@ -11,7 +11,8 @@ data class MeetingDetailUserUiModel(
     val count : Int = 0,
     val userName : String = "",
     val characterType : CharacterType = CharacterType.CREATOR,
-    val isHost : Boolean = false
+    val isHost : Boolean = false,
+    val isVotingUser : Boolean = false
 )
 
 fun User.toMeetingDetailUserUiModel() = MeetingDetailUserUiModel(

@@ -6,6 +6,7 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.promiseeight.www.R
+import com.promiseeight.www.ui.model.MeetingDetailUserUiModel
 import com.promiseeight.www.ui.model.enums.CharacterType
 import com.promiseeight.www.ui.model.enums.DateUiState
 import com.promiseeight.www.ui.model.enums.MeetingYaksogi
@@ -81,15 +82,19 @@ fun ImageView.setMeetingYaksogi(meetingYaksogi: MeetingYaksogi?) {
 }
 
 @BindingAdapter("userImageSmall")
-fun ImageView.setUserImageSmall(characterType: CharacterType?) {
-    if(characterType == null) return
+fun ImageView.setUserImageSmall(meetingDetailUser: MeetingDetailUserUiModel?) {
+    if(meetingDetailUser == null) return
     Glide.with(this.context)
         .load(
-            when (characterType) {
-                CharacterType.CREATOR -> AppCompatResources.getDrawable(context, R.drawable.img_user_host_small)
-                CharacterType.USER_1 -> AppCompatResources.getDrawable(context, R.drawable.img_user_blue_small)
-                CharacterType.USER_2 -> AppCompatResources.getDrawable(context, R.drawable.img_user_green_small)
-                CharacterType.USER_3 -> AppCompatResources.getDrawable(context, R.drawable.img_user_yellow_small)
+            when (meetingDetailUser.characterType) {
+                CharacterType.CREATOR -> if(meetingDetailUser.isVotingUser) AppCompatResources.getDrawable(context, R.drawable.img_user_host_small)
+                                        else AppCompatResources.getDrawable(context, R.drawable.img_user_host)
+                CharacterType.USER_1 -> if(meetingDetailUser.isVotingUser) AppCompatResources.getDrawable(context, R.drawable.img_user_blue_small)
+                                        else AppCompatResources.getDrawable(context, R.drawable.img_user_blue)
+                CharacterType.USER_2 -> if(meetingDetailUser.isVotingUser) AppCompatResources.getDrawable(context, R.drawable.img_user_green_small)
+                                        else AppCompatResources.getDrawable(context, R.drawable.img_user_green)
+                CharacterType.USER_3 -> if(meetingDetailUser.isVotingUser) AppCompatResources.getDrawable(context, R.drawable.img_user_yellow_small)
+                                        else AppCompatResources.getDrawable(context, R.drawable.img_user_yellow)
                 else -> null
             }
         )
