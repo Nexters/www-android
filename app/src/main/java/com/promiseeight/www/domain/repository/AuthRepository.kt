@@ -10,4 +10,8 @@ interface AuthRepository {
     fun getAccessTokenSavedInDevice() : Flow<Result<String>>
 
     fun isAccessTokenInDevice() : Flow<Result<Boolean>>
+
+    fun getIsFirst() : Flow<Result<Boolean>>
+
+    suspend fun setIsFirstFalse()
 }
