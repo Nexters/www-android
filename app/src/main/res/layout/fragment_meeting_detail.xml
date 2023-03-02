@@ -344,6 +344,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_106"
             android:background="@color/www_white"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
