@@ -262,10 +262,11 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_where"
                     style="@style/Text.Title3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_20"
-                    android:layout_marginTop="@dimen/size_24"
+                    android:layout_marginTop="@dimen/size_12"
+                    android:paddingVertical="@dimen/size_12"
                     android:text="@string/meeting_detail_where"
                     android:textColor="@color/www_black"
                     app:layout_constraintStart_toStartOf="parent"
@@ -275,19 +276,19 @@
                     android:id="@+id/iv_where_more"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_22"
                     android:layout_marginEnd="@dimen/size_22"
                     android:padding="@dimen/size_8"
                     android:src="@drawable/ic_next"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rv_when" />
+                    app:layout_constraintTop_toTopOf="@id/tv_where"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_where"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_where"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/size_20"
-                    android:layout_marginTop="@dimen/size_24"
+                    android:layout_marginTop="@dimen/size_12"
                     android:layout_marginBottom="@dimen/size_4"
                     android:background="@drawable/rectangle_white_radius_20"
                     android:elevation="@dimen/size_1"
