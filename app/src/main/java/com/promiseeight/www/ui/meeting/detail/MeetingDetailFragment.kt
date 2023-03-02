@@ -66,13 +66,13 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
 
             }
 
-            it.ivWhenMore.setOnClickListener {
+            it.tvWhen.setOnClickListener {
                 findNavController().navigate(
                     MeetingDetailFragmentDirections.actionFragmentMeetingDetailToFragmentMeetingDetailRank(true)
                 )
             }
 
-            it.ivWhereMore.setOnClickListener {
+            it.tvWhere.setOnClickListener {
                 findNavController().navigate(
                     MeetingDetailFragmentDirections.actionFragmentMeetingDetailToFragmentMeetingDetailRank(false)
                 )
