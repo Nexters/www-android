@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.promiseeight.www.domain.model.MeetingMainList
+import com.promiseeight.www.domain.usecase.auth.SetIsFirstFalseUseCase
 import com.promiseeight.www.domain.usecase.meeting.GetMeetingsUseCase
 import com.promiseeight.www.ui.model.MeetingMainListUiModel
 import com.promiseeight.www.ui.model.MeetingUiModel
@@ -20,7 +21,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getMeetingsUseCase : GetMeetingsUseCase
+    private val getMeetingsUseCase : GetMeetingsUseCase,
+    private val setIsFirstFalseUseCase: SetIsFirstFalseUseCase
     ) : ViewModel() {
 
     private var _meetingMainList = MutableStateFlow<MeetingMainListUiModel?>(null) //들어간 아이템 null인지 아닌지~
@@ -67,5 +69,11 @@ class HomeViewModel @Inject constructor(
 
     fun setHomePosition(position : Int){
         _homePosition.value = position
+    }
+
+    fun setIsFirstFalse() {
+        viewModelScope.launch {
+            setIsFirstFalseUseCase()
+        }
     }
 }

@@ -66,18 +66,13 @@ class AuthLocalDataSourceImpl @Inject constructor(
         }
     }
 
-    override fun getIsFirst(): Flow<Result<Boolean>> = flow {
-        try {
-            preferenceDataStore.data.map { preferences ->
-                val r = preferences[IS_FIRST] ?: true
-                Timber.d("asdasd ${r}")
-                emit(Result.success(r))
-            }
-        } catch (e:Exception){
-            Timber.d("asdasd ${e}")
-            emit(Result.failure<Boolean>(e))
+    override fun getIsFirst(): Flow<Result<Boolean>> =
+        preferenceDataStore.data.map { preferences ->
+            val r = preferences[IS_FIRST] ?: true
+            Timber.d("asdasd ${r}")
+            Result.success(r)
         }
-    }
+
 
     override suspend fun setIsFirstFalse() {
         preferenceDataStore.edit { settings ->

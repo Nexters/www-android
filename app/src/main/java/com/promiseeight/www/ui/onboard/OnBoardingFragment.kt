@@ -15,6 +15,7 @@ import com.promiseeight.www.ui.common.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @AndroidEntryPoint
 class OnBoardingFragment : BaseFragment<FragmentOnBoardingBinding>() {
@@ -47,6 +48,7 @@ class OnBoardingFragment : BaseFragment<FragmentOnBoardingBinding>() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.isFirst.collectLatest {
+                        Timber.d("asd2asfasf")
                         if(!it.getOrDefault(true)){
                             findNavController().navigate(
                                 OnBoardingFragmentDirections.actionFragmentOnBoardingToFragmentHome()
