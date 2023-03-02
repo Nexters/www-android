@@ -48,15 +48,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
                 launch {
                     viewModel.isAccessTokenInDevice.collectLatest { isInDevice ->
                         if(isInDevice.isSuccess){
-                            Handler(Looper.getMainLooper()).postDelayed({
-                                if(isOnBoardingFinished()) { //온보딩 완료시
-                                    findNavController().navigate(SplashFragmentDirections.actionFragmentSplashToFragmentHome())
-                                }
-                                else { //온보딩 완료 x시
-                                    findNavController().navigate(SplashFragmentDirections.actionFragmentSplashToFragmentOnBoarding())
-                                }
-                            },1500) //1.5초 딜레이
-
+                            findNavController().navigate(SplashFragmentDirections.actionFragmentSplashToFragmentOnBoarding())
                         }
                     }
                 }
@@ -81,10 +73,4 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
             viewModel.getAccessTokenWithFcmToken(fcmToken = it)
         }
     }
-
-    private fun isOnBoardingFinished() : Boolean {
-        val prefs = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
-        return prefs.getBoolean("finished", false)
-    }
-
 }

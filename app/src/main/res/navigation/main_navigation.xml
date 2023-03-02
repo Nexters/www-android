@@ -23,6 +23,7 @@
         <action
             android:id="@+id/action_fragment_on_boarding_to_fragment_home"
             app:destination="@id/fragment_home"
+            app:popUpTo="@id/fragment_on_boarding"
             app:popUpToInclusive="true"/>
     </fragment>
 
