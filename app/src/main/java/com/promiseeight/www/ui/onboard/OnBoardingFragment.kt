@@ -1,21 +1,25 @@
 package com.promiseeight.www.ui.onboard
 
-import OnBoard1Fragment
-import OnBoard2Fragment
-import OnBoard3Fragment
-import OnBoard4Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.promiseeight.www.ui.adapter.OnBoardAdapter
 import com.promiseeight.www.databinding.FragmentOnBoardingBinding
 import com.promiseeight.www.ui.common.BaseFragment
-import com.promiseeight.www.ui.home.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class OnBoardingFragment : BaseFragment<FragmentOnBoardingBinding>() {
+
+    private val viewModel: OnBoardingViewModel by viewModels()
 
     override fun getFragmentBinding(
         inflater: LayoutInflater,
@@ -26,29 +30,31 @@ class OnBoardingFragment : BaseFragment<FragmentOnBoardingBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initObserver()
         setupViewPager()
-
     }
 
     private fun setupViewPager() {
-        val fragmentList = arrayListOf(
-            OnBoard1Fragment.newInstance(),
-            OnBoard2Fragment.newInstance(),
-            OnBoard3Fragment.newInstance(),
-            OnBoard4Fragment.newInstance()
-        )
-
         val adapter = OnBoardAdapter(
-            fragmentList,
-            requireActivity().supportFragmentManager,
-            lifecycle
+            this
         )
 
         binding.viewpagerOnboard.adapter = adapter
-        binding.viewpagerOnboard.isUserInputEnabled = false
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    private fun initObserver() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    viewModel.isFirst.collectLatest {
+                        if(!it.getOrDefault(true)){
+                            findNavController().navigate(
+                                OnBoardingFragmentDirections.actionFragmentOnBoardingToFragmentHome()
+                            )
+                        }
+                    }
+                }
+            }
+        }
     }
 }

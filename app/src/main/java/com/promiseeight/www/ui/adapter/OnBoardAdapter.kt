@@ -1,20 +1,24 @@
 package com.promiseeight.www.ui.adapter
 
-import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Lifecycle
+import OnBoardFirstFragment
+import OnBoardSecondFragment
+import OnBoardThirdFragment
+import OnBoardFourthFragment
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.promiseeight.www.ui.common.BaseFragment
 
 class OnBoardAdapter(
-    list: ArrayList<BaseFragment<out ViewDataBinding>>,
-    fm: FragmentManager,
-    lifecycle: Lifecycle
-) : FragmentStateAdapter(fm, lifecycle) {
+    fragment: Fragment
+) : FragmentStateAdapter(fragment) {
 
-    private val fragmentList = list
+    override fun getItemCount() = 4
 
-    override fun getItemCount() = fragmentList.size
-
-    override fun createFragment(position: Int) = fragmentList[position]
+    override fun createFragment(position: Int) : Fragment {
+        return when(position){
+            0 -> OnBoardFirstFragment()
+            1 -> OnBoardSecondFragment()
+            2 -> OnBoardThirdFragment()
+            else -> OnBoardFourthFragment()
+        }
+    }
 }

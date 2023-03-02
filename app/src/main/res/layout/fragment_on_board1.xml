@@ -90,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="686dp"
-            android:text="@string/btn_mockup"
+            android:text="@string/button_next"
             android:textColor="@color/www_white"
             android:layout_marginStart="@dimen/size_20"
             android:layout_marginEnd="@dimen/size_20"
