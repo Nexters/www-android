@@ -165,6 +165,12 @@
     <string name="btn_mockup">시작하기</string>
     <string name="mockup1_1">편리한 약속 관리</string>
     <string name="mockup1_2">여러 개의 약속 일정,한 눈에 파악하고 살펴보기</string>
+    <string name="mockup2_1">복잡한 약속 조율을 한번에</string>
+    <string name="mockup2_2">원하는 약속 시간과 장소 편리하게 투표하기</string>
+    <string name="mockup3_1">실시간으로 투표 현황 확인</string>
+    <string name="mockup3_2">약속방 참가자들의 투표 결과 확인하기</string>
+    <string name="mockup4_1">알림으로 약속 리마인드</string>
+    <string name="mockup4_2">빠르게 약속을 정할 수 있도록 알림 받기</string>
 
     <!-- meeting detail user list -->
     <string name="meeting_detail_users_title">약속방 참여자</string>

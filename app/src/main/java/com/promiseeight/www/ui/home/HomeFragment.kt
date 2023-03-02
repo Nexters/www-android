@@ -36,6 +36,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
         viewModel.getMeetings()
+        viewModel.setIsFirstFalse()
         setStatusBarColor(R.color.gray_100)
         binding.btn1FloatingMain.setOnClickListener{
             btnVisible()

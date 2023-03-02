@@ -18,4 +18,8 @@ interface AuthLocalDataSource {
 
     suspend fun setAccessToken(accessToken : String)
 
+    fun getIsFirst() : Flow<Result<Boolean>>
+
+    suspend fun setIsFirstFalse()
+
 }

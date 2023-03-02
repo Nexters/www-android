@@ -1,6 +1,9 @@
 package com.promiseeight.www.ui.splash
 
+import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +40,8 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
         initObserver()
         setStatusBarColor(R.color.www_white)
         setFirebaseMessagingTokenSuccessListener()
+
+
     }
 
     private fun initObserver() {
@@ -45,7 +50,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
                 launch {
                     viewModel.isAccessTokenInDevice.collectLatest { isInDevice ->
                         if(isInDevice.isSuccess){
-                            findNavController().navigate(SplashFragmentDirections.actionFragmentSplashToFragmentHome())
+                            findNavController().navigate(SplashFragmentDirections.actionFragmentSplashToFragmentOnBoarding())
                         }
                     }
                 }
@@ -70,5 +75,4 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
             viewModel.getAccessTokenWithFcmToken(fcmToken = it)
         }
     }
-
 }

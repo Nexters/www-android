@@ -57,4 +57,12 @@ class AuthRepositoryImpl @Inject constructor(
             }
         }
     }
+
+    override fun getIsFirst(): Flow<Result<Boolean>> {
+        return authLocalDataSource.getIsFirst()
+    }
+
+    override suspend fun setIsFirstFalse() {
+        authLocalDataSource.setIsFirstFalse()
+    }
 }
