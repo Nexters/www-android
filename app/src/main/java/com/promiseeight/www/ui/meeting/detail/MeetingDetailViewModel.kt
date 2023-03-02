@@ -129,7 +129,6 @@ class MeetingDetailViewModel @Inject constructor(
 
                         }.collectLatest {
                             it.onSuccess { meetingDetail ->
-                                Timber.d(it.toString())
                                 _meetingDetail.emit(meetingDetail.toMeetingDetailUiModel())
 
                             }.onFailure {
