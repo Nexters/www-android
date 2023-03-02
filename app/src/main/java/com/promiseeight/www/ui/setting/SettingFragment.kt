@@ -37,7 +37,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
         }
 
         binding.tvSettingFeedback.setOnClickListener {
-            uriParse("")
+            uriParse("https://whenwherewhat.notion.site/whenwherewhat/WWW-f6e7324b4d0d459a8feeb8b2df21e621")
         }
 
         binding.tvSettingPrivateInfo.setOnClickListener {
