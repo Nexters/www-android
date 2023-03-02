@@ -41,7 +41,7 @@ class MeetingDetailVoteFragment : BaseFragment<FragmentMeetingDetailVoteBinding>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
-        setStatusBarColor(R.color.www_white)
+        setStatusBarColor(R.color.gray_50)
         binding.let {
             initRecyclerView(it.rvRank)
             it.btnVote.setOnClickListener {
