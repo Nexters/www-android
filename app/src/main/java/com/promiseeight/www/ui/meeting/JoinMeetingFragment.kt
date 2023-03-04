@@ -51,6 +51,13 @@ class JoinMeetingFragment : BaseFragment<FragmentJoinMeetingBinding>() {
                             binding.pbAdd.progress = 100 * page / viewModel.totalPage
                         }
                     }
+                    viewModel.meetingName.collectLatest { name ->
+                        if(name.isNotBlank() && viewModel.page.value > 1){
+                            binding.tvTitle.text = name
+                        } else {
+                            binding.tvTitle.text = ""
+                        }
+                    }
                 }
             }
         }

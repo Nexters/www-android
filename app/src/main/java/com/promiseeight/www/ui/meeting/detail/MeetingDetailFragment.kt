@@ -66,13 +66,13 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
 
             }
 
-            it.ivWhenMore.setOnClickListener {
+            it.tvWhen.setOnClickListener {
                 findNavController().navigate(
                     MeetingDetailFragmentDirections.actionFragmentMeetingDetailToFragmentMeetingDetailRank(true)
                 )
             }
 
-            it.ivWhereMore.setOnClickListener {
+            it.tvWhere.setOnClickListener {
                 findNavController().navigate(
                     MeetingDetailFragmentDirections.actionFragmentMeetingDetailToFragmentMeetingDetailRank(false)
                 )
@@ -126,12 +126,20 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.dateRanks.collectLatest {
-                        dateRankAdapter.submitList(it)
+                        if(it.size > 4){
+                            dateRankAdapter.submitList(it.subList(0,4))
+                        } else {
+                            dateRankAdapter.submitList(it)
+                        }
+
                     }
                 }
                 launch {
                     viewModel.placeRanks.collectLatest {
-                        placeRankAdapter.submitList(it)
+                        if(it.size > 4){
+                            placeRankAdapter.submitList(it.subList(0,4))
+                        } else {
+                            placeRankAdapter.submitList(it)                        }
                     }
                 }
                 launch {

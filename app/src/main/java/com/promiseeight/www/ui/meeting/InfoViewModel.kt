@@ -204,6 +204,7 @@ class InfoViewModel @Inject constructor(
                     it.onSuccess {
                         if(!it.isJoined) {
                             meetingId = it.meetingId
+                            meetingName.value = it.meetingName
                             _startDate.value = DateTime.parse(it.startDate)
                             _endDate.value = DateTime.parse(it.endDate)
                             meetingNicknameHint.value = it.currentUserName ?: ""
