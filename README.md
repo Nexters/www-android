@@ -1,6 +1,13 @@
 # 📅 WWW : 언제어디서뭐해 - Android
 <img width="1000" alt="WWW 앱" src="https://user-images.githubusercontent.com/50227341/222857671-5c1b58bd-f508-4237-b7bb-7c9bc103150e.png">
 
+## 🔨 Tech & Architecture
+- <b>Clean Architecture, MVVM</b>
+- <b>Coroutine</b>
+- <b>Flow</b>
+- <b>Dagger-Hilt</b>
+
+
 ## 💻 Member
 |[정석준](https://github.com/eshc123)|[신민서](https://github.com/MinseoShindor)|
 |------------------------------------|-------------------------------------|
