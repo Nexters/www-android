@@ -8,6 +8,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    environment: Android CI/CD
 
     steps:
     - uses: actions/checkout@v3
@@ -44,16 +45,6 @@ jobs:
     
     - name: Build with Gradle
       run: ./gradlew build  
-      
-    - name: Cache Gradle packages
-      uses: actions/cache@v2
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties', '**/buildSrc/**/*.kt') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
           
     - name: Run ktlint
       run: ./gradlew ktlintCheck
