@@ -39,13 +39,10 @@ jobs:
         BASE_URL: ${{ secrets.BASE_URL }}
       run: echo BASE_URL=\"$BASE_URL\" > ./local.properties
       
-    - name: Create google-services
-      run: cat /home/runner/work/www-android/www-android/app/google-services.json | base64
-      
-    - name: Putting google-services data
+    - name: Create Google Services JSON File
       env:
-        DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
-      run: echo $DATA > /home/runner/work/www-android/www-android/app/google-services.json
+        GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+      run: echo $GOOGLE_SERVICES_JSON | base64 -di > ./app/google-services.json
     
     - name: Build with Gradle
       run: ./gradlew build  
