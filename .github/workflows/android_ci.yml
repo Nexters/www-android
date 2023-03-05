@@ -47,18 +47,4 @@ jobs:
     
     - name: Build with Gradle
       run: ./gradlew build  
-          
-    - name: Run ktlint
-      run: ./gradlew ktlintCheck
-
-    - name: Run detekt
-      run: ./gradlew detekt
-
-    - name: Run unit tests
-      run: ./gradlew testDebugUnitTest
-
-    - name: Build assemble release apk
-      run: ./gradlew assembleRelease
-      
-
 
