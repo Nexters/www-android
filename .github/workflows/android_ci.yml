@@ -34,10 +34,7 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
       
-    - name: Access BASE_URL
-      env:
-        BASE_URL: ${{ secrets.BASE_URL }}
-      run: echo BASE_URL=\"$BASE_URL\" > ./local.properties
+   
     
     - name: Build with Gradle
       run: ./gradlew build  
