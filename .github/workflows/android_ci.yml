@@ -39,6 +39,11 @@ jobs:
         BASE_URL: ${{ secrets.BASE_URL }}
       run: echo BASE_URL=\"$BASE_URL\" > ./local.properties
     
+    - name: Create google-services
+      run: |
+        mkdir ./app
+        echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > ./app/google-services.json
+    
     - name: Build with Gradle
       run: ./gradlew build  
       
