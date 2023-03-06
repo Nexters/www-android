@@ -72,7 +72,7 @@ class RankAdapter<T : RankModel>(
             oldItem: T,
             newItem: T
         ): Boolean {
-            return oldItem == newItem
+            return oldItem.equals(newItem)
         }
     }
 }
