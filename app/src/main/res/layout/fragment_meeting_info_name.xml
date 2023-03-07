@@ -73,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/size_20"
-            android:layout_marginBottom="@dimen/size_38"
+            android:layout_marginBottom="@dimen/size_20"
             android:text="@string/button_next"
             android:enabled="@{!viewModel.meetingName.blank}"
             app:layout_constraintBottom_toBottomOf="parent"
