@@ -13,7 +13,14 @@ properties.load(project.rootProject.file('local.properties').newDataInputStream(
 android {
     namespace 'com.promiseeight.www'
     compileSdk 33
-
+    signingConfigs {
+        release {
+            storeFile file("keystore/wwwKs.jks")
+            storePassword properties['SIGNING_STORE_PASSWORD']
+            keyAlias properties['SIGNING_KEY_ALIAS']
+            keyPassword properties['SIGNING_KEY_PASSWORD']
+        }
+    }
     defaultConfig {
         applicationId "com.promiseeight.www"
         minSdk 21
