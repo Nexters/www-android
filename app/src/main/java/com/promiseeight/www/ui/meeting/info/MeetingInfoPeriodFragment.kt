@@ -96,6 +96,7 @@ class MeetingInfoPeriodFragment : InfoFragment<FragmentMeetingInfoPeriodBinding>
                                         it.meetingPeriodEnd.dateTime.dayOfWeek().getAsText(Locale.KOREAN)?.substring(0,1)
                                     ) else getString(R.string.empty_text)
                             }
+                        binding.btnNext.isEnabled = it.meetingPeriodStart != null && it.meetingPeriodEnd != null
                     }
                 }
                 launch {
