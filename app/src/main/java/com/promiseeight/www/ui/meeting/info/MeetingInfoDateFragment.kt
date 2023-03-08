@@ -99,6 +99,7 @@ class MeetingInfoDateFragment : InfoFragment<FragmentMeetingInfoDateBinding>() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.meetingDateCandidates.collectLatest { candidates ->
+                        binding.btnNext.isEnabled = candidates.isNotEmpty()
                         candidateAdapter.submitList(candidates)
                     }
                 }
