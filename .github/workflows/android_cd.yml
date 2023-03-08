@@ -40,7 +40,7 @@ jobs:
         BASE_URL: ${{ secrets.BASE_URL }}
       run: 
         echo -e "BASE_URL=\"$BASE_URL\" \nSIGNING_KEY_ALIAS=${{ secrets.SIGNING_KEY_ALIAS }}\nSIGNING_KEY_PASSWORD=${{ secrets.SIGNING_KEY_PASSWORD }}\nSIGNING_STORE_PASSWORD=${{ secrets.SIGNING_STORE_PASSWORD }}" >> ./local.properties
-      shell: bash
+      shell: bash 
         
     - name: Create Google Services JSON File
       env:
