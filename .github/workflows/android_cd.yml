@@ -35,7 +35,7 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
       
-    - name: Access BASE_URL
+    - name: Create local.properties
       env:
         BASE_URL: ${{ secrets.BASE_URL }}
       run: 
@@ -51,6 +51,7 @@ jobs:
       
     - name: Generate Keystore file from Github Secrets
       run: |
+        mkdir ./keystore
         echo "$KEYSTORE" > ./keystore/keystore.b64
         base64 -d -i ./keystore/keystore.b64 > ./keystore/wwwKs.jks
       env:
