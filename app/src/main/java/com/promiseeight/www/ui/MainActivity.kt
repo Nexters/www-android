@@ -18,6 +18,7 @@ import com.promiseeight.www.ui.common.util.DialogUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -55,14 +56,22 @@ class MainActivity : AppCompatActivity() {
             this,
             getString(R.string.update_dialog),
             ok = {
-                startActivity(Intent(Intent.ACTION_VIEW).apply {
-                    data = Uri.parse("market://details?id=" + packageName)
-                })
-                finish()
+                goToMarket()
             },
             okText = "이동하기",
             cancelText = "닫기",
             cancelable = false
         )
+    }
+
+    private fun goToMarket() {
+        try {
+            startActivity(Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("market://details?id=" + packageName)
+            })
+            finish()
+        } catch (e : Exception){
+            Timber.e(e)
+        }
     }
 }
