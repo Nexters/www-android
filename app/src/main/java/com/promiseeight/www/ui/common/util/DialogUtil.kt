@@ -16,14 +16,16 @@ object DialogUtil {
         cancelText : String = "취소",
         cancelable : Boolean = true
     ){
-        AlertDialog.Builder(context)
-            .setTitle(title)
-            .setMessage(content)
-            .setPositiveButton(okText){ _, _ ->
-                ok()
-            }.setNegativeButton(cancelText){ _, _ ->
-                cancel()
-            }.setCancelable(cancelable)
-            .show()
+        AlertDialog.Builder(context).apply {
+            setTitle(title)
+            if(content.isNotBlank()) setMessage(content)
+            setPositiveButton(okText){ _, _ ->
+                    ok()
+                }
+            setNegativeButton(cancelText){ _, _ ->
+                    cancel()
+                }
+            setCancelable(cancelable)
+        }.show()
     }
 }
