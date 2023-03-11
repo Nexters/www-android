@@ -20,8 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_188"
             android:background="@drawable/rectangle_white_radius_bottom_30"
-            android:elevation="@dimen/size_1"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_back"
@@ -351,9 +351,10 @@
         <View
             android:id="@+id/v_bottom"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_106"
+            android:layout_height="@dimen/size_88"
             android:background="@color/www_white"
             android:visibility="gone"
+            tools:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
