@@ -179,4 +179,7 @@
 
     <!-- setting -->
     <string name="setting_developer_mail">whenwherewhat.official@gmail.com</string>
+
+    <!-- update -->
+    <string name="update_dialog">업데이트 버전이 있습니다! \n플레이스토어로 이동하시겠습니까?</string>
 </resources>

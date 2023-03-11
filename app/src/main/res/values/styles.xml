@@ -181,4 +181,35 @@
     </style>
 
 
+    <!-- alert Dialog -->
+    <style name="AppAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowTitleStyle">@style/AppAlertDialogTitle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/AppNegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/AppPositiveButtonStyle</item>
+    </style>
+
+    <style name="AppAlertDialogTitle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/gray_550</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/font_size_16</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="AppPositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/www_green</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/font_size_15</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="AppNegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/gray_400</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/font_size_15</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
 </resources>
