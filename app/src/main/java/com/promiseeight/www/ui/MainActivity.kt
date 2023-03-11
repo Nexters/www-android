@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.recentVersion.collectLatest {
-                    if(BuildConfig.VERSION_NAME != it){
+                    if(compareVersion(it)){
                         showAppUpdateDialog()
                     }
                 }
@@ -62,6 +62,19 @@ class MainActivity : AppCompatActivity() {
             cancelText = "닫기",
             cancelable = false
         )
+    }
+
+    private fun compareVersion(version : String) : Boolean { // 앱 버전이 더 낮으면 true
+        return try {
+            val (currentAppMajor, currentAppMinor, currentAppBuild) = BuildConfig.VERSION_NAME.split(".").map { it.toInt() }
+            val (recentAppMajor, recentAppMinor, recentAppBuild) = version.split(".").map { it.toInt() }
+            if(currentAppMajor < recentAppMajor) true
+            else if(currentAppMinor < recentAppMinor) true
+            else if(currentAppBuild < recentAppBuild) true
+            else false
+        } catch (e: Exception){
+            false
+        }
     }
 
     private fun goToMarket() {
