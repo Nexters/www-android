@@ -85,6 +85,7 @@ class MeetingDetailVoteFragment : BaseFragment<FragmentMeetingDetailVoteBinding>
                 launch {
                     viewModel.meetingDetail.collectLatest {
                         it?.let {
+                            viewModel.setPlaceRanks()
                             if(it.userVoted){
                                 binding.btnVote.isEnabled = false
                                 binding.btnVote.text = resources.getString(R.string.meeting_detail_voted)
