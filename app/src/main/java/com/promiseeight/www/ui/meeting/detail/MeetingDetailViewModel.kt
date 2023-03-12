@@ -129,7 +129,7 @@ class MeetingDetailViewModel @Inject constructor(
 
                         }.collectLatest {
                             it.onSuccess { meetingDetail ->
-                                _meetingDetail.emit(meetingDetail.toMeetingDetailUiModel())
+                                _meetingDetail.emit(meetingDetail.toMeetingDetailUiModel().copy())
 
                             }.onFailure {
                                 Timber.d("WwwException : MeetingDetailViewModel - getMeetingDetailById ${it.toString()}")

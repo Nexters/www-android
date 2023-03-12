@@ -91,11 +91,7 @@
         android:name="com.promiseeight.www.ui.meeting.detail.MeetingDetailFragment" >
         <action
             android:id="@+id/action_fragment_meeting_detail_to_fragment_meeting_detail_rank"
-            app:destination="@id/fragment_meeting_detail_rank"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:destination="@id/fragment_meeting_detail_rank" />
         <argument android:name="meetingId"
             app:argType="string"/>
 
@@ -104,18 +100,10 @@
             app:uri="https://www/meeting/detail/{meetingId}" />
         <action
             android:id="@+id/action_fragment_meeting_detail_to_meetingDetailVoteFragment"
-            app:destination="@id/meetingDetailVoteFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:destination="@id/meetingDetailVoteFragment" />
         <action
             android:id="@+id/action_fragment_meeting_detail_to_meetingDetailConfirmWhenFragment"
-            app:destination="@id/meetingDetailConfirmWhenFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:destination="@id/meetingDetailConfirmWhenFragment" />
         <action
             android:id="@+id/action_fragment_meeting_detail_to_meetingDetailUsersFragment"
             app:destination="@id/meetingDetailUsersFragment" />
