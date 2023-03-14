@@ -60,22 +60,10 @@ object CalendarUtil {
         return 6 - nextMonthTailOffset
     }
 
-
-    fun isPossibleDate(todayMonth: DateTime, targetDate: DateTime): Boolean
-            = targetDate.isAfterNow || isSameDate(todayMonth,targetDate)
-
-    @ColorInt
-    fun getDateColor(@androidx.annotation.IntRange(from=1, to=7) dayOfWeek: Int): Int {
-        return when (dayOfWeek) {
-            /* 토요일은 파란색 */
-            //DateTimeConstants.SATURDAY -> Color.parseColor("#2962FF")
-            /* 일요일 빨간색 */
-            DateTimeConstants.SUNDAY -> Color.parseColor("#D32F2F")
-            /* 그 외 검정색 */
-            else -> Color.parseColor("#000000")
-        }
-    }
-
     fun isSameDate(first: DateTime, second: DateTime): Boolean =
         first.year == second.year && first.monthOfYear == second.monthOfYear && first.dayOfMonth == second.dayOfMonth
+
+    fun isSelectedSaturdayStart(startDateTime : DateTime?, dateTime : DateTime) : Boolean {
+        return startDateTime?.dayOfWeek == 6 || dateTime.dayOfMonth().withMaximumValue().dayOfMonth == dateTime.dayOfMonth
+    }
 }
