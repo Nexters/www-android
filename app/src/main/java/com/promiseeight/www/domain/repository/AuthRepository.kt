@@ -14,4 +14,6 @@ interface AuthRepository {
     fun getIsFirst() : Flow<Result<Boolean>>
 
     suspend fun setIsFirstFalse()
+
+    fun getVersion() : Flow<Result<String>>
 }
