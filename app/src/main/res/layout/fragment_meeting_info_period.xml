@@ -17,23 +17,26 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_title"
             style="@style/Text.Heading3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_20"
             android:layout_marginTop="@dimen/size_40"
             android:text="@string/info_period_title"
             android:textColor="@color/www_black"
+            android:gravity="start"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_subtitle"
             style="@style/Text.Body4"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_6"
             android:text="@string/info_period_subtitle"
             android:textColor="@color/gray_450"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_title"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
 

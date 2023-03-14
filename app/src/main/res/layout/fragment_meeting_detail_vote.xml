@@ -116,7 +116,7 @@
         <View
             android:id="@+id/v_bottom"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_106"
+            android:layout_height="@dimen/size_88"
             android:background="@color/www_white"
             app:layout_constraintBottom_toBottomOf="parent" />
 
