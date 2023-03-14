@@ -73,20 +73,24 @@
             android:textColor="@color/www_black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_subtitle" />
-        
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_meeting"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/size_0"
             android:layout_height="@dimen/size_0"
             android:elevation="@dimen/size_2"
-            android:adjustViewBounds="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_participant"
-            android:layout_marginEnd="@dimen/size_30"
             app:layout_constraintBottom_toBottomOf="@id/v_top"
+            app:layout_constraintEnd_toEndOf="@id/iv_participant"
+            android:layout_marginEnd="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_16"
+            android:scaleType="centerCrop"
+            android:alpha="0.9"
+            android:layout_marginStart="@dimen/size_64"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintStart_toEndOf="@id/tv_subtitle"
+            app:layout_constraintTop_toTopOf="parent"
             app:meetingYaksogi="@{viewModel.meetingDetail.yaksogi}"
-            app:layout_constraintWidth_percent="70"
-            tools:src="@drawable/img_yaksogi_eating"/>
+            tools:src="@drawable/img_yaksogi_eating" />
 
         <!-- 수정 필요 -->
         <androidx.core.widget.NestedScrollView
