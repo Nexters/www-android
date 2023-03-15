@@ -8,4 +8,6 @@ import com.promiseeight.www.data.model.request.AccessTokenRequest
 
 interface AuthRemoteDataSource {
     suspend fun getAccessToken(accessTokenRequest: AccessTokenRequest) : String
+
+    suspend fun getVersion() : Result<String>
 }

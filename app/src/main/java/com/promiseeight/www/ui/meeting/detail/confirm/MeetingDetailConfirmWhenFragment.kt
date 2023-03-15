@@ -48,6 +48,7 @@ class MeetingDetailConfirmWhenFragment : BaseFragment<FragmentMeetingDetailConfi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setStatusBarColor(R.color.gray_50)
         binding.viewModel = viewModel
         binding.let {
             initRecyclerView(it.rvRank)

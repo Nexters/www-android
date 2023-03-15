@@ -1,6 +1,7 @@
 package com.promiseeight.www.data.repository
 
 import com.promiseeight.www.data.model.request.AccessTokenRequest
+import com.promiseeight.www.data.model.response.toMeetingMainList
 import com.promiseeight.www.data.source.local.AuthLocalDataSource
 import com.promiseeight.www.data.source.remote.AuthRemoteDataSource
 import com.promiseeight.www.domain.repository.AuthRepository
@@ -64,5 +65,14 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun setIsFirstFalse() {
         authLocalDataSource.setIsFirstFalse()
+    }
+
+    override fun getVersion(): Flow<Result<String>> = flow {
+        authRemoteDataSource.getVersion()
+            .onSuccess {
+                emit(Result.success(it))
+            }.onFailure {
+                emit(Result.failure(it))
+            }
     }
 }
