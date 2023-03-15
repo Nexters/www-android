@@ -11,7 +11,11 @@ import com.promiseeight.www.domain.usecase.meeting.GetMeetingByCodeUseCase
 import com.promiseeight.www.ui.common.util.DateTimeUtil.getDateTimeTableSize
 import com.promiseeight.www.ui.common.util.DateTimeUtil.getTimeUiModelList
 import com.promiseeight.www.domain.usecase.meeting.JoinMeetingUseCase
+import com.promiseeight.www.ui.common.util.CalendarUtil.isInStartTimeAndEndTime
+import com.promiseeight.www.ui.common.util.CalendarUtil.isPassEnd
+import com.promiseeight.www.ui.common.util.CalendarUtil.isPassStart
 import com.promiseeight.www.ui.common.util.CalendarUtil.isSelectedSaturdayStart
+import com.promiseeight.www.ui.common.util.CalendarUtil.isSelectedSundayEnd
 import com.promiseeight.www.ui.model.CandidateUiModel
 import com.promiseeight.www.ui.model.TimeUiModel
 import com.promiseeight.www.ui.model.enums.CodeStatus
@@ -233,32 +237,33 @@ class InfoViewModel @Inject constructor(
     fun updatePeriod() {
         _meetingInitialPeriod.value = meetingInitialPeriod.value.map {
             if (it.isCurrentMonth == true) { // 날이 해당 월이 맞는지 판단
-                if (meetingPeriodState.value.meetingPeriodStart != null && meetingPeriodState.value.meetingPeriodEnd != null) {
-                    if (meetingPeriodState.value.meetingPeriodStart?.dateTime == it.dateTime){ // 시작하는 날짜이면
-//                        if(meetingPeriodState.value.meetingPeriodStart?.dateTime?.dayOfWeek == 6
-//                                || it.dateTime.dayOfMonth().withMaximumValue().dayOfMonth == it.dateTime.dayOfMonth )
-                        if(isSelectedSaturdayStart(meetingPeriodState.value.meetingPeriodStart?.dateTime,it.dateTime))
-                            it.copy(dateState = DateUiState.SELECTED_SATURDAY_START)
-                        else it.copy(dateState = DateUiState.SELECTED_START)
-                    }
-                    else if (meetingPeriodState.value.meetingPeriodEnd?.dateTime == it.dateTime){
-                        if(meetingPeriodState.value.meetingPeriodEnd?.dateTime?.dayOfWeek == 7
-                            || it.dateTime.dayOfMonth().withMinimumValue().dayOfMonth == it.dateTime.dayOfMonth) it.copy(dateState = DateUiState.SELECTED_SUNDAY_END)
-                        else it.copy(dateState = DateUiState.SELECTED_END)
-                    }
-                    else if (it.dateTime.millis in meetingPeriodState.value.meetingPeriodStart!!.dateTime.millis..meetingPeriodState.value.meetingPeriodEnd!!.dateTime.millis)
-                        if(it.dateTime.dayOfWeek == 7 || it.dateTime.dayOfMonth().withMinimumValue().dayOfMonth == it.dateTime.dayOfMonth) it.copy(dateState = DateUiState.PASS_START)
-                        else if(it.dateTime.dayOfWeek == 6  || it.dateTime.dayOfMonth().withMaximumValue().dayOfMonth == it.dateTime.dayOfMonth) it.copy(dateState = DateUiState.PASS_END)
-                        else it.copy(dateState = DateUiState.PASS)
-                    else it.copy(dateState = DateUiState.INITIAL)
-                } else if (meetingPeriodState.value.meetingPeriodStart != null && meetingPeriodState.value.meetingPeriodEnd == null) {
-                    if (meetingPeriodState.value.meetingPeriodStart?.dateTime == it.dateTime) {
-                        it.copy(dateState = DateUiState.SELECTED)
+                meetingPeriodState.value.run {
+                    if (meetingPeriodStart != null && meetingPeriodEnd != null) {
+                        if (meetingPeriodStart.dateTime == it.dateTime){ // 시작하는 날짜이면
+                            if(isSelectedSaturdayStart(meetingPeriodStart.dateTime,it.dateTime))
+                                it.copy(dateState = DateUiState.SELECTED_SATURDAY_START)
+                            else it.copy(dateState = DateUiState.SELECTED_START)
+                        }
+                        else if (meetingPeriodEnd.dateTime == it.dateTime){
+                            if(isSelectedSundayEnd(meetingPeriodEnd.dateTime,it.dateTime))
+                                it.copy(dateState = DateUiState.SELECTED_SUNDAY_END)
+                            else it.copy(dateState = DateUiState.SELECTED_END)
+                        }
+                        else if (isInStartTimeAndEndTime(meetingPeriodStart.dateTime, meetingPeriodEnd.dateTime,it.dateTime)) {
+                            if (isPassStart(it.dateTime)) it.copy(dateState = DateUiState.PASS_START)
+                            else if (isPassEnd(it.dateTime)) it.copy(dateState = DateUiState.PASS_END)
+                            else it.copy(dateState = DateUiState.PASS)
+                        }
+                        else it.copy(dateState = DateUiState.INITIAL)
+                    } else if (meetingPeriodStart != null && meetingPeriodEnd == null) {
+                        if (meetingPeriodStart.dateTime == it.dateTime) {
+                            it.copy(dateState = DateUiState.SELECTED)
+                        } else {
+                            it.copy(dateState = DateUiState.INITIAL)
+                        }
                     } else {
                         it.copy(dateState = DateUiState.INITIAL)
                     }
-                } else {
-                    it.copy(dateState = DateUiState.INITIAL)
                 }
             } else it.copy(dateState = DateUiState.INITIAL)
         }

@@ -66,4 +66,20 @@ object CalendarUtil {
     fun isSelectedSaturdayStart(startDateTime : DateTime?, dateTime : DateTime) : Boolean {
         return startDateTime?.dayOfWeek == 6 || dateTime.dayOfMonth().withMaximumValue().dayOfMonth == dateTime.dayOfMonth
     }
+
+    fun isSelectedSundayEnd(endDateTime : DateTime?, dateTime : DateTime) : Boolean {
+        return endDateTime?.dayOfWeek == 7 || dateTime.dayOfMonth().withMinimumValue().dayOfMonth == dateTime.dayOfMonth
+    }
+
+    fun isPassStart(dateTime : DateTime) : Boolean{
+        return dateTime.dayOfWeek == 7 || dateTime.dayOfMonth().withMinimumValue().dayOfMonth == dateTime.dayOfMonth
+    }
+
+    fun isPassEnd(dateTime : DateTime) : Boolean{
+        return dateTime.dayOfWeek == 6  || dateTime.dayOfMonth().withMaximumValue().dayOfMonth == dateTime.dayOfMonth
+    }
+
+    fun isInStartTimeAndEndTime(startDateTime: DateTime, endDateTime: DateTime, dateTime: DateTime) : Boolean {
+        return dateTime.millis in startDateTime.millis..endDateTime.millis
+    }
 }
