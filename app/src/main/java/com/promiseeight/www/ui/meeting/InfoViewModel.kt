@@ -20,6 +20,7 @@ import com.promiseeight.www.ui.model.CandidateUiModel
 import com.promiseeight.www.ui.model.TimeUiModel
 import com.promiseeight.www.ui.model.enums.CodeStatus
 import com.promiseeight.www.ui.model.enums.DateUiState
+import com.promiseeight.www.ui.model.enums.InfoMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -134,8 +135,8 @@ class InfoViewModel @Inject constructor(
     private val _meetingJoinState = MutableStateFlow(false)
     val meetingJoinState : StateFlow<Boolean> get() = _meetingJoinState
 
-    private var _infoMessage = MutableStateFlow("")
-    val infoMessage : StateFlow<String> get() = _infoMessage
+    private var _infoMessage = MutableStateFlow<InfoMessage>(InfoMessage.Ready)
+    val infoMessage : StateFlow<InfoMessage> get() = _infoMessage
 
     fun setPage(page: Int) {
         _page.value = page
@@ -153,20 +154,12 @@ class InfoViewModel @Inject constructor(
         meetingCode.value = ""
     }
 
-    fun setMeetingCapacity(capacity: Int) {
-        _meetingCapacity.value = capacity
-    }
-
     fun plusMeetingCapacity() {
         _meetingCapacity.value = meetingCapacity.value + 1
     }
 
     fun minusMeetingCapacity() {
         _meetingCapacity.value = meetingCapacity.value - 1
-    }
-
-    fun addMeetingDateCandidate(candidateUiModel: CandidateUiModel) {
-
     }
 
     fun removeMeetingDateCandidate(id : Long){
@@ -304,11 +297,11 @@ class InfoViewModel @Inject constructor(
                         _startDate.value = meetingPeriodState.value.meetingPeriodStart?.dateTime
                         _endDate.value = meetingPeriodState.value.meetingPeriodEnd?.dateTime
                     } else {
-                        _infoMessage.value = "14일 이내로 선택할 수 있어요"
+                        _infoMessage.value = InfoMessage.PeriodWarning14
                     }
                 }
                 else {
-                    _infoMessage.value = "끝 날짜는 시작 날짜 이후로 선택할 수 있어요"
+                    _infoMessage.value = InfoMessage.PeriodWarningEndStart
                 }
             }
 
@@ -381,7 +374,7 @@ class InfoViewModel @Inject constructor(
                    it.onSuccess {
                        _meetingJoinState.value = true
                    }.onFailure {
-                       _infoMessage.value = it.message ?: "방에 참여할 수 없어요"
+                       _infoMessage.value = InfoMessage.PlaceWarningJoin(it.message)
                    }
                 }
             }
@@ -392,6 +385,7 @@ class InfoViewModel @Inject constructor(
     fun getMeetingId() = meetingId
 
     fun setInfoMessageEmpty(){
-        _infoMessage.value = ""
+        _infoMessage.value = InfoMessage.Ready
     }
+
 }
