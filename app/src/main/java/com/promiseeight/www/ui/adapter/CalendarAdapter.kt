@@ -99,7 +99,7 @@ class CalendarAdapter(
             binding.tvDay.setTextColor(
                 if (calendar.dateState == DateUiState.SELECTED_SUNDAY_END || calendar.dateState == DateUiState.SELECTED ||
                     calendar.dateState == DateUiState.SELECTED_START || calendar.dateState == DateUiState.SELECTED_END ||
-                    calendar.dateState == DateUiState.SELECTED_SATURDAY_START
+                    calendar.dateState == DateUiState.SELECTED_SATURDAY_START || calendar.dateState == DateUiState.SELECTED_BOTH
                 ) ContextCompat.getColor(binding.root.context, R.color.www_white)
                 else if(calendar.dateTime.dayOfYear == DateTime.now().dayOfYear) ContextCompat.getColor(binding.root.context, R.color.www_black)
                 else if (calendar.dateTime.isBeforeNow) ContextCompat.getColor(binding.root.context, R.color.gray_350)
@@ -115,7 +115,7 @@ class CalendarAdapter(
         fun bindDateState(calendar: CalendarUiModel) {
             binding.tvDay.setTextColor(if (calendar.dateState == DateUiState.SELECTED_SUNDAY_END || calendar.dateState == DateUiState.SELECTED ||
                 calendar.dateState == DateUiState.SELECTED_START || calendar.dateState == DateUiState.SELECTED_END ||
-                calendar.dateState == DateUiState.SELECTED_SATURDAY_START
+                calendar.dateState == DateUiState.SELECTED_SATURDAY_START || calendar.dateState == DateUiState.SELECTED_BOTH
             ) ContextCompat.getColor(binding.root.context, R.color.www_white)
             else ContextCompat.getColor(binding.root.context, R.color.www_black))
 

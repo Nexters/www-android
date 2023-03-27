@@ -9,9 +9,13 @@ import com.promiseeight.www.domain.usecase.meeting.JoinMeetingUseCase
 import com.promiseeight.www.ui.common.util.CalendarUtil
 import com.promiseeight.www.ui.common.util.CalendarUtil.isInStartTimeAndEndTime
 import com.promiseeight.www.ui.common.util.CalendarUtil.isPassEnd
+import com.promiseeight.www.ui.common.util.CalendarUtil.isPassEndFirstDate
 import com.promiseeight.www.ui.common.util.CalendarUtil.isPassStart
+import com.promiseeight.www.ui.common.util.CalendarUtil.isPassStartLastDate
 import com.promiseeight.www.ui.common.util.CalendarUtil.isSelectedSaturdayStart
+import com.promiseeight.www.ui.common.util.CalendarUtil.isSelectedSaturdayStartFirstDate
 import com.promiseeight.www.ui.common.util.CalendarUtil.isSelectedSundayEnd
+import com.promiseeight.www.ui.common.util.CalendarUtil.isSelectedSundayEndLastDate
 import com.promiseeight.www.ui.common.util.DateTimeUtil.getDateTimeTableSize
 import com.promiseeight.www.ui.common.util.DateTimeUtil.getTimeUiModelList
 import com.promiseeight.www.ui.meeting.info.MeetingInfoPeriodState
@@ -246,7 +250,8 @@ class InfoViewModel @Inject constructor(
                                 it.dateTime
                             )
                         ) {
-                            if (isPassStart(it.dateTime)) it.copy(dateState = DateUiState.PASS_START)
+                            if(isPassEndFirstDate(it.dateTime) || isPassStartLastDate(it.dateTime)) it.copy(dateState = DateUiState.PASS_BOTH)
+                            else if (isPassStart(it.dateTime)) it.copy(dateState = DateUiState.PASS_START)
                             else if (isPassEnd(it.dateTime)) it.copy(dateState = DateUiState.PASS_END)
                             else it.copy(dateState = DateUiState.PASS)
                         } else it.copy(dateState = DateUiState.INITIAL)
