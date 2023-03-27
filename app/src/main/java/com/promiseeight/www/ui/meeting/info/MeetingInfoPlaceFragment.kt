@@ -20,6 +20,7 @@ import com.promiseeight.www.ui.adapter.CandidateAdapter
 import com.promiseeight.www.ui.adapter.ItemDecoration.InfoItemDecoration
 import com.promiseeight.www.ui.common.InfoFragment
 import com.promiseeight.www.ui.meeting.*
+import com.promiseeight.www.ui.model.enums.InfoMessage
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -118,9 +119,13 @@ class MeetingInfoPlaceFragment : InfoFragment<FragmentMeetingInfoPlaceBinding>()
                 }
                 launch {
                     viewModel.infoMessage.collectLatest {
-                        if(it.isNotBlank()){
-                            showToast(it)
-                            viewModel.setInfoMessageEmpty()
+                        when(it){
+                            is InfoMessage.PlaceWarningJoin -> {
+                                showToast(it.message ?: getString(R.string.info_place_warning_join))
+                                viewModel.setInfoMessageEmpty()
+                            }else -> {
+                                //
+                            }
                         }
                     }
                 }

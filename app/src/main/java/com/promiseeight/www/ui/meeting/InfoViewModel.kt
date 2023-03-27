@@ -2,19 +2,25 @@ package com.promiseeight.www.ui.meeting
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.promiseeight.www.ui.common.util.CalendarUtil
-import com.promiseeight.www.ui.meeting.info.MeetingInfoPeriodState
-import com.promiseeight.www.ui.model.CalendarUiModel
 import com.promiseeight.www.domain.model.*
 import com.promiseeight.www.domain.usecase.meeting.CreateMeetingUseCase
 import com.promiseeight.www.domain.usecase.meeting.GetMeetingByCodeUseCase
+import com.promiseeight.www.domain.usecase.meeting.JoinMeetingUseCase
+import com.promiseeight.www.ui.common.util.CalendarUtil
+import com.promiseeight.www.ui.common.util.CalendarUtil.isInStartTimeAndEndTime
+import com.promiseeight.www.ui.common.util.CalendarUtil.isPassEnd
+import com.promiseeight.www.ui.common.util.CalendarUtil.isPassStart
+import com.promiseeight.www.ui.common.util.CalendarUtil.isSelectedSaturdayStart
+import com.promiseeight.www.ui.common.util.CalendarUtil.isSelectedSundayEnd
 import com.promiseeight.www.ui.common.util.DateTimeUtil.getDateTimeTableSize
 import com.promiseeight.www.ui.common.util.DateTimeUtil.getTimeUiModelList
-import com.promiseeight.www.domain.usecase.meeting.JoinMeetingUseCase
+import com.promiseeight.www.ui.meeting.info.MeetingInfoPeriodState
+import com.promiseeight.www.ui.model.CalendarUiModel
 import com.promiseeight.www.ui.model.CandidateUiModel
 import com.promiseeight.www.ui.model.TimeUiModel
 import com.promiseeight.www.ui.model.enums.CodeStatus
 import com.promiseeight.www.ui.model.enums.DateUiState
+import com.promiseeight.www.ui.model.enums.InfoMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -49,7 +55,7 @@ class InfoViewModel @Inject constructor(
 
     val meetingNicknameList = MutableStateFlow<List<String>>(emptyList())
 
-    private var meetingId : Long? = null
+    private var meetingId: Long? = null
 
     private var _meetingCodeStatus = MutableStateFlow(CodeStatus.READY)
     val meetingCodeStatus: StateFlow<CodeStatus> get() = _meetingCodeStatus
@@ -58,38 +64,45 @@ class InfoViewModel @Inject constructor(
     val meetingCapacity: StateFlow<Int> get() = _meetingCapacity
 
     private var _startDate = MutableStateFlow(DateTime.now())
-    val startDate : StateFlow<DateTime> get() = _startDate
+    val startDate: StateFlow<DateTime> get() = _startDate
     private var _endDate = MutableStateFlow(DateTime.now().plusDays(10))
-    val endDate : StateFlow<DateTime> get() = _endDate
+    val endDate: StateFlow<DateTime> get() = _endDate
 
     var meetingDateTimes = MutableStateFlow<List<TimeUiModel>>(emptyList())
 
-    val meetingDateTimeFromPeriod : StateFlow<List<TimeUiModel>> = combine(startDate, endDate){ start, end ->
-        val size = getDateTimeTableSize(start, end)
-        val dateTimes = mutableListOf<TimeUiModel>()
-        for(i in 0 until size){
-            dateTimes += getTimeUiModelList(start,end,i)
-        }
-        meetingDateTimes.value = dateTimes
-        dateTimes
-    }.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.Eagerly,
-        initialValue = emptyList()
-    )
+    val meetingDateTimeFromPeriod: StateFlow<List<TimeUiModel>> =
+        combine(startDate, endDate) { start, end ->
+            val size = getDateTimeTableSize(start, end)
+            val dateTimes = mutableListOf<TimeUiModel>()
+            for (i in 0 until size) {
+                dateTimes += getTimeUiModelList(start, end, i)
+            }
+            meetingDateTimes.value = dateTimes
+            dateTimes
+        }.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = emptyList()
+        )
 
     private var _meetingDateCandidates = MutableStateFlow<List<CandidateUiModel>>(emptyList())
-    val meetingDateCandidates : StateFlow<List<CandidateUiModel>> = combine(_meetingDateCandidates,meetingDateTimes){ candidates, dateTimes ->
-        dateTimes.filter {
-            it.selected
-        }.map {
-            CandidateUiModel(it.id , "${it.date.dayOfMonth} (${it.date.dayOfWeek().getAsText(Locale.KOREAN)[0]}) ${it.time.korean}")
-        }
-    }.stateIn(
-        viewModelScope,
-        SharingStarted.WhileSubscribed(500),
-        emptyList()
-    )
+    val meetingDateCandidates: StateFlow<List<CandidateUiModel>> =
+        combine(_meetingDateCandidates, meetingDateTimes) { candidates, dateTimes ->
+            dateTimes.filter {
+                it.selected
+            }.map {
+                CandidateUiModel(
+                    it.id,
+                    "${it.date.dayOfMonth} (${
+                        it.date.dayOfWeek().getAsText(Locale.KOREAN)[0]
+                    }) ${it.time.korean}"
+                )
+            }
+        }.stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(500),
+            emptyList()
+        )
 
     private var _meetingPlaceCandidates = MutableStateFlow<List<CandidateUiModel>>(emptyList())
     val meetingPlaceCandidates: StateFlow<List<CandidateUiModel>> get() = _meetingPlaceCandidates
@@ -97,7 +110,7 @@ class InfoViewModel @Inject constructor(
     private var _meetingRegisteredPlaces = MutableStateFlow<List<CandidateUiModel>>(emptyList())
     val meetingRegisteredPlaces: StateFlow<List<CandidateUiModel>> get() = _meetingRegisteredPlaces
 
-    val meetingPeriodSize : StateFlow<Int> = combine(startDate, endDate) { start, end ->
+    val meetingPeriodSize: StateFlow<Int> = combine(startDate, endDate) { start, end ->
         getDateTimeTableSize(start, end)
     }.stateIn(
         scope = viewModelScope,
@@ -109,7 +122,12 @@ class InfoViewModel @Inject constructor(
         meetingPlaceCandidates,
         meetingRegisteredPlaces
     ) { candidates, registeredPlaces ->
-        if (candidates.isEmpty() && registeredPlaces.isEmpty()) listOf(CandidateUiModel(title = "예시) 강남역", isPossibleDelete =  false))
+        if (candidates.isEmpty() && registeredPlaces.isEmpty()) listOf(
+            CandidateUiModel(
+                title = "예시) 강남역",
+                isPossibleDelete = false
+            )
+        )
         else candidates.reversed() + registeredPlaces
     }.stateIn(
         scope = viewModelScope,
@@ -118,7 +136,7 @@ class InfoViewModel @Inject constructor(
     )
 
     private val _meetingInvitation = MutableStateFlow<MeetingInvitation?>(null)
-    val meetingInvitation : StateFlow<MeetingInvitation?> get() = _meetingInvitation
+    val meetingInvitation: StateFlow<MeetingInvitation?> get() = _meetingInvitation
 
     private var _meetingInitialPeriod = MutableStateFlow(CalendarUtil.calendarList)
     val meetingInitialPeriod: StateFlow<List<CalendarUiModel>> get() = _meetingInitialPeriod
@@ -127,10 +145,10 @@ class InfoViewModel @Inject constructor(
     val meetingPeriodState: StateFlow<MeetingInfoPeriodState> get() = _meetingPeriodState
 
     private val _meetingJoinState = MutableStateFlow(false)
-    val meetingJoinState : StateFlow<Boolean> get() = _meetingJoinState
+    val meetingJoinState: StateFlow<Boolean> get() = _meetingJoinState
 
-    private var _infoMessage = MutableStateFlow("")
-    val infoMessage : StateFlow<String> get() = _infoMessage
+    private var _infoMessage = MutableStateFlow<InfoMessage>(InfoMessage.Ready)
+    val infoMessage: StateFlow<InfoMessage> get() = _infoMessage
 
     fun setPage(page: Int) {
         _page.value = page
@@ -148,10 +166,6 @@ class InfoViewModel @Inject constructor(
         meetingCode.value = ""
     }
 
-    fun setMeetingCapacity(capacity: Int) {
-        _meetingCapacity.value = capacity
-    }
-
     fun plusMeetingCapacity() {
         _meetingCapacity.value = meetingCapacity.value + 1
     }
@@ -160,13 +174,9 @@ class InfoViewModel @Inject constructor(
         _meetingCapacity.value = meetingCapacity.value - 1
     }
 
-    fun addMeetingDateCandidate(candidateUiModel: CandidateUiModel) {
-
-    }
-
-    fun removeMeetingDateCandidate(id : Long){
+    fun removeMeetingDateCandidate(id: Long) {
         meetingDateTimes.value = meetingDateTimes.value.map {
-            if(it.id == id) it.copy(selected = false)
+            if (it.id == id) it.copy(selected = false)
             else it.copy()
         }
     }
@@ -186,13 +196,11 @@ class InfoViewModel @Inject constructor(
         meetingPlace.value = "" // 장소명 초기화
     }
 
-    fun removeMeetingPlaceCandidate(title : String) {
+    fun removeMeetingPlaceCandidate(title: String) {
         _meetingPlaceCandidates.value = meetingPlaceCandidates.value.filterNot {
             it.title == title
         }
     }
-
-
 
     fun checkCodeValid() {
         var index = 0L
@@ -202,18 +210,8 @@ class InfoViewModel @Inject constructor(
                     _meetingCodeStatus.value = CodeStatus.INVALID
                 }.collectLatest {
                     it.onSuccess {
-                        if(!it.isJoined) {
-                            meetingId = it.meetingId
-                            meetingName.value = it.meetingName
-                            _startDate.value = DateTime.parse(it.startDate)
-                            _endDate.value = DateTime.parse(it.endDate)
-                            meetingNicknameHint.value = it.currentUserName ?: ""
-                            meetingNicknameList.value = it.joinedUserInfoList.map {
-                                it.joinedUserName
-                            }
-                            _meetingRegisteredPlaces.value = it.userPromisePlaceList?.map {
-                                CandidateUiModel(index++, it.promisePlace, isPossibleDelete = false)
-                            } ?: emptyList<CandidateUiModel>()
+                        if (!it.isJoined) {
+                            setMeetingDetail(it, index++)
                             _meetingCodeStatus.value = CodeStatus.SUCCESS
                         } else {
                             _meetingCodeStatus.value = CodeStatus.IS_JOINED
@@ -231,52 +229,54 @@ class InfoViewModel @Inject constructor(
 
     fun updatePeriod() {
         _meetingInitialPeriod.value = meetingInitialPeriod.value.map {
-            if (it.isCurrentMonth == true) {
-                if (meetingPeriodState.value.meetingPeriodStart != null && meetingPeriodState.value.meetingPeriodEnd != null) {
-                    if (meetingPeriodState.value.meetingPeriodStart?.dateTime == it.dateTime){
-                        if(meetingPeriodState.value.meetingPeriodStart?.dateTime?.dayOfWeek == 6
-                            || it.dateTime.dayOfMonth().withMaximumValue().dayOfMonth == it.dateTime.dayOfMonth) it.copy(dateState = DateUiState.SELECTED_SATURDAY_START)
-                        else it.copy(dateState = DateUiState.SELECTED_START)
-                    }
-                    else if (meetingPeriodState.value.meetingPeriodEnd?.dateTime == it.dateTime){
-                        if(meetingPeriodState.value.meetingPeriodEnd?.dateTime?.dayOfWeek == 7
-                            || it.dateTime.dayOfMonth().withMinimumValue().dayOfMonth == it.dateTime.dayOfMonth) it.copy(dateState = DateUiState.SELECTED_SUNDAY_END)
-                        else it.copy(dateState = DateUiState.SELECTED_END)
-                    }
-                    else if (it.dateTime.millis in meetingPeriodState.value.meetingPeriodStart!!.dateTime.millis..meetingPeriodState.value.meetingPeriodEnd!!.dateTime.millis)
-                        if(it.dateTime.dayOfWeek == 7 || it.dateTime.dayOfMonth().withMinimumValue().dayOfMonth == it.dateTime.dayOfMonth) it.copy(dateState = DateUiState.PASS_START)
-                        else if(it.dateTime.dayOfWeek == 6  || it.dateTime.dayOfMonth().withMaximumValue().dayOfMonth == it.dateTime.dayOfMonth) it.copy(dateState = DateUiState.PASS_END)
-                        else it.copy(dateState = DateUiState.PASS)
-                    else it.copy(dateState = DateUiState.INITIAL)
-                } else if (meetingPeriodState.value.meetingPeriodStart != null && meetingPeriodState.value.meetingPeriodEnd == null) {
-                    if (meetingPeriodState.value.meetingPeriodStart?.dateTime == it.dateTime) {
-                        it.copy(dateState = DateUiState.SELECTED)
+            if (it.isCurrentMonth == true) { // 날이 해당 월이 맞는지 판단
+                meetingPeriodState.value.run {
+                    if (meetingPeriodStart != null && meetingPeriodEnd != null) {
+                        if (meetingPeriodStart.dateTime == it.dateTime) { // 시작하는 날짜이면
+                            if (isSelectedSaturdayStart(meetingPeriodStart.dateTime, it.dateTime))
+                                it.copy(dateState = DateUiState.SELECTED_SATURDAY_START)
+                            else it.copy(dateState = DateUiState.SELECTED_START)
+                        } else if (meetingPeriodEnd.dateTime == it.dateTime) {
+                            if (isSelectedSundayEnd(meetingPeriodEnd.dateTime, it.dateTime))
+                                it.copy(dateState = DateUiState.SELECTED_SUNDAY_END)
+                            else it.copy(dateState = DateUiState.SELECTED_END)
+                        } else if (isInStartTimeAndEndTime(
+                                meetingPeriodStart.dateTime,
+                                meetingPeriodEnd.dateTime,
+                                it.dateTime
+                            )
+                        ) {
+                            if (isPassStart(it.dateTime)) it.copy(dateState = DateUiState.PASS_START)
+                            else if (isPassEnd(it.dateTime)) it.copy(dateState = DateUiState.PASS_END)
+                            else it.copy(dateState = DateUiState.PASS)
+                        } else it.copy(dateState = DateUiState.INITIAL)
+                    } else if (meetingPeriodStart != null && meetingPeriodEnd == null) {
+                        if (meetingPeriodStart.dateTime == it.dateTime) {
+                            it.copy(dateState = DateUiState.SELECTED)
+                        } else {
+                            it.copy(dateState = DateUiState.INITIAL)
+                        }
                     } else {
                         it.copy(dateState = DateUiState.INITIAL)
                     }
-                } else {
-                    it.copy(dateState = DateUiState.INITIAL)
                 }
             } else it.copy(dateState = DateUiState.INITIAL)
         }
     }
 
-    fun setMeetingPeriodStart(calendarUiModel: CalendarUiModel?) {
+    private fun setMeetingPeriodStart(calendarUiModel: CalendarUiModel?) {
         _meetingPeriodState.value = meetingPeriodState.value.copy(
             meetingPeriodStart = calendarUiModel
         )
     }
 
-    fun setMeetingPeriodEnd(calendarUiModel: CalendarUiModel?) {
+    private fun setMeetingPeriodEnd(calendarUiModel: CalendarUiModel?) {
         _meetingPeriodState.value = meetingPeriodState.value.copy(
             meetingPeriodEnd = calendarUiModel
         )
     }
 
-    fun setMeetingPeriodState(
-        stateCalendarUiModel: CalendarUiModel? = null,
-        endCalendarUiModel: CalendarUiModel? = null
-    ) {
+    private fun setMeetingPeriodState() {
         _meetingPeriodState.value = meetingPeriodState.value.copy(
             meetingPeriodEnd = null,
             meetingPeriodStart = null
@@ -290,17 +290,16 @@ class InfoViewModel @Inject constructor(
             setMeetingPeriodState()
         } else if (meetingPeriodState.value.meetingPeriodEnd?.dateTime == null) { // 누른 날짜가 start가 아니고 end에 값이 없으면 end에 값 넣는다
             meetingPeriodState.value.meetingPeriodStart?.dateTime?.let {
-                if(calendarUiModel.dateTime.isAfter(it.millis)) { // end가 이후가 맞는지?
-                    if(it.plusDays(14).dayOfYear > calendarUiModel.dateTime.dayOfYear ){
+                if (calendarUiModel.dateTime.isAfter(it.millis)) { // end가 이후가 맞는지?
+                    if (it.plusDays(14).dayOfYear > calendarUiModel.dateTime.dayOfYear) {
                         setMeetingPeriodEnd(calendarUiModel)
                         _startDate.value = meetingPeriodState.value.meetingPeriodStart?.dateTime
                         _endDate.value = meetingPeriodState.value.meetingPeriodEnd?.dateTime
                     } else {
-                        _infoMessage.value = "14일 이내로 선택할 수 있어요"
+                        _infoMessage.value = InfoMessage.PeriodWarning14
                     }
-                }
-                else {
-                    _infoMessage.value = "끝 날짜는 시작 날짜 이후로 선택할 수 있어요"
+                } else {
+                    _infoMessage.value = InfoMessage.PeriodWarningEndStart
                 }
             }
 
@@ -318,7 +317,7 @@ class InfoViewModel @Inject constructor(
                     meetingName = meetingName.value,
                     userName = meetingUserName.value,
                     startDate = startDate.value.toString("yyyy-MM-dd"),
-                    endDate =  endDate.value.toString("yyyy-MM-dd"),
+                    endDate = endDate.value.toString("yyyy-MM-dd"),
                     minimumAlertMembers = meetingCapacity.value.toLong(),
                     promiseTimeList = meetingDateTimes.value.filter {
                         it.selected
@@ -340,18 +339,18 @@ class InfoViewModel @Inject constructor(
         }
     }
 
-    fun selectMeetingDateTime(id : Long){
+    fun selectMeetingDateTime(id: Long) {
         meetingDateTimes.value = meetingDateTimes.value.map {
-            if(it.id == id){
+            if (it.id == id) {
                 it.copy(selected = !it.selected)
-            }
-            else {
+            } else {
                 it.copy()
             }
         }
     }
+
     fun joinMeeting() {
-        meetingId?.let {  meetingId ->
+        meetingId?.let { meetingId ->
             viewModelScope.launch {
                 joinMeetingUseCase(
                     meetingId = meetingId,
@@ -370,11 +369,11 @@ class InfoViewModel @Inject constructor(
                 ).catch {
 
                 }.collectLatest {
-                   it.onSuccess {
-                       _meetingJoinState.value = true
-                   }.onFailure {
-                       _infoMessage.value = it.message ?: "방에 참여할 수 없어요"
-                   }
+                    it.onSuccess {
+                        _meetingJoinState.value = true
+                    }.onFailure {
+                        _infoMessage.value = InfoMessage.PlaceWarningJoin(it.message)
+                    }
                 }
             }
         }
@@ -383,7 +382,21 @@ class InfoViewModel @Inject constructor(
 
     fun getMeetingId() = meetingId
 
-    fun setInfoMessageEmpty(){
-        _infoMessage.value = ""
+    fun setInfoMessageEmpty() {
+        _infoMessage.value = InfoMessage.Ready
+    }
+
+    private fun setMeetingDetail(meetingDetail: MeetingDetail, index: Long) {
+        meetingId = meetingDetail.meetingId
+        meetingName.value = meetingDetail.meetingName
+        _startDate.value = DateTime.parse(meetingDetail.startDate)
+        _endDate.value = DateTime.parse(meetingDetail.endDate)
+        meetingNicknameHint.value = meetingDetail.currentUserName ?: ""
+        meetingNicknameList.value = meetingDetail.joinedUserInfoList.map {
+            it.joinedUserName
+        }
+        _meetingRegisteredPlaces.value = meetingDetail.userPromisePlaceList?.map {
+            CandidateUiModel(index, it.promisePlace, isPossibleDelete = false)
+        } ?: emptyList()
     }
 }

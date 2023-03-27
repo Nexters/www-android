@@ -18,6 +18,7 @@ import com.promiseeight.www.ui.common.util.CalendarUtil
 import com.promiseeight.www.ui.meeting.InfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import com.promiseeight.www.ui.model.CalendarUiModel
+import com.promiseeight.www.ui.model.enums.InfoMessage
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.joda.time.DateTime
@@ -101,9 +102,18 @@ class MeetingInfoPeriodFragment : InfoFragment<FragmentMeetingInfoPeriodBinding>
                 }
                 launch {
                     viewModel.infoMessage.collectLatest {
-                        if(it.isNotBlank()) {
-                            showToast(it)
-                            viewModel.setInfoMessageEmpty()
+                        when(it){
+                            InfoMessage.PeriodWarning14 -> {
+                                showToast(getString(R.string.info_period_warning_14))
+                                viewModel.setInfoMessageEmpty()
+                            }
+                            InfoMessage.PeriodWarningEndStart -> {
+                                showToast(getString(R.string.info_period_warning_end_start))
+                                viewModel.setInfoMessageEmpty()
+                            }
+                            else -> {
+                                //
+                            }
                         }
                     }
                 }
