@@ -67,16 +67,32 @@ object CalendarUtil {
         return startDateTime?.dayOfWeek == 6 || dateTime.dayOfMonth().withMaximumValue().dayOfMonth == dateTime.dayOfMonth
     }
 
+    fun isSelectedSaturdayStartFirstDate(startDateTime : DateTime?, dateTime : DateTime) : Boolean {
+        return startDateTime?.dayOfWeek == 6 && dateTime.dayOfMonth().withMinimumValue().dayOfMonth == dateTime.dayOfMonth
+    }
+
     fun isSelectedSundayEnd(endDateTime : DateTime?, dateTime : DateTime) : Boolean {
         return endDateTime?.dayOfWeek == 7 || dateTime.dayOfMonth().withMinimumValue().dayOfMonth == dateTime.dayOfMonth
+    }
+
+    fun isSelectedSundayEndLastDate(endDateTime : DateTime?, dateTime : DateTime) : Boolean {
+        return endDateTime?.dayOfWeek == 7 && dateTime.dayOfMonth().withMaximumValue().dayOfMonth == dateTime.dayOfMonth
     }
 
     fun isPassStart(dateTime : DateTime) : Boolean{
         return dateTime.dayOfWeek == 7 || dateTime.dayOfMonth().withMinimumValue().dayOfMonth == dateTime.dayOfMonth
     }
 
+    fun isPassStartLastDate(dateTime : DateTime) : Boolean{
+        return dateTime.dayOfWeek == 7 && dateTime.dayOfMonth().withMaximumValue().dayOfMonth == dateTime.dayOfMonth
+    }
+
     fun isPassEnd(dateTime : DateTime) : Boolean{
         return dateTime.dayOfWeek == 6  || dateTime.dayOfMonth().withMaximumValue().dayOfMonth == dateTime.dayOfMonth
+    }
+
+    fun isPassEndFirstDate(dateTime : DateTime) : Boolean{
+        return dateTime.dayOfWeek == 6  && dateTime.dayOfMonth().withMinimumValue().dayOfMonth == dateTime.dayOfMonth
     }
 
     fun isInStartTimeAndEndTime(startDateTime: DateTime, endDateTime: DateTime, dateTime: DateTime) : Boolean {
