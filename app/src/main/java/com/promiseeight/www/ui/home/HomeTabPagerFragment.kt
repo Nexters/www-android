@@ -42,6 +42,7 @@ class HomeTabPagerFragment : BaseFragment<FragmentHomeTabPagerBinding>() {
         binding.viewModel = viewModel
         homeMeetingAdapter = HomeMeetingAdapter { meeting ->
             navigateToMeetingDetail(meeting)
+            viewModel.updateFabState(false)
         }
 
         binding.let {
