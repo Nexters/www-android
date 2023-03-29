@@ -37,6 +37,9 @@ class HomeViewModel @Inject constructor(
     private var _endPage = MutableStateFlow(1)
     val endPage : StateFlow<Int> get() = _endPage
 
+    private var _fabState = MutableStateFlow(false)
+    val fabState : StateFlow<Boolean> get() = _fabState
+
     fun getMeetings() {
         try {
             viewModelScope.launch {
@@ -75,5 +78,9 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             setIsFirstFalseUseCase()
         }
+    }
+
+    fun updateFabState(bool : Boolean? = null) {
+        _fabState.value = bool ?: !fabState.value
     }
 }
