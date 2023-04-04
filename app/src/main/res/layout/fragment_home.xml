@@ -72,7 +72,7 @@
             android:layout_margin="21.5dp"
             android:backgroundTint="@color/www_black"
             android:scaleType="center"
-            android:src="@drawable/selector_floating_btn"
+            android:src="@{viewModel.fabState ? @drawable/ic_floating_vector_click : @drawable/ic_floating_vector_default}"
             android:tint="@color/www_white"
             app:backgroundTint="@color/www_black"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -90,9 +90,8 @@
             android:text="@string/btn_floating_tv1"
             android:textColor="@color/www_white"
             android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@id/btn1_floating_main"
-            app:layout_constraintEnd_toEndOf="@id/btn1_floating_main"
-            app:layout_constraintTop_toTopOf="@id/btn1_floating_main" />
+            app:layout_constraintEnd_toEndOf="@id/btn2_floating_main"
+            app:layout_constraintBottom_toBottomOf="@id/btn2_floating_main" />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/btn2_floating_main"
