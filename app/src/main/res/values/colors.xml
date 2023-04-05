@@ -25,6 +25,7 @@
 
     <!-- grayscale -->
     <color name="www_black">#FF000000</color>
+    <color name="www_black_78">#C7000000</color>
     <color name="gray_800">#FF111111</color>
     <color name="gray_750">#FF1A1A1A</color>
     <color name="gray_700">#FF1A1A1A</color>
