@@ -15,9 +15,9 @@ import com.promiseeight.www.databinding.FragmentMeetingInfoPeriodBinding
 import com.promiseeight.www.ui.adapter.CalendarAdapter
 import com.promiseeight.www.ui.common.InfoFragment
 import com.promiseeight.www.ui.common.util.CalendarUtil
+import com.promiseeight.www.ui.common.util.SnackBarUtil
 import com.promiseeight.www.ui.meeting.InfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import com.promiseeight.www.ui.model.CalendarUiModel
 import com.promiseeight.www.ui.model.enums.InfoMessage
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -104,11 +104,11 @@ class MeetingInfoPeriodFragment : InfoFragment<FragmentMeetingInfoPeriodBinding>
                     viewModel.infoMessage.collectLatest {
                         when(it){
                             InfoMessage.PeriodWarning14 -> {
-                                showToast(getString(R.string.info_period_warning_14))
+                                SnackBarUtil.showSnackBarSimple(requireContext(), binding.root, getString(R.string.info_period_warning_14),binding.btnNext)
                                 viewModel.setInfoMessageEmpty()
                             }
                             InfoMessage.PeriodWarningEndStart -> {
-                                showToast(getString(R.string.info_period_warning_end_start))
+                                SnackBarUtil.showSnackBarSimple(requireContext(), binding.root, getString(R.string.info_period_warning_end_start),binding.btnNext)
                                 viewModel.setInfoMessageEmpty()
                             }
                             else -> {
