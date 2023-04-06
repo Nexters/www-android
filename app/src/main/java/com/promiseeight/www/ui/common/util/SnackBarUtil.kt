@@ -10,7 +10,7 @@ import com.promiseeight.www.R
 import com.promiseeight.www.databinding.LayoutSnackbarSimpleBinding
 
 object SnackBarUtil {
-    fun showSnackBar(context : Context,view:View, message : String?,anchorView : View? = null){
+    fun showSnackBarSimple(context : Context, view:View, message : String?, anchorView : View? = null){
         val binding : LayoutSnackbarSimpleBinding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.layout_snackbar_simple,null, false)
         binding.tvTitle.text = message
 
