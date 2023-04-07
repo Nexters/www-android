@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -22,6 +23,7 @@ import com.promiseeight.www.ui.common.BaseFragment
 import com.promiseeight.www.ui.model.DateRankUiModel
 import com.promiseeight.www.ui.model.PlaceRankUiModel
 import com.promiseeight.www.domain.model.MeetingStatus
+import com.promiseeight.www.ui.common.util.SnackBarUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -268,10 +270,21 @@ class MeetingDetailFragment : BaseFragment<FragmentMeetingDetailBinding>() {
         try {
             (requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).run {
                 setPrimaryClip(ClipData.newPlainText("link", text))
-                showToast(getString(R.string.copy_code_success))
+                SnackBarUtil.showSnackBarSimple(
+                    requireContext(),
+                    binding.root,
+                    getString(R.string.copy_code_success),
+                    if(binding.btnVote.isVisible) binding.btnVote else null
+                )
             }
         } catch (e: Exception) {
-            showToast(getString(R.string.copy_code_fail))
+            SnackBarUtil.showSnackBarSimple(
+                requireContext(),
+                binding.root,
+                getString(R.string.copy_code_fail),
+                if(binding.btnVote.isVisible) binding.btnVote else null
+            )
+
         }
 
     }

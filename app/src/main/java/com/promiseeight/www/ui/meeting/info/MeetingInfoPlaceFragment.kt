@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -19,6 +20,7 @@ import com.promiseeight.www.databinding.FragmentMeetingInfoPlaceBinding
 import com.promiseeight.www.ui.adapter.CandidateAdapter
 import com.promiseeight.www.ui.adapter.ItemDecoration.InfoItemDecoration
 import com.promiseeight.www.ui.common.InfoFragment
+import com.promiseeight.www.ui.common.util.SnackBarUtil
 import com.promiseeight.www.ui.meeting.*
 import com.promiseeight.www.ui.model.enums.InfoMessage
 import dagger.hilt.android.AndroidEntryPoint
@@ -121,7 +123,12 @@ class MeetingInfoPlaceFragment : InfoFragment<FragmentMeetingInfoPlaceBinding>()
                     viewModel.infoMessage.collectLatest {
                         when(it){
                             is InfoMessage.PlaceWarningJoin -> {
-                                showToast(it.message ?: getString(R.string.info_place_warning_join))
+                                SnackBarUtil.showSnackBarSimple(
+                                    requireContext(),
+                                    binding.root,
+                                    getString(R.string.info_place_warning_join),
+                                    binding.btnNext
+                                )
                                 viewModel.setInfoMessageEmpty()
                             }else -> {
                                 //
