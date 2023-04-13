@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentMeetingInfoUserNameBinding
 import com.promiseeight.www.ui.common.InfoFragment
+import com.promiseeight.www.ui.common.util.SnackBarUtil
 import com.promiseeight.www.ui.meeting.InfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,7 +44,12 @@ class MeetingInfoUserNameFragment : InfoFragment<FragmentMeetingInfoUserNameBind
                                 ACTION_JOIN_USER_NAME_TO_DATE
                             )
                         else {
-                            showToast("동일한 닉네임이 존재해요")
+                            SnackBarUtil.showSnackBarSimple(
+                                requireContext(),
+                                binding.root,
+                                "동일한 닉네임이 존재해요",
+                                binding.btnNext
+                            )
                         }
                     },
                     onAdd = {

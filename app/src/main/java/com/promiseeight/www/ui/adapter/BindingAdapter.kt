@@ -22,7 +22,8 @@ fun ImageView.setDateCircle(dateUiState: DateUiState) {
                 DateUiState.GRAD_SELECT_END,
                 DateUiState.GRAD_SELECT_START,
                 DateUiState.SELECTED_SATURDAY_START,
-                DateUiState.SELECTED_SUNDAY_END -> AppCompatResources.getDrawable(context,R.drawable.circle_green)
+                DateUiState.SELECTED_SUNDAY_END,
+                DateUiState.SELECTED_BOTH -> AppCompatResources.getDrawable(context,R.drawable.circle_green)
                 else -> null
             }
         )
@@ -39,6 +40,8 @@ fun ImageView.setLeftRect(dateUiState: DateUiState) {
                 DateUiState.PASS_END,
                 DateUiState.SELECTED_END -> AppCompatResources.getDrawable(context,R.drawable.rectangle_green35)
                 DateUiState.SELECTED_SUNDAY_END,
+                DateUiState.SELECTED_BOTH,
+                DateUiState.PASS_BOTH,
                 DateUiState.PASS_START-> AppCompatResources.getDrawable(context, R.drawable.rectangle_green35_radius_6_left)
                 else -> null
             }
@@ -56,6 +59,8 @@ fun ImageView.setRightRect(dateUiState: DateUiState) {
                 DateUiState.PASS_START,
                 DateUiState.SELECTED_START -> AppCompatResources.getDrawable(context,R.drawable.rectangle_green35)
                 DateUiState.SELECTED_SATURDAY_START,
+                DateUiState.SELECTED_BOTH,
+                DateUiState.PASS_BOTH,
                 DateUiState.PASS_END -> AppCompatResources.getDrawable(context, R.drawable.rectangle_green35_radius_6_right)
                 else -> null
             }

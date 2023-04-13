@@ -19,6 +19,7 @@ import androidx.navigation.fragment.navArgs
 import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentMeetingShareBinding
 import com.promiseeight.www.ui.common.BaseFragment
+import com.promiseeight.www.ui.common.util.SnackBarUtil.showSnackBarSimple
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -69,10 +70,10 @@ class MeetingShareFragment : BaseFragment<FragmentMeetingShareBinding>() {
         try {
             (requireActivity().getSystemService(CLIPBOARD_SERVICE) as ClipboardManager).run {
                 setPrimaryClip(ClipData.newPlainText("link",text))
-                showToast(getString(R.string.copy_code_success))
+                showSnackBarSimple(requireContext(),binding.root,getString(R.string.copy_code_success),binding.btnNext)
             }
         } catch (e : Exception){
-            showToast(getString(R.string.copy_code_fail))
+            showSnackBarSimple(requireContext(),binding.root,getString(R.string.copy_code_fail),binding.btnNext)
         }
 
     }

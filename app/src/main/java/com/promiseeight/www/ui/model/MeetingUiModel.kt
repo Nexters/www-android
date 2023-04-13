@@ -41,12 +41,15 @@ fun MeetingMain.toMeetingUiModel() = MeetingUiModel(
 )
 
 fun getDday(confirmedDate: String?) : String {
-    if(confirmedDate == null) return ""
-    val targetDate = DateTime.parse(confirmedDate).withTime(0,0,0,0)
-    val nowDate = DateTime.now().withTime(0,0,0,0)
-    val period = Period(targetDate,nowDate).toStandardDays().days
-    return if(period < 0) period.toString()
-            else if(period == 0) "-Day"
-            else "+$period"
-
+    try {
+        if(confirmedDate == null) return ""
+        val targetDate = DateTime.parse(confirmedDate).withTime(0,0,0,0)
+        val nowDate = DateTime.now().withTime(0,0,0,0)
+        val period = Period(nowDate.millis - targetDate.millis).toStandardDays().days // Period(targetDate,nowDate).toStandardDays().days
+        return if(period < 0) period.toString()
+        else if(period == 0) "-Day"
+        else "+$period"
+    } catch (e: Exception){
+        return ""
+    }
 }
