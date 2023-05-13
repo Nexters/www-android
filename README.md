@@ -9,9 +9,9 @@
 
 
 ## 💻 Member
-|[정석준](https://github.com/eshc123)|[신민서](https://github.com/MinseoShindor)|
+|[정석준](https://github.com/eshc123)|[신민서](https://github.com/Mnseo)|
 |------------------------------------|-------------------------------------|
-|<a href="https://github.com/eshc123"> <img src="https://avatars.githubusercontent.com/u/50227341?v=4" width="150px" /> </a> | <a href="https://github.com/MinseoShindor"> <img src="https://avatars.githubusercontent.com/u/100370200?v=4" width="150px" /> </a> |
+|<a href="https://github.com/eshc123"> <img src="https://avatars.githubusercontent.com/u/50227341?v=4" width="150px" /> </a> | <a href="https://github.com/Mnseo"> <img src="https://avatars.githubusercontent.com/u/100370200?v=4" width="150px" /> </a> |
 |<div align="center"> Android </div>|<div align="center"> Android </div>|
 <br/>
 
