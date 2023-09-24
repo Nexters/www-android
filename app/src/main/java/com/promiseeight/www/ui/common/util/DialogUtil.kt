@@ -12,6 +12,7 @@ object DialogUtil {
         content : String = "",
         ok : () -> Unit = {},
         okText : String = "확인",
+        useCancelButton : Boolean = true,
         cancel : () -> Unit = {},
         cancelText : String = "취소",
         cancelable : Boolean = true
@@ -22,9 +23,10 @@ object DialogUtil {
             setPositiveButton(okText){ _, _ ->
                     ok()
                 }
-            setNegativeButton(cancelText){ _, _ ->
-                    cancel()
-                }
+            if(useCancelButton)
+                setNegativeButton(cancelText){ _, _ ->
+                        cancel()
+                    }
             setCancelable(cancelable)
         }.show()
     }

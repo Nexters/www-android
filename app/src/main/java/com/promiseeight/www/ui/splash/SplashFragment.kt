@@ -16,6 +16,8 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.promiseeight.www.R
 import com.promiseeight.www.databinding.FragmentSplashBinding
 import com.promiseeight.www.ui.common.BaseFragment
+import com.promiseeight.www.ui.common.util.DialogUtil.showBasicAlertDialog
+import com.promiseeight.www.ui.common.util.SnackBarUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -59,7 +61,16 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
                     viewModel.splashStatus.collectLatest { status ->
                         when(status){
                             SplashStatus.ERROR -> {
-                                //TODO
+                                showBasicAlertDialog(
+                                    requireContext(),
+                                    title = "서버 에러",
+                                    content = "서버 에러가 발생하여 앱을 종료합니다",
+                                    useCancelButton = false,
+                                    cancelable = false,
+                                    ok = {
+                                        requireActivity().finish()
+                                    }
+                                )
                             } else -> {
                                 //TODO
                             }
